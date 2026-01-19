@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews | Jontai Energy</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .reviews-hero {
+            background: linear-gradient(135deg, #1a472a 0%, #2e7d4e 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .reviews-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .reviews-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .reviews-intro {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .reviews-intro h2 {
+            font-size: 2rem;
+            color: #1a472a;
+            margin-bottom: 1rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1a472a, #2e7d4e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        .review-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #1a472a;
+        }
+
+        .review-date {
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .review-rating {
+            color: #ffc107;
+            margin-bottom: 15px;
+        }
+
+        .review-rating i {
+            font-size: 1.1rem;
+        }
+
+        .review-text {
+            color: #333;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .review-project {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .review-project strong {
+            color: #1a472a;
+        }
+
+        .add-review-section {
+            background: #f8f9fa;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .add-review-section h3 {
+            font-size: 1.8rem;
+            color: #1a472a;
+            margin-bottom: 1rem;
+        }
+
+        .add-review-btn {
+            background: linear-gradient(135deg, #1a472a, #2e7d4e);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .add-review-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .reviews-hero h1 {
+                font-size: 2rem;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">JONTAI ENERGY</a>
+        <ul class="nav-links">
+            <li class="dropdown-parent">
+                <a href="index.html#products">Inventory</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>Solar Products</h4>
+                        <a href="index.html#solar">View Solar</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>LED Products</h4>
+                        <a href="index.html#led">View LED</a>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown-parent">
+                <a href="index.html#discover">Discover</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>About Us</h4>
+                        <a href="about.html">Our Story</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Location</h4>
+                        <a href="index.html#location">Find Us</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Opening Hours</h4>
+                        <a href="hours.html" class="dropdown-link">View Details</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Events</h4>
+                        <a href="index.html#events">View Events</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="why-choose.html">Why Choose Us</a></li>
+            <li><a href="reviews.html">Customer Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="nav-icon" aria-label="FAQ" title="FAQ">
+                <i class="fas fa-question-circle"></i>
+                <span class="icon-label">FAQ</span>
+            </a>
+            <a href="contact.html" class="nav-icon" aria-label="Support" title="Support">
+                <i class="fas fa-headset"></i>
+                <span class="icon-label">Support</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Language" title="Language">
+                <i class="fas fa-globe"></i>
+                <span class="icon-label">Language</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Login/Register" title="Login/Register">
+                <i class="fas fa-user-circle"></i>
+                <span class="icon-label">Account</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Reviews Hero Section -->
+    <section class="reviews-hero">
+        <div class="reviews-hero-content">
+            <h1>Customer Reviews</h1>
+            <p>See what our customers have to say about their experience with Jontai Energy</p>
+        </div>
+    </section>
+
+    <!-- Reviews Content -->
+    <section class="reviews-container">
+        <div class="reviews-intro">
+            <h2>Trusted by Families and Businesses Across Aruba</h2>
+            <p>We're proud to have helped hundreds of customers switch to clean, renewable energy</p>
+        </div>
+
+        <div class="reviews-grid">
+            <!-- Review 1 - Add your real customer review here -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">MJ</div>
+                    <div class="review-info">
+                        <h3>Maria Johnson</h3>
+                        <div class="review-date">December 2025</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "Excellent service from start to finish! The team at Jontai Energy was professional, knowledgeable, and completed the installation faster than expected. Our energy bills have dropped significantly, and we couldn't be happier."
+                </p>
+                <div class="review-project">
+                    <strong>Project:</strong> Residential Solar Panel Installation
+                </div>
+            </div>
+
+            <!-- Review 2 - Add your real customer review here -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">RS</div>
+                    <div class="review-info">
+                        <h3>Roberto Silva</h3>
+                        <div class="review-date">November 2025</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "As a business owner, making the switch to solar was one of the best decisions I've made. Jontai Energy handled everything professionally, and the return on investment has been remarkable. Highly recommend!"
+                </p>
+                <div class="review-project">
+                    <strong>Project:</strong> Commercial Solar System
+                </div>
+            </div>
+
+            <!-- Review 3 - Add your real customer review here -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">AC</div>
+                    <div class="review-info">
+                        <h3>Ana Cruz</h3>
+                        <div class="review-date">October 2025</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "The customer service is outstanding! They took the time to explain everything and answered all my questions. The installation was clean and efficient. I'm already seeing the benefits on my electricity bill."
+                </p>
+                <div class="review-project">
+                    <strong>Project:</strong> Home Solar Installation with LED Lighting
+                </div>
+            </div>
+
+            <!-- Review 4 - Add your real customer review here -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">JM</div>
+                    <div class="review-info">
+                        <h3>John Martinez</h3>
+                        <div class="review-date">September 2025</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "Great experience from consultation to installation. The team was punctual, respectful of our property, and the solar panels look fantastic on our roof. We're proud to be contributing to a greener Aruba."
+                </p>
+                <div class="review-project">
+                    <strong>Project:</strong> Residential Solar System
+                </div>
+            </div>
+
+            <!-- Review 5 - Add your real customer review here -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">LS</div>
+                    <div class="review-info">
+                        <h3>Laura Santos</h3>
+                        <div class="review-date">August 2025</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "Jontai Energy made the entire process simple and stress-free. They handled all the paperwork and permits, and their pricing was very competitive. I've already recommended them to my neighbors."
+                </p>
+                <div class="review-project">
+                    <strong>Project:</strong> Solar Panel Installation
+                </div>
+            </div>
+
+            <!-- Review 6 - Add your real customer review here -->
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">DV</div>
+                    <div class="review-info">
+                        <h3>David Vega</h3>
+                        <div class="review-date">July 2025</div>
+                    </div>
+                </div>
+                <div class="review-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">
+                    "The quality of the products and the workmanship is top-notch. The team was friendly, professional, and really knew their stuff. Our energy savings have exceeded our expectations!"
+                </p>
+                <div class="review-project">
+                    <strong>Project:</strong> Complete Solar Solution
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Review Section -->
+        <div class="add-review-section">
+            <h3>Share Your Experience</h3>
+            <p>Have you worked with Jontai Energy? We'd love to hear about your experience!</p>
+            <button class="add-review-btn" onclick="window.location.href='#'">
+                <i class="fas fa-comment-dots"></i> Leave a Review
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1a1a1a; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">JONTAI ENERGY</h3>
+            <p>Leading the solar revolution in Aruba</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+                <a href="about.html" style="color: white; margin: 0 15px; text-decoration: none;">About</a>
+                <a href="contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.7;">&copy; 2026 Jontai Energy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
