@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Jontai Energy</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">JONTAI ENERGY</a>
+        <ul class="nav-links">
+            <li class="dropdown-parent">
+                <a href="index.html#products">Shop</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>Categories</h4>
+                        <a href="index.html#solar">Solar Products</a>
+                        <a href="index.html#led">LED Products</a>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown-parent">
+                <a href="index.html#discover">Discover</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>About Us</h4>
+                        <a href="about.html">Our Story</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Location</h4>
+                        <a href="index.html#location">Find Us</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Opening Hours</h4>
+                        <a href="hours.html" class="dropdown-link">View Details</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Contact Us</h4>
+                        <a href="contact.html">Get in Touch</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="nav-icon" aria-label="FAQ" title="FAQ">
+                <i class="fas fa-question-circle"></i>
+                <span class="icon-label">FAQ</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Support" title="Support">
+                <i class="fas fa-headset"></i>
+                <span class="icon-label">Support</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Language" title="Language">
+                <i class="fas fa-globe"></i>
+                <span class="icon-label">Language</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Login/Register" title="Login/Register">
+                <i class="fas fa-user-circle"></i>
+                <span class="icon-label">Account</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Contact Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Get In Touch</h1>
+            <p>We're here to help you with your solar energy needs</p>
+        </div>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+        <div class="contact-container">
+            <div class="contact-form-wrapper">
+                <h2>Send Us a Message</h2>
+                <form class="contact-form" action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="residential">Residential Solar</option>
+                            <option value="commercial">Commercial Solar</option>
+                            <option value="quote">Request a Quote</option>
+                            <option value="support">Technical Support</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-submit">Send Message</button>
+                </form>
+            </div>
+
+            <div class="contact-info-wrapper">
+                <h2>Contact Information</h2>
+                <div class="contact-info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Address</h4>
+                    <p>Cumana 73<br>Oranjestad, Aruba</p>
+                </div>
+                <div class="contact-info-card">
+                    <i class="fas fa-phone"></i>
+                    <h4>Phone</h4>
+                    <p>+297 586 5323</p>
+                </div>
+                <div class="contact-info-card">
+                    <i class="fas fa-envelope"></i>
+                    <h4>Email</h4>
+                    <p>jontai@qq.com</p>
+                </div>
+                <div class="contact-info-card">
+                    <i class="fas fa-clock"></i>
+                    <h4>Business Hours</h4>
+                    <p>Mon - Sat: 9:00 AM - 6:30 PM<br>
+                    Lunch Break: 12:30 PM - 2:00 PM<br>
+                    Sunday: Closed</p>
+                </div>
+                <div class="social-links">
+                    <h4>Follow Us</h4>
+                    <div class="social-icons-large">
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">JONTAI ENERGY</div>
+            <p>Powering a sustainable future, one panel at a time.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

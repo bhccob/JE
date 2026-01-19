@@ -1,0 +1,195 @@
+/* Opening Hours Page */
+.hours-hero {
+    padding: 140px 50px 80px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 50%, #ffffff 100%);
+    text-align: center;
+}
+
+.hours-content h1 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.hours-content p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+.hours-details {
+    padding: 80px 50px;
+    background: var(--bg-dark);
+}
+
+.hours-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.hours-card {
+    background: var(--bg-section);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.day-group {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 12px 0;
+}
+
+.day-group:last-child {
+    border-bottom: none;
+}
+
+.day-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+}
+
+.day-row.sub-row {
+    padding-left: 20px;
+    padding-top: 4px;
+}
+
+.day-row:last-child {
+    border-bottom: none;
+}
+
+.day-row.closed {
+    opacity: 0.6;
+    padding: 12px 0;
+}
+
+.day {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+}
+
+.time {
+    color: var(--primary-green);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.day-row.closed .time {
+    color: var(--text-secondary);
+}
+
+.hours-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hours-info h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+}
+
+.hours-info p {
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hours-info i {
+    color: var(--primary-green);
+    font-size: 1.2rem;
+}
+
+.hours-info .btn {
+    margin-top: 25px;
+    align-self: flex-start;
+}
+
+/* Holiday Schedule Section */
+.holiday-schedule {
+    max-width: 1000px;
+    margin: 60px auto 0;
+    padding: 40px;
+    background: var(--bg-section);
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.holiday-schedule h2 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.holiday-note {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.holiday-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.holiday-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--bg-dark);
+    border-radius: 10px;
+    border-left: 3px solid var(--primary-green);
+}
+
+.holiday-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+}
+
+.holiday-status {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hours-hero {
+        padding: 120px 20px 60px;
+    }
+
+    .hours-content h1 {
+        font-size: 2rem;
+    }
+
+    .hours-details {
+        padding: 60px 20px;
+    }
+
+    .hours-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .holiday-schedule {
+        padding: 30px 20px;
+        margin: 40px auto 0;
+    }
+
+    .holiday-list {
+        grid-template-columns: 1fr;
+    }
+}
