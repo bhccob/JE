@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Choose Jontai Energy | Sustainable Solar Solutions</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .why-hero {
+            background: linear-gradient(135deg, #1a472a 0%, #2e7d4e 100%);
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        .why-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .why-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .why-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .why-intro h2 {
+            font-size: 2.5rem;
+            color: #1a472a;
+            margin-bottom: 1rem;
+        }
+
+        .why-intro p {
+            font-size: 1.1rem;
+            color: #666;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .reason-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .reason-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #1a472a, #2e7d4e);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .reason-card h3 {
+            font-size: 1.5rem;
+            color: #1a472a;
+            margin-bottom: 15px;
+        }
+
+        .reason-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .benefits-section {
+            background: #f8f9fa;
+            padding: 60px 40px;
+            border-radius: 12px;
+            margin-bottom: 60px;
+        }
+
+        .benefits-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1a472a;
+            margin-bottom: 40px;
+        }
+
+        .benefits-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: start;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .benefit-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #1a472a, #2e7d4e);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h4 {
+            font-size: 1.2rem;
+            color: #1a472a;
+            margin-bottom: 8px;
+        }
+
+        .benefit-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, #1a472a, #2e7d4e);
+            border-radius: 12px;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            padding: 15px 40px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta-btn-primary {
+            background: white;
+            color: #1a472a;
+        }
+
+        .cta-btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            .why-hero h1 {
+                font-size: 2rem;
+            }
+
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .benefit-icon {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">JONTAI ENERGY</a>
+        <ul class="nav-links">
+            <li class="dropdown-parent">
+                <a href="index.html#products">Inventory</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>Solar Products</h4>
+                        <a href="index.html#solar">View Solar</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>LED Products</h4>
+                        <a href="index.html#led">View LED</a>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown-parent">
+                <a href="index.html#discover">Discover</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>About Us</h4>
+                        <a href="about.html">Our Story</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Location</h4>
+                        <a href="index.html#location">Find Us</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Opening Hours</h4>
+                        <a href="hours.html" class="dropdown-link">View Details</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Events</h4>
+                        <a href="index.html#events">View Events</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="why-choose.html">Why Choose Us</a></li>
+            <li><a href="reviews.html">Customer Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="#" class="nav-icon" aria-label="FAQ" title="FAQ">
+                <i class="fas fa-question-circle"></i>
+                <span class="icon-label">FAQ</span>
+            </a>
+            <a href="contact.html" class="nav-icon" aria-label="Support" title="Support">
+                <i class="fas fa-headset"></i>
+                <span class="icon-label">Support</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Language" title="Language">
+                <i class="fas fa-globe"></i>
+                <span class="icon-label">Language</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Login/Register" title="Login/Register">
+                <i class="fas fa-user-circle"></i>
+                <span class="icon-label">Account</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="why-hero">
+        <div class="why-hero-content">
+            <h1>Why Choose Jontai Energy</h1>
+            <p>Your trusted partner for sustainable solar solutions in Aruba</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="why-container">
+        <div class="why-intro">
+            <h2>More Than Just Solar Panels</h2>
+            <p>At Jontai Energy, we're committed to providing exceptional service, quality products, and sustainable solutions that benefit both your wallet and the environment. Here's why hundreds of customers trust us with their energy needs.</p>
+        </div>
+
+        <!-- Main Reasons Grid -->
+        <div class="reasons-grid">
+            <div class="reason-card">
+                <div class="reason-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Family-Owned Business</h3>
+                <p>As a family business, we bring personal care and dedication to every project. Your satisfaction is not just our goal—it's our family's reputation.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3>Premium Quality Products</h3>
+                <p>We only work with top-tier solar panels and LED products from trusted manufacturers, ensuring long-lasting performance and reliability.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h3>Expert Installation</h3>
+                <p>Our certified technicians have years of experience and ensure every installation meets the highest safety and quality standards.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <h3>Competitive Pricing</h3>
+                <p>We offer transparent pricing with no hidden fees. Get premium quality at fair prices that fit your budget.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Outstanding Support</h3>
+                <p>From initial consultation to post-installation support, we're here for you every step of the way. Your questions are always answered.</p>
+            </div>
+
+            <div class="reason-card">
+                <div class="reason-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Environmental Commitment</h3>
+                <p>We're passionate about creating a sustainable future for Aruba. Every installation contributes to a cleaner, greener island.</p>
+            </div>
+        </div>
+
+        <!-- Additional Benefits -->
+        <div class="benefits-section">
+            <h2>The Jontai Energy Advantage</h2>
+            <div class="benefits-list">
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Fast Installation</h4>
+                        <p>Most residential installations are completed within 1-2 days. We respect your time and work efficiently without compromising quality.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Transparent Process</h4>
+                        <p>No surprises or hidden costs. We provide detailed quotes and handle all permits and paperwork, keeping you informed throughout the entire process.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Warranty & Guarantees</h4>
+                        <p>All our products come with manufacturer warranties, and we stand behind our workmanship. Your investment is protected.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Proven Savings</h4>
+                        <p>Our customers typically see 50-80% reduction in electricity bills. Calculate your potential savings with a free consultation.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Local Expertise</h4>
+                        <p>We understand Aruba's unique climate and energy needs. Our solutions are specifically designed for optimal performance in our island environment.</p>
+                    </div>
+                </div>
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="benefit-content">
+                        <h4>Trusted by Community</h4>
+                        <p>With 500+ successful installations across Aruba, we're the solar provider that families and businesses trust most.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-section">
+            <h2>Ready to Make the Switch?</h2>
+            <p>Join hundreds of satisfied customers who have already made the smart choice for sustainable energy.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="cta-btn cta-btn-primary">
+                    <i class="fas fa-phone-alt"></i> Get Free Consultation
+                </a>
+                <a href="reviews.html" class="cta-btn cta-btn-secondary">
+                    <i class="fas fa-star"></i> Read Customer Reviews
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #1a1a1a; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3 style="margin-bottom: 20px;">JONTAI ENERGY</h3>
+            <p>Leading the solar revolution in Aruba</p>
+            <div style="margin-top: 20px;">
+                <a href="index.html" style="color: white; margin: 0 15px; text-decoration: none;">Home</a>
+                <a href="about.html" style="color: white; margin: 0 15px; text-decoration: none;">About</a>
+                <a href="contact.html" style="color: white; margin: 0 15px; text-decoration: none;">Contact</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.7;">&copy; 2026 Jontai Energy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
