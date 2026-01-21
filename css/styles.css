@@ -234,6 +234,24 @@ body {
     margin-top: 12px;
 }
 
+.btn-new-customer {
+    background: var(--text-primary);
+    color: #ffffff;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-new-customer:hover {
+    background: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(20, 24, 54, 0.274);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -954,7 +972,7 @@ body {
 }
 
 .btn-contact {
-    background: #006400;
+    background: #dc3545;
     color: white;
     padding: 12px 35px;
     border-radius: 8px;
@@ -965,7 +983,7 @@ body {
 }
 
 .btn-contact:hover {
-    background: #004d00;
+    background: #c82333;
     transform: scale(1.05);
 }
 
