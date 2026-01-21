@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work With Us | Jontai Energy</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">JONTAI ENERGY</a>
+        <ul class="nav-links">
+            <li class="dropdown-parent">
+                <a href="#products">Inventory</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>Solar Products</h4>
+                        <a href="#solar">View Solar</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>LED Products</h4>
+                        <a href="#led">View LED</a>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown-parent">
+                <a href="#discover">Discover</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-section">
+                        <h4>About Us</h4>
+                        <a href="about.html">Our Story</a>
+                        <a href="reviews.html">Customer Reviews</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Work With Us</h4>
+                        <a href="work-with-us.html">Join Our Team</a>
+                        <a href="why-choose.html">Why Choose Us</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Events</h4>
+                        <a href="events.html">View Events</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="index.html#location">Location & Hours</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="faq.html" class="nav-icon" aria-label="FAQ" title="FAQ">
+                <i class="fas fa-question-circle"></i>
+                <span class="icon-label">FAQ</span>
+            </a>
+            <a href="contact.html" class="nav-icon" aria-label="Support" title="Support">
+                <i class="fas fa-headset"></i>
+                <span class="icon-label">Support</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Language" title="Language">
+                <i class="fas fa-globe"></i>
+                <span class="icon-label">Language</span>
+            </a>
+            <a href="#" class="nav-icon" aria-label="Login/Register" title="Login/Register">
+                <i class="fas fa-user-circle"></i>
+                <span class="icon-label">Account</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>Work With Us</h1>
+            <p>Join our team and help shape Aruba's sustainable future</p>
+        </div>
+    </section>
+
+    <!-- Work With Us Content -->
+    <section class="contact-content">
+        <div class="jobs-container">
+            <h2>Open Positions</h2>
+            <p class="jobs-intro">Find your perfect role at Jontai Energy and help build Aruba's sustainable future</p>
+
+            <!-- Filters -->
+            <div class="jobs-filters">
+                <div class="filter-group">
+                    <label for="departmentFilter">Department</label>
+                    <select id="departmentFilter">
+                        <option value="all">All Departments</option>
+                        <option value="technical">Technical</option>
+                        <option value="sales">Sales & Marketing</option>
+                        <option value="operations">Operations</option>
+                        <option value="support">Support</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="locationFilter">Location</label>
+                    <select id="locationFilter">
+                        <option value="all">All Locations</option>
+                        <option value="oranjestad">Oranjestad</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Job Listings -->
+            <div class="jobs-list">
+                <!-- Job Card 1 -->
+                <div class="job-card" data-department="technical" data-location="oranjestad">
+                    <div class="job-header">
+                        <h3>Solar Installation Technician</h3>
+                        <span class="job-badge">Technical</span>
+                    </div>
+                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Oranjestad</p>
+                    <p class="job-type"><i class="fas fa-clock"></i> Full-time</p>
+                    <p class="job-summary">Install and maintain solar panel systems for residential and commercial clients.</p>
+                    <button class="btn btn-outline learn-more-btn" onclick="toggleJobDetails('job1')">Learn More</button>
+                    
+                    <div class="job-details" id="job1" style="display: none;">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>2+ years of experience in solar installation or electrical work</li>
+                            <li>Valid electrician certification or equivalent</li>
+                            <li>Ability to work at heights and in various weather conditions</li>
+                            <li>Strong problem-solving skills</li>
+                            <li>Valid driver's license</li>
+                        </ul>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Install solar panel systems according to specifications</li>
+                            <li>Perform system testing and quality checks</li>
+                            <li>Maintain equipment and tools</li>
+                            <li>Provide excellent customer service</li>
+                        </ul>
+                        <button class="btn btn-primary apply-btn">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Job Card 2 -->
+                <div class="job-card" data-department="sales" data-location="oranjestad">
+                    <div class="job-header">
+                        <h3>Sales Representative</h3>
+                        <span class="job-badge">Sales & Marketing</span>
+                    </div>
+                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Oranjestad</p>
+                    <p class="job-type"><i class="fas fa-clock"></i> Full-time</p>
+                    <p class="job-summary">Drive sales growth by connecting with residential and commercial customers.</p>
+                    <button class="btn btn-outline learn-more-btn" onclick="toggleJobDetails('job2')">Learn More</button>
+                    
+                    <div class="job-details" id="job2" style="display: none;">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>3+ years of sales experience, preferably in renewable energy</li>
+                            <li>Excellent communication and negotiation skills</li>
+                            <li>Self-motivated with proven track record of meeting targets</li>
+                            <li>Knowledge of solar energy systems (training provided)</li>
+                            <li>Bilingual (English/Papiamento) preferred</li>
+                        </ul>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Generate leads and close sales deals</li>
+                            <li>Conduct site assessments and provide quotes</li>
+                            <li>Build and maintain client relationships</li>
+                            <li>Educate customers on solar benefits and financing options</li>
+                        </ul>
+                        <button class="btn btn-primary apply-btn">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Job Card 3 -->
+                <div class="job-card" data-department="technical" data-location="oranjestad">
+                    <div class="job-header">
+                        <h3>Solar Engineer</h3>
+                        <span class="job-badge">Technical</span>
+                    </div>
+                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Oranjestad</p>
+                    <p class="job-type"><i class="fas fa-clock"></i> Full-time</p>
+                    <p class="job-summary">Design and optimize solar energy systems for maximum efficiency.</p>
+                    <button class="btn btn-outline learn-more-btn" onclick="toggleJobDetails('job3')">Learn More</button>
+                    
+                    <div class="job-details" id="job3" style="display: none;">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>Bachelor's degree in Electrical Engineering or related field</li>
+                            <li>5+ years of experience in solar system design</li>
+                            <li>Proficiency in AutoCAD, PVsyst, or similar software</li>
+                            <li>Strong analytical and technical skills</li>
+                            <li>Project management experience preferred</li>
+                        </ul>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Design custom solar solutions for clients</li>
+                            <li>Perform energy audits and system analysis</li>
+                            <li>Oversee installation projects and quality control</li>
+                            <li>Research and implement new technologies</li>
+                        </ul>
+                        <button class="btn btn-primary apply-btn">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Job Card 4 -->
+                <div class="job-card" data-department="support" data-location="oranjestad">
+                    <div class="job-header">
+                        <h3>Customer Support Specialist</h3>
+                        <span class="job-badge">Support</span>
+                    </div>
+                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Oranjestad</p>
+                    <p class="job-type"><i class="fas fa-clock"></i> Full-time</p>
+                    <p class="job-summary">Provide exceptional support to our valued customers.</p>
+                    <button class="btn btn-outline learn-more-btn" onclick="toggleJobDetails('job4')">Learn More</button>
+                    
+                    <div class="job-details" id="job4" style="display: none;">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>2+ years of customer service experience</li>
+                            <li>Excellent communication skills</li>
+                            <li>Proficiency with CRM software</li>
+                            <li>Problem-solving mindset</li>
+                            <li>Bilingual (English/Papiamento/Spanish) is a plus</li>
+                        </ul>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Handle customer inquiries via phone, email, and in-person</li>
+                            <li>Schedule installations and service appointments</li>
+                            <li>Resolve customer issues promptly and professionally</li>
+                            <li>Maintain customer records and documentation</li>
+                        </ul>
+                        <button class="btn btn-primary apply-btn">Apply Now</button>
+                    </div>
+                </div>
+
+                <!-- Job Card 5 -->
+                <div class="job-card" data-department="operations" data-location="oranjestad">
+                    <div class="job-header">
+                        <h3>Operations Manager</h3>
+                        <span class="job-badge">Operations</span>
+                    </div>
+                    <p class="job-location"><i class="fas fa-map-marker-alt"></i> Oranjestad</p>
+                    <p class="job-type"><i class="fas fa-clock"></i> Full-time</p>
+                    <p class="job-summary">Oversee daily operations and ensure efficient project delivery.</p>
+                    <button class="btn btn-outline learn-more-btn" onclick="toggleJobDetails('job5')">Learn More</button>
+                    
+                    <div class="job-details" id="job5" style="display: none;">
+                        <h4>Requirements:</h4>
+                        <ul>
+                            <li>5+ years of operations management experience</li>
+                            <li>Strong leadership and team management skills</li>
+                            <li>Experience in renewable energy industry preferred</li>
+                            <li>Excellent organizational and planning abilities</li>
+                            <li>Bachelor's degree in Business Management or related field</li>
+                        </ul>
+                        <h4>Responsibilities:</h4>
+                        <ul>
+                            <li>Manage daily operations and workflow</li>
+                            <li>Coordinate installation teams and schedules</li>
+                            <li>Monitor project budgets and timelines</li>
+                            <li>Implement process improvements</li>
+                        </ul>
+                        <button class="btn btn-primary apply-btn">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Modal -->
+    <div id="applicationModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeApplicationModal()">&times;</span>
+            <h3>Apply for Position</h3>
+            <form class="contact-form" id="applicationForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cv">Upload CV/Resume *</label>
+                    <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                    <small style="color: var(--text-secondary); font-size: 0.85rem;">Accepted formats: PDF, DOC, DOCX</small>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit Application</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">JONTAI ENERGY</div>
+            <p>Powering a sustainable future, one panel at a time.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+            <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Filter jobs by department and location
+        function filterJobs() {
+            const departmentFilter = document.getElementById('departmentFilter').value;
+            const locationFilter = document.getElementById('locationFilter').value;
+            const jobCards = document.querySelectorAll('.job-card');
+
+            jobCards.forEach(card => {
+                const department = card.getAttribute('data-department');
+                const location = card.getAttribute('data-location');
+                
+                const departmentMatch = departmentFilter === 'all' || department === departmentFilter;
+                const locationMatch = locationFilter === 'all' || location === locationFilter;
+                
+                if (departmentMatch && locationMatch) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Toggle job details
+        function toggleJobDetails(jobId) {
+            const details = document.getElementById(jobId);
+            const allDetails = document.querySelectorAll('.job-details');
+            
+            // Close all other job details
+            allDetails.forEach(detail => {
+                if (detail.id !== jobId) {
+                    detail.style.display = 'none';
+                }
+            });
+            
+            // Toggle current job details
+            if (details.style.display === 'none') {
+                details.style.display = 'block';
+            } else {
+                details.style.display = 'none';
+            }
+        }
+
+        // Open application modal
+        function openApplicationModal() {
+            document.getElementById('applicationModal').style.display = 'flex';
+        }
+
+        // Close application modal
+        function closeApplicationModal() {
+            document.getElementById('applicationModal').style.display = 'none';
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Filter listeners
+            document.getElementById('departmentFilter').addEventListener('change', filterJobs);
+            document.getElementById('locationFilter').addEventListener('change', filterJobs);
+
+            // Apply button listeners
+            const applyButtons = document.querySelectorAll('.apply-btn');
+            applyButtons.forEach(button => {
+                button.addEventListener('click', openApplicationModal);
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('applicationModal');
+                if (event.target === modal) {
+                    closeApplicationModal();
+                }
+            });
+
+            // Form submission
+            document.getElementById('applicationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Application submitted successfully! We will contact you soon.');
+                closeApplicationModal();
+            });
+        });
+    </script>
+    </footer>
+</body>
+</html>

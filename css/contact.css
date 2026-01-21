@@ -155,6 +155,234 @@
     transform: translateY(-3px);
 }
 
+/* Jobs Page Styles */
+.jobs-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.jobs-container h2 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.jobs-intro {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 50px;
+}
+
+.jobs-filters {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    justify-content: center;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.filter-group select {
+    padding: 12px 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    background: var(--bg-section);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.filter-group select:hover {
+    border-color: var(--primary-green);
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+}
+
+.jobs-list {
+    display: grid;
+    gap: 25px;
+}
+
+.job-card {
+    background: var(--bg-section);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+}
+
+.job-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(76, 175, 80, 0.15);
+}
+
+.job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.job-header h3 {
+    font-size: 1.6rem;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.job-badge {
+    background: var(--primary-green);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.job-location,
+.job-type {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.job-location i,
+.job-type i {
+    color: var(--primary-green);
+}
+
+.job-summary {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 15px 0 20px 0;
+}
+
+.learn-more-btn {
+    margin-top: 10px;
+}
+
+.job-details {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 2px solid #e0e0e0;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.job-details h4 {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    margin: 20px 0 12px 0;
+}
+
+.job-details h4:first-child {
+    margin-top: 0;
+}
+
+.job-details ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.job-details ul li {
+    color: var(--text-secondary);
+    padding: 8px 0;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.job-details ul li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-green);
+    font-weight: 700;
+}
+
+.apply-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: var(--bg-section);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: var(--text-primary);
+}
+
+.modal-content h3 {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .contact-hero {
@@ -177,4 +405,17 @@
     .form-row {
         grid-template-columns: 1fr;
     }
-}
+
+    .jobs-filters {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .filter-group select {
+        min-width: 100%;
+    }
+
+    .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;

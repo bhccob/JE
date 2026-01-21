@@ -274,7 +274,7 @@ body {
 
 .btn {
     padding: 15px 40px;
-    border-radius: 30px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
@@ -407,7 +407,8 @@ body {
     padding: 0 80px;
 }
 
-.products-carousel {
+.products-carousel,
+.led-carousel {
     display: flex;
     gap: 30px;
     overflow-x: auto;
@@ -416,7 +417,8 @@ body {
     scrollbar-width: none;
 }
 
-.products-carousel::-webkit-scrollbar {
+.products-carousel::-webkit-scrollbar,
+.led-carousel::-webkit-scrollbar {
     display: none;
 }
 
@@ -460,7 +462,7 @@ body {
     color: var(--primary-green);
     background: transparent;
     padding: 10px 30px;
-    border-radius: 25px;
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.3s ease;
     display: inline-block;
@@ -492,12 +494,289 @@ body {
     transform: translateY(-50%) scale(1.1);
 }
 
-.scroll-left {
+.scroll-left,
+.led-scroll-left {
     left: 20px;
+    opacity: 0;
+    pointer-events: none;
 }
 
-.scroll-right {
+.scroll-right,
+.led-scroll-right {
     right: 20px;
+}
+
+/* Values Section */
+.values-section {
+    padding: 80px 50px;
+    background: var(--bg-dark);
+}
+
+.values-section h2 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 60px;
+    font-weight: 700;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.value-card {
+    background: transparent;
+    padding: 50px 35px;
+    border-radius: 0;
+    text-align: center;
+    border-bottom: 4px solid transparent;
+    transition: all 0.4s ease;
+    position: relative;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
+    transition: width 0.4s ease;
+}
+
+.value-card:hover::before {
+    width: 80%;
+}
+
+.value-card:hover {
+    transform: translateY(-10px);
+}
+
+.value-card i {
+    font-size: 4rem;
+    color: var(--primary-green);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.value-card:hover i {
+    transform: scale(1.15);
+    color: var(--dark-green);
+}
+
+.value-card h4 {
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.value-card:hover h4 {
+    color: var(--primary-green);
+}
+
+.value-card p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* LED Banner Section */
+.led-products-section {
+    padding: 80px 50px;
+    background: var(--bg-dark);
+}
+
+.led-generator-container {
+    display: flex;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.led-box {
+    flex: 1;
+    max-width: 1600px;
+    margin: 0;
+    margin-left: 50px;
+    padding: 120px 150px 80px 100px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 550px;
+}
+
+.led-box h2 {
+    font-size: 3.5rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.generator-box {
+    max-width: 800px;
+    padding: 60px 500px 50px 40px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    text-align: left;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    min-height: 550px;
+}
+
+.generator-box h3 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 15px;
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.led-banner {
+    display: flex;
+    align-items: center;
+    min-height: 400px;
+    max-width: 100%;
+    margin: 0;
+}
+
+.led-banner-content {
+    flex: 1;
+    padding: 80px 100px;
+    background: var(--bg-section);
+}
+
+.led-banner-content h2 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.led-banner-content p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.led-banner-image {
+    flex: 1;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.led-banner-content .hours-list {
+    margin-top: 30px;
+}
+
+.led-banner-content .hours-row {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 18px 0;
+}
+
+.led-banner-content .hours-row .day {
+    font-size: 1.15rem;
+}
+
+.led-banner-content .hours-row .time {
+    font-size: 1.1rem;
+}
+
+/* Opening Hours Banner in Map Section */
+.hours-banner {
+    display: flex;
+    align-items: center;
+    min-height: 400px;
+    max-width: 100%;
+    margin: 0;
+    background: var(--bg-section);
+}
+
+.hours-banner-content {
+    flex: 1;
+    padding: 80px 100px;
+    background: var(--bg-section);
+}
+
+.hours-banner-content h2 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hours-banner-content p {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.hours-banner-image {
+    flex: 1;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hours-banner-content .hours-list {
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.hours-banner-content .hours-row {
+    border-bottom: 1px solid rgba(0, 166, 80, 0.1);
+    padding: 18px 0;
+}
+
+.hours-banner-content .hours-row:last-child {
+    border-bottom: none;
+}
+
+/* Map Container in Banner Style */
+.map-section .map-container {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border: none;
+}
+
+.map-section .map-container iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    border: none;
+}
+
+.led-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 /* Map Section */
@@ -530,7 +809,7 @@ body {
 
 .map-container iframe {
     width: 100%;
-    height: 550px;
+    height: 400px;
     border: none;
     filter: grayscale(0%) saturate(90%);
 }
@@ -678,7 +957,7 @@ body {
     background: #006400;
     color: white;
     padding: 12px 35px;
-    border-radius: 25px;
+    border-radius: 8px;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;

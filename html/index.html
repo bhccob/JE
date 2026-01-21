@@ -33,26 +33,23 @@
                     <div class="dropdown-section">
                         <h4>About Us</h4>
                         <a href="about.html">Our Story</a>
+                        <a href="reviews.html">Customer Reviews</a>
                     </div>
                     <div class="dropdown-section">
-                        <h4>Location</h4>
-                        <a href="#location">Find Us</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Opening Hours</h4>
-                        <a href="hours.html" class="dropdown-link">View Details</a>
+                        <h4>Work With Us</h4>
+                        <a href="work-with-us.html">Join Our Team</a>
+                        <a href="why-choose.html">Why Choose Us</a>
                     </div>
                     <div class="dropdown-section">
                         <h4>Events</h4>
-                        <a href="#events">View Events</a>
+                        <a href="events.html">View Events</a>
                     </div>
                 </div>
             </li>
-            <li><a href="why-choose.html">Why Choose Us</a></li>
-            <li><a href="reviews.html">Customer Reviews</a></li>
+            <li><a href="#location">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="#" class="nav-icon" aria-label="FAQ" title="FAQ">
+            <a href="faq.html" class="nav-icon" aria-label="FAQ" title="FAQ">
                 <i class="fas fa-question-circle"></i>
                 <span class="icon-label">FAQ</span>
             </a>
@@ -156,27 +153,68 @@
         </div>
     </section>
 
+    <!-- LED Products Section -->
+    <section id="led-products" class="led-products-section">
+        <div class="led-generator-container">
+            <div class="led-box" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1550985543-f47f38aeee65?w=1200')">
+                <h2>LED Solutions</h2>
+                <a href="led-products.html" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="generator-box" style="background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800')">
+                <h3>Generator Solutions</h3>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <h2>Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <i class="fas fa-check-circle"></i>
+                <h4>Quality</h4>
+                <p>We only use premium solar panels and equipment</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-handshake"></i>
+                <h4>Trust</h4>
+                <p>Building long-term relationships with our customers</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-dollar-sign"></i>
+                <h4>Affordable</h4>
+                <p>Making solar energy accessible to everyone</p>
+            </div>
+            <div class="value-card">
+                <i class="fas fa-globe-americas"></i>
+                <h4>Sustainability</h4>
+                <p>Committed to protecting our small island</p>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Map Section -->
     <section id="location" class="map-section">
-        <div class="map-location-container">
-            <div class="map-wrapper">
-                <div class="map-container">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15717.539497696546!2d-70.03378512476758!3d12.520812987806857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8561d8e5e8f6ab%3A0x3c6d1e8e8e8e8e8e!2sCumana%2073%2C%20Oranjestad%2C%20Aruba!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-                <div class="location-info">
-                    <h3 class="location-title">Find Our Location</h3>
-                    <p class="address-text">Oranjestad, Cumana 73 (Aruba)</p>
-                </div>
+        <div class="hours-banner">
+            <div class="hours-banner-content">
+                <h2>Find Our Location</h2>
+                <p class="address-text">Oranjestad, Cumana 73 (Aruba)</p>
             </div>
-            
-            <div class="hours-wrapper">
-                <h3 class="hours-title">Opening Hours</h3>
+            <div class="map-container hours-banner-image">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15717.539497696546!2d-70.03378512476758!3d12.520812987806857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8561d8e5e8f6ab%3A0x3c6d1e8e8e8e8e8e!2sCumana%2073%2C%20Oranjestad%2C%20Aruba!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+            <div class="hours-banner">
+            <div class="hours-banner-image" style="background-image: url('https://images.unsplash.com/photo-1501139083538-0139583c060f?w=1200')"></div>
+            <div class="hours-banner-content">
+                <h2>Opening Hours</h2>
                 <div class="hours-list">
                     <div class="hours-row">
                         <span class="day">Monday - Friday</span>
@@ -190,10 +228,6 @@
                         <span class="day">Sunday</span>
                         <span class="time">Closed</span>
                     </div>
-                </div>
-                <a href="hours.html" class="btn btn-outline hours-btn">View Full Schedule</a>
-            </div>
-        </div>
     </section>
 
     <!-- Contact Banner Section -->
@@ -204,6 +238,8 @@
                 <p>Get in touch with a product expert or account manager</p>
             </div>
             <div class="contact-banner-right">
+                <a href="work-with-us.html" class="btn btn-contact">Work With Us</a>
+                <span class="divider"></span>
                 <a href="contact.html" class="btn btn-contact">Contact Us</a>
                 <div class="divider"></div>
                 <div class="social-media">
