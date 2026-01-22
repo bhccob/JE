@@ -158,4 +158,44 @@ document.addEventListener('DOMContentLoaded', function() {
 
         window.addEventListener('resize', updateTeamScrollButtons);
     }
+
+    // Language selector modal functionality
+    const languageBtn = document.getElementById('languageBtn');
+    const languageModal = document.getElementById('languageModal');
+    const applyBtn = document.getElementById('applyBtn');
+    const flagSelect = document.getElementById('flagSelect');
+    const langSelect = document.getElementById('langSelect');
+    const regionSelect = document.getElementById('regionSelect');
+
+    if (languageBtn && languageModal) {
+        // Toggle modal
+        languageBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            languageModal.classList.toggle('active');
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!languageModal.contains(e.target) && !languageBtn.contains(e.target)) {
+                languageModal.classList.remove('active');
+            }
+        });
+
+        // Apply changes
+        if (applyBtn) {
+            applyBtn.addEventListener('click', function() {
+                const selectedFlag = flagSelect.value;
+                const selectedLang = langSelect.value;
+                const selectedRegion = regionSelect.value;
+
+                // Update button display
+                languageBtn.querySelector('.current-flag').textContent = selectedFlag;
+                languageBtn.querySelector('.current-lang').textContent = selectedLang;
+                languageBtn.querySelector('.current-region').textContent = selectedRegion;
+
+                // Close modal
+                languageModal.classList.remove('active');
+            });
+        }
+    }
 });

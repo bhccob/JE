@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opening Hours | Jontai Energy</title>
+    <title>Location & Hours | Jontai Energy</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="../css/hours.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
@@ -47,7 +46,7 @@
                     </div>
                 </div>
             </li>
-            <li><a href="index.html#location">Location & Hours</a></li>
+            <li><a href="location.html">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
             <a href="faq.html" class="nav-icon" aria-label="FAQ" title="FAQ">
@@ -62,63 +61,70 @@
                 <i class="fas fa-globe"></i>
                 <span class="icon-label">Language</span>
             </a>
-            <a href="#" class="nav-icon" aria-label="Login/Register" title="Login/Register">
-                <i class="fas fa-user-circle"></i>
-                <span class="icon-label">Account</span>
+            <a href="#" class="btn-new-customer" aria-label="New Customer" title="New Customer">
+                New Customer
             </a>
         </div>
     </nav>
 
-    <!-- Opening Hours Section -->
-    <section class="hours-hero">
-        <div class="hours-content">
-            <h1>Opening Hours</h1>
-            <p>Visit us during our business hours</p>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Location & Hours</h1>
+            <p>Visit us or get in touch with any questions</p>
         </div>
     </section>
 
-    <section class="hours-details">
-        <div class="hours-container">
-            <div class="hours-card">
-                <div class="day-group">
-                    <div class="day-row">
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="hours-banner">
+            <div class="hours-banner-content">
+                <h2>Find Our Location</h2>
+                <p class="address-text">Oranjestad, Cumana 73 (Aruba)</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+297 123 4567</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@jontaienergy.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container hours-banner-image">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15717.539497696546!2d-70.03378512476758!3d12.520812987806857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e8561d8e5e8f6ab%3A0x3c6d1e8e8e8e8e8e!2sCumana%2073%2C%20Oranjestad%2C%20Aruba!5e0!3m2!1sen!2s!4v1699999999999!5m2!1sen!2s" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+        <div class="hours-banner">
+            <div class="hours-banner-image" style="background-image: url('https://images.unsplash.com/photo-1501139083538-0139583c060f?w=1200')"></div>
+            <div class="hours-banner-content">
+                <h2>Opening Hours</h2>
+                <div class="hours-list">
+                    <div class="hours-row">
                         <span class="day">Monday - Friday</span>
                         <span class="time">8:00 AM - 6:30 PM</span>
                     </div>
-                    <div class="day-row sub-row">
-                        <span class="day"></span>
-                        <span class="time"></span>
-                    </div>
-                </div>
-                <div class="day-group">
-                    <div class="day-row">
+                    <div class="hours-row">
                         <span class="day">Saturday</span>
                         <span class="time">8:00 AM - 6:30 PM</span>
                     </div>
-                </div>
-                <div class="day-group">
-                    <div class="day-row closed">
+                    <div class="hours-row closed-day">
                         <span class="day">Sunday</span>
                         <span class="time">Closed</span>
                     </div>
                 </div>
             </div>
-
-            <div class="hours-info">
-                <h2>Additional Information</h2>
-                <p><i class="fas fa-utensils"></i> Lunch Break: 12:30 PM - 2:00 PM</p>
-                <p><i class="fas fa-info-circle"></i> Saturday will be open full day, no break</p>
-                <p><i class="fas fa-phone"></i> For urgent inquiries, call: +297 586 5323</p>
-                <p><i class="fas fa-envelope"></i> Email us: jontai@qq.com</p>
-                <a href="index.html#contact" class="btn btn-primary">Contact Us</a>
-            </div>
         </div>
-
-      
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="footer-content">
             <div class="footer-logo">JONTAI ENERGY</div>
             <p>Powering a Sustainable Future with Solar & LED Lighting.</p>
@@ -129,5 +135,7 @@
             <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
         </div>
     </footer>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>
