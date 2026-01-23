@@ -21,6 +21,153 @@ body {
     overflow-x: hidden;
 }
 
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(0, 90, 45, 0.95), rgba(0, 70, 35, 0.9)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #ffffff;
+    text-align: center;
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    animation: fadeInUp 1s ease;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    animation: fadeInUp 1s ease 0.4s backwards;
+}
+
+.btn {
+    padding: 15px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--primary-green);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 166, 80, 0.3);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-green);
+    border: 2px solid var(--primary-green);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-green);
+    color: white;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--primary-green);
+    z-index: 2;
+}
+
+.scroll-arrow {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--primary-green);
+    border-radius: 15px;
+    position: relative;
+    animation: bounce 2s infinite;
+}
+
+.scroll-arrow::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--primary-green);
+    border-radius: 50%;
+    animation: scrollDown 2s infinite;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes scrollDown {
+    0% {
+        opacity: 0;
+        top: 10px;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        top: 30px;
+    }
+}
+
+/* Navbar Header Styles */
+
 /* Navbar */
 .navbar {
     position: fixed;
@@ -253,150 +400,6 @@ body {
     box-shadow: 0 4px 12px rgba(20, 24, 54, 0.274);
 }
 
-/* Hero Section */
-.hero {
-    height: 100vh;
-    background: linear-gradient(135deg, rgba(0, 90, 45, 0.95), rgba(0, 70, 35, 0.9)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920') center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    color: #ffffff;
-    text-align: center;
-}
-
-.hero-content {
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 20px;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 20px;
-    font-weight: 700;
-    animation: fadeInUp 1s ease;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-    animation: fadeInUp 1s ease 0.2s backwards;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-    animation: fadeInUp 1s ease 0.4s backwards;
-}
-
-.btn {
-    padding: 15px 40px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.btn-primary {
-    background: var(--primary-green);
-    color: white;
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(0, 166, 80, 0.3);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--primary-green);
-    border: 2px solid var(--primary-green);
-}
-
-.btn-secondary:hover {
-    background: var(--primary-green);
-    color: white;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: var(--primary-green);
-    z-index: 2;
-}
-
-.scroll-arrow {
-    width: 30px;
-    height: 50px;
-    border: 2px solid var(--primary-green);
-    border-radius: 15px;
-    position: relative;
-    animation: bounce 2s infinite;
-}
-
-.scroll-arrow::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 6px;
-    height: 6px;
-    background: var(--primary-green);
-    border-radius: 50%;
-    animation: scrollDown 2s infinite;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
-}
-
-@keyframes scrollDown {
-    0% {
-        opacity: 0;
-        top: 10px;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        opacity: 0;
-        top: 30px;
-    }
-}
 
 /* Products Section */
 .products-section {
@@ -673,74 +676,8 @@ body {
     font-size: 1.1rem;
 }
 
-/* Opening Hours Banner in Map Section */
-.hours-banner {
-    display: flex;
-    align-items: center;
-    min-height: 900px;
-    max-width: 100%;
-    margin: 0;
-    background: transparent;
-}
-
-.hours-banner-content {
-    flex: 0.72;
-    padding: 80px 100px;
-    background: transparent;
-}
-
-.hours-banner-content h2 {
-    font-size: 3rem;
-    color: var(--text-primary);
-    margin-bottom: 20px;
-    font-weight: 700;
-}
-
-.hours-banner-content p {
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    line-height: 1.8;
-}
-
-.hours-banner-image {
-    flex: 0.86;
-    min-height: 900px;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.hours-banner-content .hours-list {
-    margin-top: 20px;
-    margin-bottom: 0;
-}
-
-.hours-banner-content .hours-row {
-    border-bottom: 1px solid rgba(0, 166, 80, 0.1);
-    padding: 18px 0;
-}
-
-.hours-banner-content .hours-row:last-child {
-    border-bottom: none;
-}
-
-/* Map Container in Banner Style */
-.map-section .map-container {
-    width: 100%;
-    height: 100%;
-    min-height: 800px;
-    border: none;
-}
-
-.map-section .map-container iframe {
-    width: 100%;
-    height: 100%;
-    min-height: 800px;
-    border: none;
-}
-
-/* Map Section */
-.map-section {
+/* Commercial & Residential Solutions Section */
+.solutions-section {
     padding: 0;
     margin-top: 0;
     background: var(--bg-dark);
@@ -749,132 +686,40 @@ body {
     gap: 0;
 }
 
-.map-section .hours-banner {
-    margin: 0;
-}
-
-.map-location-container {
-    max-width: 100%;
-    margin: 0;
-    padding: 0 80px;
-    display: grid;
-    grid-template-columns: 1.8fr 1fr;
-    gap: 40px;
-    align-items: start;
-}
-
-.map-wrapper {
-    width: 100%;
-}
-
-.map-container {
-    margin: 0 auto;
-    max-width: 100%;
-    border-radius: 0;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 166, 80, 0.2);
-}
-
-.map-container iframe {
-    width: 100%;
-    height: 400px;
-    border: none;
-    filter: grayscale(0%) saturate(90%);
-}
-
-.location-info {
+.solutions-banner {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 40px;
-    padding: 0;
+    align-items: center;
+    min-height: 900px;
+    max-width: 100%;
+    margin: 0;
+    background: transparent;
 }
 
-.location-title {
-    font-size: 2.5rem;
+.solutions-banner-content {
+    flex: 0.73;
+    padding: 80px 100px;
+    background: transparent;
+}
+
+.solutions-banner-content h2 {
+    font-size: 3rem;
     color: var(--text-primary);
-    margin-bottom: 15px;
-    font-weight: 600;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
-.address-text {
-    text-align: left;
+.solutions-banner-content p {
+    font-size: 1.15rem;
     color: var(--text-secondary);
-    font-size: 1.3rem;
     line-height: 1.8;
 }
 
-.hours-wrapper {
-    background: var(--bg-section);
-    padding: 50px;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-.hours-title {
-    font-size: 2.2rem;
-    color: var(--text-primary);
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-.hours-list {
-    margin-bottom: 25px;
-}
-
-.hours-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 18px 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.hours-row:last-child {
-    border-bottom: none;
-}
-
-.hours-row .day {
-    font-weight: 600;
-    color: var(--text-primary);
-    font-size: 1.1rem;
-}
-
-.hours-row .time {
-    color: var(--primary-green);
-    font-weight: 500;
-    font-size: 1rem;
-    text-align: right;
-    line-height: 1.6;
-}
-
-.hours-row.closed-day {
-    opacity: 0.6;
-}
-
-.hours-row.closed-day .time {
-    color: var(--text-secondary);
-}
-
-.lunch-note {
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    margin: 20px 0;
-    padding: 12px;
-    background: rgba(0, 166, 80, 0.05);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.lunch-note i {
-    color: var(--primary-green);
-}
-
-.hours-btn {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
+.solutions-banner-image {
+    flex: 0.86;
+    min-height: 900px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 /* Contact Banner Section */
@@ -1264,24 +1109,6 @@ body {
 
     .scroll-btn {
         display: none;
-    }
-
-    .map-section {
-        padding: 60px 0;
-    }
-
-    .map-location-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        padding: 0 20px;
-    }
-
-    .map-container iframe {
-        height: 350px;
-    }
-
-    .hours-wrapper {
-        padding: 30px 20px;
     }
 
     .contact-banner {

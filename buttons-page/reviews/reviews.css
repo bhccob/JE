@@ -1,0 +1,151 @@
+/* Customer Reviews Page Styles */
+
+.reviews-hero {
+    background: linear-gradient(135deg, #1a472a 0%, #2e7d4e 100%);
+    padding: 80px 20px;
+    text-align: center;
+    color: white;
+}
+
+.reviews-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.reviews-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.reviews-container {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+.reviews-intro {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.reviews-intro h2 {
+    font-size: 2rem;
+    color: #1a472a;
+    margin-bottom: 1rem;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.review-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a472a, #2e7d4e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-right: 15px;
+}
+
+.review-info h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #1a472a;
+}
+
+.review-date {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.review-rating {
+    color: #ffc107;
+    margin-bottom: 15px;
+}
+
+.review-rating i {
+    font-size: 1.1rem;
+}
+
+.review-text {
+    color: #333;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.review-project {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.review-project strong {
+    color: #1a472a;
+}
+
+.add-review-section {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.add-review-section h3 {
+    font-size: 1.8rem;
+    color: #1a472a;
+    margin-bottom: 1rem;
+}
+
+.add-review-btn {
+    background: linear-gradient(135deg, #1a472a, #2e7d4e);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.add-review-btn:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .reviews-hero h1 {
+        font-size: 2rem;
+    }
+
+    .reviews-grid {
+        grid-template-columns: 1fr;
+    }
+}

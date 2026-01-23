@@ -1,0 +1,194 @@
+/* Event Main Page Styling */
+
+/* Hero Section */
+.hours-hero {
+    padding: 140px 50px 80px;
+    background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f4 50%, #ffffff 100%);
+    text-align: center;
+}
+
+.hours-hero-content h1 {
+    font-size: 3rem;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.hours-hero-content p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+}
+
+/* Selection Boxes for Events Page */
+.selection-content {
+    padding: 80px 50px;
+    background: var(--bg-dark);
+    min-height: 60vh;
+}
+
+.selection-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.selection-box {
+    background: var(--bg-section);
+    border-radius: 20px;
+    overflow: hidden;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
+    min-height: 350px;
+}
+
+.selection-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 166, 80, 0.2);
+}
+
+.selection-image {
+    flex: 1;
+    background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+    transition: all 0.4s ease;
+}
+
+.selection-box:hover .selection-image {
+    background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+}
+
+.selection-image i {
+    font-size: 120px;
+    color: white;
+    transition: all 0.4s ease;
+}
+
+.selection-box:hover .selection-image i {
+    transform: scale(1.1);
+}
+
+.selection-text {
+    flex: 1;
+    padding: 50px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.selection-text h2 {
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+.selection-box:hover .selection-text h2 {
+    color: var(--primary-green);
+}
+
+.selection-text p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.selection-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: var(--primary-green);
+    border-radius: 50%;
+    color: white;
+    font-size: 20px;
+    transition: all 0.3s ease;
+}
+
+.selection-box:hover .selection-arrow {
+    transform: translateX(10px);
+    background: var(--dark-green);
+}
+
+/* Responsive Design for Selection Boxes */
+@media (max-width: 1024px) {
+    .selection-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .selection-box {
+        min-height: 300px;
+    }
+    
+    .selection-image i {
+        font-size: 100px;
+    }
+    
+    .selection-text h2 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .selection-content {
+        padding: 60px 30px;
+    }
+    
+    .selection-box {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .selection-image {
+        padding: 40px;
+    }
+    
+    .selection-image i {
+        font-size: 80px;
+    }
+    
+    .selection-text {
+        padding: 40px 30px;
+    }
+    
+    .selection-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .selection-text p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .selection-content {
+        padding: 40px 20px;
+    }
+    
+    .selection-image {
+        padding: 30px;
+    }
+    
+    .selection-image i {
+        font-size: 60px;
+    }
+    
+    .selection-text {
+        padding: 30px 20px;
+    }
+    
+    .selection-text h2 {
+        font-size: 1.5rem;
+    }
+}
