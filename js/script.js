@@ -198,4 +198,52 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
     }
+
+    // Subscription panel functionality
+    const subscribeBtn = document.querySelector('.btn-subscribe');
+    const subscriptionPanel = document.getElementById('subscriptionPanel');
+    const subscriptionOverlay = document.getElementById('subscriptionOverlay');
+    const closePanel = document.getElementById('closePanel');
+    const subscriptionForm = document.getElementById('subscriptionForm');
+
+    function openSubscriptionPanel() {
+        subscriptionPanel.classList.add('active');
+        subscriptionOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeSubscriptionPanel() {
+        subscriptionPanel.classList.remove('active');
+        subscriptionOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    if (subscribeBtn) {
+        subscribeBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            openSubscriptionPanel();
+        });
+    }
+
+    if (closePanel) {
+        closePanel.addEventListener('click', closeSubscriptionPanel);
+    }
+
+    if (subscriptionOverlay) {
+        subscriptionOverlay.addEventListener('click', closeSubscriptionPanel);
+    }
+
+    if (subscriptionForm) {
+        subscriptionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('subscribeName').value;
+            const email = document.getElementById('subscribeEmail').value;
+            const notifications = document.getElementById('emailNotifications').checked;
+            
+            console.log('Subscription submitted:', { name, email, notifications });
+            alert('Thank you for subscribing!');
+            closeSubscriptionPanel();
+            subscriptionForm.reset();
+        });
+    }
 });

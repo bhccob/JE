@@ -17,32 +17,37 @@
             <li class="dropdown-parent">
                 <a href="#products">Inventory</a>
                 <div class="dropdown-menu">
-                    <div class="dropdown-section">
-                        <h4>Solar Products</h4>
-                        <a href="#solar">View Solar</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>LED Products</h4>
-                        <a href="#led">View LED</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4>Solar Products</h4>
+                            <a href="#solar">View Solar</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>LED Products</h4>
+                            <a href="#led">View LED</a>
+                        </div>
                     </div>
                 </div>
             </li>
             <li class="dropdown-parent">
                 <a href="#discover">Discover</a>
                 <div class="dropdown-menu">
-                    <div class="dropdown-section">
-                        <h4>About Us</h4>
-                        <a href="about.html">Our Story</a>
-                        <a href="reviews.html">Customer Reviews</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Work With Us</h4>
-                        <a href="work-with-us.html">Join Our Team</a>
-                        <a href="why-choose.html">Why Choose Us</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Events</h4>
-                        <a href="events.html">View Events</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4>Resources</h4>
+                            <a href="events.html">View Events</a>
+
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Why Us</h4>
+                            <a href="why-choose.html">Why Choose Us</a>
+                            <a href="reviews.html">Customer Reviews</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Company</h4>
+                            <a href="about.html">Our Story</a>                            
+                            <a href="work-with-us.html">Careers</a>
+                        </div>
                     </div>
                 </div>
             </li>
@@ -73,8 +78,8 @@
             <h1>Power Your Future</h1>
             <p>Powering a Sustainable Future with Solar & LED Lighting.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">Quote</a>
-                <a href="#" class="btn btn-secondary">View Inventory</a>
+                <a href="#" class="btn btn-primary">View Inventory</a>
+                <a href="#" class="btn btn-secondary">Quote</a>
             </div>
         </div>
         <div class="hero-overlay"></div>
@@ -362,7 +367,7 @@
                             <button class="language-btn" id="languageBtn">
                                 <span class="current-flag">🇺🇸</span>
                                 <span class="current-lang">EN</span>
-                                <span class="current-region">United States</span>
+                                <span class="current-region">North America</span>
                                 <i class="fas fa-chevron-down"></i>
                             </button>
                             <div class="language-modal" id="languageModal">
@@ -372,11 +377,11 @@
                                         <div class="option-group">
                                             <label>Flag</label>
                                             <select id="flagSelect">
-                                                <option value="🇺🇸" selected>🇺🇸 United States</option>
-                                                <option value="🇲🇽">🇲🇽 Mexico</option>
-                                                <option value="🇦🇼">🇦🇼 Aruba</option>
-                                                <option value="🇬🇧">🇬🇧 United Kingdom</option>
-                                                <option value="🇧🇷">🇧🇷 Brazil</option>
+                                                <option value="🇺🇸" selected>United States</option>
+                                                <option value="🇲🇽">Mexico</option>
+                                                <option value="🇦🇼">Aruba</option>
+                                                <option value="🇬🇧">United Kingdom</option>
+                                                <option value="🇧🇷">Brazil</option>
                                             </select>
                                         </div>
                                         <div class="option-group">
@@ -386,16 +391,14 @@
                                                 <option value="ES">Spanish</option>
                                                 <option value="NL">Dutch</option>
                                                 <option value="PT">Portuguese</option>
-                                            </select>
-                                        </div>
+                                                </select>
+                                            </div>
                                         <div class="option-group">
                                             <label>Region</label>
                                             <select id="regionSelect">
-                                                <option value="United States" selected>United States</option>
-                                                <option value="Mexico">Mexico</option>
-                                                <option value="Aruba">Aruba</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="Brazil">Brazil</option>
+                                                <option value="North America" selected>North America</option>
+                                                <option value="South America">South America</option>
+                                                <option value="Europe">Europe</option>
                                             </select>
                                         </div>
                                     </div>
@@ -409,6 +412,35 @@
             <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Subscription Panel -->
+    <div class="subscription-panel" id="subscriptionPanel">
+        <div class="subscription-panel-content">
+            <button class="close-panel" id="closePanel">&times;</button>
+            <h2>Subscribe to Updates</h2>
+            <p>Stay informed about our latest products and news</p>
+            <form class="subscription-form" id="subscriptionForm">
+                <div class="form-group">
+                    <label for="subscribeName">Name</label>
+                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="subscribeEmail">Email</label>
+                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group-toggle">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="emailNotifications" name="notifications" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-text">Email Notifications</span>
+                    </label>
+                    <p class="toggle-description">Receive updates about new products and trends</p>
+                </div>
+                <button type="submit" class="btn btn-submit-subscribe">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="subscription-overlay" id="subscriptionOverlay"></div>
 
     <script src="../js/script.js"></script>
 </body>
