@@ -19,11 +19,12 @@ body {
     line-height: 1.6;
     color: var(--text-primary);
     overflow-x: hidden;
+    background-color: var(--bg-dark);
 }
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    height: 90vh;
     background: linear-gradient(135deg, rgba(0, 90, 45, 0.95), rgba(0, 70, 35, 0.9)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920') center/cover;
     display: flex;
     align-items: center;
@@ -403,14 +404,14 @@ body {
 
 /* Products Section */
 .products-section {
-    padding: 100px 0 100px 0;
+    padding: 80px 0 100px 0;
     background: var(--bg-dark);
 }
 
 .section-header-left {
     text-align: left !important;
-    padding: 0 50px;
-    margin-bottom: 40px;
+    padding-left: 2px;
+    margin-bottom: 50px;
 }
 
 .section-header-left h2 {
@@ -433,23 +434,22 @@ body {
     font-size: 3rem;
     margin-bottom: 10px;
     color: var(--text-primary);
-    padding: 0 50px;
+    padding: 0 15px;
 }
 
 .products-container {
     position: relative;
     width: 100%;
-    padding: 0 80px;
+    padding: 0 15px;
 }
 
 .products-carousel,
 .led-carousel {
     display: flex;
-    gap: 30px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 20px 0;
-    scrollbar-width: none;
+    gap: 5px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 10px 0;
 }
 
 .products-carousel::-webkit-scrollbar,
@@ -458,19 +458,19 @@ body {
 }
 
 .product-card {
-    min-width: 600px;
+    flex: 1;
+    min-width: 0;
     background: var(--bg-section);
     border-radius: 0;
     overflow: hidden;
-    transition: transform 0.3s ease;
 }
 
 .product-card:hover {
-    transform: translateY(-10px);
+    transform: none;
 }
 
 .product-image {
-    height: 600px;
+    height: 400px;
     background-size: cover;
     background-position: center;
 }
@@ -505,121 +505,6 @@ body {
 .btn-outline:hover {
     background: var(--primary-green);
     color: white;
-}
-
-.scroll-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: var(--primary-green);
-    color: white;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.3s ease;
-}
-
-.scroll-btn:hover {
-    background: var(--dark-green);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.scroll-left,
-.led-scroll-left {
-    left: 20px;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.scroll-right,
-.led-scroll-right {
-    right: 20px;
-}
-
-/* Values Section */
-.values-section {
-    padding: 80px 50px;
-    background: var(--bg-dark);
-}
-
-.values-section h2 {
-    font-size: 3rem;
-    color: var(--text-primary);
-    text-align: center;
-    margin-bottom: 60px;
-    font-weight: 700;
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
-    max-width: 100%;
-    margin: 0 auto;
-}
-
-.value-card {
-    background: transparent;
-    padding: 50px 35px;
-    border-radius: 0;
-    text-align: center;
-    border-bottom: 4px solid transparent;
-    transition: all 0.4s ease;
-    position: relative;
-}
-
-.value-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-green), var(--dark-green));
-    transition: width 0.4s ease;
-}
-
-.value-card:hover::before {
-    width: 80%;
-}
-
-.value-card:hover {
-    transform: translateY(-10px);
-}
-
-.value-card i {
-    font-size: 4rem;
-    color: var(--primary-green);
-    margin-bottom: 25px;
-    transition: all 0.3s ease;
-}
-
-.value-card:hover i {
-    transform: scale(1.15);
-    color: var(--dark-green);
-}
-
-.value-card h4 {
-    font-size: 1.8rem;
-    color: var(--text-primary);
-    margin-bottom: 15px;
-    font-weight: 700;
-    transition: color 0.3s ease;
-}
-
-.value-card:hover h4 {
-    color: var(--primary-green);
-}
-
-.value-card p {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    line-height: 1.7;
 }
 
 .led-banner {
@@ -720,6 +605,102 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+/* Trending Categories Section (First Section) */
+.trending-categories-section {
+    padding: 0 0 100px 0;
+    background: var(--bg-dark);
+}
+
+.trending-categories-container {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.trending-categories-carousel {
+    display: flex;
+    gap: 5px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 5px 0 20px 0;
+}
+
+.trending-category-card {
+    flex: 1;
+    min-width: 0;
+    background: var(--bg-section);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.trending-category-card:hover {
+    transform: none;
+}
+
+.trending-category-image {
+    height: 600px;
+    background-size: cover;
+    background-position: center;
+}
+
+.trending-category-info {
+    padding: 40px;
+}
+
+/* Building the Brand Section */
+.building-brand-section {
+
+    padding: 300px 20px;
+    margin: 200px 0;
+    text-align: center;
+    color: #000000;
+}
+
+.building-brand-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.building-brand-content h2 {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.building-brand-subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 60px;
+    opacity: 0.9;
+}
+
+.brand-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    padding: 20px;
+}
+
+.brand-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #000000;
+    line-height: 1;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Contact Banner Section */
@@ -1105,10 +1086,6 @@ body {
 
     .product-card {
         min-width: 300px;
-    }
-
-    .scroll-btn {
-        display: none;
     }
 
     .contact-banner {
