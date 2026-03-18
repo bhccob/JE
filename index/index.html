@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,72 +15,86 @@
         <a href="index.html" class="logo">JONTAI ENERGY</a>
         <ul class="nav-links">
             <li class="dropdown-parent">
-                <a href="#products">Inventory</a>
+                <a href="#products" data-i18n="nav-inventory">Inventory</a>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
                         <div class="dropdown-section">
-                            <h4>Solar Products</h4>
-                            <a href="#solar">View Solar</a>
+                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
+                            <a href="#solar" data-i18n="dd-solar-link">View Solar</a>
                         </div>
                         <div class="dropdown-section">
-                            <h4>LED Products</h4>
-                            <a href="#led">View LED</a>
+                            <h4 data-i18n="dd-led-h">LED Products</h4>
+                            <a href="#led" data-i18n="dd-led-link">View LED</a>
                         </div>
                     </div>
                 </div>
             </li>
             <li class="dropdown-parent">
-                <a href="#discover">Discover</a>
+                <a href="#discover" data-i18n="nav-discover">Discover</a>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
                         <div class="dropdown-section">
-                            <h4>Resources</h4>
-                            <a href="../buttons-page/view-event/events.html">Events</a>
-                            <a href="#">News</a>
+                            <h4 data-i18n="dd-res-h">Resources</h4>
+                            <a href="../buttons-page/view-event/events.html" data-i18n="dd-events">Events</a>
+                            <a href="#" data-i18n="dd-news">News</a>
 
                         </div>
                         <div class="dropdown-section">
-                            <h4>Why Us</h4>
-                            <a href="../buttons-page/why-us/why-choose.html">Why Choose Us</a>
-                            <a href="../buttons-page/reviews/reviews.html">Customer Reviews</a>
+                            <h4 data-i18n="dd-why-h">Why Us</h4>
+                            <a href="../buttons-page/why-us/why-choose.html" data-i18n="dd-why-link">Why Choose Us</a>
+                            <a href="../buttons-page/reviews/reviews.html" data-i18n="dd-reviews">Customer Reviews</a>
                         </div>
                         <div class="dropdown-section">
-                            <h4>Company</h4>
-                            <a href="../buttons-page/about/about.html">Our Story</a>                            
-                            <a href="../buttons-page/work-with-us/work-with-us.html">Careers</a>
+                            <h4 data-i18n="dd-company-h">Company</h4>
+                            <a href="../buttons-page/about/about.html" data-i18n="dd-about">Our Story</a>                            
+                            <a href="../buttons-page/work-with-us/work-with-us.html" data-i18n="dd-careers">Careers</a>
                         </div>
                     </div>
                 </div>
             </li>
-            <li><a href="../buttons-page/location-hours/location&hours.html">Location & Hours</a></li>
+            <li><a href="../buttons-page/location-hours/location&hours.html" data-i18n="nav-hours">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
             <a href="../buttons-page/faq/faq.html" class="nav-icon" aria-label="FAQ" title="FAQ">
                 <i class="fas fa-question-circle"></i>
-                <span class="icon-label">FAQ</span>
+                <span class="icon-label" data-i18n="nav-faq">FAQ</span>
             </a>
             <a href="../buttons-page/contact/contact.html" class="nav-icon" aria-label="Support" title="Support">
                 <i class="fas fa-headset"></i>
-                <span class="icon-label">Support</span>
+                <span class="icon-label" data-i18n="nav-support">Support</span>
             </a>
-            <a href="#" class="nav-icon" aria-label="Language" title="Language">
-                <i class="fas fa-globe"></i>
-                <span class="icon-label">Language</span>
-            </a>
-            <a href="#" class="btn-new-customer" aria-label="New Customer" title="New Customer">
-                New Customer
-            </a>
-        </div>
+            <div class="lang-picker-wrap">
+                <button class="nav-icon lang-picker-btn" id="navLangBtn" aria-label="Language">
+                    <i class="fas fa-globe"></i>
+                    <span class="icon-label" data-i18n="nav-lang">Language</span>
+                </button>
+                <div class="lang-dropdown" id="navLangDropdown">
+                    <button class="lang-opt active" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <div><strong>English</strong><span>English</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="es">
+                        <span class="lang-flag">🇪🇸</span>
+                        <div><strong>Español</strong><span>Spanish</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="zh">
+                        <span class="lang-flag">🇨🇳</span>
+                        <div><strong>中文</strong><span>Chinese</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Power Your Future</h1>
-            <p>Powering a Sustainable Future with Solar & LED Lighting.</p>
+            <h1 data-i18n="hero-title">Power Your Future</h1>
+            <p data-i18n="hero-sub">Powering a Sustainable Future with Solar & LED Lighting.</p>
             <div class="hero-buttons">
-                <a href="#" class="btn btn-primary">View Inventory</a>
-                <a href="#" class="btn btn-secondary">Quote</a>
+                <a href="#products" class="btn btn-primary" data-i18n="btn-inventory">View Inventory</a>
+                <a href="../buttons-page/quote/quote.html" class="btn btn-secondary" data-i18n="btn-quote">Quote</a>
             </div>
         </div>
         <div class="hero-overlay"></div>
@@ -98,10 +112,10 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3>Residential Solar Panels</h3>
-                        <p>High-efficiency panels designed for modern homes</p>
+                        <h3 data-i18n="card-res">Residential Solution</h3>
+                        <p data-i18n="card-res-desc">High-efficiency panels designed for modern homes</p>
                         <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -109,10 +123,10 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3>Commercial Solar Systems</h3>
-                        <p>Scalable solutions for businesses of all sizes</p>
+                        <h3 data-i18n="card-com">Commercial Solution</h3>
+                        <p data-i18n="card-com-desc">Scalable solutions for businesses of all sizes</p>
                         <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -120,10 +134,10 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3>Solar Battery Storage</h3>
-                        <p>Store energy for when you need it most</p>
+                        <h3 data-i18n="card-led">LED Solution</h3>
+                        <p data-i18n="card-led-desc">Energy-efficient LED lighting solutions for every need</p>
                         <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -131,10 +145,10 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3>Solar Roof Tiles</h3>
-                        <p>Seamless integration with your home's aesthetic</p>
+                        <h3 data-i18n="card-hyb">LED & Solar Hybrid Solution</h3>
+                        <p data-i18n="card-hyb-desc">Combined LED and solar solutions for maximum efficiency</p>
                         <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -142,101 +156,34 @@
         </div>
     </section>
 
-    <!-- Trending Products Section -->
-    <section class="products-section">
-        <div class="section-header-left">
-            <h2>Trending Products</h2>
-        </div>
-        
-        <div class="products-container">
-            <div class="products-carousel">
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800')"></div>
-                    <div class="product-info">
-                        <h3>Solar Inverter 5kW</h3>
-                        <p>High-performance inverter for optimal energy conversion</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800')"></div>
-                    <div class="product-info">
-                        <h3>LED Street Lights</h3>
-                        <p>Energy-efficient outdoor lighting solutions</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800')"></div>
-                    <div class="product-info">
-                        <h3>Solar Panel 400W</h3>
-                        <p>Premium monocrystalline solar panels with 25-year warranty</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800')"></div>
-                    <div class="product-info">
-                        <h3>Battery Storage System</h3>
-                        <p>Reliable backup power when you need it most</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <div class="product-image" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800')"></div>
-                    <div class="product-info">
-                        <h3>Smart Energy Monitor</h3>
-                        <p>Track and optimize your energy consumption in real-time</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Where We're Strong In Section -->
     <section class="parallax-solutions-section">
         <div class="parallax-overlay"></div>
         <div class="solutions-content">
-            <h2>Where We're Strong In</h2>
+            <p class="solutions-eyebrow" data-i18n="str-eyebrow">What Sets Us Apart</p>
+            <h2 data-i18n="str-heading">Where We're Strong</h2>
             <div class="solutions-options">
                 <div class="solution-option">
-                    <h3>Experience</h3>
-                    <div class="solution-description">
-                        <p>Years of expertise in solar energy and LED solutions, delivering proven results for our clients</p>
-                    </div>
+                    <div class="solution-icon"><i class="fas fa-award"></i></div>
+                    <h3 data-i18n="str-exp">Experience</h3>
+                    <p data-i18n="str-exp-desc">Years of expertise in solar energy and LED solutions, delivering proven results across Aruba.</p>
                 </div>
                 <div class="solution-option">
-                    <h3>Knowledge</h3>
-                    <div class="solution-description">
-                        <p>Deep understanding of renewable energy technology and industry best practices</p>
-                    </div>
+                    <div class="solution-icon"><i class="fas fa-brain"></i></div>
+                    <h3 data-i18n="str-know">Knowledge</h3>
+                    <p data-i18n="str-know-desc">Deep understanding of renewable energy technology and industry-leading best practices.</p>
                 </div>
                 <div class="solution-option">
-                    <h3>Huge Variety of Products</h3>
-                    <div class="solution-description">
-                        <p>Extensive selection of solar panels, inverters, batteries, and LED lighting solutions</p>
-                    </div>
+                    <div class="solution-icon"><i class="fas fa-th-large"></i></div>
+                    <h3 data-i18n="str-range">Wide Product Range</h3>
+                    <p data-i18n="str-range-desc">Extensive selection of solar panels, inverters, batteries, and LED lighting solutions.</p>
                 </div>
                 <div class="solution-option">
-                    <h3>Transparency</h3>
-                    <div class="solution-description">
-                        <p>Clear pricing, honest communication, and straightforward processes every step of the way</p>
-                    </div>
+                    <div class="solution-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 data-i18n="str-trans">Transparency</h3>
+                    <p data-i18n="str-trans-desc">Clear pricing, honest communication, and straightforward processes every step of the way.</p>
                 </div>
             </div>
         </div>
@@ -247,44 +194,18 @@
         <div class="solutions-banner">
             <div class="solutions-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200')"></div>
             <div class="solutions-banner-content">
-                <h2>Commercial Solutions</h2>
-                <p>Scalable solar and LED systems designed for businesses, warehouses, and industrial facilities. Maximize efficiency and reduce operational costs.</p>
+                <h2 data-i18n="sol-com-h">Commercial Solutions</h2>
+                <p data-i18n="sol-com-desc">Scalable solar and LED systems designed for businesses, warehouses, and industrial facilities. Maximize efficiency and reduce operational costs.</p>
                 <a href="#" class="btn btn-primary">Learn More</a>
             </div>
         </div>
         <div class="solutions-banner">
             <div class="solutions-banner-content">
-                <h2>Residential Solutions</h2>
-                <p>Custom solar panel installations and LED lighting solutions for your home. Save money while contributing to a sustainable future.</p>
+                <h2 data-i18n="sol-res-h">Residential Solutions</h2>
+                <p data-i18n="sol-res-desc">Custom solar panel installations and LED lighting solutions for your home. Save money while contributing to a sustainable future.</p>
                 <a href="#" class="btn btn-primary">Learn More</a>
             </div>
             <div class="solutions-banner-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200')"></div>
-        </div>
-    </section>
-
-    <!-- Building the Brand Section -->
-    <section class="building-brand-section">
-        <div class="building-brand-content">
-            <h2>Building the Brand</h2>
-            <p class="building-brand-subtitle">Trusted by thousands of customers worldwide</p>
-            <div class="brand-stats">
-                <div class="brand-stat">
-                    <div class="stat-number">10+</div>
-                    <div class="stat-label">Years of Experience</div>
-                </div>
-                <div class="brand-stat">
-                    <div class="stat-number">10,000+</div>
-                    <div class="stat-label">Installations Completed</div>
-                </div>
-                <div class="brand-stat">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Customer Satisfaction</div>
-                </div>
-                <div class="brand-stat">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Partner Companies</div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -292,9 +213,9 @@
     <section class="contact-banner index-page">
         <div class="contact-banner-content">
             <div class="contact-banner-left">
-                <h2>How can we help you?</h2>
-                <p>Get in touch with a product expert or account manager</p>
-                <a href="../buttons-page/contact/contact.html" class="btn btn-contact">Contact Us</a>
+                <h2 data-i18n="cta-h">How can we help you?</h2>
+                <p data-i18n="cta-sub">Get in touch with a product expert or account manager</p>
+                <a href="../buttons-page/contact/contact.html" class="btn btn-contact" data-i18n="btn-contact">Contact Us</a>
             </div>
             <div class="contact-banner-right">
                 <div class="contact-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200')"></div>
@@ -425,3 +346,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
