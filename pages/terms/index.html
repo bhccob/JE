@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -97,16 +97,16 @@
         <a href="../../index.html" class="logo">JONTAI ENERGY</a>
         <ul class="nav-links">
             <li class="dropdown-parent">
-                <a href="../../index.html#products">Inventory</a>
+                <a href="../../index.html#products" data-i18n="nav-inventory">Inventory</a>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
                         <div class="dropdown-section">
-                            <h4>Solar Products</h4>
-                            <a href="../../index.html#solar">View Solar</a>
+                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
+                            <a href="../../index.html#solar" data-i18n="dd-solar-link">View Solar</a>
                         </div>
                         <div class="dropdown-section">
-                            <h4>LED Products</h4>
-                            <a href="../../index.html#led">View LED</a>
+                            <h4 data-i18n="dd-led-h">LED Products</h4>
+                            <a href="../../index.html#led" data-i18n="dd-led-link">View LED</a>
                         </div>
                         <div class="dropdown-section">
                             <h4>Hybrid Systems</h4>
@@ -120,57 +120,67 @@
                 </div>
             </li>
             <li class="dropdown-parent">
-                <a href="../../index.html#discover">Discover</a>
+                <a href="#discover" data-i18n="nav-discover">Discover</a>
                 <div class="dropdown-menu">
                     <div class="dropdown-content">
                         <div class="dropdown-section">
-                            <h4>Resources</h4>
-                            <a href="../events/index.html">Events</a>
-                            <a href="../news/index.html">News</a>
+                            <h4 data-i18n="dd-res-h">Resources</h4>
+                            <a href="../events/index.html" data-i18n="dd-events">Events</a>
+                            <a href="../news/index.html" data-i18n="dd-news">News</a>
                         </div>
                         <div class="dropdown-section">
-                            <h4>Why Us</h4>
-                            <a href="../why-us/index.html">Why Choose Us</a>
-                            <a href="../reviews/index.html">Customer Reviews</a>
+                            <h4 data-i18n="dd-why-h">Why Us</h4>
+                            <a href="../why-us/index.html" data-i18n="dd-why-link">Why Choose Us</a>
+                            <a href="../reviews/index.html" data-i18n="dd-reviews">Customer Reviews</a>
                         </div>
                         <div class="dropdown-section">
-                            <h4>Company</h4>
-                            <a href="../about/index.html">Our Story</a>
-                            <a href="../work-with-us/index.html">Careers</a>
+                            <h4 data-i18n="dd-company-h">Company</h4>
+                            <a href="../about/index.html" data-i18n="dd-about">Our Story</a>
+                            <a href="../work-with-us/index.html" data-i18n="dd-careers">Careers</a>
                             <a href="../socials/index.html">Socials</a>
                         </div>
                     </div>
                 </div>
             </li>
-            <li><a href="../location/index.html">Location &amp; Hours</a></li>
+            <li><a href="../location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
-            <a href="../faq/index.html" class="nav-icon" aria-label="FAQ">
+            <a href="../faq/index.html" class="nav-icon" aria-label="FAQ" title="FAQ">
                 <i class="fas fa-question-circle"></i>
-                <span class="icon-label">FAQ</span>
+                <span class="icon-label" data-i18n="nav-faq">FAQ</span>
             </a>
-            <a href="../contact/index.html" class="nav-icon" aria-label="Support">
+            <a href="../contact/index.html" class="nav-icon" aria-label="Support" title="Support">
                 <i class="fas fa-headset"></i>
-                <span class="icon-label">Support</span>
+                <span class="icon-label" data-i18n="nav-support">Support</span>
             </a>
             <div class="lang-picker-wrap">
                 <button class="nav-icon lang-picker-btn" id="navLangBtn" aria-label="Language">
                     <i class="fas fa-globe"></i>
-                    <span class="icon-label">Language</span>
+                    <span class="icon-label" data-i18n="nav-lang">Language</span>
                 </button>
                 <div class="lang-dropdown" id="navLangDropdown">
-                    <button class="lang-opt active" data-lang="en"><span class="lang-flag">🇺🇸</span><div><strong>English</strong><span>English</span></div><i class="fas fa-check"></i></button>
-                    <button class="lang-opt" data-lang="es"><span class="lang-flag">🇪🇸</span><div><strong>Español</strong><span>Spanish</span></div><i class="fas fa-check"></i></button>
-                    <button class="lang-opt" data-lang="zh"><span class="lang-flag">🇨🇳</span><div><strong>中文</strong><span>Chinese</span></div><i class="fas fa-check"></i></button>
+                    <button class="lang-opt active" data-lang="en">
+                        <span class="lang-flag">&#x1F1FA;&#x1F1F8;</span>
+                        <div><strong>English</strong><span>English</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="es">
+                        <span class="lang-flag">&#x1F1EA;&#x1F1F8;</span>
+                        <div><strong>Espa&ntilde;ol</strong><span>Spanish</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="zh">
+                        <span class="lang-flag">&#x1F1E8;&#x1F1F3;</span>
+                        <div><strong>&#x4E2D;&#x6587;</strong><span>Chinese</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
                 </div>
-            </div>
-        </div>
     </nav>
 
     <!-- Hero -->
     <section class="legal-hero">
-        <p class="legal-hero-label">Legal</p>
-        <h1>Terms &amp; Conditions</h1>
+        <p class="legal-hero-label" data-i18n="legal-hero-label">Legal</p>
+        <h1 data-i18n="tm-h1">Terms &amp; Conditions</h1>
         <p>The general terms governing purchases, services, and use of our store in accordance with Aruban law.</p>
         <p class="legal-hero-meta">Last updated: March 19, 2026 &nbsp;·&nbsp; Effective: March 19, 2026</p>
     </section>
@@ -185,7 +195,7 @@
             </div>
 
             <div class="legal-toc">
-                <h2>Table of Contents</h2>
+                <h2 data-i18n="legal-toc-h2">Table of Contents</h2>
                 <ol>
                     <li><a href="#parties">Parties &amp; Applicability</a></li>
                     <li><a href="#orders">Orders &amp; Pricing</a></li>
@@ -202,7 +212,7 @@
 
             <!-- 1 -->
             <div class="legal-section" id="parties">
-                <div class="legal-section-header"><span class="legal-section-num">1</span><h2>Parties &amp; Applicability</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">1</span><h2 data-i18n="tm-s1-h2">Parties &amp; Applicability</h2></div>
                 <p>These Terms &amp; Conditions apply to all agreements between <strong>Jontai Energy N.V.</strong> ("Jontai Energy", "we", "us") and any customer, business, or individual ("you") who purchases products or services from us in-store, online, or by phone in Aruba.</p>
                 <p>By placing an order or signing a service agreement, you confirm that you have read, understood, and accepted these terms in full. These terms take precedence over any general purchasing conditions of the customer unless explicitly agreed otherwise in writing.</p>
             </div>
@@ -210,7 +220,7 @@
 
             <!-- 2 -->
             <div class="legal-section" id="orders">
-                <div class="legal-section-header"><span class="legal-section-num">2</span><h2>Orders &amp; Pricing</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">2</span><h2 data-i18n="tm-s2-h2">Orders &amp; Pricing</h2></div>
                 <p>All prices are displayed in <strong>Aruban florins (AWG)</strong> and include applicable taxes unless stated otherwise. Prices are subject to change without prior notice; however, the price confirmed at the time of your order is binding.</p>
                 <ul>
                     <li>Orders are confirmed when you receive a written order confirmation or invoice from Jontai Energy.</li>
@@ -223,7 +233,7 @@
 
             <!-- 3 -->
             <div class="legal-section" id="payment">
-                <div class="legal-section-header"><span class="legal-section-num">3</span><h2>Payment</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">3</span><h2 data-i18n="tm-s3-h2">Payment</h2></div>
                 <p>We accept the following payment methods:</p>
                 <ul>
                     <li>Cash (AWG or USD at current exchange rate)</li>
@@ -238,7 +248,7 @@
 
             <!-- 4 -->
             <div class="legal-section" id="delivery">
-                <div class="legal-section-header"><span class="legal-section-num">4</span><h2>Delivery &amp; Installation</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">4</span><h2 data-i18n="tm-s4-h2">Delivery &amp; Installation</h2></div>
                 <p>Delivery and installation services are available within Aruba only. Estimated delivery or installation dates are provided in good faith but are not guaranteed.</p>
                 <ul>
                     <li>Risk of loss or damage to products passes to the customer upon delivery or collection from our store.</li>
@@ -251,7 +261,7 @@
 
             <!-- 5 -->
             <div class="legal-section" id="returns">
-                <div class="legal-section-header"><span class="legal-section-num">5</span><h2>Returns &amp; Cancellations</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">5</span><h2 data-i18n="tm-s5-h2">Returns &amp; Cancellations</h2></div>
                 <p>We want you to be satisfied with every purchase. The following return policy applies:</p>
                 <ul>
                     <li><strong>Unused, unopened products</strong> in original packaging may be returned within <strong>14 days</strong> of purchase for a full refund or exchange, with proof of purchase.</li>
@@ -266,7 +276,7 @@
 
             <!-- 6 -->
             <div class="legal-section" id="liability">
-                <div class="legal-section-header"><span class="legal-section-num">6</span><h2>Liability</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">6</span><h2 data-i18n="tm-s6-h2">Liability</h2></div>
                 <p>To the maximum extent permitted by Aruban law:</p>
                 <ul>
                     <li>Jontai Energy's total liability for any claim arising from a purchase or service is limited to the amount paid for the relevant product or service.</li>
@@ -279,14 +289,14 @@
 
             <!-- 7 -->
             <div class="legal-section" id="ip">
-                <div class="legal-section-header"><span class="legal-section-num">7</span><h2>Intellectual Property</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">7</span><h2 data-i18n="tm-s7-h2">Intellectual Property</h2></div>
                 <p>All content on the Jontai Energy website — including text, images, logos, and product descriptions — is the property of Jontai Energy N.V. or its licensors and is protected under applicable intellectual property law. You may not reproduce, distribute, or use any content without our prior written consent.</p>
             </div>
             <hr class="legal-divider">
 
             <!-- 8 -->
             <div class="legal-section" id="consumer">
-                <div class="legal-section-header"><span class="legal-section-num">8</span><h2>Consumer Rights</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">8</span><h2 data-i18n="tm-s8-h2">Consumer Rights</h2></div>
                 <p>If you are a consumer (a natural person not acting in the course of a trade or profession), Aruban consumer protection law grants you additional rights that cannot be waived by these terms. These include:</p>
                 <ul>
                     <li>The right to receive goods that conform to your contract of sale</li>
@@ -299,7 +309,7 @@
 
             <!-- 9 -->
             <div class="legal-section" id="disputes">
-                <div class="legal-section-header"><span class="legal-section-num">9</span><h2>Disputes &amp; Governing Law</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">9</span><h2 data-i18n="tm-s9-h2">Disputes &amp; Governing Law</h2></div>
                 <p>These Terms &amp; Conditions are governed by the laws of <strong>Aruba</strong>. Any disputes that cannot be resolved amicably will be submitted to the exclusive jurisdiction of the competent court in Aruba (<em>Gerecht in Eerste Aanleg van Aruba</em>).</p>
                 <p>Before initiating legal proceedings, we encourage you to <a href="../contact/index.html" style="color:var(--primary-green);">contact us</a> to resolve the matter directly. We are committed to fair and prompt resolution of all complaints.</p>
             </div>
@@ -307,13 +317,13 @@
 
             <!-- 10 -->
             <div class="legal-section" id="changes">
-                <div class="legal-section-header"><span class="legal-section-num">10</span><h2>Changes to These Terms</h2></div>
+                <div class="legal-section-header"><span class="legal-section-num">10</span><h2 data-i18n="tm-s10-h2">Changes to These Terms</h2></div>
                 <p>We may update these Terms &amp; Conditions at any time. The revised version will be posted on this page with an updated effective date. Continued use of our services after a change constitutes acceptance of the new terms. We recommend reviewing this page periodically.</p>
             </div>
 
             <div class="legal-contact-card">
                 <div>
-                    <h3>Have a question about our terms?</h3>
+                    <h3 data-i18n="tm-cta-h3">Have a question about our terms?</h3>
                     <p>Our team is happy to clarify anything in this document.</p>
                 </div>
                 <a href="../contact/index.html" class="legal-contact-btn">Contact Us <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
@@ -323,18 +333,121 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="footer-content">
-            <div class="footer-logo">JONTAI ENERGY</div>
-            <p>Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
-            <div class="footer-links">
-                <a href="../privacy/index.html">Privacy Policy</a>
-                <a href="index.html">Terms &amp; Conditions</a>
-                <a href="../warranty/index.html">Warranty</a>
+            <div class="footer-top">
+                <a href="../../index.html" class="footer-logo">JONTAI ENERGY</a>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3 data-i18n="ft-company-h">Company</h3>
+                    <div class="footer-links">
+                        <a href="../about/index.html" data-i18n="ft-about">About Us</a>
+                        <a href="../news/index.html" data-i18n="ft-news">News</a>
+                        <a href="../work-with-us/index.html" data-i18n="ft-careers">Careers</a>
+                        <a href="../privacy/index.html" data-i18n="ft-privacy">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-info-h">Information</h3>
+                    <div class="footer-links">
+                        <a href="../faq/index.html" data-i18n="ft-faq">FAQ</a>
+                        <a href="../terms/index.html" data-i18n="ft-terms">Terms and Conditions</a>
+                        <a href="../warranty/index.html" data-i18n="ft-warranty">Warranty</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-support-h">Support</h3>
+                    <div class="footer-links">
+                        <a href="../contact/index.html" data-i18n="ft-contact">Contact Us</a>
+                        <a href="../service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
+                        <a href="../returns/index.html" data-i18n="ft-returns">Return &amp; Product Support</a>
+                        <a href="../accessibility/index.html" data-i18n="ft-access">Accessibility</a>
+                    </div>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3 data-i18n="ft-newsletter-h">Jontai Energy Updates</h3>
+                    <p data-i18n="ft-newsletter-p">Join Jontai Energy to get access to the latest news, product and trends</p>
+                    <a href="#" class="btn btn-subscribe" data-i18n="ft-subscribe">Subscribe</a>
+                    <div class="footer-extras">
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                        <div class="language-selector">
+                            <button class="language-btn" id="languageBtn">
+                                <span class="current-flag">&#x1F1FA;&#x1F1F8;</span>
+                                <span class="current-lang">English</span>
+                                <i class="fas fa-chevron-up lang-chevron"></i>
+                            </button>
+                            <div class="language-panel" id="languagePanel">
+                                <p class="lang-panel-label">Choose Language</p>
+                                <div class="lang-panel-options">
+                                    <button class="lang-panel-opt active" data-flag="&#x1F1FA;&#x1F1F8;" data-lang="en" data-label="English">
+                                        <span class="lp-flag">&#x1F1FA;&#x1F1F8;</span>
+                                        <div>
+                                            <strong>English</strong>
+                                            <span>United States</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="&#x1F1F2;&#x1F1FD;" data-lang="es" data-label="Espa&ntilde;ol">
+                                        <span class="lp-flag">&#x1F1F2;&#x1F1FD;</span>
+                                        <div>
+                                            <strong>Espa&ntilde;ol</strong>
+                                            <span>Mexico / Latin America</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="&#x1F1E8;&#x1F1F3;" data-lang="zh" data-label="&#x4E2D;&#x6587;">
+                                        <span class="lp-flag">&#x1F1E8;&#x1F1F3;</span>
+                                        <div>
+                                            <strong>&#x4E2D;&#x6587;</strong>
+                                            <span>Chinese</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Subscription Panel -->
+    <div class="subscription-panel" id="subscriptionPanel">
+        <div class="subscription-panel-content">
+            <button class="close-panel" id="closePanel">&times;</button>
+            <h2 data-i18n="sub-h">Subscribe to Updates</h2>
+            <p data-i18n="sub-p">Stay informed about our latest products and news</p>
+            <form class="subscription-form" id="subscriptionForm">
+                <div class="form-group">
+                    <label for="subscribeName" data-i18n="sub-name-label">Name</label>
+                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" data-i18n-placeholder="sub-name-ph" required>
+                </div>
+                <div class="form-group">
+                    <label for="subscribeEmail" data-i18n="sub-email-label">Email</label>
+                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" data-i18n-placeholder="sub-email-ph" required>
+                </div>
+                <div class="form-group-toggle">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="emailNotifications" name="notifications" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-text" data-i18n="sub-toggle">Email Notifications</span>
+                    </label>
+                    <p class="toggle-description" data-i18n="sub-toggle-desc">Receive updates about new products and trends</p>
+                </div>
+                <button type="submit" class="btn btn-submit-subscribe" data-i18n="sub-btn">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="subscription-overlay" id="subscriptionOverlay"></div>
 
     <script src="../../assets/js/main.js"></script>
 </body>

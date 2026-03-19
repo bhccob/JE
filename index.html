@@ -121,7 +121,7 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3 data-i18n="card-res">Residential Solution</h3>
+                        <h3 data-i18n="card-res">Solar</h3>
                         <p data-i18n="card-res-desc">High-efficiency panels designed for modern homes</p>
                         <div class="product-buttons">
                             <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
@@ -132,7 +132,7 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3 data-i18n="card-com">Commercial Solution</h3>
+                        <h3 data-i18n="card-com">LED</h3>
                         <p data-i18n="card-com-desc">Scalable solutions for businesses of all sizes</p>
                         <div class="product-buttons">
                             <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
@@ -143,7 +143,7 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3 data-i18n="card-led">LED Solution</h3>
+                        <h3 data-i18n="card-led">LED & Solar Hybrid</h3>
                         <p data-i18n="card-led-desc">Energy-efficient LED lighting solutions for every need</p>
                         <div class="product-buttons">
                             <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
@@ -154,7 +154,7 @@
                 <div class="trending-category-card">
                     <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800')"></div>
                     <div class="trending-category-info">
-                        <h3 data-i18n="card-hyb">LED & Solar Hybrid Solution</h3>
+                        <h3 data-i18n="card-hyb">Parts</h3>
                         <p data-i18n="card-hyb-desc">Combined LED and solar solutions for maximum efficiency</p>
                         <div class="product-buttons">
                             <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
@@ -324,26 +324,26 @@
     <div class="subscription-panel" id="subscriptionPanel">
         <div class="subscription-panel-content">
             <button class="close-panel" id="closePanel">&times;</button>
-            <h2>Subscribe to Updates</h2>
-            <p>Stay informed about our latest products and news</p>
+            <h2 data-i18n="sub-h">Subscribe to Updates</h2>
+            <p data-i18n="sub-p">Stay informed about our latest products and news</p>
             <form class="subscription-form" id="subscriptionForm">
                 <div class="form-group">
-                    <label for="subscribeName">Name</label>
-                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" required>
+                    <label for="subscribeName" data-i18n="sub-name-label">Name</label>
+                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" data-i18n-placeholder="sub-name-ph" required>
                 </div>
                 <div class="form-group">
-                    <label for="subscribeEmail">Email</label>
-                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" required>
+                    <label for="subscribeEmail" data-i18n="sub-email-label">Email</label>
+                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" data-i18n-placeholder="sub-email-ph" required>
                 </div>
                 <div class="form-group-toggle">
                     <label class="toggle-label">
                         <input type="checkbox" id="emailNotifications" name="notifications" checked>
                         <span class="toggle-slider"></span>
-                        <span class="toggle-text">Email Notifications</span>
+                        <span class="toggle-text" data-i18n="sub-toggle">Email Notifications</span>
                     </label>
-                    <p class="toggle-description">Receive updates about new products and trends</p>
+                    <p class="toggle-description" data-i18n="sub-toggle-desc">Receive updates about new products and trends</p>
                 </div>
-                <button type="submit" class="btn btn-submit-subscribe">Subscribe Now</button>
+                <button type="submit" class="btn btn-submit-subscribe" data-i18n="sub-btn">Subscribe Now</button>
             </form>
         </div>
     </div>

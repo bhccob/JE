@@ -24,73 +24,92 @@
         <a href="../../index.html" class="logo">JONTAI ENERGY</a>
         <ul class="nav-links">
             <li class="dropdown-parent">
-                <a href="#products">Inventory</a>
+                <a href="../../index.html#products" data-i18n="nav-inventory">Inventory</a>
                 <div class="dropdown-menu">
-                    <div class="dropdown-section">
-                        <h4>Solar Products</h4>
-                        <a href="#solar">View Solar</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>LED Products</h4>
-                        <a href="#led">View LED</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Hybrid Systems</h4>
-                        <a href="#hybrid">View Hybrid</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Parts</h4>
-                        <a href="#parts">View Parts</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
+                            <a href="../../index.html#solar" data-i18n="dd-solar-link">View Solar</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-led-h">LED Products</h4>
+                            <a href="../../index.html#led" data-i18n="dd-led-link">View LED</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Hybrid Systems</h4>
+                            <a href="../../index.html#hybrid">View Hybrid</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Parts</h4>
+                            <a href="../../index.html#parts">View Parts</a>
+                        </div>
                     </div>
                 </div>
             </li>
             <li class="dropdown-parent">
-                <a href="#discover">Discover</a>
+                <a href="#discover" data-i18n="nav-discover">Discover</a>
                 <div class="dropdown-menu">
-                    <div class="dropdown-section">
-                        <h4>About Us</h4>
-                        <a href="../about/index.html">Our Story</a>
-                        <a href="../reviews/index.html">Customer Reviews</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Work With Us</h4>
-                        <a href="../work-with-us/index.html">Join Our Team</a>
-                        <a href="../why-us/index.html">Why Choose Us</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Events</h4>
-                        <a href="../celebrations/index.html">View Events</a>
-                        <a href="../socials/index.html">Socials</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-res-h">Resources</h4>
+                            <a href="../events/index.html" data-i18n="dd-events">Events</a>
+                            <a href="../news/index.html" data-i18n="dd-news">News</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-why-h">Why Us</h4>
+                            <a href="../why-us/index.html" data-i18n="dd-why-link">Why Choose Us</a>
+                            <a href="../reviews/index.html" data-i18n="dd-reviews">Customer Reviews</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-company-h">Company</h4>
+                            <a href="../about/index.html" data-i18n="dd-about">Our Story</a>
+                            <a href="../work-with-us/index.html" data-i18n="dd-careers">Careers</a>
+                            <a href="../socials/index.html">Socials</a>
+                        </div>
                     </div>
                 </div>
             </li>
-            <li><a href="index.html#location">Location & Hours</a></li>
+            <li><a href="../location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
             <a href="../faq/index.html" class="nav-icon" aria-label="FAQ" title="FAQ">
                 <i class="fas fa-question-circle"></i>
-                <span class="icon-label">FAQ</span>
+                <span class="icon-label" data-i18n="nav-faq">FAQ</span>
             </a>
             <a href="../contact/index.html" class="nav-icon" aria-label="Support" title="Support">
                 <i class="fas fa-headset"></i>
-                <span class="icon-label">Support</span>
+                <span class="icon-label" data-i18n="nav-support">Support</span>
             </a>
-            <a href="#" class="nav-icon" aria-label="Language" title="Language">
-                <i class="fas fa-globe"></i>
-                <span class="icon-label">Language</span>
-            </a>
-            <a href="#" class="btn-new-customer" aria-label="New Customer" title="New Customer">
-                New Customer
-            </a>
-        </div>
+            <div class="lang-picker-wrap">
+                <button class="nav-icon lang-picker-btn" id="navLangBtn" aria-label="Language">
+                    <i class="fas fa-globe"></i>
+                    <span class="icon-label" data-i18n="nav-lang">Language</span>
+                </button>
+                <div class="lang-dropdown" id="navLangDropdown">
+                    <button class="lang-opt active" data-lang="en">
+                        <span class="lang-flag">&#x1F1FA;&#x1F1F8;</span>
+                        <div><strong>English</strong><span>English</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="es">
+                        <span class="lang-flag">&#x1F1EA;&#x1F1F8;</span>
+                        <div><strong>Espa&ntilde;ol</strong><span>Spanish</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="zh">
+                        <span class="lang-flag">&#x1F1E8;&#x1F1F3;</span>
+                        <div><strong>&#x4E2D;&#x6587;</strong><span>Chinese</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
     </nav>
 
     <!-- Contact Hero Section -->
     <section class="contact-hero">
         <div class="contact-hero-overlay"></div>
         <div class="contact-hero-content">
-            <p class="contact-hero-label">Get In Touch</p>
-            <h1>Let's Connect</h1>
+            <p class="contact-hero-label" data-i18n="ct-hero-label">Get In Touch</p>
+            <h1 data-i18n="ct-h1">Let&#x27;s Connect</h1>
             <p>Have questions? We're here to help you harness the power of solar energy</p>
         </div>
     </section>
@@ -102,35 +121,35 @@
         <div class="contact-info-panel">
             <div class="info-panel-bg"></div>
             <div class="info-panel-content">
-                <p class="info-panel-eyebrow">Reach Us Directly</p>
-                <h2>We're Always<br>Here For You</h2>
+                <p class="info-panel-eyebrow" data-i18n="ct-info-eyebrow">Reach Us Directly</p>
+                <h2 data-i18n="ct-info-h2">We&#x27;re Always Here For You</h2>
 
                 <div class="info-items">
                     <div class="info-item">
                         <div class="info-item-icon"><i class="fas fa-map-marker-alt"></i></div>
                         <div>
-                            <span class="info-item-label">Visit Us</span>
+                            <span class="info-item-label" data-i18n="ct-visit-label">Visit Us</span>
                             <span class="info-item-value">Cumana 73, Oranjestad, Aruba</span>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-item-icon"><i class="fas fa-phone-alt"></i></div>
                         <div>
-                            <span class="info-item-label">Call Us</span>
+                            <span class="info-item-label" data-i18n="ct-call-label">Call Us</span>
                             <span class="info-item-value">+297 586 5323</span>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-item-icon"><i class="fas fa-envelope"></i></div>
                         <div>
-                            <span class="info-item-label">Email Us</span>
+                            <span class="info-item-label" data-i18n="ct-email-label">Email Us</span>
                             <span class="info-item-value">jontai@qq.com</span>
                         </div>
                     </div>
                     <div class="info-item">
                         <div class="info-item-icon"><i class="fas fa-clock"></i></div>
                         <div>
-                            <span class="info-item-label">Business Hours</span>
+                            <span class="info-item-label" data-i18n="ct-hours-label">Business Hours</span>
                             <span class="info-item-value">Mon - Sat: 8:00 AM - 6:30 PM<br>Sunday: Closed</span>
                         </div>
                     </div>
@@ -153,8 +172,8 @@
         <!-- Right: Form Panel -->
         <div class="contact-form-panel">
             <div class="form-panel-inner">
-                <p class="form-panel-eyebrow">Send a Message</p>
-                <h2>How Can We<br>Help You?</h2>
+                <p class="form-panel-eyebrow" data-i18n="ct-form-eyebrow">Send a Message</p>
+                <h2 data-i18n="ct-form-h2">How Can We Help You?</h2>
                 <p class="form-panel-sub">Fill in the form and we'll get back to you within 24 hours.</p>
 
                 <form class="contact-form" action="#" method="POST">
@@ -315,109 +334,122 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="footer-content">
-            <div class="footer-logo">JONTAI ENERGY</div>
-            <p>Powering a Sustainable Future with Solar & LED Lighting.</p>
-            <div class="footer-links">
-                <a href="../privacy/index.html">Privacy Policy</a>
-                <a href="../terms/index.html">Terms &amp; Conditions</a>
+            <div class="footer-top">
+                <a href="../../index.html" class="footer-logo">JONTAI ENERGY</a>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3 data-i18n="ft-company-h">Company</h3>
+                    <div class="footer-links">
+                        <a href="../about/index.html" data-i18n="ft-about">About Us</a>
+                        <a href="../news/index.html" data-i18n="ft-news">News</a>
+                        <a href="../work-with-us/index.html" data-i18n="ft-careers">Careers</a>
+                        <a href="../privacy/index.html" data-i18n="ft-privacy">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-info-h">Information</h3>
+                    <div class="footer-links">
+                        <a href="../faq/index.html" data-i18n="ft-faq">FAQ</a>
+                        <a href="../terms/index.html" data-i18n="ft-terms">Terms and Conditions</a>
+                        <a href="../warranty/index.html" data-i18n="ft-warranty">Warranty</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-support-h">Support</h3>
+                    <div class="footer-links">
+                        <a href="../contact/index.html" data-i18n="ft-contact">Contact Us</a>
+                        <a href="../service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
+                        <a href="../returns/index.html" data-i18n="ft-returns">Return &amp; Product Support</a>
+                        <a href="../accessibility/index.html" data-i18n="ft-access">Accessibility</a>
+                    </div>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3 data-i18n="ft-newsletter-h">Jontai Energy Updates</h3>
+                    <p data-i18n="ft-newsletter-p">Join Jontai Energy to get access to the latest news, product and trends</p>
+                    <a href="#" class="btn btn-subscribe" data-i18n="ft-subscribe">Subscribe</a>
+                    <div class="footer-extras">
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                        <div class="language-selector">
+                            <button class="language-btn" id="languageBtn">
+                                <span class="current-flag">&#x1F1FA;&#x1F1F8;</span>
+                                <span class="current-lang">English</span>
+                                <i class="fas fa-chevron-up lang-chevron"></i>
+                            </button>
+                            <div class="language-panel" id="languagePanel">
+                                <p class="lang-panel-label">Choose Language</p>
+                                <div class="lang-panel-options">
+                                    <button class="lang-panel-opt active" data-flag="&#x1F1FA;&#x1F1F8;" data-lang="en" data-label="English">
+                                        <span class="lp-flag">&#x1F1FA;&#x1F1F8;</span>
+                                        <div>
+                                            <strong>English</strong>
+                                            <span>United States</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="&#x1F1F2;&#x1F1FD;" data-lang="es" data-label="Espa&ntilde;ol">
+                                        <span class="lp-flag">&#x1F1F2;&#x1F1FD;</span>
+                                        <div>
+                                            <strong>Espa&ntilde;ol</strong>
+                                            <span>Mexico / Latin America</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="&#x1F1E8;&#x1F1F3;" data-lang="zh" data-label="&#x4E2D;&#x6587;">
+                                        <span class="lp-flag">&#x1F1E8;&#x1F1F3;</span>
+                                        <div>
+                                            <strong>&#x4E2D;&#x6587;</strong>
+                                            <span>Chinese</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        const subjectEl    = document.getElementById('subject');
-        const quoteFields  = document.getElementById('quoteFields');
-        const reviewFields = document.getElementById('reviewFields');
-        const productType  = document.getElementById('productType');
-        const submitText   = document.getElementById('submitBtnText');
-        const msgLabel     = document.querySelector('label[for="message"]');
-        const msgEl        = document.getElementById('message');
-        const heroP        = document.querySelector('.contact-hero-content p');
+    <!-- Subscription Panel -->
+    <div class="subscription-panel" id="subscriptionPanel">
+        <div class="subscription-panel-content">
+            <button class="close-panel" id="closePanel">&times;</button>
+            <h2 data-i18n="sub-h">Subscribe to Updates</h2>
+            <p data-i18n="sub-p">Stay informed about our latest products and news</p>
+            <form class="subscription-form" id="subscriptionForm">
+                <div class="form-group">
+                    <label for="subscribeName" data-i18n="sub-name-label">Name</label>
+                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" data-i18n-placeholder="sub-name-ph" required>
+                </div>
+                <div class="form-group">
+                    <label for="subscribeEmail" data-i18n="sub-email-label">Email</label>
+                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" data-i18n-placeholder="sub-email-ph" required>
+                </div>
+                <div class="form-group-toggle">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="emailNotifications" name="notifications" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-text" data-i18n="sub-toggle">Email Notifications</span>
+                    </label>
+                    <p class="toggle-description" data-i18n="sub-toggle-desc">Receive updates about new products and trends</p>
+                </div>
+                <button type="submit" class="btn btn-submit-subscribe" data-i18n="sub-btn">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="subscription-overlay" id="subscriptionOverlay"></div>
 
-        const QUOTE_REQUIRED = ['productType', 'installationType', 'propertyType', 'projectAddress'];
-
-        // â”€â”€ Star picker â”€â”€
-        let selectedRating = 5;
-        const stars = document.querySelectorAll('.star');
-        function setStars(val) {
-            selectedRating = val;
-            document.getElementById('reviewRating').value = val;
-            stars.forEach(s => s.classList.toggle('active', +s.dataset.val <= val));
-        }
-        setStars(5);
-        stars.forEach(s => {
-            s.addEventListener('click',      () => setStars(+s.dataset.val));
-            s.addEventListener('mouseenter', () => stars.forEach(st => st.classList.toggle('hover', +st.dataset.val <= +s.dataset.val)));
-            s.addEventListener('mouseleave', () => stars.forEach(st => st.classList.remove('hover')));
-        });
-
-        // â”€â”€ Mode switching â”€â”€
-        function setMode(mode) {
-            quoteFields.style.display  = mode === 'quote'  ? 'block' : 'none';
-            reviewFields.style.display = mode === 'review' ? 'block' : 'none';
-            quoteFields.querySelectorAll('input, select').forEach(el => {
-                el.required = mode === 'quote' && QUOTE_REQUIRED.includes(el.id);
-            });
-            if (mode === 'review') {
-                submitText.textContent = 'Submit Review';
-                if (msgLabel) msgLabel.textContent = 'Your Review *';
-                if (msgEl)    msgEl.placeholder = 'Tell us about your experience â€” what did you love? How has going solar or LED improved your life?';
-                if (heroP)    heroP.textContent  = 'Share your experience with Jontai Energy â€” your feedback means the world to us.';
-            } else if (mode === 'quote') {
-                submitText.textContent = 'Submit Quote Request';
-                if (msgLabel) msgLabel.textContent = 'Additional Notes';
-                if (msgEl)    msgEl.placeholder = 'Any extra details about your project...';
-            } else {
-                submitText.textContent = 'Send Message';
-                if (msgLabel) msgLabel.textContent = 'Your Message *';
-                if (msgEl)    msgEl.placeholder = 'Tell us more about your project or question...';
-            }
-        }
-
-        subjectEl.addEventListener('change', function() { setMode(this.value); });
-
-        // â”€â”€ URL param auto-detect â”€â”€
-        (function() {
-            const params = new URLSearchParams(window.location.search);
-            const type   = params.get('type');
-            if (!type) return;
-
-            if (type === 'review') {
-                subjectEl.value = 'review';
-                setMode('review');
-                return;
-            }
-
-            subjectEl.value = 'quote';
-            setMode('quote');
-            const map = { solar: 'solar-panels', led: 'led-indoor', both: 'solar-led-combined' };
-            if (map[type]) productType.value = map[type];
-            const labels = { solar: 'Solar Quote Request', led: 'LED Quote Request', both: 'Solar & LED Combined Quote Request' };
-            if (heroP && labels[type]) heroP.textContent = labels[type] + ' â€” fill in the details below and we\'ll get back to you within 24 hours.';
-        })();
-
-        // â”€â”€ Save review to localStorage on submit â”€â”€
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            if (subjectEl.value !== 'review') return;
-            e.preventDefault();
-
-            const first   = document.getElementById('firstName').value.trim();
-            const last    = document.getElementById('lastName').value.trim();
-            const project = document.getElementById('reviewProject').value.trim();
-            const text    = msgEl.value.trim();
-            const rating  = selectedRating;
-            const date    = new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-            const initials = (first[0] || '?') + (last[0] || '');
-
-            const reviews = JSON.parse(localStorage.getItem('jontai_reviews') || '[]');
-            reviews.unshift({ initials: initials.toUpperCase(), name: first + ' ' + last, project, text, rating, date });
-            localStorage.setItem('jontai_reviews', JSON.stringify(reviews));
-
-            this.innerHTML = '<div class="review-thanks"><i class="fas fa-check-circle"></i><h3>Thank you, ' + first + '!</h3><p>Your review has been saved and now appears on our Reviews page.</p><a href="../reviews/index.html" class="btn-submit" style="display:inline-flex;margin-top:24px;text-decoration:none;">View Reviews <i class="fas fa-arrow-right" style="margin-left:8px;"></i></a></div>';
-        });
-    </script>
+    <script src="../../assets/js/main.js"></script>
 </body>
 </html>

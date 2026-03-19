@@ -15,74 +15,92 @@
         <a href="../../index.html" class="logo">JONTAI ENERGY</a>
         <ul class="nav-links">
             <li class="dropdown-parent">
-                <a href="#products">Inventory</a>
+                <a href="../../index.html#products" data-i18n="nav-inventory">Inventory</a>
                 <div class="dropdown-menu">
-                    <div class="dropdown-section">
-                        <h4>Solar Products</h4>
-                        <a href="#solar">View Solar</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>LED Products</h4>
-                        <a href="#led">View LED</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Hybrid Systems</h4>
-                        <a href="#hybrid">View Hybrid</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Parts</h4>
-                        <a href="#parts">View Parts</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
+                            <a href="../../index.html#solar" data-i18n="dd-solar-link">View Solar</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-led-h">LED Products</h4>
+                            <a href="../../index.html#led" data-i18n="dd-led-link">View LED</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Hybrid Systems</h4>
+                            <a href="../../index.html#hybrid">View Hybrid</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Parts</h4>
+                            <a href="../../index.html#parts">View Parts</a>
+                        </div>
                     </div>
                 </div>
             </li>
             <li class="dropdown-parent">
-                <a href="#discover">Discover</a>
+                <a href="#discover" data-i18n="nav-discover">Discover</a>
                 <div class="dropdown-menu">
-                    <div class="dropdown-section">
-                        <h4>About Us</h4>
-                        <a href="../about/index.html">Our Story</a>
-                        <a href="../reviews/index.html">Customer Reviews</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Work With Us</h4>
-                        <a href="../work-with-us/index.html">Join Our Team</a>
-                        <a href="../why-us/index.html">Why Choose Us</a>
-                    </div>
-                    <div class="dropdown-section">
-                        <h4>Events</h4>
-                        <a href="../celebrations/index.html">View Events</a>
-                        <a href="../socials/index.html">Socials</a>
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-res-h">Resources</h4>
+                            <a href="../events/index.html" data-i18n="dd-events">Events</a>
+                            <a href="../news/index.html" data-i18n="dd-news">News</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-why-h">Why Us</h4>
+                            <a href="../why-us/index.html" data-i18n="dd-why-link">Why Choose Us</a>
+                            <a href="../reviews/index.html" data-i18n="dd-reviews">Customer Reviews</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-company-h">Company</h4>
+                            <a href="../about/index.html" data-i18n="dd-about">Our Story</a>
+                            <a href="../work-with-us/index.html" data-i18n="dd-careers">Careers</a>
+                            <a href="../socials/index.html">Socials</a>
+                        </div>
                     </div>
                 </div>
             </li>
-            <li><a href="index.html#location">Location & Hours</a></li>
+            <li><a href="../location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
             <a href="../faq/index.html" class="nav-icon" aria-label="FAQ" title="FAQ">
                 <i class="fas fa-question-circle"></i>
-                <span class="icon-label">FAQ</span>
+                <span class="icon-label" data-i18n="nav-faq">FAQ</span>
             </a>
             <a href="../contact/index.html" class="nav-icon" aria-label="Support" title="Support">
                 <i class="fas fa-headset"></i>
-                <span class="icon-label">Support</span>
+                <span class="icon-label" data-i18n="nav-support">Support</span>
             </a>
-            <a href="#" class="nav-icon" aria-label="Language" title="Language">
-                <i class="fas fa-globe"></i>
-                <span class="icon-label">Language</span>
-            </a>
-            <a href="#" class="nav-icon" aria-label="Login/Register" title="Login/Register">
-                <i class="fas fa-user-circle"></i>
-                <span class="icon-label">Account</span>
-            </a>
-        </div>
+            <div class="lang-picker-wrap">
+                <button class="nav-icon lang-picker-btn" id="navLangBtn" aria-label="Language">
+                    <i class="fas fa-globe"></i>
+                    <span class="icon-label" data-i18n="nav-lang">Language</span>
+                </button>
+                <div class="lang-dropdown" id="navLangDropdown">
+                    <button class="lang-opt active" data-lang="en">
+                        <span class="lang-flag">&#x1F1FA;&#x1F1F8;</span>
+                        <div><strong>English</strong><span>English</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="es">
+                        <span class="lang-flag">&#x1F1EA;&#x1F1F8;</span>
+                        <div><strong>Espa&ntilde;ol</strong><span>Spanish</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="zh">
+                        <span class="lang-flag">&#x1F1E8;&#x1F1F3;</span>
+                        <div><strong>&#x4E2D;&#x6587;</strong><span>Chinese</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
     </nav>
 
     <!-- Hero -->
     <section class="reviews-hero">
         <div class="reviews-hero-overlay"></div>
         <div class="reviews-hero-content">
-            <p class="reviews-hero-label">Real Customers. Real Results.</p>
-            <h1>Customer Reviews</h1>
+            <p class="reviews-hero-label" data-i18n="rv-hero-label">Real Customers. Real Results.</p>
+            <h1 data-i18n="rv-h1">Customer Reviews</h1>
             <p>See what families and businesses across Aruba say about Jontai Energy</p>
         </div>
     </section>
@@ -96,7 +114,7 @@
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     <i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <span class="score-label">Average Rating</span>
+                <span class="score-label" data-i18n="rv-score-label">Average Rating</span>
             </div>
             <div class="summary-divider"></div>
             <div class="summary-stat">
@@ -119,8 +137,8 @@
     <!-- Reviews Grid -->
     <section class="reviews-grid-section">
         <div class="reviews-grid-inner">
-            <p class="section-eyebrow">What They Say</p>
-            <h2>Trusted by Aruba</h2>
+            <p class="section-eyebrow" data-i18n="rv-section-eyebrow">What They Say</p>
+            <h2 data-i18n="rv-h2">Trusted by Aruba</h2>
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-rating">
@@ -219,7 +237,7 @@
     <section class="reviews-cta-band">
         <div class="reviews-cta-inner">
             <div class="reviews-cta-text">
-                <h3>Had a great experience?</h3>
+                <h3 data-i18n="rv-cta-h3">Had a great experience?</h3>
                 <p>We'd love to hear your story â€” share it with the Aruba community.</p>
             </div>
             <div class="reviews-cta-actions">
@@ -232,51 +250,120 @@
     <!-- Footer -->
     <footer id="contact" class="footer">
         <div class="footer-content">
-            <div class="footer-logo">JONTAI ENERGY</div>
-            <p>Powering a Sustainable Future with Solar & LED Lighting.</p>
-            <div class="footer-links">
-                <a href="../privacy/index.html">Privacy Policy</a>
-                <a href="../terms/index.html">Terms &amp; Conditions</a>
+            <div class="footer-top">
+                <a href="../../index.html" class="footer-logo">JONTAI ENERGY</a>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3 data-i18n="ft-company-h">Company</h3>
+                    <div class="footer-links">
+                        <a href="../about/index.html" data-i18n="ft-about">About Us</a>
+                        <a href="../news/index.html" data-i18n="ft-news">News</a>
+                        <a href="../work-with-us/index.html" data-i18n="ft-careers">Careers</a>
+                        <a href="../privacy/index.html" data-i18n="ft-privacy">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-info-h">Information</h3>
+                    <div class="footer-links">
+                        <a href="../faq/index.html" data-i18n="ft-faq">FAQ</a>
+                        <a href="../terms/index.html" data-i18n="ft-terms">Terms and Conditions</a>
+                        <a href="../warranty/index.html" data-i18n="ft-warranty">Warranty</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-support-h">Support</h3>
+                    <div class="footer-links">
+                        <a href="../contact/index.html" data-i18n="ft-contact">Contact Us</a>
+                        <a href="../service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
+                        <a href="../returns/index.html" data-i18n="ft-returns">Return &amp; Product Support</a>
+                        <a href="../accessibility/index.html" data-i18n="ft-access">Accessibility</a>
+                    </div>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3 data-i18n="ft-newsletter-h">Jontai Energy Updates</h3>
+                    <p data-i18n="ft-newsletter-p">Join Jontai Energy to get access to the latest news, product and trends</p>
+                    <a href="#" class="btn btn-subscribe" data-i18n="ft-subscribe">Subscribe</a>
+                    <div class="footer-extras">
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                        <div class="language-selector">
+                            <button class="language-btn" id="languageBtn">
+                                <span class="current-flag">&#x1F1FA;&#x1F1F8;</span>
+                                <span class="current-lang">English</span>
+                                <i class="fas fa-chevron-up lang-chevron"></i>
+                            </button>
+                            <div class="language-panel" id="languagePanel">
+                                <p class="lang-panel-label">Choose Language</p>
+                                <div class="lang-panel-options">
+                                    <button class="lang-panel-opt active" data-flag="&#x1F1FA;&#x1F1F8;" data-lang="en" data-label="English">
+                                        <span class="lp-flag">&#x1F1FA;&#x1F1F8;</span>
+                                        <div>
+                                            <strong>English</strong>
+                                            <span>United States</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="&#x1F1F2;&#x1F1FD;" data-lang="es" data-label="Espa&ntilde;ol">
+                                        <span class="lp-flag">&#x1F1F2;&#x1F1FD;</span>
+                                        <div>
+                                            <strong>Espa&ntilde;ol</strong>
+                                            <span>Mexico / Latin America</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="&#x1F1E8;&#x1F1F3;" data-lang="zh" data-label="&#x4E2D;&#x6587;">
+                                        <span class="lp-flag">&#x1F1E8;&#x1F1F3;</span>
+                                        <div>
+                                            <strong>&#x4E2D;&#x6587;</strong>
+                                            <span>Chinese</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Subscription Panel -->
+    <div class="subscription-panel" id="subscriptionPanel">
+        <div class="subscription-panel-content">
+            <button class="close-panel" id="closePanel">&times;</button>
+            <h2 data-i18n="sub-h">Subscribe to Updates</h2>
+            <p data-i18n="sub-p">Stay informed about our latest products and news</p>
+            <form class="subscription-form" id="subscriptionForm">
+                <div class="form-group">
+                    <label for="subscribeName" data-i18n="sub-name-label">Name</label>
+                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" data-i18n-placeholder="sub-name-ph" required>
+                </div>
+                <div class="form-group">
+                    <label for="subscribeEmail" data-i18n="sub-email-label">Email</label>
+                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" data-i18n-placeholder="sub-email-ph" required>
+                </div>
+                <div class="form-group-toggle">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="emailNotifications" name="notifications" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-text" data-i18n="sub-toggle">Email Notifications</span>
+                    </label>
+                    <p class="toggle-description" data-i18n="sub-toggle-desc">Receive updates about new products and trends</p>
+                </div>
+                <button type="submit" class="btn btn-submit-subscribe" data-i18n="sub-btn">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="subscription-overlay" id="subscriptionOverlay"></div>
+
     <script src="../../assets/js/main.js"></script>
-    <script>
-        (function() {
-            const reviews = JSON.parse(localStorage.getItem('jontai_reviews') || '[]');
-            if (!reviews.length) return;
-
-            const inner = document.querySelector('.reviews-grid-inner');
-
-            const section = document.createElement('div');
-            section.innerHTML =
-                '<p class="section-eyebrow" style="margin-top:70px;">From Our Community</p>' +
-                '<h2 style="font-size:clamp(1.6rem,3vw,2.4rem);font-weight:800;color:var(--dark-green);text-align:center;margin-bottom:48px;">Recently Submitted Reviews</h2>' +
-                '<div class="reviews-grid" id="community-grid"></div>';
-            inner.appendChild(section);
-
-            const grid = document.getElementById('community-grid');
-            reviews.forEach(function(r) {
-                const stars = Array.from({length: 5}, function(_, i) {
-                    return '<i class="fas fa-star" style="color:' + (i < r.rating ? '#ffc107' : '#ddd') + '"></i>';
-                }).join('');
-                const card = document.createElement('div');
-                card.className = 'review-card';
-                card.innerHTML =
-                    '<div class="review-rating">' + stars + '</div>' +
-                    '<p class="review-text">\u201c' + r.text + '\u201d</p>' +
-                    '<div class="review-footer">' +
-                        '<div class="review-avatar">' + r.initials + '</div>' +
-                        '<div class="review-meta">' +
-                            '<strong>' + r.name + '</strong>' +
-                            '<span>' + (r.project || 'Jontai Energy Customer') + ' &middot; ' + r.date + '</span>' +
-                        '</div>' +
-                    '</div>';
-                grid.appendChild(card);
-            });
-        })();
-    </script>
 </body>
 </html>

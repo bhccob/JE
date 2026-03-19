@@ -713,6 +713,13 @@ body {
     padding: 40px;
 }
 
+.trending-category-info h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
 /* Building the Brand Section */
 .building-brand-section {
     padding: 120px 20px;
@@ -1221,24 +1228,19 @@ body {
 /* Parallax Solutions Section */
 .parallax-solutions-section {
     position: relative;
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1920');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    overflow: hidden;
-    padding: 100px 0;
+    padding: 90px 80px;
+    width: 100%;
 }
 
 .parallax-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(160deg, rgba(0,25,12,0.88) 0%, rgba(0,55,28,0.80) 100%);
+    background: rgba(0, 30, 15, 0.45);
     z-index: 1;
 }
 
@@ -1246,18 +1248,16 @@ body {
     position: relative;
     z-index: 2;
     text-align: center;
-    padding: 0 50px;
-    max-width: 1200px;
     width: 100%;
-    margin: 0 auto;
+    max-width: 100%;
 }
 
 .solutions-eyebrow {
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--primary-green);
+    letter-spacing: 4px;
+    color: var(--accent-green);
     margin-bottom: 14px;
 }
 
@@ -1266,70 +1266,61 @@ body {
     color: #fff;
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 56px;
+    margin-bottom: 64px;
 }
 
 .solutions-options {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2px;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .solution-option {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 44px 32px;
+    padding: 44px 40px;
     text-align: left;
-    transition: background 0.3s, transform 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.solution-option::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 0; height: 3px;
-    background: var(--primary-green);
-    transition: width 0.35s ease;
-}
-
-.solution-option:hover {
-    background: rgba(255,255,255,0.09);
-    transform: translateY(-4px);
-}
-
-.solution-option:hover::after { width: 100%; }
-
-.solution-icon {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: rgba(0,166,80,0.15);
-    display: flex; align-items: center; justify-content: center;
-    margin-bottom: 22px;
+    border-right: 1px solid rgba(255,255,255,0.1);
     transition: background 0.3s;
 }
 
+.solution-option:last-child {
+    border-right: none;
+}
+
+.solution-option::after {
+    display: none;
+}
+
+.solution-option:hover {
+    background: rgba(255,255,255,0.04);
+}
+
+.solution-icon {
+    font-size: 1.6rem;
+    color: var(--accent-green);
+    margin-bottom: 24px;
+    display: block;
+}
+
 .solution-option:hover .solution-icon {
-    background: rgba(0,166,80,0.3);
+    color: var(--accent-green);
 }
 
 .solution-icon i {
-    font-size: 1.3rem;
-    color: var(--primary-green);
+    font-size: 1.6rem;
+    color: var(--accent-green);
 }
 
 .solution-option h3 {
     color: #fff;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    margin: 0 0 12px 0;
-    letter-spacing: 0.2px;
+    margin: 0 0 14px 0;
 }
 
 .solution-option p {
-    color: rgba(255,255,255,0.6);
-    font-size: 0.88rem;
+    color: rgba(255,255,255,0.55);
+    font-size: 0.9rem;
     line-height: 1.75;
     margin: 0;
 }
@@ -4602,7 +4593,7 @@ body {
 
 /* ── Combined Band ── */
 .quote-combined-band {
-    background: linear-gradient(135deg, var(--dark-green) 0%, #003d1a 50%, var(--dark-blue) 100%);
+    background: linear-gradient(135deg, var(--dark-green) 0%, #003d1a 50%, var(--deep-green) 100%);
     padding: 64px 60px;
 }
 
@@ -4622,7 +4613,7 @@ body {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.85);
     margin-bottom: 10px;
 }
 
@@ -4636,7 +4627,7 @@ body {
 
 .combined-text p {
     font-size: 0.95rem;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.9);
     max-width: 480px;
     line-height: 1.65;
 }
