@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jontai Energy | Sustainable Solar Solutions</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="assets/css/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="logo">JONTAI ENERGY</a>
+        <ul class="nav-links">
+            <li class="dropdown-parent">
+                <a href="#products" data-i18n="nav-inventory">Inventory</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
+                            <a href="#solar" data-i18n="dd-solar-link">View Solar</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-led-h">LED Products</h4>
+                            <a href="#led" data-i18n="dd-led-link">View LED</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Hybrid Systems</h4>
+                            <a href="#hybrid">View Hybrid</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4>Parts</h4>
+                            <a href="#parts">View Parts</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="dropdown-parent">
+                <a href="#discover" data-i18n="nav-discover">Discover</a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-content">
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-res-h">Resources</h4>
+                            <a href="pages/events/index.html" data-i18n="dd-events">Events</a>
+                            <a href="pages/news/index.html" data-i18n="dd-news">News</a>
+
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-why-h">Why Us</h4>
+                            <a href="pages/why-us/index.html" data-i18n="dd-why-link">Why Choose Us</a>
+                            <a href="pages/reviews/index.html" data-i18n="dd-reviews">Customer Reviews</a>
+                        </div>
+                        <div class="dropdown-section">
+                            <h4 data-i18n="dd-company-h">Company</h4>
+                            <a href="pages/about/index.html" data-i18n="dd-about">Our Story</a>                            
+                            <a href="pages/work-with-us/index.html" data-i18n="dd-careers">Careers</a>
+                            <a href="pages/socials/index.html">Socials</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li><a href="pages/location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="pages/faq/index.html" class="nav-icon" aria-label="FAQ" title="FAQ">
+                <i class="fas fa-question-circle"></i>
+                <span class="icon-label" data-i18n="nav-faq">FAQ</span>
+            </a>
+            <a href="pages/contact/index.html" class="nav-icon" aria-label="Support" title="Support">
+                <i class="fas fa-headset"></i>
+                <span class="icon-label" data-i18n="nav-support">Support</span>
+            </a>
+            <div class="lang-picker-wrap">
+                <button class="nav-icon lang-picker-btn" id="navLangBtn" aria-label="Language">
+                    <i class="fas fa-globe"></i>
+                    <span class="icon-label" data-i18n="nav-lang">Language</span>
+                </button>
+                <div class="lang-dropdown" id="navLangDropdown">
+                    <button class="lang-opt active" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <div><strong>English</strong><span>English</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="es">
+                        <span class="lang-flag">🇪🇸</span>
+                        <div><strong>Español</strong><span>Spanish</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                    <button class="lang-opt" data-lang="zh">
+                        <span class="lang-flag">🇨🇳</span>
+                        <div><strong>中文</strong><span>Chinese</span></div>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 data-i18n="hero-title">Power Your Future</h1>
+            <p data-i18n="hero-sub">Powering a Sustainable Future with Solar & LED Lighting.</p>
+            <div class="hero-buttons">
+                <a href="#products" class="btn btn-primary" data-i18n="btn-inventory">View Inventory</a>
+                <a href="pages/quote/index.html" class="btn btn-secondary" data-i18n="btn-quote">Quote</a>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- Trending Categories Section -->
+    <section id="products" class="trending-categories-section">
+
+        <div class="trending-categories-container">
+            
+            <div class="trending-categories-carousel">
+                <div class="trending-category-card">
+                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800')"></div>
+                    <div class="trending-category-info">
+                        <h3 data-i18n="card-res">Residential Solution</h3>
+                        <p data-i18n="card-res-desc">High-efficiency panels designed for modern homes</p>
+                        <div class="product-buttons">
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-category-card">
+                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800')"></div>
+                    <div class="trending-category-info">
+                        <h3 data-i18n="card-com">Commercial Solution</h3>
+                        <p data-i18n="card-com-desc">Scalable solutions for businesses of all sizes</p>
+                        <div class="product-buttons">
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-category-card">
+                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800')"></div>
+                    <div class="trending-category-info">
+                        <h3 data-i18n="card-led">LED Solution</h3>
+                        <p data-i18n="card-led-desc">Energy-efficient LED lighting solutions for every need</p>
+                        <div class="product-buttons">
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trending-category-card">
+                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800')"></div>
+                    <div class="trending-category-info">
+                        <h3 data-i18n="card-hyb">LED & Solar Hybrid Solution</h3>
+                        <p data-i18n="card-hyb-desc">Combined LED and solar solutions for maximum efficiency</p>
+                        <div class="product-buttons">
+                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Where We're Strong In Section -->
+    <section class="parallax-solutions-section">
+        <div class="parallax-overlay"></div>
+        <div class="solutions-content">
+            <p class="solutions-eyebrow" data-i18n="str-eyebrow">What Sets Us Apart</p>
+            <h2 data-i18n="str-heading">Where We're Strong</h2>
+            <div class="solutions-options">
+                <div class="solution-option">
+                    <div class="solution-icon"><i class="fas fa-award"></i></div>
+                    <h3 data-i18n="str-exp">Experience</h3>
+                    <p data-i18n="str-exp-desc">Years of expertise in solar energy and LED solutions, delivering proven results across Aruba.</p>
+                </div>
+                <div class="solution-option">
+                    <div class="solution-icon"><i class="fas fa-brain"></i></div>
+                    <h3 data-i18n="str-know">Knowledge</h3>
+                    <p data-i18n="str-know-desc">Deep understanding of renewable energy technology and industry-leading best practices.</p>
+                </div>
+                <div class="solution-option">
+                    <div class="solution-icon"><i class="fas fa-th-large"></i></div>
+                    <h3 data-i18n="str-range">Wide Product Range</h3>
+                    <p data-i18n="str-range-desc">Extensive selection of solar panels, inverters, batteries, and LED lighting solutions.</p>
+                </div>
+                <div class="solution-option">
+                    <div class="solution-icon"><i class="fas fa-handshake"></i></div>
+                    <h3 data-i18n="str-trans">Transparency</h3>
+                    <p data-i18n="str-trans-desc">Clear pricing, honest communication, and straightforward processes every step of the way.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commercial & Residential Solutions -->
+    <section class="solutions-section">
+        <div class="solutions-banner">
+            <div class="solutions-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200')"></div>
+            <div class="solutions-banner-content">
+                <h2 data-i18n="sol-com-h">Commercial Solutions</h2>
+                <p data-i18n="sol-com-desc">Scalable solar and LED systems designed for businesses, warehouses, and industrial facilities. Maximize efficiency and reduce operational costs.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+        </div>
+        <div class="solutions-banner">
+            <div class="solutions-banner-content">
+                <h2 data-i18n="sol-res-h">Residential Solutions</h2>
+                <p data-i18n="sol-res-desc">Custom solar panel installations and LED lighting solutions for your home. Save money while contributing to a sustainable future.</p>
+                <a href="#" class="btn btn-primary">Learn More</a>
+            </div>
+            <div class="solutions-banner-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200')"></div>
+        </div>
+    </section>
+
+    <!-- Contact Banner Section -->
+    <section class="contact-banner index-page">
+        <div class="contact-banner-content">
+            <div class="contact-banner-left">
+                <h2 data-i18n="cta-h">How can we help you?</h2>
+                <p data-i18n="cta-sub">Get in touch with a product expert or account manager</p>
+                <a href="pages/contact/index.html" class="btn btn-contact" data-i18n="btn-contact">Contact Us</a>
+            </div>
+            <div class="contact-banner-right">
+                <div class="contact-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200')"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">JONTAI ENERGY</a>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+            </div>
+            <hr class="footer-divider">
+            <div class="footer-sections">
+                <div class="footer-section">
+                    <h3 data-i18n="ft-company-h">Company</h3>
+                    <div class="footer-links">
+                        <a href="pages/about/index.html" data-i18n="ft-about">About Us</a>
+                        <a href="pages/news/index.html" data-i18n="ft-news">News</a>
+                        <a href="pages/work-with-us/index.html" data-i18n="ft-careers">Careers</a>
+                        <a href="pages/privacy/index.html" data-i18n="ft-privacy">Privacy Policy</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-info-h">Information</h3>
+                    <div class="footer-links">
+                        <a href="pages/faq/index.html" data-i18n="ft-faq">FAQ</a>
+                        <a href="pages/terms/index.html" data-i18n="ft-terms">Terms and Conditions</a>
+                        <a href="pages/warranty/index.html" data-i18n="ft-warranty">Warranty</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3 data-i18n="ft-support-h">Support</h3>
+                    <div class="footer-links">
+                        <a href="pages/contact/index.html" data-i18n="ft-contact">Contact Us</a>
+                        <a href="pages/service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
+                        <a href="pages/returns/index.html" data-i18n="ft-returns">Return &amp; Product Support</a>
+                        <a href="pages/accessibility/index.html" data-i18n="ft-access">Accessibility</a>
+                    </div>
+                </div>
+                <div class="footer-section footer-newsletter">
+                    <h3 data-i18n="ft-newsletter-h">Jontai Energy Updates</h3>
+                    <p data-i18n="ft-newsletter-p">Join Jontai Energy to get access to the latest news, product and trends</p>
+                    <a href="#" class="btn btn-subscribe" data-i18n="ft-subscribe">Subscribe</a>
+                    <div class="footer-extras">
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                        <div class="language-selector">
+                            <button class="language-btn" id="languageBtn">
+                                <span class="current-flag">🇺🇸</span>
+                                <span class="current-lang">English</span>
+                                <i class="fas fa-chevron-up lang-chevron"></i>
+                            </button>
+                            <div class="language-panel" id="languagePanel">
+                                <p class="lang-panel-label">Choose Language</p>
+                                <div class="lang-panel-options">
+                                    <button class="lang-panel-opt active" data-flag="🇺🇸" data-lang="en" data-label="English">
+                                        <span class="lp-flag">🇺🇸</span>
+                                        <div>
+                                            <strong>English</strong>
+                                            <span>United States</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="🇲🇽" data-lang="es" data-label="Español">
+                                        <span class="lp-flag">🇲🇽</span>
+                                        <div>
+                                            <strong>Español</strong>
+                                            <span>Mexico / Latin America</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                    <button class="lang-panel-opt" data-flag="🇨🇳" data-lang="zh" data-label="中文">
+                                        <span class="lp-flag">🇨🇳</span>
+                                        <div>
+                                            <strong>中文</strong>
+                                            <span>Chinese</span>
+                                        </div>
+                                        <i class="fas fa-check lp-check"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Subscription Panel -->
+    <div class="subscription-panel" id="subscriptionPanel">
+        <div class="subscription-panel-content">
+            <button class="close-panel" id="closePanel">&times;</button>
+            <h2>Subscribe to Updates</h2>
+            <p>Stay informed about our latest products and news</p>
+            <form class="subscription-form" id="subscriptionForm">
+                <div class="form-group">
+                    <label for="subscribeName">Name</label>
+                    <input type="text" id="subscribeName" name="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="subscribeEmail">Email</label>
+                    <input type="email" id="subscribeEmail" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group-toggle">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="emailNotifications" name="notifications" checked>
+                        <span class="toggle-slider"></span>
+                        <span class="toggle-text">Email Notifications</span>
+                    </label>
+                    <p class="toggle-description">Receive updates about new products and trends</p>
+                </div>
+                <button type="submit" class="btn btn-submit-subscribe">Subscribe Now</button>
+            </form>
+        </div>
+    </div>
+    <div class="subscription-overlay" id="subscriptionOverlay"></div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+

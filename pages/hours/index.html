@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opening Hours | Jontai Energy</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="../../assets/css/output.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../../index.html" class="logo">JONTAI ENERGY</a>
+        <ul class="nav-links">
+            <li class="dropdown-parent">
+                <a href="#products">Inventory</a>
+                <div class="dropdown-menu"><div class="dropdown-content">
+                    <div class="dropdown-section"><h4>Solar Products</h4><a href="#solar">View Solar</a></div>
+                    <div class="dropdown-section"><h4>LED Products</h4><a href="#led">View LED</a></div>
+                    <div class="dropdown-section"><h4>Hybrid Systems</h4><a href="#hybrid">View Hybrid</a></div>
+                    <div class="dropdown-section"><h4>Parts</h4><a href="#parts">View Parts</a></div>
+                </div></div>
+            </li>
+            <li class="dropdown-parent">
+                <a href="#discover">Discover</a>
+                <div class="dropdown-menu"><div class="dropdown-content">
+                    <div class="dropdown-section">
+                        <h4>Resources</h4>
+                        <a href="../celebrations/index.html">Events</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Why Us</h4>
+                        <a href="../why-us/index.html">Why Choose Us</a>
+                        <a href="../reviews/index.html">Customer Reviews</a>
+                    </div>
+                    <div class="dropdown-section">
+                        <h4>Company</h4>
+                        <a href="../about/index.html">Our Story</a>
+                        <a href="../work-with-us/index.html">Careers</a>
+                        <a href="../socials/index.html">Socials</a>
+                    </div>
+                </div></div>
+            </li>
+            <li><a href="../location/index.html">Location & Hours</a></li>
+        </ul>
+        <div class="nav-actions">
+            <a href="../faq/index.html" class="nav-icon" aria-label="FAQ"><i class="fas fa-question-circle"></i><span class="icon-label">FAQ</span></a>
+            <a href="../contact/index.html" class="nav-icon" aria-label="Support"><i class="fas fa-headset"></i><span class="icon-label">Support</span></a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hours-hero">
+        <div class="hours-hero-overlay"></div>
+        <div class="hours-hero-content">
+            <a href="../events/index.html" class="back-link"><i class="fas fa-arrow-left"></i> Events & Hours</a>
+            <p class="hours-hero-label">Schedule</p>
+            <h1>Opening Hours</h1>
+            <p>Regular hours and holiday schedules for Jontai Energy</p>
+        </div>
+    </section>
+
+    <!-- Regular Hours Split -->
+    <section class="hours-split">
+        <div class="hours-image-panel">
+            <div class="hours-panel-bg"></div>
+        </div>
+        <div class="hours-text-panel">
+            <p class="hours-eyebrow">Weekly Schedule</p>
+            <h2>When We're<br>Open for You</h2>
+            <div class="hours-rows">
+                <div class="hours-row" id="row-mon"><span class="h-day">Monday</span><span class="h-time">8:00 AM – 5:00 PM</span></div>
+                <div class="hours-row" id="row-tue"><span class="h-day">Tuesday</span><span class="h-time">8:00 AM – 5:00 PM</span></div>
+                <div class="hours-row" id="row-wed"><span class="h-day">Wednesday</span><span class="h-time">8:00 AM – 5:00 PM</span></div>
+                <div class="hours-row" id="row-thu"><span class="h-day">Thursday</span><span class="h-time">8:00 AM – 5:00 PM</span></div>
+                <div class="hours-row" id="row-fri"><span class="h-day">Friday</span><span class="h-time">8:00 AM – 5:00 PM</span></div>
+                <div class="hours-row" id="row-sat"><span class="h-day">Saturday</span><span class="h-time">9:00 AM – 3:00 PM</span></div>
+                <div class="hours-row closed" id="row-sun"><span class="h-day">Sunday</span><span class="h-time">Closed</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Holiday Hours -->
+    <section class="holiday-section">
+        <div class="holiday-inner">
+            <div class="holiday-header">
+                <p class="section-eyebrow">Public Holidays</p>
+                <h2>Holiday Hours</h2>
+                <p>Our schedule may vary on public holidays. Check below before you visit.</p>
+            </div>
+
+            <div class="month-filter">
+                <label for="monthFilter">Filter by Month</label>
+                <select id="monthFilter" onchange="filterHolidays()">
+                    <option value="all">All Months</option>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+            </div>
+
+            <div id="noHolidaysMessage" class="no-holidays-message" style="display:none;">
+                <i class="fas fa-calendar-times"></i>
+                <h3>TBD — To Be Decided</h3>
+                <p>No holidays scheduled for this month yet.</p>
+            </div>
+
+            <div class="holiday-grid"></div>
+        </div>
+    </section>
+
+    <!-- Parallax Info Band -->
+    <section class="hours-parallax">
+        <div class="hours-parallax-overlay"></div>
+        <div class="hours-parallax-inner">
+            <p class="section-eyebrow">Find Us</p>
+            <h2>Come Visit Jontai Energy</h2>
+            <div class="hours-location-items">
+                <div class="hours-loc-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>Aruba</strong>
+                    <span>Visit our showroom</span>
+                </div>
+                <div class="hours-loc-item">
+                    <i class="fas fa-phone"></i>
+                    <strong>Call Us</strong>
+                    <span>Get in touch directly</span>
+                </div>
+                <div class="hours-loc-item">
+                    <i class="fas fa-envelope"></i>
+                    <strong>Email Us</strong>
+                    <span>We reply within 24h</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Band -->
+    <section class="hours-cta-band">
+        <div class="hours-cta-inner">
+            <div class="hours-cta-text">
+                <h3>Have a question?</h3>
+                <p>Our team is here to help with any inquiries about our schedule or services.</p>
+            </div>
+            <div class="hours-cta-actions">
+                <a href="../contact/index.html" class="hours-cta-btn"><i class="fas fa-headset"></i> Contact Us</a>
+                <a href="../celebrations/index.html" class="hours-cta-link">Upcoming Events <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">JONTAI ENERGY</div>
+            <p>Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+            <div class="footer-links">
+                <a href="../privacy/index.html">Privacy Policy</a>
+                <a href="../terms/index.html">Terms &amp; Conditions</a>
+            </div>
+            <p class="copyright">&copy; 2026 Jontai Energy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../events/events.js"></script>
+    <script>
+        // Highlight today
+        const dayIds = ['row-sun','row-mon','row-tue','row-wed','row-thu','row-fri','row-sat'];
+        const todayRow = document.getElementById(dayIds[new Date().getDay()]);
+        if (todayRow && !todayRow.classList.contains('closed')) {
+            todayRow.classList.add('today');
+            const span = todayRow.querySelector('.h-day');
+            const badge = document.createElement('span');
+            badge.className = 'today-badge';
+            badge.textContent = 'Today';
+            span.appendChild(badge);
+        }
+    </script>
+<script src="hours.js"></script></body>
+</html>
