@@ -1,4 +1,15 @@
 ﻿document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+
+    if (navbar) {
+        function syncNavbarState() {
+            navbar.classList.toggle('navbar-scrolled', window.scrollY > 18);
+        }
+
+        syncNavbarState();
+        window.addEventListener('scroll', syncNavbarState, { passive: true });
+    }
+
     // Team scroll functionality (about.html)
     const teamScroll = document.querySelector('.team-scroll');
     const teamScrollLeft = document.querySelector('.team-scroll-left');
@@ -51,7 +62,7 @@
     /* â”€â”€ Navbar language picker â”€â”€ */
     const TRANSLATIONS = {
         en: {
-            'nav-inventory': 'Inventory', 'nav-discover': 'Discover', 'nav-hours': 'Location \u0026 Hours',
+            'nav-inventory': 'Solutions', 'nav-discover': 'Discover', 'nav-hours': 'Location \u0026 Hours',
             'nav-faq': 'FAQ', 'nav-support': 'Support', 'nav-lang': 'Language', 'nav-new-customer': 'New Customer',
             'dd-solar-h': 'Solar Products', 'dd-solar-link': 'View Solar',
             'dd-led-h': 'LED Products', 'dd-led-link': 'View LED',
@@ -60,7 +71,7 @@
             'dd-company-h': 'Company', 'dd-about': 'Our Story', 'dd-careers': 'Careers',
             'hero-title': 'Power Your Future',
             'hero-sub': 'Powering a Sustainable Future with Solar \u0026 LED Lighting.',
-            'btn-inventory': 'View Inventory', 'btn-quote': 'Quote', 'btn-learn': 'Learn More', 'btn-contact': 'Contact Us',
+            'btn-inventory': 'Explore Solutions', 'btn-quote': 'Quote', 'btn-learn': 'Learn More', 'btn-contact': 'Contact Us',
             'card-res': 'Residential Solution', 'card-res-desc': 'High-efficiency panels designed for modern homes',
             'card-com': 'Commercial Solution', 'card-com-desc': 'Scalable solutions for businesses of all sizes',
             'card-led': 'LED Solution', 'card-led-desc': 'Energy-efficient LED lighting solutions for every need',
@@ -75,12 +86,26 @@
             'cta-h': 'How can we help you?', 'cta-sub': 'Get in touch with a product expert or account manager',
             'ft-tagline': 'Powering a Sustainable Future with Solar & LED Lighting.',
             'ft-company-h': 'Company', 'ft-about': 'About Us', 'ft-news': 'News', 'ft-careers': 'Careers', 'ft-privacy': 'Privacy Policy',
-            'ft-info-h': 'Information', 'ft-faq': 'FAQ', 'ft-terms': 'Terms and Condition', 'ft-warranty': 'Warranty',
+            'ft-info-h': 'Information', 'ft-faq': 'FAQ', 'ft-terms': 'Terms and Conditions', 'ft-warranty': 'Warranty', 'ft-consumer': 'Consumer Rights',
             'ft-support-h': 'Support', 'ft-contact': 'Contact Us', 'ft-account': 'My Account',
-            'ft-service': 'Service & Parts', 'ft-returns': 'Return & Product Support', 'ft-access': 'Accessibility',
-            'ft-newsletter-h': 'Jontai Energy Updates',
-            'ft-newsletter-p': 'Join Jontai Energy to get access to the latest news, product and trends',
-            'ft-subscribe': 'Subscribe',
+            'ft-service': 'Service & Parts', 'ft-returns': 'Returns & Product Support', 'ft-access': 'Accessibility',
+            'ft-newsletter-h': 'Project Updates',
+            'ft-newsletter-p': 'Get concise updates on products, installations, and new releases.',
+            'ft-subscribe': 'Join List',
+            'cookie-title': 'Cookie Preferences',
+            'cookie-text': 'We use essential storage to remember your language preference and keep the site working properly. We will only use analytics cookies if you allow them.',
+            'cookie-accept': 'Accept All',
+            'cookie-essential': 'Essential Only',
+            'cookie-manage': 'Manage Preferences',
+            'cookie-policy': 'Privacy Policy',
+            'cookie-pref-title': 'Manage Cookie Preferences',
+            'cookie-pref-text': 'Essential storage is always on because it supports core site functions. Analytics stays off unless you choose to allow it.',
+            'cookie-essential-label': 'Essential storage',
+            'cookie-essential-desc': 'Keeps language preference and core site behavior working.',
+            'cookie-analytics-label': 'Analytics cookies',
+            'cookie-analytics-desc': 'Helps us understand site usage when analytics tools are added.',
+            'cookie-save': 'Save Preferences',
+            'cookie-cancel': 'Cancel',
             // â”€â”€ Page-specific content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'legal-hero-label':'Legal',
             'ab-hero-label':'Our Story','ab-h1':'About Jontai Energy','ab-story-eyebrow':'Who We Are',
@@ -136,7 +161,7 @@
             'ac-cta-h3':'Need help or want to give feedback?',
             // â”€â”€ Celebrations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'cl-section-h2':'Events & Celebrations',
-            "cl-event1-h3":"Pagara â€” New Year's Eve Fireworks",
+            "cl-event1-h3":"Pagara - New Year's Eve Fireworks",
             'cl-event2-h3':'Chinese New Year Celebration',
             'cl-more-eyebrow':'Explore More','cl-more-h2':'Also at Jontai Energy',
             "cl-cta-h3":"Don't miss an event",
@@ -165,7 +190,7 @@
             'fq-cta-h3':'Still have questions?',
             // â”€â”€ Hours â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'hr-visit-h2':'Come Visit Jontai Energy','hr-contact-h3':'Have a question?',
-            'hr-tbd-h3':'TBD â€” To Be Decided',
+            'hr-tbd-h3':'TBD - To Be Decided',
             // â”€â”€ Location â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'loc-map-h2':'Find Our Location','loc-hours-h2':'Opening Hours',
             // â”€â”€ News â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -182,17 +207,17 @@
             // â”€â”€ Quote â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'qt-solar-h2':'Solar Quote','qt-led-h2':'LED Quote',
             // â”€â”€ Returns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'rt-policy-h2':'The 1-Week Return & Exchange Policy',
+            'rt-policy-h2':'Returns & Consumer Support Policy',
             'rt-unopened-h3':'Unopened / Unused Products','rt-defective-h3':'Defective Products',
             'rt-wrong-h3':'Wrong Item Received','rt-opened-h3':'Opened but Unused Products',
             'rt-installed-h3':'Installed Products (Non-defective)',
             'rt-custom-h3':'Custom or Special-Order Items',
-            'rt-late-h3':'Returns After 7 Days (Non-defective)',
+            'rt-late-h3':'Returns After 14 Days (Non-defective)',
             'rt-cta-h3':'Need to return or exchange a product?',
             // â”€â”€ Reviews â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'rv-cta-h3':'Had a great experience?','rv-about-h2':'What Sets Us Apart',
             // â”€â”€ Service â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'sv-promise-h2':'Our 1-Week Fix Promise',
+            'sv-promise-h2':'Service Commitments & Warranty Handling',
             'sv-solar-h3':'Solar Panel Repair','sv-inverter-h3':'Inverter & Battery Service',
             'sv-led-h3':'LED Fixture Repair','sv-electrical-h3':'Electrical Hardware',
             'sv-preventive-h3':'Preventive Maintenance','sv-onsite-h3':'On-Site Visits',
@@ -221,7 +246,7 @@
             'wu-b3-h4':'Warranty & Guarantees','wu-b4-h4':'Proven Savings',
             'wu-b5-h4':'Local Expertise','wu-b6-h4':'Trusted by Community',
             // â”€â”€ Work-with-us â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'ww-intro-h2':'More Than a Job â€” A Mission',
+            'ww-intro-h2':'More Than a Job - A Mission',
             'ww-process-h2':'Our Hiring Process','ww-jobs-h2':'Open Positions',
             'ww-step1-h4':'Apply Online','ww-step2-h4':'Initial Review',
             'ww-step3-h4':'Interview','ww-step4-h4':'Welcome Aboard',
@@ -231,7 +256,7 @@
             'ww-cta-h3':'Questions before applying?','ww-modal-h3':'Apply for Position'
         },
         es: {
-            'nav-inventory': 'Inventario', 'nav-discover': 'Descubrir', 'nav-hours': 'Ubicaci\u00f3n y Horarios',
+            'nav-inventory': 'Soluciones', 'nav-discover': 'Descubrir', 'nav-hours': 'Ubicaci\u00f3n y Horarios',
             'nav-faq': 'FAQ', 'nav-support': 'Soporte', 'nav-lang': 'Idioma', 'nav-new-customer': 'Nuevo Cliente',
             'dd-solar-h': 'Productos Solares', 'dd-solar-link': 'Ver Solar',
             'dd-led-h': 'Productos LED', 'dd-led-link': 'Ver LED',
@@ -240,7 +265,7 @@
             'dd-company-h': 'Empresa', 'dd-about': 'Nuestra Historia', 'dd-careers': 'Empleos',
             'hero-title': 'Impulsa Tu Futuro',
             'hero-sub': 'Impulsando un Futuro Sostenible con Energ\u00eda Solar e Iluminaci\u00f3n LED.',
-            'btn-inventory': 'Ver Inventario', 'btn-quote': 'Cotizaci\u00f3n', 'btn-learn': 'M\u00e1s Informaci\u00f3n', 'btn-contact': 'Cont\u00e1ctenos',
+            'btn-inventory': 'Ver Soluciones', 'btn-quote': 'Cotizaci\u00f3n', 'btn-learn': 'M\u00e1s Informaci\u00f3n', 'btn-contact': 'Cont\u00e1ctenos',
             'card-res': 'Soluci\u00f3n Residencial', 'card-res-desc': 'Paneles de alta eficiencia dise\u00f1ados para hogares modernos',
             'card-com': 'Soluci\u00f3n Comercial', 'card-com-desc': 'Soluciones escalables para empresas de todos los tama\u00f1os',
             'card-led': 'Soluci\u00f3n LED', 'card-led-desc': 'Soluciones de iluminaci\u00f3n LED eficientes para cada necesidad',
@@ -255,12 +280,26 @@
             'cta-h': '\u00bfC\u00f3mo podemos ayudarte?', 'cta-sub': 'Cont\u00e1ctenos con un experto en productos o gerente de cuenta',
             'ft-tagline': 'Impulsando un Futuro Sostenible con Energ\u00eda Solar e Iluminaci\u00f3n LED.',
             'ft-company-h': 'Empresa', 'ft-about': 'Sobre Nosotros', 'ft-news': 'Noticias', 'ft-careers': 'Empleos', 'ft-privacy': 'Pol\u00edtica de Privacidad',
-            'ft-info-h': 'Informaci\u00f3n', 'ft-faq': 'Preguntas Frecuentes', 'ft-terms': 'T\u00e9rminos y Condiciones', 'ft-warranty': 'Garant\u00eda',
+            'ft-info-h': 'Informaci\u00f3n', 'ft-faq': 'Preguntas Frecuentes', 'ft-terms': 'T\u00e9rminos y Condiciones', 'ft-warranty': 'Garant\u00eda', 'ft-consumer': 'Derechos del Consumidor',
             'ft-support-h': 'Soporte', 'ft-contact': 'Cont\u00e1ctenos', 'ft-account': 'Mi Cuenta',
             'ft-service': 'Servicio y Repuestos', 'ft-returns': 'Devoluciones y Soporte', 'ft-access': 'Accesibilidad',
-            'ft-newsletter-h': 'Actualizaciones de Jontai Energy',
-            'ft-newsletter-p': '\u00danase a Jontai Energy para acceder a las \u00faltimas noticias, productos y tendencias',
-            'ft-subscribe': 'Suscribirse',
+            'ft-newsletter-h': 'Actualizaciones de Proyectos',
+            'ft-newsletter-p': 'Reciba actualizaciones breves sobre productos, instalaciones y novedades.',
+            'ft-subscribe': 'Unirse',
+            'cookie-title': 'Preferencias de Cookies',
+            'cookie-text': 'Usamos almacenamiento esencial para recordar su idioma y mantener el sitio funcionando correctamente. Solo usaremos cookies analíticas si usted lo permite.',
+            'cookie-accept': 'Aceptar Todo',
+            'cookie-essential': 'Solo Esenciales',
+            'cookie-manage': 'Gestionar Preferencias',
+            'cookie-policy': 'Política de Privacidad',
+            'cookie-pref-title': 'Gestionar Preferencias de Cookies',
+            'cookie-pref-text': 'El almacenamiento esencial siempre está activo porque respalda funciones básicas del sitio. La analítica permanece desactivada a menos que usted la permita.',
+            'cookie-essential-label': 'Almacenamiento esencial',
+            'cookie-essential-desc': 'Mantiene la preferencia de idioma y el funcionamiento básico del sitio.',
+            'cookie-analytics-label': 'Cookies analíticas',
+            'cookie-analytics-desc': 'Nos ayuda a entender el uso del sitio cuando se añadan herramientas analíticas.',
+            'cookie-save': 'Guardar Preferencias',
+            'cookie-cancel': 'Cancelar',
             // â”€â”€ Page-specific content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'legal-hero-label':'Legal',
             'ab-hero-label':'Nuestra Historia','ab-h1':'Sobre Jontai Energy','ab-story-eyebrow':'Qui\u00e9nes Somos',
@@ -362,17 +401,17 @@
             // â”€â”€ Quote â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'qt-solar-h2':'Cotizaci\u00f3n Solar','qt-led-h2':'Cotizaci\u00f3n LED',
             // â”€â”€ Returns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'rt-policy-h2':'La Pol\u00edtica de Devoluci\u00f3n e Intercambio de 1 Semana',
+            'rt-policy-h2':'Pol\u00edtica de Devoluciones y Soporte al Consumidor',
             'rt-unopened-h3':'Productos Sin Abrir / Sin Usar','rt-defective-h3':'Productos Defectuosos',
             'rt-wrong-h3':'Art\u00edculo Incorrecto Recibido','rt-opened-h3':'Productos Abiertos pero Sin Usar',
             'rt-installed-h3':'Productos Instalados (Sin Defectos)',
             'rt-custom-h3':'Art\u00edculos Personalizados o de Encargo Especial',
-            'rt-late-h3':'Devoluciones Despu\u00e9s de 7 D\u00edas (Sin Defectos)',
+            'rt-late-h3':'Devoluciones Despu\u00e9s de 14 D\u00edas (Sin Defectos)',
             'rt-cta-h3':'\u00bfNecesita devolver o intercambiar un producto?',
             // â”€â”€ Reviews â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'rv-cta-h3':'\u00bfTuvo una gran experiencia?','rv-about-h2':'Lo que Nos Distingue',
             // â”€â”€ Service â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'sv-promise-h2':'Nuestra Promesa de Reparaci\u00f3n en 1 Semana',
+            'sv-promise-h2':'Compromisos de Servicio y Garant\u00eda',
             'sv-solar-h3':'Reparaci\u00f3n de Paneles Solares','sv-inverter-h3':'Servicio de Inversor y Bater\u00eda',
             'sv-led-h3':'Reparaci\u00f3n de Accesorios LED','sv-electrical-h3':'Hardware El\u00e9ctrico',
             'sv-preventive-h3':'Mantenimiento Preventivo','sv-onsite-h3':'Visitas In Situ',
@@ -411,7 +450,7 @@
             'ww-cta-h3':'\u00bfPreguntas antes de aplicar?','ww-modal-h3':'Aplicar para el Puesto'
         },
         zh: {
-            'nav-inventory': '\u5e93\u5b58', 'nav-discover': '\u63a2\u7d22', 'nav-hours': '\u5730\u70b9\u4e0e\u8425\u4e1a\u65f6\u95f4',
+            'nav-inventory': '\u89e3\u51b3\u65b9\u6848', 'nav-discover': '\u63a2\u7d22', 'nav-hours': '\u5730\u70b9\u4e0e\u8425\u4e1a\u65f6\u95f4',
             'nav-faq': '\u5e38\u89c1\u95ee\u9898', 'nav-support': '\u652f\u6301', 'nav-lang': '\u8bed\u8a00', 'nav-new-customer': '\u65b0\u5ba2\u6237',
             'dd-solar-h': '\u592a\u9633\u80fd\u4ea7\u54c1', 'dd-solar-link': '\u67e5\u770b\u592a\u9633\u80fd',
             'dd-led-h': 'LED\u4ea7\u54c1', 'dd-led-link': '\u67e5\u770bLED',
@@ -420,7 +459,7 @@
             'dd-company-h': '\u516c\u53f8', 'dd-about': '\u6211\u4eec\u7684\u6545\u4e8b', 'dd-careers': '\u62db\u8058',
             'hero-title': '\u9a71\u52a8\u60a8\u7684\u672a\u6765',
             'hero-sub': '\u4ee5\u592a\u9633\u80fd\u4e0eAndLED\u7167\u660e\u63a8\u52a8\u53ef\u6301\u7eed\u53d1\u5c55\u7684\u672a\u6765\u3002',
-            'btn-inventory': '\u67e5\u770b\u5e93\u5b58', 'btn-quote': '\u62a5\u4ef7', 'btn-learn': '\u4e86\u89e3\u66f4\u591a', 'btn-contact': '\u8054\u7cfb\u6211\u4eec',
+            'btn-inventory': '\u67e5\u770b\u89e3\u51b3\u65b9\u6848', 'btn-quote': '\u62a5\u4ef7', 'btn-learn': '\u4e86\u89e3\u66f4\u591a', 'btn-contact': '\u8054\u7cfb\u6211\u4eec',
             'card-res': '\u4f4f\u5b85\u89e3\u51b3\u65b9\u6848', 'card-res-desc': '\u4e3a\u73b0\u4ee3\u4f4f\u5b85\u8bbe\u8ba1\u7684\u9ad8\u6548\u80fd\u592a\u9633\u80fd\u677f',
             'card-com': '\u5546\u4e1a\u89e3\u51b3\u65b9\u6848', 'card-com-desc': '\u9002\u5408\u5404\u79cd\u89c4\u6a21\u4f01\u4e1a\u7684\u53ef\u6269\u5c55\u89e3\u51b3\u65b9\u6848',
             'card-led': 'LED\u7167\u660e\u65b9\u6848', 'card-led-desc': '\u6ee1\u8db3\u5404\u79cd\u9700\u6c42\u7684\u8282\u80fdLED\u7167\u660e\u89e3\u51b3\u65b9\u6848',
@@ -435,12 +474,26 @@
             'cta-h': '\u6211\u4eec\u80fd\u5982\u4f55\u5e2e\u52a9\u60a8\uff1f', 'cta-sub': '\u8054\u7cfb\u4ea7\u54c1\u4e13\u5bb6\u6216\u5ba2\u6237\u7ecf\u7406',
             'ft-tagline': '\u4ee5\u592a\u9633\u80fd\u4e0eLED\u7167\u660e\u63a8\u52a8\u53ef\u6301\u7eed\u53d1\u5c55\u7684\u672a\u6765\u3002',
             'ft-company-h': '\u516c\u53f8', 'ft-about': '\u5173\u4e8e\u6211\u4eec', 'ft-news': '\u65b0\u95fb', 'ft-careers': '\u62db\u8058', 'ft-privacy': '\u9690\u79c1\u653f\u7b56',
-            'ft-info-h': '\u4fe1\u606f', 'ft-faq': '\u5e38\u89c1\u95ee\u9898', 'ft-terms': '\u6761\u6b3e\u4e0e\u6761\u4ef6', 'ft-warranty': '\u4fdd\u4fee',
+            'ft-info-h': '\u4fe1\u606f', 'ft-faq': '\u5e38\u89c1\u95ee\u9898', 'ft-terms': '\u6761\u6b3e\u4e0e\u6761\u4ef6', 'ft-warranty': '\u4fdd\u4fee', 'ft-consumer': '\u6d88\u8d39\u8005\u6743\u76ca',
             'ft-support-h': '\u652f\u6301', 'ft-contact': '\u8054\u7cfb\u6211\u4eec', 'ft-account': '\u6211\u7684\u8d26\u6237',
             'ft-service': '\u670d\u52a1\u4e0e\u96f6\u4ef6', 'ft-returns': '\u9000\u8d27\u4e0e\u4ea7\u54c1\u652f\u6301', 'ft-access': '\u65e0\u969c\u788d',
-            'ft-newsletter-h': 'Jontai Energy \u52a8\u6001',
-            'ft-newsletter-p': '\u52a0\u5165 Jontai Energy\uff0c\u83b7\u53d6\u6700\u65b0\u65b0\u95fb\u3001\u4ea7\u54c1\u548c\u8d8b\u52bf',
-            'ft-subscribe': '\u8ba2\u9605',
+            'ft-newsletter-h': '\u9879\u76ee\u66f4\u65b0',
+            'ft-newsletter-p': '\u83b7\u53d6\u6709\u5173\u4ea7\u54c1\u3001\u5b89\u88c5\u548c\u65b0\u53d1\u5e03\u7684\u7b80\u8981\u66f4\u65b0\u3002',
+            'ft-subscribe': '\u52a0\u5165\u5217\u8868',
+            'cookie-title': '\u7f51\u7ad9 Cookie \u504f\u597d',
+            'cookie-text': '\u6211\u4eec\u4f7f\u7528\u5fc5\u8981\u7684\u5b58\u50a8\u6765\u8bb0\u4f4f\u60a8\u7684\u8bed\u8a00\u504f\u597d\uff0c\u5e76\u4fdd\u6301\u7f51\u7ad9\u6b63\u5e38\u8fd0\u884c\u3002\u53ea\u6709\u5728\u60a8\u5141\u8bb8\u65f6\uff0c\u6211\u4eec\u624d\u4f1a\u4f7f\u7528\u5206\u6790 Cookie\u3002',
+            'cookie-accept': '\u5168\u90e8\u63a5\u53d7',
+            'cookie-essential': '\u4ec5\u5fc5\u8981',
+            'cookie-manage': '\u7ba1\u7406\u504f\u597d',
+            'cookie-policy': '\u9690\u79c1\u653f\u7b56',
+            'cookie-pref-title': '\u7ba1\u7406 Cookie \u504f\u597d',
+            'cookie-pref-text': '\u5fc5\u8981\u5b58\u50a8\u59cb\u7ec8\u5f00\u542f\uff0c\u56e0\u4e3a\u5b83\u652f\u6301\u7f51\u7ad9\u7684\u6838\u5fc3\u529f\u80fd\u3002\u9664\u975e\u60a8\u9009\u62e9\u5141\u8bb8\uff0c\u5426\u5219\u5206\u6790\u529f\u80fd\u4f1a\u4fdd\u6301\u5173\u95ed\u3002',
+            'cookie-essential-label': '\u5fc5\u8981\u5b58\u50a8',
+            'cookie-essential-desc': '\u4fdd\u6301\u8bed\u8a00\u504f\u597d\u548c\u7f51\u7ad9\u57fa\u672c\u529f\u80fd\u6b63\u5e38\u8fd0\u884c\u3002',
+            'cookie-analytics-label': '\u5206\u6790 Cookie',
+            'cookie-analytics-desc': '\u5728\u5f15\u5165\u5206\u6790\u5de5\u5177\u540e\uff0c\u5e2e\u52a9\u6211\u4eec\u4e86\u89e3\u7f51\u7ad9\u7684\u4f7f\u7528\u60c5\u51b5\u3002',
+            'cookie-save': '\u4fdd\u5b58\u504f\u597d',
+            'cookie-cancel': '\u53d6\u6d88',
             // â”€â”€ Page-specific content â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'legal-hero-label':'\u6cd5\u5f8b',
             'ab-hero-label':'\u6211\u4eec\u7684\u6545\u4e8b','ab-h1':'\u5173\u4e8eJontai Energy','ab-story-eyebrow':'\u6211\u4eec\u662f\u8c01',
@@ -542,17 +595,17 @@
             // â”€â”€ Quote â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'qt-solar-h2':'\u592a\u9633\u80fd\u62a5\u4ef7','qt-led-h2':'LED\u62a5\u4ef7',
             // â”€â”€ Returns â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'rt-policy-h2':'\u4e00\u5468\u9000\u6362\u8d27\u653f\u7b56',
+            'rt-policy-h2':'\u9000\u8d27\u4e0e\u6d88\u8d39\u8005\u652f\u6301\u653f\u7b56',
             'rt-unopened-h3':'\u672a\u5f00\u5c01/\u672a\u4f7f\u7528\u4ea7\u54c1','rt-defective-h3':'\u7f3a\u9677\u4ea7\u54c1',
             'rt-wrong-h3':'\u6536\u5230\u9519\u8bef\u5546\u54c1','rt-opened-h3':'\u5df2\u5f00\u5c01\u4f46\u672a\u4f7f\u7528\u4ea7\u54c1',
             'rt-installed-h3':'\u5df2\u5b89\u88c5\u4ea7\u54c1\uff08\u65e0\u7f3a\u9677\uff09',
             'rt-custom-h3':'\u5b9a\u5236\u6216\u7279\u6b8a\u8ba2\u8d2d\u5546\u54c1',
-            'rt-late-h3':'7\u5929\u540e\u9000\u8d27\uff08\u65e0\u7f3a\u9677\uff09',
+            'rt-late-h3':'14\u5929\u540e\u9000\u8d27\uff08\u65e0\u7f3a\u9677\uff09',
             'rt-cta-h3':'\u9700\u8981\u9000\u8d27\u6216\u6362\u8d27\uff1f',
             // â”€â”€ Reviews â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
             'rv-cta-h3':'\u6709\u5f88\u597d\u7684\u4f53\u9a8c\uff1f','rv-about-h2':'\u6211\u4eec\u7684\u72ec\u7279\u4e4b\u5904',
             // â”€â”€ Service â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-            'sv-promise-h2':'\u6211\u4eec\u7684\u4e00\u5468\u4fee\u590d\u627f\u8bfa',
+            'sv-promise-h2':'\u670d\u52a1\u627f\u8bfa\u4e0e\u4fdd\u4fee\u5904\u7406',
             'sv-solar-h3':'\u592a\u9633\u80fd\u677f\u7ef4\u4fee','sv-inverter-h3':'\u9006\u53d8\u5668\u548c\u7535\u6c60\u670d\u52a1',
             'sv-led-h3':'LED\u706f\u5177\u7ef4\u4fee','sv-electrical-h3':'\u7535\u6c14\u786c\u4ef6',
             'sv-preventive-h3':'\u9884\u9632\u6027\u7ef4\u62a4','sv-onsite-h3':'\u4e0a\u95e8\u670d\u52a1',
@@ -610,6 +663,102 @@
         localStorage.setItem('je_lang', lang);
     }
 
+    const COOKIE_CONSENT_KEY = 'je_cookie_consent_v1';
+
+    function getLegalPageHref(pageName) {
+        const normalizedPath = window.location.pathname.replace(/\\/g, '/');
+        const inPagesDirectory = normalizedPath.indexOf('/pages/') !== -1;
+        return inPagesDirectory ? `../${pageName}/index.html` : `pages/${pageName}/index.html`;
+    }
+
+    function getStoredCookieConsent() {
+        try {
+            const storedConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
+            if (!storedConsent) return null;
+            const parsedConsent = JSON.parse(storedConsent);
+            if (typeof parsedConsent !== 'object' || parsedConsent === null) return null;
+            if (typeof parsedConsent.analytics !== 'boolean') return null;
+            return parsedConsent;
+        } catch (error) {
+            return null;
+        }
+    }
+
+    function emitCookieConsent(consent) {
+        document.documentElement.dataset.cookieConsent = consent.analytics ? 'analytics' : 'essential';
+        window.dispatchEvent(new CustomEvent('je:cookie-consent', {
+            detail: consent
+        }));
+    }
+
+    function saveCookieConsent(consent) {
+        const normalizedConsent = {
+            essential: true,
+            analytics: Boolean(consent.analytics),
+            updatedAt: new Date().toISOString()
+        };
+        localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(normalizedConsent));
+        emitCookieConsent(normalizedConsent);
+        return normalizedConsent;
+    }
+
+    function createCookieConsentUi() {
+        if (document.getElementById('cookieNotice')) return;
+
+        const privacyHref = getLegalPageHref('privacy');
+        document.body.insertAdjacentHTML('beforeend', `
+            <section class="cookie-notice" id="cookieNotice" aria-labelledby="cookieNoticeTitle" aria-describedby="cookieNoticeText" hidden>
+                <div class="cookie-notice-copy">
+                    <p class="cookie-notice-eyebrow">Privacy</p>
+                    <h2 id="cookieNoticeTitle" data-i18n="cookie-title">Cookie Preferences</h2>
+                    <p id="cookieNoticeText" data-i18n="cookie-text">We use essential storage to remember your language preference and keep the site working properly. We will only use analytics cookies if you allow them.</p>
+                </div>
+                <div class="cookie-notice-actions">
+                    <button type="button" class="cookie-btn cookie-btn-primary" id="cookieAcceptAll" data-i18n="cookie-accept">Accept All</button>
+                    <button type="button" class="cookie-btn cookie-btn-secondary" id="cookieEssentialOnly" data-i18n="cookie-essential">Essential Only</button>
+                    <button type="button" class="cookie-btn cookie-btn-tertiary" id="cookieManage" data-i18n="cookie-manage">Manage Preferences</button>
+                    <a href="${privacyHref}" class="cookie-policy-link" data-i18n="cookie-policy">Privacy Policy</a>
+                </div>
+            </section>
+            <div class="cookie-modal-backdrop" id="cookieBackdrop" hidden></div>
+            <section class="cookie-modal" id="cookieModal" role="dialog" aria-modal="true" aria-labelledby="cookieModalTitle" aria-describedby="cookieModalText" hidden>
+                <div class="cookie-modal-header">
+                    <div>
+                        <p class="cookie-modal-kicker">Privacy</p>
+                        <h2 id="cookieModalTitle" data-i18n="cookie-pref-title">Manage Cookie Preferences</h2>
+                    </div>
+                    <button type="button" class="cookie-modal-close" id="cookieCloseModal" aria-label="Close cookie preferences">&times;</button>
+                </div>
+                <p class="cookie-modal-text" id="cookieModalText" data-i18n="cookie-pref-text">Essential storage is always on because it supports core site functions. Analytics stays off unless you choose to allow it.</p>
+                <div class="cookie-pref-list">
+                    <label class="cookie-pref-row cookie-pref-row-locked">
+                        <div class="cookie-pref-copy">
+                            <strong data-i18n="cookie-essential-label">Essential storage</strong>
+                            <span data-i18n="cookie-essential-desc">Keeps language preference and core site behavior working.</span>
+                        </div>
+                        <span class="cookie-switch cookie-switch-on" aria-hidden="true"></span>
+                    </label>
+                    <label class="cookie-pref-row" for="cookieAnalyticsToggle">
+                        <div class="cookie-pref-copy">
+                            <strong data-i18n="cookie-analytics-label">Analytics cookies</strong>
+                            <span data-i18n="cookie-analytics-desc">Helps us understand site usage when analytics tools are added.</span>
+                        </div>
+                        <span class="cookie-toggle-wrap">
+                            <input type="checkbox" id="cookieAnalyticsToggle" class="cookie-toggle-input">
+                            <span class="cookie-toggle-slider" aria-hidden="true"></span>
+                        </span>
+                    </label>
+                </div>
+                <div class="cookie-modal-actions">
+                    <button type="button" class="cookie-btn cookie-btn-primary" id="cookieSavePreferences" data-i18n="cookie-save">Save Preferences</button>
+                    <button type="button" class="cookie-btn cookie-btn-secondary" id="cookieCancelModal" data-i18n="cookie-cancel">Cancel</button>
+                </div>
+            </section>
+        `);
+    }
+
+    createCookieConsentUi();
+
     const navLangBtn = document.getElementById('navLangBtn');
     const navLangDropdown = document.getElementById('navLangDropdown');
     if (navLangBtn && navLangDropdown) {
@@ -628,11 +777,100 @@
         });
     }
     // Restore saved language
-    const savedLang = localStorage.getItem('je_lang');
-    if (savedLang && savedLang !== 'en') {
-        applyLang(savedLang);
-        syncFooterLangPanel(savedLang);
+    const savedLang = localStorage.getItem('je_lang') || 'en';
+    applyLang(savedLang);
+    syncFooterLangPanel(savedLang);
+
+    const cookieNotice = document.getElementById('cookieNotice');
+    const cookieModal = document.getElementById('cookieModal');
+    const cookieBackdrop = document.getElementById('cookieBackdrop');
+    const cookieAcceptAll = document.getElementById('cookieAcceptAll');
+    const cookieEssentialOnly = document.getElementById('cookieEssentialOnly');
+    const cookieManage = document.getElementById('cookieManage');
+    const cookieCloseModal = document.getElementById('cookieCloseModal');
+    const cookieCancelModal = document.getElementById('cookieCancelModal');
+    const cookieSavePreferences = document.getElementById('cookieSavePreferences');
+    const cookieAnalyticsToggle = document.getElementById('cookieAnalyticsToggle');
+
+    function showCookieNotice() {
+        if (!cookieNotice) return;
+        cookieNotice.hidden = false;
     }
+
+    function hideCookieNotice() {
+        if (!cookieNotice) return;
+        cookieNotice.hidden = true;
+    }
+
+    function openCookieModal() {
+        if (!cookieModal || !cookieBackdrop) return;
+        cookieBackdrop.hidden = false;
+        cookieModal.hidden = false;
+        document.body.classList.add('cookie-modal-open');
+    }
+
+    function closeCookieModal() {
+        if (!cookieModal || !cookieBackdrop) return;
+        cookieBackdrop.hidden = true;
+        cookieModal.hidden = true;
+        document.body.classList.remove('cookie-modal-open');
+    }
+
+    const storedCookieConsent = getStoredCookieConsent();
+    if (storedCookieConsent) {
+        if (cookieAnalyticsToggle) cookieAnalyticsToggle.checked = storedCookieConsent.analytics;
+        hideCookieNotice();
+        emitCookieConsent(storedCookieConsent);
+    } else {
+        if (cookieAnalyticsToggle) cookieAnalyticsToggle.checked = false;
+        showCookieNotice();
+    }
+
+    if (cookieAcceptAll) {
+        cookieAcceptAll.addEventListener('click', function() {
+            saveCookieConsent({ analytics: true });
+            hideCookieNotice();
+            closeCookieModal();
+        });
+    }
+
+    if (cookieEssentialOnly) {
+        cookieEssentialOnly.addEventListener('click', function() {
+            saveCookieConsent({ analytics: false });
+            hideCookieNotice();
+            closeCookieModal();
+        });
+    }
+
+    if (cookieManage) {
+        cookieManage.addEventListener('click', openCookieModal);
+    }
+
+    if (cookieCloseModal) {
+        cookieCloseModal.addEventListener('click', closeCookieModal);
+    }
+
+    if (cookieCancelModal) {
+        cookieCancelModal.addEventListener('click', closeCookieModal);
+    }
+
+    if (cookieBackdrop) {
+        cookieBackdrop.addEventListener('click', closeCookieModal);
+    }
+
+    if (cookieSavePreferences) {
+        cookieSavePreferences.addEventListener('click', function() {
+            saveCookieConsent({ analytics: cookieAnalyticsToggle ? cookieAnalyticsToggle.checked : false });
+            hideCookieNotice();
+            closeCookieModal();
+        });
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && cookieModal && !cookieModal.hidden) {
+            closeCookieModal();
+        }
+    });
 
     // Footer language panel functionality
     const languageBtn = document.getElementById('languageBtn');

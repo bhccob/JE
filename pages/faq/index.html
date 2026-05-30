@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>FAQ | Jontai Energy</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../../assets/css/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -14,52 +14,10 @@
     <nav class="navbar">
         <a href="../../index.html" class="logo">JONTAI ENERGY</a>
         <ul class="nav-links">
-            <li class="dropdown-parent">
-                <a href="../../index.html#products" data-i18n="nav-inventory">Inventory</a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
-                            <a href="../../index.html#solar" data-i18n="dd-solar-link">View Solar</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-led-h">LED Products</h4>
-                            <a href="../../index.html#led" data-i18n="dd-led-link">View LED</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Hybrid Systems</h4>
-                            <a href="../../index.html#hybrid">View Hybrid</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Parts</h4>
-                            <a href="../../index.html#parts">View Parts</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="dropdown-parent">
-                <a href="#discover" data-i18n="nav-discover">Discover</a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-res-h">Resources</h4>
-                            <a href="../events/index.html" data-i18n="dd-events">Events</a>
-                            <a href="../news/index.html" data-i18n="dd-news">News</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-why-h">Why Us</h4>
-                            <a href="../why-us/index.html" data-i18n="dd-why-link">Why Choose Us</a>
-                            <a href="../reviews/index.html" data-i18n="dd-reviews">Customer Reviews</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-company-h">Company</h4>
-                            <a href="../about/index.html" data-i18n="dd-about">Our Story</a>
-                            <a href="../work-with-us/index.html" data-i18n="dd-careers">Careers</a>
-                            <a href="../socials/index.html">Socials</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
+            <li><a href="../../index.html#products" data-i18n="nav-inventory">Solutions</a></li>
+            <li><a href="../why-us/index.html" data-i18n="dd-why-h">Why Us</a></li>
+            <li><a href="../news/index.html" data-i18n="dd-news">News</a></li>
+            <li><a href="../about/index.html" data-i18n="dd-about">Our Story</a></li>
             <li><a href="../location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
@@ -78,34 +36,73 @@
                 </button>
                 <div class="lang-dropdown" id="navLangDropdown">
                     <button class="lang-opt active" data-lang="en">
-                        <span class="lang-flag">&#x1F1FA;&#x1F1F8;</span>
+                        <span class="lang-flag">🇺🇸</span>
                         <div><strong>English</strong><span>English</span></div>
                         <i class="fas fa-check"></i>
                     </button>
                     <button class="lang-opt" data-lang="es">
-                        <span class="lang-flag">&#x1F1EA;&#x1F1F8;</span>
-                        <div><strong>Espa&ntilde;ol</strong><span>Spanish</span></div>
+                        <span class="lang-flag">🇪🇸</span>
+                        <div><strong>Español</strong><span>Spanish</span></div>
                         <i class="fas fa-check"></i>
                     </button>
                     <button class="lang-opt" data-lang="zh">
-                        <span class="lang-flag">&#x1F1E8;&#x1F1F3;</span>
-                        <div><strong>&#x4E2D;&#x6587;</strong><span>Chinese</span></div>
+                        <span class="lang-flag">🇨🇳</span>
+                        <div><strong>中文</strong><span>Chinese</span></div>
                         <i class="fas fa-check"></i>
                     </button>
                 </div>
+            </div>
+        </div>
     </nav>
 
     <!-- FAQ Hero Section -->
     <section class="faq-hero">
         <div class="faq-hero-overlay"></div>
         <div class="faq-hero-content">
-            <p class="faq-hero-label" data-i18n="fq-hero-label">Support &amp; Help</p>
-            <h1 data-i18n="fq-h1">Frequently Asked Questions</h1>
-            <p>Find quick answers about our solar & LED solutions, pricing, installation, and more.</p>
-            <!-- Search embedded in hero -->
-            <div class="faq-search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="faqSearch" placeholder="Search questions…" data-i18n-placeholder="fq-search-ph">
+            <div class="faq-hero-grid">
+                <div class="faq-hero-copy">
+                    <p class="faq-hero-label" data-i18n="fq-hero-label">Support &amp; Help</p>
+                    <h1 data-i18n="fq-h1">Frequently Asked Questions</h1>
+                    <p>Find quick answers about our solar, LED, installation, and support process before you reach out to the team.</p>
+                    <div class="faq-search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="faqSearch" placeholder="Search questionsâ€¦" data-i18n-placeholder="fq-search-ph">
+                    </div>
+                    <div class="faq-hero-actions">
+                        <a href="../contact/index.html" class="faq-hero-btn">Contact Support <i class="fas fa-arrow-right"></i></a>
+                        <a href="../quote/index.html" class="faq-hero-link">Request a Project Quote</a>
+                    </div>
+                </div>
+                <aside class="faq-hero-panel" aria-label="Support overview">
+                    <div class="faq-panel-intro">
+                        <p class="faq-panel-label">Quick support guide</p>
+                        <h2>Start with the right answer faster</h2>
+                    </div>
+                    <div class="faq-panel-points">
+                        <article>
+                            <span><i class="fas fa-solar-panel"></i></span>
+                            <div>
+                                <h3>Products</h3>
+                                <p>Compare solar and LED options before you ask for a quote.</p>
+                            </div>
+                        </article>
+                        <article>
+                            <span><i class="fas fa-tools"></i></span>
+                            <div>
+                                <h3>Installation</h3>
+                                <p>Review timing, roof suitability, and scope expectations.</p>
+                            </div>
+                        </article>
+                        <article>
+                            <span><i class="fas fa-headset"></i></span>
+                            <div>
+                                <h3>Support</h3>
+                                <p>Use contact support when your answer needs project-specific help.</p>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="faq-panel-note">Search the page or filter by category to narrow answers in seconds.</div>
+                </aside>
             </div>
         </div>
     </section>
@@ -133,8 +130,34 @@
 
     <!-- FAQ Content -->
     <section class="faq-content">
-        <div class="container">
-            <div class="faq-grid">
+        <div class="faq-shell">
+            <aside class="faq-sidebar" aria-label="FAQ page overview">
+                <div class="faq-sidebar-card">
+                    <p class="faq-sidebar-label">Popular topics</p>
+                    <h2>What people ask most often</h2>
+                    <ul class="faq-sidebar-list">
+                        <li>Solar system sizing and suitability</li>
+                        <li>LED upgrade planning for homes and businesses</li>
+                        <li>Installation timing and service coordination</li>
+                        <li>Pricing, savings, and long-term maintenance</li>
+                    </ul>
+                </div>
+                <div class="faq-sidebar-card faq-sidebar-card-dark">
+                    <p class="faq-sidebar-label">Need a direct answer?</p>
+                    <h3>Talk to the team</h3>
+                    <p>If your question depends on your property, consumption, or project type, the support team can route you faster.</p>
+                    <a href="../contact/index.html" class="faq-sidebar-btn">Get Help</a>
+                </div>
+            </aside>
+
+            <div class="faq-main">
+                <div class="faq-list-head">
+                    <p class="faq-list-kicker">Knowledge Base</p>
+                    <h2>Browse common questions by topic</h2>
+                    <p>Open any answer for more detail, or use the search field above to jump directly to the right section.</p>
+                </div>
+
+                <div class="faq-grid">
                 <!-- Products Category -->
                 <div class="faq-item" data-category="products">
                     <div class="faq-question">
@@ -289,6 +312,13 @@
                         <p>Absolutely! We offer battery storage solutions that allow you to store excess energy generated during the day for use at night or during power outages. Popular options include Tesla Powerwall and other high-capacity lithium-ion battery systems. Alternatively, many areas offer net metering programs.</p>
                     </div>
                 </div>
+
+                <div class="faq-no-results" id="faqNoResults">
+                    <i class="fas fa-search"></i>
+                    <h3>No matching questions found</h3>
+                    <p>Try a broader keyword or switch categories to see more answers.</p>
+                </div>
+                </div>
             </div>
         </div>
     </section>
@@ -298,7 +328,7 @@
         <div class="faq-cta-inner">
             <div class="faq-cta-text">
                 <h3 data-i18n="fq-cta-h3">Still have questions?</h3>
-                <p>Our team is happy to help â€” reach out and we'll get back to you fast.</p>
+                <p>Our team is happy to help - reach out and we'll get back to you fast.</p>
             </div>
             <div class="faq-cta-actions">
                 <a href="../contact/index.html" class="faq-cta-btn">Contact Support <i class="fas fa-arrow-right"></i></a>
@@ -312,7 +342,7 @@
         <div class="footer-content">
             <div class="footer-top">
                 <a href="../../index.html" class="footer-logo">JONTAI ENERGY</a>
-                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar & LED Lighting.</p>
             </div>
             <hr class="footer-divider">
             <div class="footer-sections">
@@ -331,14 +361,15 @@
                         <a href="../faq/index.html" data-i18n="ft-faq">FAQ</a>
                         <a href="../terms/index.html" data-i18n="ft-terms">Terms and Conditions</a>
                         <a href="../warranty/index.html" data-i18n="ft-warranty">Warranty</a>
+                        <a href="../terms/index.html#consumer" data-i18n="ft-consumer">Consumer Rights</a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3 data-i18n="ft-support-h">Support</h3>
                     <div class="footer-links">
                         <a href="../contact/index.html" data-i18n="ft-contact">Contact Us</a>
-                        <a href="../service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
-                        <a href="../returns/index.html" data-i18n="ft-returns">Return &amp; Product Support</a>
+                        <a href="../service/index.html" data-i18n="ft-service">Service & Parts</a>
+                        <a href="../returns/index.html" data-i18n="ft-returns">Returns &amp; Product Support</a>
                         <a href="../accessibility/index.html" data-i18n="ft-access">Accessibility</a>
                     </div>
                 </div>
@@ -348,39 +379,39 @@
                     <a href="#" class="btn btn-subscribe" data-i18n="ft-subscribe">Subscribe</a>
                     <div class="footer-extras">
                         <div class="social-icons">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/JontaiEnergy/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                             <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         </div>
                         <div class="language-selector">
                             <button class="language-btn" id="languageBtn">
-                                <span class="current-flag">&#x1F1FA;&#x1F1F8;</span>
+                                <span class="current-flag">ðŸ‡ºðŸ‡¸</span>
                                 <span class="current-lang">English</span>
                                 <i class="fas fa-chevron-up lang-chevron"></i>
                             </button>
                             <div class="language-panel" id="languagePanel">
                                 <p class="lang-panel-label">Choose Language</p>
                                 <div class="lang-panel-options">
-                                    <button class="lang-panel-opt active" data-flag="&#x1F1FA;&#x1F1F8;" data-lang="en" data-label="English">
-                                        <span class="lp-flag">&#x1F1FA;&#x1F1F8;</span>
+                                    <button class="lang-panel-opt active" data-flag="ðŸ‡ºðŸ‡¸" data-lang="en" data-label="English">
+                                        <span class="lp-flag">ðŸ‡ºðŸ‡¸</span>
                                         <div>
                                             <strong>English</strong>
                                             <span>United States</span>
                                         </div>
                                         <i class="fas fa-check lp-check"></i>
                                     </button>
-                                    <button class="lang-panel-opt" data-flag="&#x1F1F2;&#x1F1FD;" data-lang="es" data-label="Espa&ntilde;ol">
-                                        <span class="lp-flag">&#x1F1F2;&#x1F1FD;</span>
+                                    <button class="lang-panel-opt" data-flag="ðŸ‡²ðŸ‡½" data-lang="es" data-label="EspaÃ±ol">
+                                        <span class="lp-flag">ðŸ‡²ðŸ‡½</span>
                                         <div>
-                                            <strong>Espa&ntilde;ol</strong>
+                                            <strong>EspaÃ±ol</strong>
                                             <span>Mexico / Latin America</span>
                                         </div>
                                         <i class="fas fa-check lp-check"></i>
                                     </button>
-                                    <button class="lang-panel-opt" data-flag="&#x1F1E8;&#x1F1F3;" data-lang="zh" data-label="&#x4E2D;&#x6587;">
-                                        <span class="lp-flag">&#x1F1E8;&#x1F1F3;</span>
+                                    <button class="lang-panel-opt" data-flag="ðŸ‡¨ðŸ‡³" data-lang="zh" data-label="ä¸­æ–‡">
+                                        <span class="lp-flag">ðŸ‡¨ðŸ‡³</span>
                                         <div>
-                                            <strong>&#x4E2D;&#x6587;</strong>
+                                            <strong>ä¸­æ–‡</strong>
                                             <span>Chinese</span>
                                         </div>
                                         <i class="fas fa-check lp-check"></i>
@@ -425,5 +456,8 @@
     <div class="subscription-overlay" id="subscriptionOverlay"></div>
 
     <script src="../../assets/js/main.js"></script>
+    <script src="./faq.js"></script>
 </body>
 </html>
+
+

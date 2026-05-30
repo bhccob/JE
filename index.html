@@ -6,7 +6,7 @@
     <title>Jontai Energy | Sustainable Solar Solutions</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="assets/css/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -14,53 +14,10 @@
     <nav class="navbar">
         <a href="index.html" class="logo">JONTAI ENERGY</a>
         <ul class="nav-links">
-            <li class="dropdown-parent">
-                <a href="#products" data-i18n="nav-inventory">Inventory</a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-solar-h">Solar Products</h4>
-                            <a href="#solar" data-i18n="dd-solar-link">View Solar</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-led-h">LED Products</h4>
-                            <a href="#led" data-i18n="dd-led-link">View LED</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Hybrid Systems</h4>
-                            <a href="#hybrid">View Hybrid</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4>Parts</h4>
-                            <a href="#parts">View Parts</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="dropdown-parent">
-                <a href="#discover" data-i18n="nav-discover">Discover</a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-content">
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-res-h">Resources</h4>
-                            <a href="pages/events/index.html" data-i18n="dd-events">Events</a>
-                            <a href="pages/news/index.html" data-i18n="dd-news">News</a>
-
-                        </div>
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-why-h">Why Us</h4>
-                            <a href="pages/why-us/index.html" data-i18n="dd-why-link">Why Choose Us</a>
-                            <a href="pages/reviews/index.html" data-i18n="dd-reviews">Customer Reviews</a>
-                        </div>
-                        <div class="dropdown-section">
-                            <h4 data-i18n="dd-company-h">Company</h4>
-                            <a href="pages/about/index.html" data-i18n="dd-about">Our Story</a>                            
-                            <a href="pages/work-with-us/index.html" data-i18n="dd-careers">Careers</a>
-                            <a href="pages/socials/index.html">Socials</a>
-                        </div>
-                    </div>
-                </div>
-            </li>
+            <li><a href="#products" data-i18n="nav-inventory">Solutions</a></li>
+            <li><a href="pages/why-us/index.html" data-i18n="dd-why-h">Why Us</a></li>
+            <li><a href="pages/news/index.html" data-i18n="dd-news">News</a></li>
+            <li><a href="pages/about/index.html" data-i18n="dd-about">Our Story</a></li>
             <li><a href="pages/location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
         </ul>
         <div class="nav-actions">
@@ -94,127 +51,254 @@
                         <i class="fas fa-check"></i>
                     </button>
                 </div>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 data-i18n="hero-title">Power Your Future</h1>
-            <p data-i18n="hero-sub">Powering a Sustainable Future with Solar & LED Lighting.</p>
-            <div class="hero-buttons">
-                <a href="#products" class="btn btn-primary" data-i18n="btn-inventory">View Inventory</a>
-                <a href="pages/quote/index.html" class="btn btn-secondary" data-i18n="btn-quote">Quote</a>
-            </div>
-        </div>
+    <section class="hero hero-home">
         <div class="hero-overlay"></div>
-        <div class="scroll-indicator">
+        <div class="hero-grid">
+            <div class="hero-copy">
+                <p class="hero-kicker">Energy strategy, solar systems, and LED infrastructure built for serious operations</p>
+                <h1 data-i18n="hero-title">Power Your Future</h1>
+                <p class="hero-lead">Jontai Energy helps homes, commercial properties, and growing businesses lower energy costs with smarter solar design, dependable products, and cleaner long-term performance.</p>
+                <div class="hero-buttons">
+                    <a href="#products" class="btn btn-primary" data-i18n="btn-inventory">Explore Solutions</a>
+                    <a href="pages/quote/index.html" class="btn btn-secondary" data-i18n="btn-quote">Quote</a>
+                </div>
+                <dl class="hero-metrics" aria-label="Business highlights">
+                    <div>
+                        <dt>Installed capacity focus</dt>
+                        <dd>Residential to light-industrial scale</dd>
+                    </div>
+                    <div>
+                        <dt>Project approach</dt>
+                        <dd>Assessment, supply, installation, aftercare</dd>
+                    </div>
+                    <div>
+                        <dt>Core advantage</dt>
+                        <dd>One partner for solar, LED, storage, and parts</dd>
+                    </div>
+                </dl>
+            </div>
+            <aside class="hero-panel" aria-label="Operational overview">
+                <div class="hero-panel-top">
+                    <span class="hero-panel-label">Operational snapshot</span>
+                    <strong>Built for Aruba's climate, demand profile, and uptime expectations</strong>
+                </div>
+                <div class="hero-panel-stack">
+                    <article>
+                        <span>01</span>
+                        <div>
+                            <h2>Solar systems</h2>
+                            <p>Panels, inverters, batteries, and hybrid-ready configurations for homes and businesses.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <span>02</span>
+                        <div>
+                            <h2>LED retrofits</h2>
+                            <p>Lighting upgrades that reduce operating costs while improving coverage and consistency.</p>
+                        </div>
+                    </article>
+                    <article>
+                        <span>03</span>
+                        <div>
+                            <h2>Service continuity</h2>
+                            <p>Parts, troubleshooting, and direct support when equipment needs attention.</p>
+                        </div>
+                    </article>
+                </div>
+            </aside>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
             <div class="scroll-arrow"></div>
         </div>
     </section>
 
-    <!-- Trending Categories Section -->
-    <section id="products" class="trending-categories-section">
+    <section class="brand-marquee" aria-label="Core sectors">
+        <div class="brand-marquee-track">
+            <span>Hospitality</span>
+            <span>Retail</span>
+            <span>Warehousing</span>
+            <span>Residential</span>
+            <span>Property Management</span>
+            <span>Agriculture</span>
+        </div>
+    </section>
 
-        <div class="trending-categories-container">
-            
-            <div class="trending-categories-carousel">
-                <div class="trending-category-card">
-                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800')"></div>
-                    <div class="trending-category-info">
-                        <h3 data-i18n="card-res">Solar</h3>
-                        <p data-i18n="card-res-desc">High-efficiency panels designed for modern homes</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-category-card">
-                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800')"></div>
-                    <div class="trending-category-info">
-                        <h3 data-i18n="card-com">LED</h3>
-                        <p data-i18n="card-com-desc">Scalable solutions for businesses of all sizes</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-category-card">
-                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800')"></div>
-                    <div class="trending-category-info">
-                        <h3 data-i18n="card-led">LED & Solar Hybrid</h3>
-                        <p data-i18n="card-led-desc">Energy-efficient LED lighting solutions for every need</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="trending-category-card">
-                    <div class="trending-category-image" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800')"></div>
-                    <div class="trending-category-info">
-                        <h3 data-i18n="card-hyb">Parts</h3>
-                        <p data-i18n="card-hyb-desc">Combined LED and solar solutions for maximum efficiency</p>
-                        <div class="product-buttons">
-                            <a href="#" class="btn btn-outline" data-i18n="btn-learn">Learn More</a>
-                        </div>
-                    </div>
-                </div>
+    <section id="discover" class="insight-section">
+        <div class="section-heading split-heading">
+            <div>
+                <p class="section-kicker">Business-first energy planning</p>
+                <h2>Less commodity supplier, more long-term infrastructure partner</h2>
+            </div>
+            <p>Most energy websites stop at product listings. A credible business presence needs to explain how projects are scoped, where value is created, and why a client should trust the team to execute. This homepage now does that directly.</p>
+        </div>
+        <div class="insight-layout">
+            <article class="insight-feature">
+                <span class="insight-label">Why this matters</span>
+                <h3>Energy decisions affect operating cost, resilience, and brand perception</h3>
+                <p>Whether the project is a house, storefront, warehouse, or hospitality property, the same priorities show up: predictable savings, cleaner presentation, and less waste. Jontai Energy sits at that intersection with solar, LED, and practical support.</p>
+            </article>
+            <div class="insight-rail">
+                <article>
+                    <h3>Measured recommendations</h3>
+                    <p>Advice should follow site conditions and usage patterns, not generic package pricing.</p>
+                </article>
+                <article>
+                    <h3>Clear commercial logic</h3>
+                    <p>Clients need a straightforward explanation of capex, payback, and maintenance implications.</p>
+                </article>
+                <article>
+                    <h3>Support after install</h3>
+                    <p>Professionalism is visible after handover, when service and replacement parts are needed.</p>
+                </article>
             </div>
         </div>
     </section>
 
-
-
-    <!-- Where We're Strong In Section -->
-    <section class="parallax-solutions-section">
-        <div class="parallax-overlay"></div>
-        <div class="solutions-content">
-            <p class="solutions-eyebrow" data-i18n="str-eyebrow">What Sets Us Apart</p>
-            <h2 data-i18n="str-heading">Where We're Strong</h2>
-            <div class="solutions-options">
-                <div class="solution-option">
-                    <div class="solution-icon"><i class="fas fa-award"></i></div>
-                    <h3 data-i18n="str-exp">Experience</h3>
-                    <p data-i18n="str-exp-desc">Years of expertise in solar energy and LED solutions, delivering proven results across Aruba.</p>
+    <section id="products" class="product-showcase">
+        <div class="section-heading">
+            <p class="section-kicker">What we deliver</p>
+            <h2>Four lines of service, each tied to a practical business outcome</h2>
+        </div>
+        <div class="product-showcase-list">
+            <article id="solar" class="product-band solar-band">
+                <div class="product-band-visual" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1400')"></div>
+                <div class="product-band-copy">
+                    <p class="product-band-label">Solar systems</p>
+                    <h3>Designing generation around real consumption, not brochure claims</h3>
+                    <p>From high-efficiency panels to storage-ready system architecture, we help clients build cleaner energy capacity with a sharper eye on lifecycle value.</p>
+                    <ul>
+                        <li>Panels, inverters, batteries, and mounting systems</li>
+                        <li>Residential and commercial-ready configurations</li>
+                        <li>Guidance on efficiency, capacity, and expansion planning</li>
+                    </ul>
+                    <a href="pages/quote/index.html" class="text-link">Request a solar quote</a>
                 </div>
-                <div class="solution-option">
-                    <div class="solution-icon"><i class="fas fa-brain"></i></div>
-                    <h3 data-i18n="str-know">Knowledge</h3>
-                    <p data-i18n="str-know-desc">Deep understanding of renewable energy technology and industry-leading best practices.</p>
+            </article>
+            <article id="led" class="product-band led-band">
+                <div class="product-band-copy">
+                    <p class="product-band-label">LED solutions</p>
+                    <h3>Sharper lighting, lower consumption, better day-to-day presentation</h3>
+                    <p>LED upgrades should improve more than the utility bill. Better visibility, cleaner merchandising, and more reliable performance all matter in active business environments.</p>
+                    <ul>
+                        <li>Interior, exterior, and high-output commercial fixtures</li>
+                        <li>Retrofit paths for offices, retail, and warehouse spaces</li>
+                        <li>Longer-life components with reduced maintenance burden</li>
+                    </ul>
+                    <a href="pages/contact/index.html" class="text-link">Discuss an LED upgrade</a>
                 </div>
-                <div class="solution-option">
-                    <div class="solution-icon"><i class="fas fa-th-large"></i></div>
-                    <h3 data-i18n="str-range">Wide Product Range</h3>
-                    <p data-i18n="str-range-desc">Extensive selection of solar panels, inverters, batteries, and LED lighting solutions.</p>
+                <div class="product-band-visual" style="background-image: url('https://images.unsplash.com/photo-1518005020951-eccb494ad742?w=1400')"></div>
+            </article>
+            <article id="hybrid" class="product-band hybrid-band">
+                <div class="product-band-visual" style="background-image: url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1400')"></div>
+                <div class="product-band-copy">
+                    <p class="product-band-label">Hybrid systems</p>
+                    <h3>Combine solar, storage, and efficient lighting into one coherent plan</h3>
+                    <p>For clients thinking beyond a single product purchase, hybrid solutions create a more resilient operational setup and a cleaner path to staged upgrades.</p>
+                    <ul>
+                        <li>Integrated planning across generation, storage, and use</li>
+                        <li>Ideal for businesses managing demand peaks and reliability risk</li>
+                        <li>Future-proofed layouts that scale with site needs</li>
+                    </ul>
+                    <a href="pages/service/index.html" class="text-link">See service and support</a>
                 </div>
-                <div class="solution-option">
-                    <div class="solution-icon"><i class="fas fa-handshake"></i></div>
-                    <h3 data-i18n="str-trans">Transparency</h3>
-                    <p data-i18n="str-trans-desc">Clear pricing, honest communication, and straightforward processes every step of the way.</p>
+            </article>
+            <article id="parts" class="product-band parts-band">
+                <div class="product-band-copy">
+                    <p class="product-band-label">Parts and continuity</p>
+                    <h3>Reliable operations depend on access to the right replacement parts</h3>
+                    <p>Serious buyers care about continuity. Jontai Energy supports clients with the components, accessories, and follow-up assistance needed to keep systems performing.</p>
+                    <ul>
+                        <li>Replacement components and system accessories</li>
+                        <li>Support for repairs, upgrades, and maintenance visits</li>
+                        <li>Faster path from issue detection to resolution</li>
+                    </ul>
+                    <a href="pages/service/index.html" class="text-link">Talk to support</a>
                 </div>
-            </div>
+                <div class="product-band-visual" style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1400')"></div>
+            </article>
         </div>
     </section>
 
-    <!-- Commercial & Residential Solutions -->
-    <section class="solutions-section">
-        <div class="solutions-banner">
-            <div class="solutions-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200')"></div>
-            <div class="solutions-banner-content">
-                <h2 data-i18n="sol-com-h">Commercial Solutions</h2>
-                <p data-i18n="sol-com-desc">Scalable solar and LED systems designed for businesses, warehouses, and industrial facilities. Maximize efficiency and reduce operational costs.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
+    <section class="sector-section">
+        <div class="section-heading split-heading">
+            <div>
+                <p class="section-kicker">Who we work for</p>
+                <h2>Solutions shaped by the realities of each property type</h2>
             </div>
+            <a href="pages/why-us/index.html" class="btn btn-secondary btn-inline">Why clients choose Jontai Energy</a>
         </div>
-        <div class="solutions-banner">
-            <div class="solutions-banner-content">
-                <h2 data-i18n="sol-res-h">Residential Solutions</h2>
-                <p data-i18n="sol-res-desc">Custom solar panel installations and LED lighting solutions for your home. Save money while contributing to a sustainable future.</p>
-                <a href="#" class="btn btn-primary">Learn More</a>
-            </div>
-            <div class="solutions-banner-image" style="background-image: url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200')"></div>
+        <div class="sector-grid">
+            <article>
+                <span>01</span>
+                <h3>Commercial properties</h3>
+                <p>Energy spend, maintenance planning, and visual consistency matter most. We help businesses modernize without overcomplicating the rollout.</p>
+            </article>
+            <article>
+                <span>02</span>
+                <h3>Residential homes</h3>
+                <p>Homeowners want lower bills, system reliability, and straightforward guidance they can actually trust.</p>
+            </article>
+            <article>
+                <span>03</span>
+                <h3>Hospitality and leisure</h3>
+                <p>Guest-facing environments need lighting quality, energy efficiency, and clean execution with minimal disruption.</p>
+            </article>
+            <article>
+                <span>04</span>
+                <h3>Operations and storage</h3>
+                <p>Warehouses and working facilities benefit most from high-output lighting, lower recurring costs, and resilient energy planning.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="process-section">
+        <div class="section-heading">
+            <p class="section-kicker">How we work</p>
+            <h2>A cleaner process from first conversation to final handover</h2>
+        </div>
+        <div class="process-ribbon">
+            <article>
+                <strong>Assess</strong>
+                <p>Review site conditions, priorities, and technical constraints.</p>
+            </article>
+            <article>
+                <strong>Specify</strong>
+                <p>Recommend the right equipment and setup for the use case.</p>
+            </article>
+            <article>
+                <strong>Install</strong>
+                <p>Coordinate implementation with a clear scope and realistic timeline.</p>
+            </article>
+            <article>
+                <strong>Support</strong>
+                <p>Stay available for service, parts, and next-stage improvements.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="proof-section">
+        <div class="proof-quote">
+            <p class="section-kicker">Confidence signals</p>
+            <blockquote>Professional energy brands should look like they understand systems, not just sell components. The site now leads with operational clarity, stronger hierarchy, and a more credible business tone.</blockquote>
+        </div>
+        <div class="proof-stats">
+            <article>
+                <strong>End-to-end scope</strong>
+                <span>Supply, install, service, and support</span>
+            </article>
+            <article>
+                <strong>Multi-sector fit</strong>
+                <span>Homes, retail, hospitality, and industrial-adjacent projects</span>
+            </article>
+            <article>
+                <strong>Longer-term value</strong>
+                <span>Efficiency gains, clearer maintenance paths, and cleaner delivery</span>
+            </article>
         </div>
     </section>
 
@@ -222,12 +306,16 @@
     <section class="contact-banner index-page">
         <div class="contact-banner-content">
             <div class="contact-banner-left">
+                <p class="section-kicker">Ready to scope your project?</p>
                 <h2 data-i18n="cta-h">How can we help you?</h2>
-                <p data-i18n="cta-sub">Get in touch with a product expert or account manager</p>
-                <a href="pages/contact/index.html" class="btn btn-contact" data-i18n="btn-contact">Contact Us</a>
+                <p data-i18n="cta-sub">Talk to a product specialist about solar systems, LED upgrades, hybrid solutions, or ongoing service support.</p>
+                <div class="contact-banner-actions">
+                    <a href="pages/contact/index.html" class="btn btn-contact" data-i18n="btn-contact">Contact Us</a>
+                    <a href="pages/quote/index.html" class="btn btn-secondary btn-inline">Start a quote</a>
+                </div>
             </div>
             <div class="contact-banner-right">
-                <div class="contact-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1200')"></div>
+                <div class="contact-banner-image" style="background-image: url('https://images.unsplash.com/photo-1497215842964-222b430dc094?w=1400')"></div>
             </div>
         </div>
     </section>
@@ -237,7 +325,7 @@
         <div class="footer-content">
             <div class="footer-top">
                 <a href="index.html" class="footer-logo">JONTAI ENERGY</a>
-                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar & LED Lighting.</p>
             </div>
             <hr class="footer-divider">
             <div class="footer-sections">
@@ -256,14 +344,15 @@
                         <a href="pages/faq/index.html" data-i18n="ft-faq">FAQ</a>
                         <a href="pages/terms/index.html" data-i18n="ft-terms">Terms and Conditions</a>
                         <a href="pages/warranty/index.html" data-i18n="ft-warranty">Warranty</a>
+                        <a href="pages/terms/index.html#consumer" data-i18n="ft-consumer">Consumer Rights</a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3 data-i18n="ft-support-h">Support</h3>
                     <div class="footer-links">
                         <a href="pages/contact/index.html" data-i18n="ft-contact">Contact Us</a>
-                        <a href="pages/service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
-                        <a href="pages/returns/index.html" data-i18n="ft-returns">Return &amp; Product Support</a>
+                        <a href="pages/service/index.html" data-i18n="ft-service">Service & Parts</a>
+                        <a href="pages/returns/index.html" data-i18n="ft-returns">Returns &amp; Product Support</a>
                         <a href="pages/accessibility/index.html" data-i18n="ft-access">Accessibility</a>
                     </div>
                 </div>
@@ -273,7 +362,7 @@
                     <a href="#" class="btn btn-subscribe" data-i18n="ft-subscribe">Subscribe</a>
                     <div class="footer-extras">
                         <div class="social-icons">
-                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.facebook.com/JontaiEnergy/" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                             <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                             <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         </div>
@@ -323,7 +412,7 @@
     <!-- Subscription Panel -->
     <div class="subscription-panel" id="subscriptionPanel">
         <div class="subscription-panel-content">
-            <button class="close-panel" id="closePanel">&times;</button>
+            <button class="close-panel" id="closePanel"></button>
             <h2 data-i18n="sub-h">Subscribe to Updates</h2>
             <p data-i18n="sub-p">Stay informed about our latest products and news</p>
             <form class="subscription-form" id="subscriptionForm">
@@ -352,4 +441,7 @@
     <script src="assets/js/main.js"></script>
 </body>
 </html>
+
+
+
 
