@@ -1978,12 +1978,25 @@ body {
 /* ── Hero ── */
 .contact-hero {
     position: relative;
-    padding: 170px 50px 110px;
+    min-height: 600px;
+    padding: 148px 50px 84px;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
     background: linear-gradient(160deg, rgba(0,40,20,0.93) 0%, rgba(0,90,45,0.85) 100%),
                 url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     overflow: hidden;
     color: #fff;
+}
+
+
+.contact-hero::after {
+    content: none;
 }
 
 
@@ -2537,7 +2550,8 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .contact-hero {
-        padding: 120px 20px 60px;
+        min-height: 380px;
+        padding: 120px 20px 52px;
     }
 
     .contact-hero-content h1 {
@@ -7815,6 +7829,25 @@ section {
 .subscription-panel-content,
 [class$='-hero'] {
     border: 1px solid rgba(19, 40, 29, 0.1);
+}
+
+body [class$='-hero'] {
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+body [class$='-hero']::after {
+    content: none;
+}
+
+.hero-overlay,
+[class$='-hero-overlay'] {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.06), transparent);
+    pointer-events: none;
 }
 
 .footer-sections {
