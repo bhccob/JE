@@ -6,45 +6,104 @@
     <title>Socials | Jontai Energy</title>
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="../../assets/css/output.css">
-    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         .soc-hero {
-            padding: 160px 40px 90px;
+            padding: 150px 0 84px;
             background:
-                linear-gradient(160deg, rgba(0,30,15,0.94) 0%, rgba(0,77,36,0.88) 100%),
+                radial-gradient(circle at top right, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 28%),
+                linear-gradient(160deg, rgba(0,30,15,0.95) 0%, rgba(0,77,36,0.88) 100%),
                 url('https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=1920') center/cover fixed;
             color: #fff;
-            text-align: center;
         }
-        .soc-hero-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.45); margin-bottom: 14px; }
-        .soc-hero h1 { font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 800; line-height: 1.1; margin-bottom: 18px; }
-        .soc-hero p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+        .soc-hero-inner {
+            width: min(1180px, calc(100% - 48px));
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.72fr);
+            gap: 28px;
+            align-items: end;
+        }
+        .soc-hero-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.62); margin-bottom: 14px; }
+        .soc-hero h1 { font-size: clamp(2.4rem, 5vw, 4.3rem); font-weight: 800; line-height: 1.04; margin-bottom: 18px; max-width: 9ch; }
+        .soc-hero p { font-size: 1.02rem; color: rgba(255,255,255,0.8); max-width: 580px; margin: 0; line-height: 1.75; }
+        .soc-hero-side {
+            backdrop-filter: blur(8px);
+            background: linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
+            border: 1px solid rgba(255,255,255,0.14);
+            padding: 22px 24px;
+        }
+        .soc-hero-side strong {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .soc-hero-side p {
+            font-size: 0.92rem;
+            max-width: none;
+            color: rgba(255,255,255,0.72);
+        }
 
-        .soc-body { background: #f0f7f3; padding: 80px 20px 100px; }
-        .soc-container { max-width: 560px; margin: 0 auto; }
+        .soc-body {
+            background:
+                linear-gradient(180deg, #eef5f0 0%, #f7fbf8 100%);
+            padding: 54px 20px 110px;
+        }
+        .soc-container { max-width: 1180px; margin: 0 auto; }
+        .soc-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            align-items: stretch;
+        }
 
         .soc-card {
             display: flex;
-            align-items: center;
-            gap: 20px;
-            background: #fff;
-            border-radius: 14px;
-            padding: 28px 32px;
-            margin-bottom: 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0;
+            min-height: 100%;
+            background: rgba(255,255,255,0.92);
+            border: 1px solid rgba(19, 40, 29, 0.1);
+            border-radius: 18px;
+            padding: 24px;
             text-decoration: none;
             color: inherit;
-            border-left: 5px solid transparent;
-            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+            border-left: 0;
+            position: relative;
+            overflow: hidden;
+            transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s, background 0.2s;
         }
-        .soc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .soc-card::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 4px;
+            background: currentColor;
+            opacity: 0.18;
+        }
+        .soc-card:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(16, 34, 25, 0.1); }
 
-        .soc-card.facebook { border-left-color: #1877f2; }
-        .soc-card.facebook:hover { box-shadow: 0 8px 28px rgba(24,119,242,0.15); }
-        .soc-card.whatsapp { border-left-color: #25d366; }
-        .soc-card.whatsapp:hover { box-shadow: 0 8px 28px rgba(37,211,102,0.15); }
-        .soc-card.instagram { border-left-color: #e1306c; }
-        .soc-card.instagram:hover { box-shadow: 0 8px 28px rgba(225,48,108,0.15); }
+        .soc-card.facebook { color: #1877f2; }
+        .soc-card.facebook:hover { box-shadow: 0 14px 32px rgba(24,119,242,0.14); }
+        .soc-card.whatsapp { color: #25d366; }
+        .soc-card.whatsapp:hover { box-shadow: 0 14px 32px rgba(37,211,102,0.14); }
+        .soc-card.instagram { color: #c13584; }
+        .soc-card.instagram:hover { box-shadow: 0 14px 32px rgba(193,53,132,0.14); }
+
+        .soc-card-top {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
 
         .soc-icon {
             width: 52px; height: 52px; border-radius: 14px;
@@ -55,13 +114,66 @@
         .soc-icon.wa  { background: #25d366; }
         .soc-icon.ig  { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); }
 
-        .soc-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
-        .soc-info p  { font-size: 0.88rem; color: var(--text-secondary); margin: 0; }
+        .soc-chip {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            padding: 7px 10px;
+            color: var(--text-primary);
+            background: rgba(19, 40, 29, 0.06);
+        }
 
-        .soc-arrow { margin-left: auto; color: #bbb; font-size: 0.9rem; }
+        .soc-info {
+            margin-bottom: 22px;
+        }
+        .soc-info h3 { font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .soc-info p  { font-size: 0.92rem; color: var(--text-secondary); margin: 0; line-height: 1.75; }
+
+        .soc-meta {
+            width: 100%;
+            margin-top: auto;
+            padding-top: 16px;
+            border-top: 1px solid rgba(19, 40, 29, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .soc-arrow { margin-left: auto; color: currentColor; font-size: 0.9rem; }
+
+        @media (max-width: 900px) {
+            .soc-hero {
+                padding: 132px 0 72px;
+            }
+            .soc-hero-inner {
+                grid-template-columns: 1fr;
+            }
+            .soc-hero h1 {
+                max-width: none;
+            }
+            .soc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
 
         @media (max-width: 480px) {
+            .soc-body {
+                padding-left: 16px;
+                padding-right: 16px;
+            }
+            .soc-hero-inner {
+                width: min(100% - 32px, 1180px);
+            }
             .soc-card { padding: 20px; }
+            .soc-card-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -74,7 +186,8 @@
             <li><a href="../why-us/index.html" data-i18n="dd-why-h">Why Us</a></li>
             <li><a href="../news/index.html" data-i18n="dd-news">News</a></li>
             <li><a href="../about/index.html" data-i18n="dd-about">Our Story</a></li>
-            <li><a href="../location/index.html" data-i18n="nav-hours">Location & Hours</a></li>
+            <li><a href="../socials/index.html">Socials</a></li>
+            <li><a href="../location/index.html" data-i18n="nav-hours">Location &amp; Hours</a></li>
         </ul>
         <div class="nav-actions">
             <a href="../faq/index.html" class="nav-icon" aria-label="FAQ" title="FAQ">
@@ -185,7 +298,7 @@
         <div class="footer-content">
             <div class="footer-top">
                 <a href="../../index.html" class="footer-logo">JONTAI ENERGY</a>
-                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar & LED Lighting.</p>
+                <p class="footer-tagline" data-i18n="ft-tagline">Powering a Sustainable Future with Solar &amp; LED Lighting.</p>
             </div>
             <hr class="footer-divider">
             <div class="footer-sections">
@@ -211,7 +324,7 @@
                     <h3 data-i18n="ft-support-h">Support</h3>
                     <div class="footer-links">
                         <a href="../contact/index.html" data-i18n="ft-contact">Contact Us</a>
-                        <a href="../service/index.html" data-i18n="ft-service">Service & Parts</a>
+                        <a href="../service/index.html" data-i18n="ft-service">Service &amp; Parts</a>
                         <a href="../returns/index.html" data-i18n="ft-returns">Returns &amp; Product Support</a>
                         <a href="../accessibility/index.html" data-i18n="ft-access">Accessibility</a>
                     </div>
@@ -228,33 +341,33 @@
                         </div>
                         <div class="language-selector">
                             <button class="language-btn" id="languageBtn">
-                                <span class="current-flag">ðŸ‡ºðŸ‡¸</span>
+                                <span class="current-flag">🇺🇸</span>
                                 <span class="current-lang">English</span>
                                 <i class="fas fa-chevron-up lang-chevron"></i>
                             </button>
                             <div class="language-panel" id="languagePanel">
                                 <p class="lang-panel-label">Choose Language</p>
                                 <div class="lang-panel-options">
-                                    <button class="lang-panel-opt active" data-flag="ðŸ‡ºðŸ‡¸" data-lang="en" data-label="English">
-                                        <span class="lp-flag">ðŸ‡ºðŸ‡¸</span>
+                                    <button class="lang-panel-opt active" data-flag="🇺🇸" data-lang="en" data-label="English">
+                                        <span class="lp-flag">🇺🇸</span>
                                         <div>
                                             <strong>English</strong>
                                             <span>United States</span>
                                         </div>
                                         <i class="fas fa-check lp-check"></i>
                                     </button>
-                                    <button class="lang-panel-opt" data-flag="ðŸ‡²ðŸ‡½" data-lang="es" data-label="EspaÃ±ol">
-                                        <span class="lp-flag">ðŸ‡²ðŸ‡½</span>
+                                    <button class="lang-panel-opt" data-flag="🇲🇽" data-lang="es" data-label="Español">
+                                        <span class="lp-flag">🇲🇽</span>
                                         <div>
-                                            <strong>EspaÃ±ol</strong>
+                                            <strong>Español</strong>
                                             <span>Mexico / Latin America</span>
                                         </div>
                                         <i class="fas fa-check lp-check"></i>
                                     </button>
-                                    <button class="lang-panel-opt" data-flag="ðŸ‡¨ðŸ‡³" data-lang="zh" data-label="ä¸­æ–‡">
-                                        <span class="lp-flag">ðŸ‡¨ðŸ‡³</span>
+                                    <button class="lang-panel-opt" data-flag="🇨🇳" data-lang="zh" data-label="中文">
+                                        <span class="lp-flag">🇨🇳</span>
                                         <div>
-                                            <strong>ä¸­æ–‡</strong>
+                                            <strong>中文</strong>
                                             <span>Chinese</span>
                                         </div>
                                         <i class="fas fa-check lp-check"></i>

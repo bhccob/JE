@@ -1,4 +1,5 @@
-﻿document.addEventListener('DOMContentLoaded', function() {
+﻿class JontaiSiteApp {
+    init() {
     const navbar = document.querySelector('.navbar');
 
     if (navbar) {
@@ -974,4 +975,9 @@
             subscriptionForm.reset();
         });
     }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    new JontaiSiteApp().init();
 });
