@@ -28,12 +28,9 @@ export function TierProgress({ tier, points }: { tier: TierId; points: number })
 
   return (
     <div>
-      <div className="flex items-baseline justify-between gap-4">
-        <p id="tier-progress-label" className="num text-[0.9375rem] text-bone">
-          {label}
-        </p>
-        {next && <p className="hidden text-[0.8125rem] text-mist sm:block">{t('nextPerk')}: {next.perk}</p>}
-      </div>
+      <p id="tier-progress-label" className="num text-[0.9375rem] text-bone">
+        {label}
+      </p>
       <div
         role="progressbar"
         aria-labelledby="tier-progress-label"
@@ -57,6 +54,11 @@ export function TierProgress({ tier, points }: { tier: TierId; points: number })
           style={{ left: `${width}%`, transition: reduced ? 'none' : 'left 800ms cubic-bezier(.22,1,.36,1)' }}
         />
       </div>
+      {next && (
+        <p className="mt-3 text-[0.8125rem] text-mist">
+          {t('nextPerk')}: <span className="text-sun-300">{next.perk}</span>
+        </p>
+      )}
     </div>
   );
 }
