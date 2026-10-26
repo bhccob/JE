@@ -76,6 +76,7 @@ export function ScrollDirector() {
       // Lets tooling step frames when the tab is backgrounded and rAF is paused.
       (window as unknown as { __gsap?: typeof gsap; __ST?: typeof ScrollTrigger }).__gsap = gsap;
       (window as unknown as { __ST?: typeof ScrollTrigger }).__ST = ScrollTrigger;
+      (window as unknown as { __scroll?: typeof useScrollStore }).__scroll = useScrollStore;
     }
   });
 

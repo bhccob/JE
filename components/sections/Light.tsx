@@ -16,7 +16,7 @@ export function Light() {
 
   return (
     <SectionShell id="light" labelledBy="light-title" className="h-[210vh]">
-      <div className="sticky top-0 flex h-screen items-end pb-10 md:pb-16">
+      <div className="sticky top-0 flex h-screen items-end pb-24 md:pb-16">
         <div aria-hidden="true" className="scrim-bottom absolute inset-x-0 bottom-0 h-[64%]" />
         <div className="page-x relative grid gap-8 md:grid-cols-12 md:items-end">
           <div className="pointer-events-auto md:col-span-6 lg:col-span-5">

@@ -1,6 +1,6 @@
 import type { Messages } from '@/content/en';
 
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type
+  // Typed message keys for next-intl's useTranslations / getTranslations.
   interface IntlMessages extends Messages {}
 }

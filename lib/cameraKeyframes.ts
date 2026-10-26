@@ -52,12 +52,13 @@ export const cameraKeyframes: CameraKeyframe[] = [
 
 // Portrait phones: objects sit centered in the upper half of the screen, copy below.
 export const mobileCameraKeyframes: CameraKeyframe[] = [
-  { id: 'hero', position: [0, 1.6, 13], target: [4.2, 6.2, -60], fov: 46 },
+  { id: 'hero', position: [0, 1.6, 13], target: [9, 6.6, -60], fov: 46 },
   { id: 'source', position: [0, 3.2, 10], target: [5.5, 14, -60], fov: 46 },
-  { id: 'capture', position: [0, 0.35, 4.9], target: [0, 0.05, 0], fov: 40 },
-  { id: 'storage', position: [9.1, 0.5, 2.9], target: [9, 0.4, -3], fov: 40 },
-  { id: 'light', position: [18, 0.95, -2.2], target: [18, 0.82, -6], fov: 40 },
-  { id: 'collection', position: [28, 0.95, 1.8], target: [28, 0.42, -5.4], fov: 40 },
+  // Set piece centre sits ~30% above screen centre: target is dropped below it by ~0.3 x visible half-height.
+  { id: 'capture', position: [-1.9, 1.75, 8.9], target: [-0.2, -0.15, 0], fov: 40 },
+  { id: 'storage', position: [9.9, 1.45, 5.1], target: [9, -0.1, -3], fov: 40 },
+  { id: 'light', position: [18, 1.05, -0.4], target: [18, 0.85, -6], fov: 40 },
+  { id: 'collection', position: [28, 1.05, -0.9], target: [28, 0.25, -5.4], fov: 40 },
   { id: 'loyalty', ...LOYALTY_PARK },
   { id: 'impact', ...LOYALTY_PARK },
   { id: 'commitment', ...LOYALTY_PARK },

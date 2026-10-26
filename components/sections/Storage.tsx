@@ -35,7 +35,7 @@ export function Storage() {
 
   return (
     <SectionShell id="storage" labelledBy="storage-title" className="h-[230vh]">
-      <div className="sticky top-0 flex h-screen items-end pb-10 md:items-center md:pb-0">
+      <div className="sticky top-0 flex h-screen items-end pb-24 md:items-center md:pb-0">
         <div
           aria-hidden="true"
           className="absolute inset-0 hidden md:block"

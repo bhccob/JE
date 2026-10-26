@@ -39,7 +39,7 @@ export function Capture() {
 
   return (
     <SectionShell id="capture" labelledBy="capture-title" className="h-[260vh]">
-      <div className="sticky top-0 flex h-screen items-end pb-10 md:items-center md:pb-0">
+      <div className="sticky top-0 flex h-screen items-end pb-24 md:items-center md:pb-0">
         <div aria-hidden="true" className="scrim-left absolute inset-0 hidden md:block" />
         <div aria-hidden="true" className="scrim-bottom absolute inset-x-0 bottom-0 h-[62%] md:hidden" />
         <div className="page-x relative">
@@ -51,7 +51,7 @@ export function Capture() {
               {t('body')}
             </p>
 
-            <ol data-reveal style={i(2)} className="mt-8 grid grid-cols-3 gap-3" aria-hidden="true">
+            <ol data-reveal style={i(2)} className="mt-8 hidden grid-cols-3 gap-3 md:grid" aria-hidden="true">
               {STAGES.map((st, k) => (
                 <li key={st.key} className="text-[0.75rem] text-mist">
                   <span className="relative mb-2 block h-0.5 w-full overflow-hidden rounded-full bg-white/15">
