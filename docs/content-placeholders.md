@@ -33,11 +33,9 @@ The quote page (`/quote`) sends each request to the store by email through Resen
 
 | What | Where | Replace with |
 | --- | --- | --- |
-| The day film (Blender renders, `tools/blender/film`) | Every chapter of the home page | It is a rendered set, not the store, and every still is labelled "Rendered illustration" for screen readers. The inverter, power station and solar AC are remodelled from the store's product photos; the generator, LED pendant, solar camera, sofa and chair are representative designs, not specific stock items. Real product photos can replace the posters at any time. |
-| Plaster, terrazzo and oak textures (GPT Image) | Inside the renders | Nothing needed; they are surface materials, not claims |
-| Catalogue pictures (GPT Image, `public/catalog`) | The product panel for each category | Studio-style illustrations of the kinds of products carried; the panels, AC, inverter, power station, generator, camera, sofa and chair follow the store's photos, the LED items and the site camera are representative. The panel says so ("Pictures show the kind of products we carry"). Swap in real product photos any time, same file names, square |
+| Catalogue pictures (GPT Image, `public/catalog`) | The home page's product chapters and stage, the hero list's disc, and the product panel for each category | Studio-style illustrations of the kinds of products carried; the panels, AC, inverter, power station, generator, camera, sofa and chair follow the store's photos, the LED items and the site camera are representative. The home page labels them "Illustration, not specific stock"; the panel says "Pictures show the kind of products we carry". Swap in real product photos any time, same file names, square, on a plain light background so the stage colour still meets their edges |
 
-Removed on purpose: the Seedance staircase clip of a store interior (the owner said it looked nothing like the real store) and the earlier real-time 3D models.
+Removed on purpose: the Blender day film of the home page (retired 2026-10-27 for the type-led redesign; `tools/blender/film` stays in the repo, unshipped), the Seedance staircase clip of a store interior (the owner said it looked nothing like the real store) and the earlier real-time 3D models.
 
 ## Not shown anywhere on purpose
 

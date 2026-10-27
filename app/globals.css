@@ -1,25 +1,9 @@
-/* Hallmark · shape: one Aruban day, dawn to the morning after · genre: editorial · theme: custom · redesign: full · job: visit · idea: "Scroll is the clock: the sun crosses one plaster wall and each product does its job at its hour." · vibe: "sunlit, warm, architectural, calm, distinctly Aruban"
- * paper: oklch(96.9% 0.012 96.4) · accent: oklch(69.8% 0.102 141.6) · display: Gambetta · body: Hanken Grotesk · hero: the dawn frame of the film, a divi-divi shadow on lime plaster and a panel catching first light, the head on the left · nav: edge-aligned bar, wordmark left, four links, the day/night switch and a directions pill right · footer: a forest mast, the categories over the retail line · imagery: one Blender set rendered in Cycles, the products remodelled from the store's photos, scrubbed by scroll · signature: the sun moving across the wall as you scroll, product by product
- * axes: light/roman-serif/chromatic-green · posture: committed (the film is the page) · contrast: pass · fold: pass · v2.0.0 */
-/* Hallmark · pre-emit critique: P5 H5 E4 S5 R4 V5 · weakest: E, about 500 frames per size; only the current and next chapters load, and reduced motion or Save-Data get one still per chapter */
-/* Hallmark · waive 8 · eight film chapters, loyalty, visit · the chapters are the hours of one continuous film, not separate compositions */
-/* Hallmark · dropped home · the noon-to-dusk house sequence; the owner's brief retires house interiors from the story */
-/* Hallmark · dropped loft · the Seedance staircase clip; the owner said it looked nothing like the store */
-/* Hallmark · dropped image · the old footer's storefront render; no verified photo of the current storefront exists */
-/* Hallmark · dropped form 1, unnamed email 1 · the newsletter had no endpoint and could only fake a send (70); the owner's brief lists no sign-up */
-/* Hallmark · reworded "Powering Aruba. Furnishing Your Future." to "Aruba sunlight, made useful." · the owner's brief sets the hero copy */
-/* Hallmark · dropped noon on the roof, evening in the living room, everything for a home that runs on the sun, shop. earn. repeat., what to expect, delivery to your door, take it home today, see it before you buy, come see it in person · the owner's brief replaces the sections and their copy */
-/* Hallmark · dropped 1,500 · an old calculator preset; the loyalty ring keeps the same Afl. 500 to Afl. 25 rule */
-/* Hallmark · dropped 4,000 · an old calculator preset; the loyalty slider still reaches it */
-/* Hallmark · dropped 12months · the old card label; the reset after one year of use is stated in words */
-/* Hallmark · dismissed 49 · .btn sets white-space: nowrap on every button, this label included */
-/* Hallmark · dismissed F7 · .skip, .nav__inner and .nav__link are controls or chrome (a link pill, the header bar and nav pills) */
-/* Hallmark · waive 79 · hero · below the hero copy is the dawn picture itself (the panel, its oak post, the floor), drawn on the canvas or, with reduced motion, as the chapter still */
-/* Hallmark · waive 44c · hero · the visible hero is the sticky one-screen pin; the section runs longer only so scroll can play the sunrise */
-/* Hallmark · waive 83 · film · the page is one film of the day; its frames show the products working and are the content, not a photo grid */
-/* Hallmark · dismissed 77 · the eight hours of the film are chapters inside one main > div, so the render tier counts them as one section */
-/* Hallmark · dismissed 19 · "you unlock 1 voucher" is the owner's own wording for the regular program, kept as given */
-/* Hallmark · owner direction 2026-10-27 · glass as a treatment, not boxes: a frosted header bar, panel, menu and loyalty card, an edge-less frosted veil behind the film copy, a rendered wall backdrop; solid without backdrop blur or with reduced transparency */
+/* Jontai Energy, type-led redesign (owner, 2026-10-27; docs/superpowers/specs/2026-10-27-type-led-redesign-design.md).
+ * The type is the hero: Archivo, wide and heavy for headings, narrow capitals for labels and figures. No boxes and
+ * nothing frosted: full-bleed colour fields (sand, forest, oak), thin rules and space. Products are the catalogue
+ * renders on the stage colour, feathered so no edge shows. Motion is once-only entrances and scroll-scrubbed depth on
+ * Lenis + ScrollTrigger, never pinning, never slowing the scroll; reduced motion gets none of it.
+ * Kept from before: "you unlock 1 voucher" is the owner's own wording for the regular program. */
 @import './tokens.css';
 @import './base.css' layer(base);
 @import './styles/ui.css';
@@ -43,7 +27,7 @@ html {
 :where(a, button, summary, label, input, select, textarea) {
   touch-action: manipulation;
 }
-:where(.btn, .spot, .nav__link, .segment__option, .drawer__close) {
+:where(.btn, .nav__link, .segment__option, .drawer__close) {
   -webkit-user-select: none;
   user-select: none;
 }
