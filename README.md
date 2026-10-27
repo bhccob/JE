@@ -1,3 +1,5 @@
 # Jontai Energy - Smart Lights Smart Savings
 
-Real website here: https://www.jontaienergy.com/
+https://www.jontaienergy.com/
+https://www.facebook.com/JontaiEnergy/
+https://www.instagram.com/jontaienergy
