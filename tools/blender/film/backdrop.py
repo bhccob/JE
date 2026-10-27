@@ -1,8 +1,8 @@
 """Renders the plaster wall with the divi-divi shadow and no products, as the backdrop behind the site's glass panels.
 
-    blender -b tools/blender/film/day.blend -P tools/blender/film/backdrop.py -- <day|night> <d|m> [pct=100] [samples=160]
+    blender -b tools/blender/film/day.blend -P tools/blender/film/backdrop.py -- <day|night> <d|m> [pct=100] [samples=128] [x=] [z=] [lens=]
 
-Writes out/backdrop/<theme>-<size>.png; publish.mjs-style conversion to public/film/backdrop/ is done by the caller.
+Writes out/backdrop/<theme>-<size>.png; backdrop-publish.mjs grades it into public/film/backdrop/.
 """
 
 import math
@@ -63,15 +63,16 @@ def main():
         nt.nodes['Background'].inputs['Strength'].default_value = 0.4
         sc.view_settings.exposure = float(o.get('exp', 0.9))
 
-    # Square on to the wall where the canopy falls: no ledge, no floor.
+    # Square on to the wall where the canopy falls: no ledge, no floor. The defaults are the published framing.
     w, h = SIZES[size]
-    target = Vector((float(o.get('x', -0.9)), 0, float(o.get('z', 2.05))))
+    x0, lens0 = (-0.5, 36) if size == 'd' else (-0.3, 64)
+    target = Vector((float(o.get('x', x0)), 0, float(o.get('z', 1.7))))
     dist = float(o.get('dist', 5.2))
     sc.objects['Rig'].location = target + Vector((0, -dist, 0))
     sc.objects['Aim'].location = target
     cam = sc.objects['CamD' if size == 'd' else 'CamM']
     sc.camera = cam
-    cam.data.lens = float(o.get('lens', 30 if size == 'd' else 26))
+    cam.data.lens = float(o.get('lens', lens0))
     cam.data.dof.use_dof = False
 
     sc.render.engine = 'CYCLES'
@@ -81,7 +82,7 @@ def main():
     for d in prefs.devices:
         d.use = d.type == 'OPTIX'
     sc.cycles.device = 'GPU'
-    sc.cycles.samples = int(o.get('samples', 160))
+    sc.cycles.samples = int(o.get('samples', 128))
     sc.cycles.use_denoising = True
     sc.cycles.denoiser = 'OPTIX'
     sc.render.resolution_x, sc.render.resolution_y = w, h

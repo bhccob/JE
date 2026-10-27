@@ -1,92 +1,143 @@
-# Jontai Energy: From Sun to Light
+# Jontai Energy: one day of Aruban sun
 
-Marketing site and quote-based store for Jontai Energy (solar and LED, Aruba). One continuous scroll story with a single sticky 3D canvas, plus a front-end-only loyalty program, **The Circle**.
+The website for Jontai Energy, a retail store at Cumana 73, Oranjestad, Aruba, selling solar, power, LED lighting, solar cameras and everyday essentials, with furniture on the second floor.
 
-**Stack:** Next.js 14 (App Router, TypeScript) · Tailwind CSS v4 · React Three Fiber + drei · GSAP + ScrollTrigger · Zustand · next-intl · zod + React Hook Form · sonner · pnpm.
+The home page is one film of an Aruban day. As you scroll, the sun crosses a lime-plaster wall and each product appears at its hour doing its job: the panel at dawn, the inverter at noon, the solar air conditioner in the heat, the power station in the afternoon, the LED bulb at dusk, the solar camera at night, the generator in a power cut, and the furniture upstairs the next morning. After the film come loyalty and the store's visit details. A separate page takes quote requests by email.
+
+The store sells; it does not install. That rule runs through all the copy (`SERVICE_LINE` in `lib/store.ts`).
+
+**Stack:** Next.js 14 (App Router, TypeScript), plain CSS on design tokens, GSAP ScrollTrigger and Lenis for scrolling, Motion for the product panel, Phosphor icons, pnpm. The film is pre-rendered in Blender (Cycles), not real-time 3D.
+
+## Getting started
+
+You need Node 22.18 or newer (the tests run TypeScript directly; it is developed on Node 24) and pnpm 9.
 
 ```bash
 pnpm install
-pnpm dev        # http://localhost:3000 (redirects to /en)
-pnpm build      # production build, type-check and lint
+pnpm dev          # http://localhost:3000
+```
+
+```bash
+pnpm build        # production build
+pnpm start        # serve the production build
 pnpm lint
+pnpm typecheck
+pnpm test         # node --test on the logic in lib/
 ```
 
-Set `NEXT_PUBLIC_SITE_URL` (for example `https://www.example.aw`) in production. It feeds canonical URLs, the sitemap, OpenGraph and JSON-LD.
+## Environment
 
-> The previous static site (`index.html`, `pages/`, `assets/`, `update-i18n*.ps1`) is still in the repo, untouched. Next.js ignores it (`pageExtensions`, ESLint dirs and the Tailwind `@source` list are scoped to the new app). Delete it once the new site ships.
+Copy `.env.example` to `.env.local` and fill in what you need.
 
-## Routes
-
-| Route | Notes |
+| Variable | What it does |
 | --- | --- |
-| `/[locale]` | The scroll journey: Hero → Source → Capture → Storage → Light → Collection → The Circle → Impact → Commitment → Footer |
-| `/[locale]/store` | Full product grid (indexable) |
-| `/[locale]/quote` | Quote form with the items from the quote cart |
-| `/[locale]/loyalty` | Public loyalty page (indexable, `Offer` JSON-LD, sitemap priority 0.9) |
-| `/[locale]/account/login` · `/register` · `/account` | Mock loyalty auth and dashboard. `noindex, nofollow`, not in the sitemap |
-| `/api/quote` | Stub: logs the request and returns `{ ok: true }` |
+| `NEXT_PUBLIC_SITE_URL` | The public address, for example `https://www.jontaienergy.com`. The base for page metadata and the URL in the store's JSON-LD. |
+| `RESEND_API_KEY` | Turns on quote emails, sent through [Resend](https://resend.com). |
+| `QUOTE_FROM` | The sender, an address on a domain verified in Resend, for example `Jontai Energy website <quotes@your-domain.com>`. |
+| `QUOTE_TO` | Where quote requests go. Defaults to the store email in `lib/store.ts`. |
 
-Locales: `en` (complete), `pap` and `nl` (nav and hero translated, everything else falls back to English).
+Without `RESEND_API_KEY` and `QUOTE_FROM`, the quote form still works: it tells the visitor it could not send, and offers the same message in their own email app. It never claims a request went through when it did not.
 
-## How the 3D story works
+## Pages
 
-- **One canvas.** `components/sections/Stage3D.tsx` holds a single sticky, full-viewport `<Canvas>` (`components/canvas/Scene.tsx`) that spans Hero through Collection. Loyalty and everything after it is plain DOM. Quick look reuses this same canvas: while the dialog is open the stage is raised above the page and the scene switches to a focus mode.
-- **One scroll source.** `components/sections/ScrollDirector.tsx` creates the only page-level ScrollTrigger (`scrub: 1`, `invalidateOnRefresh: true`). It writes smoothed progress into `lib/scrollStore.ts` and measures every `[data-section]`. Camera, lighting, the particle, every model and the DOM readouts (charge meter, assembly stages) read the same store, so 3D and DOM never run on separate timers.
-- **Camera.** `components/canvas/CameraRig.tsx` lerps between the two nearest keyframes inside `useFrame` (never GSAP). Sections rest on their keyframe while their sticky content is pinned and fly to the next one in between.
-- **Lazy set pieces.** The battery, bulb and product ring are code-split and mount when their section is within 300px of the viewport. The canvas itself mounts only after `requestIdleCallback` and once the stage is on screen.
+| Route | What it is |
+| --- | --- |
+| `/` | The day film, then loyalty, visit and the footer |
+| `/quote` | Quote request by email. `?for=inverter` (or `generator`, `furniture` and so on) preselects the product; the product panels and chapters link here that way |
+| `/api/quote` | Checks a quote request and emails it to the store (see Environment) |
 
-### Edit camera keyframes
+## How it is put together
 
-`lib/cameraKeyframes.ts`: `cameraKeyframes` (desktop) and `mobileCameraKeyframes` (≤ 768px), one `{ id, position, target, fov }` per section. World positions of the set pieces are in `lib/world.ts`; per-section light, sky and fog are in `lib/lighting.ts`.
-
-In development, open `/?leva` to show the leva panel with the live draw-call count (budget: under 40). leva is never bundled in production.
-
-### Swap a procedural model for a GLB
-
-Every hero object is wrapped in `<ModelSlot>` (`components/canvas/ModelSlot.tsx`). Put the file in `public/models/` and pass `src`:
-
-```tsx
-// components/canvas/Scene.tsx
-<ModelSlot src="/models/solar-panel.glb" position={WORLD.panel}>
-  <SolarPanel isMobile={isMobile} />   {/* fallback while the GLB loads */}
-</ModelSlot>
+```
+app/                     layout, the home page, /quote and /api/quote; tokens.css, base.css, globals.css
+components/
+  film/                  the day film: DayFilm (one sticky canvas), Chapter, DayChapters (the copy),
+                         ProductSpot (the "See product info" marker), KelvinBulb, SunDial
+  catalog/               the product panel: CategoryDrawer, ProductView, CatalogProvider
+  quote/                 QuoteForm, ProductPicker (the product dropdown), StoreCard
+  sections/              Loyalty, LoyaltyCard (the 3D card), MemberLogin, Visit, Footer
+  ui/                    Header, RevealObserver
+lib/                     film, kelvin, loyalty, quote, store and contact logic, with tests beside them
+data/products.json       categories, product panels, datasheets and the film's copy
+public/film/             the rendered frames: d/ (desktop 1920x1080), m/ (phone 1080x1440), kelvin/, backdrop/
+public/catalog/          catalogue pictures for the product panels
+tools/blender/film/      the Blender set, the film and the scripts that render and publish it
+docs/                    the design spec and the list of content to confirm
 ```
 
-With `src` set, the GLB renders instead of the procedural mesh. The scroll choreography lives in the procedural components (`SolarPanel`, `BatteryStack`, `LedBulb`), so for an animated GLB read `sectionProgress(...)` from the scroll store in your own `useFrame` the same way they do.
+### The film
 
-## Edit pricing and calculator constants
+- **Playback.** `DayFilm` draws pre-rendered webp frames on one sticky canvas. Each chapter's scroll progress picks a frame, crossfading between neighbours while scrolling. Frames load chapter by chapter, current and next first. `lib/film.ts` holds the manifest: hours, frame counts and marker positions.
+- **Product holds.** Each product chapter rests on its last frame for most of a screen. A "See product info" marker appears on the product. If scrolling stops inside a hold, or just short of one, the page glides onto the product; it never pulls the visitor back once they have scrolled past.
+- **Fallbacks.** With reduced motion, Save-Data or no JavaScript, each chapter becomes one still with its copy over it. The bulb slider still works.
 
-`lib/pricing.ts`: utility rates (`HOUSEHOLD_RATE_AWG_PER_KWH`, `BUSINESS_RATE_AWG_PER_KWH`), `USD_PER_AWG`, `SUN_HOURS_PER_DAY`, `CO2_KG_PER_KWH`, plus the estimate assumptions (performance ratio, roof density, installed cost per kWp, battery cost) and slider ranges. `estimateSolar()` is the only function the calculator calls.
+### The product panel
 
-## Add a language
+Opened from the markers, the chapter buttons and the footer.
 
-1. Add the code to `locales` and `localeLabels` in `i18n/routing.ts`.
-2. Create `content/<code>.ts` exporting `PartialMessages` (any key you leave out falls back to English).
-3. Register it in the `overrides` map in `content/index.ts`.
-4. Add the code to the matcher in `middleware.ts` (`'/(en|pap|nl|<code>)/:path*'`).
+- **Single products:** the inverter, solar air conditioner, power station, camera and generator are told in full. Their figures come only from the supplied Namkoo documents, with the full datasheet behind a disclosure.
+- **Furniture:** explains how delivery works.
+- **Solar and LED:** show the range the store carries.
 
-All copy lives in `content/en.ts`. Product data is in `lib/products.ts`.
+All of it lives in `data/products.json`, under `panels` and `categories`.
 
-## The Circle (mock loyalty)
+### Loyalty
 
-Front-end only. There is no backend, no auth library, no middleware guard and no network call anywhere in the loyalty flow.
+- **The card.** `LoyaltyCard` is the loyalty card in CSS 3D. It leans toward the pointer and turns over between the regular face (ten Afl. 25 stamps up to 5,000 points) and the business face (a ring to 5,000 points for 10% off). The rules live in `lib/loyalty.ts`.
+- **Member login.** `MemberLogin` asks for the loyalty code on the card and the member's name, as the current site does. It is a placeholder: it checks the fields and says plainly that nothing was sent. To connect a real points lookup, set `LOOKUP_URL` in `components/sections/MemberLogin.tsx`, or add a server route, and show the result in the dialog.
 
-- **Data:** `lib/loyalty.ts` holds the tiers, rewards, `MOCK_ACTIVITY` rows, the `PREVIEW_MEMBER` (Alex Croes, `JNT-AB12-CD34`) and the deterministic hash helpers that derive member IDs and referral codes from an email.
-- **State:** `lib/loyaltyStore.ts` is a Zustand store persisted to `localStorage` under `jontai.loyalty` (`signIn`, `preview`, `signOut`, `updateProfile`). The login password is validated in the form and never stored.
-- **Guard:** `/account` renders nothing until the store hydrates, then client-side redirects signed-out visitors to `/account/login`.
-- **Preview:** "Preview dashboard" on `/account/login` signs in the mock member in one click.
-- Redeem buttons show a toast and never change points.
+### Store facts
 
-The quote cart is a separate store, `lib/quoteStore.ts`, persisted under `jontai.quote`.
+Hours, phone, WhatsApp, email, social links and the directions link are all in `lib/store.ts`. Edit them there and every page follows. The "Open now" line works in Aruba time (UTC-4) and does not know about public holidays.
 
-## Reduced motion and fallbacks
+## Changing content
 
-With `prefers-reduced-motion: reduce` the canvas never mounts. `public/posters/*.webp` (rendered from the real scene) cross-fade by section, the shelf and Quick look show CSS product posters, and tier-card tilt, the progress-bar fill and the fanned-card entrance are off. To regenerate posters, render each section at 1440×900 and save the canvas as `public/posters/<section>.webp`.
+| To change | Edit |
+| --- | --- |
+| Chapter copy, figures, product panels, datasheets | `data/products.json` |
+| Hours, phone, email, address | `lib/store.ts` |
+| Loyalty rules | `lib/loyalty.ts` and the program text in `components/sections/Loyalty.tsx` |
+| Quote topics in the dropdown | `QUOTE_TOPICS` in `lib/quote.ts` |
+| Catalogue pictures | `public/catalog/`, same file names, square |
+| Colours, type and spacing | `app/tokens.css` |
 
-## Content still to replace
+Anything still to confirm before launch (delivery details, the points rate, the bulb colour range and so on) is listed in `docs/content-placeholders.md`.
 
-- Testimonials in `content/en.ts` are placeholders. Swap in real customers, with their permission.
-- Product names and specs in `lib/products.ts` are a sample catalog.
-- Gallery and page photos are the previous site's brand images (`public/media`). Replace them with photos of real installs.
-- Certification badges in `components/sections/Commitment.tsx` are placeholders.
-- `content/pap.ts` and `content/nl.ts` need native-speaker review and full translation.
+## Rebuilding the film in Blender
+
+You only need this if a product, a camera move or the light changes. It needs Blender 5.2 with an NVIDIA GPU for Cycles OptiX. The scripts look for Steam's Blender at `C:\Program Files (x86)\Steam\steamapps\common\Blender\blender.exe`; set `BLENDER` to use another one.
+
+The renders (`tools/blender/film/out/`) and the scene (`day.blend`) are git-ignored and are rebuilt by these scripts.
+
+```bash
+# 1. Build the set (wall, floor, products, lights, cameras) into day.blend
+blender -b --factory-startup -P tools/blender/film/build.py
+
+# 2. Render every chapter for desktop and phone, plus the bulb stills (resumable)
+bash tools/blender/film/render-all.sh
+#    or only some chapters after a change:
+bash tools/blender/film/render-some.sh dusk night kelvin
+
+# 3. Convert the renders into the webp frames and posters the site plays
+node tools/blender/film/publish.mjs
+
+# 4. If a product or camera moved, print the marker positions and paste them into lib/film.ts
+blender -b tools/blender/film/day.blend -P tools/blender/film/spots.py
+
+# 5. The wall backdrop behind loyalty and the quote page (render, then grade to the palette)
+blender -b tools/blender/film/day.blend -P tools/blender/film/backdrop.py -- day d
+blender -b tools/blender/film/day.blend -P tools/blender/film/backdrop.py -- day m
+node tools/blender/film/backdrop-publish.mjs
+```
+
+`film.py` poses everything for a point in the day: sun, sky, exposure, camera path and each product's animation. `lib/film.ts` and `film.py` each list the chapters and their frame counts; keep the two in step.
+
+## Design notes
+
+The palette is pinned by the owner: sand `#F7F5EC`, light green `#B8D8A8`, fresh green `#79AE72`, forest `#173D2C`, ink `#183128`, warm wood `#B78455` and light oak `#D8B98E`. Type is Gambetta for display and Hanken Grotesk for body.
+
+Frosted glass is used as a finish (the header bar, product panel, dropdown and loyalty card), not as boxes around everything. The site is in day colours only; the film itself turns to dusk and night as you scroll. The full design record is in `docs/superpowers/specs/2026-10-26-one-day-of-sun-design.md`.
+
+## The old static site
+
+`index.html`, `pages/`, `assets/` and `update-i18n*.ps1` are the previous static site. Next.js ignores them: `pageExtensions` only picks up `.ts` and `.tsx`, and lint is scoped to `app/`, `components/` and `lib/`. Remove them once the new site is live.
