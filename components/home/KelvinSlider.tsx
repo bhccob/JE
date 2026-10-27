@@ -29,7 +29,7 @@ export function KelvinSlider() {
       </div>
       <input
         id={id}
-        className="range"
+        className="slider"
         type="range"
         min={3000}
         max={6500}

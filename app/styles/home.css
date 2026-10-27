@@ -339,7 +339,7 @@
   justify-content: space-between;
   opacity: 0.7;
 }
-.range {
+.slider {
   width: 100%;
   height: 44px;
   margin: 0;
@@ -348,17 +348,17 @@
   -webkit-appearance: none;
   appearance: none;
 }
-.range::-webkit-slider-runnable-track {
+.slider::-webkit-slider-runnable-track {
   height: 6px;
   border-radius: 6px;
   background: var(--track);
 }
-.range::-moz-range-track {
+.slider::-moz-range-track {
   height: 6px;
   border-radius: 6px;
   background: var(--track);
 }
-.range::-webkit-slider-thumb {
+.slider::-webkit-slider-thumb {
   width: 28px;
   height: 28px;
   margin-top: -11px;
@@ -370,7 +370,7 @@
   transition: scale 150ms ease-out;
   -webkit-appearance: none;
 }
-.range::-moz-range-thumb {
+.slider::-moz-range-thumb {
   width: 28px;
   height: 28px;
   border: 0;
@@ -378,13 +378,141 @@
   background: var(--thumb);
   box-shadow: 0 0 0 5px var(--halo);
 }
-.range:active::-webkit-slider-thumb {
+.slider:active::-webkit-slider-thumb {
   scale: 1.12;
 }
-.kelvin .range {
+.kelvin .slider {
   --track: linear-gradient(90deg, #ffb46b, #ffe7c7 45%, #f4f6ff 70%, #cfe0ff);
   --thumb: var(--color-sand);
   --halo: rgb(247 245 236 / 0.22);
+}
+
+/* ---------- The shared product stage (wide screens, StageSwitcher) ---------- */
+
+.stage {
+  display: none;
+}
+@media (min-width: 60.01rem) {
+  .showroom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .chapter {
+    display: block;
+  }
+  .chapter__text {
+    min-height: 100svh;
+  }
+  /* The stage shows the products here; each chapter keeps its own picture for assistive tech only. */
+  .chapter__media {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .stage {
+    display: block;
+    position: relative;
+  }
+}
+.stage__sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--color-stage);
+  color: var(--color-muted);
+}
+.stage__items {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.stage__item {
+  grid-area: 1 / 1;
+  width: min(76%, 66vh);
+}
+.stage__item:not(:first-child) {
+  opacity: 0;
+}
+.stage__item img {
+  width: 100%;
+}
+.stage .stage__glow {
+  transition: opacity 700ms ease;
+}
+.stage[data-active='3'] .stage__glow {
+  opacity: 0.6;
+}
+.stage__top {
+  position: absolute;
+  top: calc(var(--nav-h) + 6px);
+  left: clamp(20px, 3vw, 44px);
+  right: clamp(20px, 3vw, 44px);
+  display: flex;
+  justify-content: space-between;
+}
+.swap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.swap > span {
+  display: inline-block;
+}
+.stage__count {
+  font-variant-numeric: tabular-nums;
+}
+.stage__foot {
+  position: absolute;
+  left: clamp(20px, 3vw, 44px);
+  bottom: 26px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+}
+/* While the concept notice is showing, the stage's foot sits above it rather than under it. */
+:root:has(.concept) .stage__foot {
+  bottom: 76px;
+}
+.stage__ticks {
+  display: flex;
+  gap: 6px;
+}
+.stage__ticks button {
+  position: relative;
+  width: 36px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.stage__ticks button::before,
+.stage__ticks i {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 11px;
+  height: 2px;
+  border-radius: 2px;
+}
+.stage__ticks button::before {
+  background: rgb(24 49 40 / 0.16);
+}
+.stage__ticks i {
+  background: var(--color-forest);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+.stage__caption {
+  font-size: 0.875rem;
 }
 
 /* ---------- Numbers ---------- */

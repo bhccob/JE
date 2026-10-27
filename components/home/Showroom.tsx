@@ -4,10 +4,12 @@ import { Words } from '@/components/ui/Split';
 import { HOME_COPY, type HomeChapter } from '@/lib/products';
 import { QUOTE_ACTION } from '@/lib/quote';
 import { KelvinSlider } from './KelvinSlider';
+import { StageSwitcher } from './StageSwitcher';
 
 /**
  * The five product families, one screen each: a forest text field (oak upstairs) and the product on the stage colour.
- * The dark field grows from a rounded inset to full width as it arrives.
+ * On wide screens the chapters scroll past one product stage that holds still; on phones each chapter carries its
+ * own picture. The dark field grows from a rounded inset to full width as it arrives.
  */
 export function Showroom() {
   return (
@@ -17,6 +19,7 @@ export function Showroom() {
           <Chapter key={c.id} chapter={c} />
         ))}
       </div>
+      <StageSwitcher chapters={HOME_COPY.chapters} />
     </section>
   );
 }
