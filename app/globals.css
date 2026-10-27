@@ -1220,6 +1220,161 @@ main {
   opacity: 1;
 }
 
+/* ---------- Team ---------- */
+
+/* Meet the team, after the furniture floor: no cards, just portraits, numbers and hairlines. On wide screens the words
+   hold on the left (sticky) while the portraits scroll past on the right; on tablets and phones they are a row. */
+.team {
+  position: relative;
+  z-index: var(--z-raised);
+  padding-block: var(--section-gap);
+  background: var(--color-paper);
+}
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-2xl) var(--gap-columns);
+  align-items: start;
+}
+.team__text {
+  grid-column: 1 / span 5;
+  position: sticky;
+  top: calc(var(--nav-h) + var(--space-lg));
+  display: grid;
+  gap: var(--space-lg);
+}
+.team__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-muted);
+}
+.team__index {
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+.team__index li {
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+}
+.team__index a {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color var(--dur-long) var(--ease-out);
+}
+/* Once scripts know which portrait is in view, the other names step back. */
+.team__index li[data-on='false'] a {
+  color: var(--color-muted);
+}
+@media (hover: hover) and (pointer: fine) {
+  .team__index li[data-on='false'] a:hover {
+    color: var(--color-ink-2);
+  }
+}
+.team__num {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.team__who {
+  display: grid;
+  gap: var(--space-3xs);
+  min-width: 0;
+}
+.team__name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.team__role {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+.team__index li[data-on='false'] .team__role {
+  color: inherit;
+}
+.team__people {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: var(--space-3xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.team__person figure {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+/* Until a portrait arrives, a crop of the plaster wall with a plain line saying whose it will be. */
+.team__photo {
+  aspect-ratio: 4 / 5;
+  background: var(--color-paper-2) url('/film/backdrop/day-m.webp') var(--wall, center) / 240% auto no-repeat;
+}
+.team__pending {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ink-2);
+}
+.team__caption {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+.team__index .team__name,
+.team__caption .team__name {
+  font-size: var(--text-lg);
+}
+/* Wide screens: the index beside the portraits already gives each role. */
+@media (min-width: 60.01rem) {
+  .team__caption .team__role {
+    display: none;
+  }
+}
+@media (max-width: 60rem) {
+  .team__grid {
+    gap: var(--space-xl) var(--gap-columns);
+  }
+  .team__text {
+    grid-column: 1 / -1;
+    position: static;
+  }
+  .team__text > nav {
+    display: none;
+  }
+  /* The portraits run edge to edge as a row you swipe, the next one peeking in. */
+  .team__people {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: var(--space-md);
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .team__people::-webkit-scrollbar {
+    display: none;
+  }
+  .team__person {
+    flex: 0 0 min(78%, 22rem);
+    scroll-snap-align: start;
+  }
+}
+
 /* ---------- Loyalty ---------- */
 
 .loyalty {

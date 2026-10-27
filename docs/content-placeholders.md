@@ -22,6 +22,7 @@ Everything on the home page that Jontai Energy should check before launch. Nothi
 | Generator delivery | FAQ "What do you deliver?", generator and furniture panels | Furniture and large generators | First brief ("large generators"); confirm it still applies |
 | Delivery details | Furniture panel | "Delivery areas, days and any charge are confirmed when you buy." No areas, days or fees are stated | Add them to the furniture panel (`data/products.json`, panels.furniture) once confirmed |
 | Camera and generator panels | Product panels | What the products do in general terms, with no models or figures | No datasheets were supplied. Send them and the panels can show figures like the inverter does |
+| Team names and titles | Meet the team, after the furniture chapter (`lib/team.ts`) | Lily Xie, Chief Executive Officer · Founder; Chiwai Chung, Chief Financial Officer · Co-Founder; Chakho Chung, Chief Technology Officer; Chingho Chung, Chief Operating Officer; Bob Chung, Chief Design Officer | Owner, 2026-10-27. The owner wrote "Chief Designer Officer"; the page uses the usual "Chief Design Officer" |
 
 All datasheet figures (SPI-8K-UP, 3000W power station, ACDC solar AC) come from the supplied Namkoo documents and are labelled as examples, not live stock.
 
@@ -35,6 +36,7 @@ The quote page (`/quote`) sends each request to the store by email through Resen
 | --- | --- | --- |
 | The day film (Blender renders, `tools/blender/film`) | Every chapter of the home page | It is a rendered set, not the store, and every still is labelled "Rendered illustration" for screen readers. The inverter, power station and solar AC are remodelled from the store's product photos; the generator, LED pendant, solar camera, sofa and chair are representative designs, not specific stock items. Real product photos can replace the posters at any time. |
 | Plaster, terrazzo and oak textures (GPT Image) | Inside the renders | Nothing needed; they are surface materials, not claims |
+| Team portraits | Meet the team | Each frame is a crop of the plaster wall saying "Photo of … to come". Add a 4:5 portrait per person under `public/team/` and set its `photo` in `lib/team.ts`; the placeholder line hides itself |
 | Catalogue pictures (GPT Image, `public/catalog`) | The product panel for each category | Studio-style illustrations of the kinds of products carried; the panels, AC, inverter, power station, generator, camera, sofa and chair follow the store's photos, the LED items and the site camera are representative. The panel says so ("Pictures show the kind of products we carry"). Swap in real product photos any time, same file names, square |
 
 Removed on purpose: the Seedance staircase clip of a store interior (the owner said it looked nothing like the real store) and the earlier real-time 3D models.
