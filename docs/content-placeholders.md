@@ -5,12 +5,12 @@ Everything on the home page that Jontai Energy should check before launch. Nothi
 ## Confirmed by the owner
 
 - Opening hours, 2026-10-27: Monday to Saturday 9:00 to 19:00, Sunday 10:00 to 14:00 (shown as 9:00 AM to 7:00 PM and 10:00 AM to 2:00 PM; `lib/store.ts`). The "Open now" line uses Aruba time and does not know about public holidays.
+- Phone and WhatsApp, 2026-10-27: +297 586 5323 for both (`lib/store.ts`). The current jontaienergy.com links WhatsApp to +297 566 6152; the owner confirmed +297 586 5323 is correct.
 
 ## Facts to confirm
 
 | What | Where it shows | Current value | Source |
 | --- | --- | --- | --- |
-| Phone and WhatsApp | Visit the store, quote page | +297 586 5323 | Old site pages |
 | Email | Visit the store, quote page, where quote requests are sent | jontai@qq.com | Old site pages |
 | Instagram | Visit the store, Store JSON-LD | instagram.com/jontaienergy | Old site pages (Facebook was confirmed in the brief; Instagram was not) |
 | LED colour temperatures | Dusk chapter, the bulb slider | "From warm 3000K to daylight 6500K." | The owner, 2026-10-26. Confirm which bulbs come in which temperatures |
