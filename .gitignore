@@ -15,3 +15,4 @@ tools/blender/film/day.blend1
 
 # Verification screenshots (tools/shots/shoot.mjs)
 tools/shots/out/
+.next-build/

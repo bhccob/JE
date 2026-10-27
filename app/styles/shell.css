@@ -1,0 +1,322 @@
+/* The site shell of the type-led redesign: header, phone menu, footer and the concept notice. Solid surfaces, no glass. */
+
+main {
+  position: relative;
+  z-index: 1;
+  background: var(--color-sand);
+}
+
+/* ---------- Header ---------- */
+
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-sticky-nav);
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 var(--gutter);
+  color: var(--color-ink);
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 500ms var(--ease-out);
+}
+.nav[data-solid='true'] {
+  background: var(--color-sand);
+  box-shadow: 0 1px 0 var(--color-rule);
+}
+/* Out of the way while reading down; back the moment keyboard focus comes in. */
+.nav[data-hidden='true']:not(:focus-within) {
+  transform: translateY(-100%);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.brand img {
+  width: 36px;
+  height: 36px;
+}
+.nav__main {
+  position: relative;
+}
+.nav__links {
+  display: flex;
+  gap: clamp(18px, 2.2vw, 34px);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.nav__link {
+  display: block;
+  padding: 6px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  opacity: 0.72;
+  transition: opacity 250ms ease;
+}
+.nav__link[data-current='true'] {
+  opacity: 1;
+}
+/* One bar, 1px wide, moved and stretched under the current link. */
+.nav__bar {
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 1px;
+  height: 2px;
+  background: var(--color-forest);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 550ms var(--ease-out);
+}
+.nav__end {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav__quote {
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav__quote[aria-current='page'] {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+}
+.nav__menu {
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .nav__link:hover {
+    opacity: 1;
+  }
+  .nav__quote:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+  }
+}
+@media (max-width: 60rem) {
+  .nav__main,
+  .nav__quote,
+  .nav__end .btn--primary {
+    display: none;
+  }
+  .nav__menu {
+    display: inline-flex;
+  }
+}
+
+/* ---------- Phone menu ---------- */
+
+.menu {
+  display: none;
+}
+@media (max-width: 60rem) {
+  .menu {
+    position: fixed;
+    inset: 0;
+    z-index: calc(var(--z-sticky-nav) - 1);
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--nav-h) + 24px) var(--gutter) calc(32px + var(--concept-h, 0px));
+    overflow-y: auto;
+    background: var(--color-sand);
+    color: var(--color-ink);
+    clip-path: inset(0 0 100% 0);
+    visibility: hidden;
+    transition:
+      clip-path 500ms var(--ease-out),
+      visibility 0s linear 500ms;
+  }
+  .menu[data-open='true'] {
+    clip-path: inset(0 0 0 0);
+    visibility: visible;
+    transition: clip-path 500ms var(--ease-out);
+  }
+  .menu__links {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-rule);
+  }
+  .menu__links a {
+    display: block;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--color-rule);
+    font-weight: 800;
+    font-size: clamp(2rem, 9vw, 2.6rem);
+    letter-spacing: var(--tracking-display);
+    line-height: 1;
+    text-decoration: none;
+  }
+  .menu .actions {
+    margin-top: auto;
+    padding-top: 32px;
+  }
+  .menu .actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  position: relative;
+  z-index: 0;
+  padding: clamp(80px, 12vh, 120px) var(--gutter) 28px;
+  background: var(--color-deep);
+  color: rgb(247 245 236 / 0.78);
+  text-align: center;
+}
+/* Room under the fine print for the concept notice, which is a strip along the bottom on phones. */
+.footer[data-concept] {
+  padding-bottom: calc(28px + var(--concept-h, 0px));
+}
+.footer__nav {
+  display: grid;
+  gap: 28px;
+  justify-items: center;
+}
+.footer__nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 34px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.footer__nav :is(a, button) {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  font-size: 1.1rem;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 250ms ease;
+}
+.footer__social {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 44px;
+}
+.footer__social a {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px rgb(247 245 236 / 0.25);
+  transition: box-shadow 250ms ease;
+}
+.footer__social svg {
+  width: 20px;
+  height: 20px;
+}
+.footer__mark {
+  margin: clamp(64px, 10vh, 110px) 0 0;
+  padding: 0.03em 0 0.02em;
+  color: var(--color-forest);
+  font-weight: 800;
+  font-size: 15vw;
+  letter-spacing: -0.05em;
+  line-height: 0.78;
+}
+.footer__fine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgb(247 245 236 / 0.12);
+  font-size: 0.875rem;
+  text-align: left;
+}
+.footer__fine a {
+  color: var(--color-mint);
+}
+@media (hover: hover) and (pointer: fine) {
+  .footer__nav :is(a, button):hover {
+    color: var(--color-sand);
+  }
+  .footer__social a:hover {
+    box-shadow: inset 0 0 0 1.5px var(--color-sand);
+  }
+}
+/* Wide screens: the footer waits under the page, which lifts off it on the way to the end. */
+@media (min-width: 60.01rem) and (min-height: 720px) {
+  .footer {
+    position: sticky;
+    bottom: 0;
+  }
+}
+
+/* ---------- Concept notice (ConceptBanner) ---------- */
+
+/* A solid ink pill bottom right on every page, over the loader too. Nothing fixed may sit under it. */
+.concept {
+  position: fixed;
+  right: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  z-index: calc(var(--z-toast) + 1);
+  max-width: min(34rem, calc(100vw - 32px));
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-sand);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+}
+.concept a {
+  color: var(--color-mint);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+}
+/* Phones: a slim strip along the bottom edge. Whatever sits at the bottom keeps --concept-h clear for it. */
+@media (max-width: 40rem) {
+  :root:has(.concept) {
+    --concept-h: 2rem;
+  }
+  .concept {
+    inset: auto 0 0 0;
+    max-width: none;
+    padding: 8px var(--gutter) calc(8px + env(safe-area-inset-bottom, 0px));
+    border-radius: 0;
+    font-size: 0.75rem;
+    line-height: 1.33;
+    text-align: center;
+  }
+  .concept__long {
+    display: none;
+  }
+}
+@media (max-width: 22.4rem) {
+  :root:has(.concept) {
+    --concept-h: 3rem;
+  }
+}
+@media print {
+  .concept {
+    position: static;
+  }
+}
