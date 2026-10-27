@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jontai Energy · Redesign mockup</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* Mockup only. Palette is the owner's: sand #F7F5EC, light green #B8D8A8, fresh green #79AE72,
+   forest #173D2C, ink #183128, warm wood #B78455, light oak #D8B98E. Stage matches the catalog renders' backdrop. */
+:root {
+  --sand: #F7F5EC;
+  --stage: #EEE6D8;
+  --ink: #183128;
+  --forest: #173D2C;
+  --deep: #0F281D;
+  --green: #79AE72;
+  --green-ink: #3D7443;
+  --mint: #B8D8A8;
+  --wood: #B78455;
+  --oak: #D8B98E;
+  --muted: rgb(24 49 40 / .66);
+  --rule: rgb(24 49 40 / .16);
+  --rule-dark: rgb(247 245 236 / .2);
+  --gutter: clamp(20px, 4.2vw, 72px);
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --head: 80px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: var(--head); }
+body {
+  background: var(--sand);
+  color: var(--ink);
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+ul { list-style: none; }
+:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+
+/* ---------- Type ---------- */
+.label {
+  font-stretch: 62%;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.display {
+  font-weight: 800;
+  letter-spacing: -.038em;
+  line-height: .96;
+  text-wrap: balance;
+}
+.lead {
+  font-size: clamp(1.125rem, .45vw + 1rem, 1.375rem);
+  line-height: 1.5;
+  max-width: 33em;
+  text-wrap: pretty;
+}
+.fine { font-size: .95rem; line-height: 1.5; max-width: 38em; }
+
+/* ---------- Buttons ---------- */
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: .65em;
+  min-height: 56px; padding: 0 26px;
+  border-radius: 999px;
+  font-weight: 700; font-size: 1.0625rem; letter-spacing: -.01em;
+  text-decoration: none; white-space: nowrap;
+  transition: background-color .25s, color .25s, box-shadow .25s;
+}
+.btn svg { width: 18px; height: 18px; transition: transform .35s var(--ease); }
+.btn:hover svg { transform: translateX(4px); }
+.btn--solid { background: var(--forest); color: var(--sand); }
+.btn--solid:hover { background: var(--deep); }
+.btn--line { box-shadow: inset 0 0 0 1.5px var(--rule); }
+.btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn--sand { background: var(--sand); color: var(--forest); }
+.btn--sand:hover { background: #fff; }
+.btn--line-dark { color: var(--sand); box-shadow: inset 0 0 0 1.5px var(--rule-dark); }
+.btn--line-dark:hover { box-shadow: inset 0 0 0 1.5px var(--sand); }
+
+.textlink {
+  display: inline-flex; align-items: center; gap: .5em; align-self: flex-start;
+  font-weight: 700; font-size: 1.0625rem; text-decoration: none;
+  padding-bottom: 6px; border-bottom: 2px solid var(--green);
+}
+.textlink svg { width: 18px; height: 18px; transition: transform .35s var(--ease); }
+.textlink:hover svg { transform: translateX(4px); }
+
+/* ---------- Header ---------- */
+.nav {
+  position: fixed; inset: 0 0 auto; z-index: 50;
+  height: var(--head);
+  display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  padding: 0 var(--gutter);
+  transition: background-color .3s, box-shadow .3s;
+}
+.nav.is-solid { background: var(--sand); box-shadow: 0 1px 0 var(--rule); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 1.2rem; letter-spacing: -.03em; }
+.brand img { width: 36px; height: 36px; }
+.nav__links { display: flex; gap: clamp(18px, 2.2vw, 34px); }
+.nav__links a { font-weight: 600; font-size: 1rem; text-decoration: none; padding: 6px 0; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; transition: background-size .35s var(--ease); }
+.nav__links a:hover { background-size: 100% 1.5px; }
+.nav__end { display: flex; align-items: center; gap: 18px; }
+.nav__end .btn { min-height: 46px; padding: 0 20px; font-size: 1rem; }
+.nav__quote { font-weight: 600; text-decoration: none; }
+.nav__menu { display: none; font: inherit; font-weight: 700; background: none; border: 0; min-height: 46px; padding: 0 18px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--rule); color: var(--ink); }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex; flex-direction: column;
+  padding: calc(var(--head) + 12px) var(--gutter) clamp(40px, 6vh, 72px);
+}
+.hero__meta {
+  display: flex; flex-wrap: wrap; gap: 10px 32px;
+  padding-top: 14px; border-top: 1px solid var(--rule);
+  color: var(--muted);
+}
+.status { display: inline-flex; align-items: center; gap: 9px; }
+.status i { width: 9px; height: 9px; border-radius: 50%; background: var(--wood); }
+.status.is-open i { background: var(--green); box-shadow: 0 0 0 4px rgb(121 174 114 / .25); }
+
+.wordmark {
+  position: relative; z-index: 2;
+  margin-top: clamp(16px, 3.5vh, 40px);
+  color: var(--forest);
+  font-weight: 800; letter-spacing: -.055em; line-height: .8;
+  white-space: nowrap;
+  font-size: 23.5vw; /* replaced by the fit script */
+  overflow: hidden; padding: .04em 0 .02em;
+}
+.fit { display: inline-block; }
+.wordmark .l { display: inline-block; }
+.js .wordmark .l { transform: translateY(108%); }
+.js .hero.is-in .wordmark .l { transform: none; transition: transform 1.15s var(--ease) calc(var(--i) * 55ms); }
+
+.hero__grid {
+  flex: 1;
+  display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: end; gap: 4vw;
+  margin-top: clamp(20px, 3vh, 40px);
+}
+.hero__copy { display: flex; flex-direction: column; gap: 26px; padding-bottom: 6px; }
+.hero h1 { font-size: clamp(2.6rem, 4.3vw, 4.9rem); }
+
+.sun {
+  position: relative; z-index: 1;
+  justify-self: end; align-self: end;
+  width: min(100%, 36vw, 62vh); aspect-ratio: 1;
+  margin-top: -9vw;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #F5EFE5 0%, var(--stage) 52%, #E6DBC8 100%);
+}
+.sun img { position: absolute; inset: 12%; width: 76%; height: 76%; object-fit: contain; }
+.sun__tag { position: absolute; left: 50%; bottom: 7%; transform: translateX(-50%); color: var(--muted); white-space: nowrap; font-size: .875rem; }
+
+/* Soft edges so a render's backdrop melts into the stage colour: no box around the product. */
+.feather {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent), linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent), linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  mask-composite: intersect;
+}
+
+/* ---------- Intro statement ---------- */
+.intro { padding: clamp(96px, 16vh, 180px) var(--gutter) clamp(88px, 14vh, 160px); }
+.intro__big {
+  font-size: clamp(2rem, 3.8vw, 4.1rem);
+  font-weight: 750; letter-spacing: -.035em; line-height: 1.04;
+  max-width: 25ch;
+  text-wrap: balance;
+  margin-top: 28px;
+}
+.intro__big .soft { color: rgb(24 49 40 / .42); }
+.intro__points {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(24px, 4vw, 64px);
+  margin-top: clamp(64px, 10vh, 120px);
+}
+.intro__points li { border-top: 1.5px solid var(--ink); padding-top: 18px; display: grid; gap: 10px; }
+.intro__points p { font-size: 1.125rem; max-width: 22em; }
+
+/* ---------- Product chapters ---------- */
+.chapter { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; }
+.chapter__text {
+  position: relative; overflow: hidden;
+  background: var(--forest); color: var(--sand);
+  padding: clamp(104px, 15vh, 170px) var(--gutter) clamp(72px, 11vh, 130px);
+  display: flex; flex-direction: column; justify-content: center; gap: 28px;
+}
+.chapter__text > * { position: relative; max-width: 640px; }
+.chapter--flip .chapter__text { order: 2; }
+.ghost {
+  position: absolute !important; right: -.03em; bottom: -.16em;
+  font-stretch: 62%; font-weight: 800;
+  font-size: clamp(15rem, 36vw, 40rem); line-height: .8; letter-spacing: -.02em;
+  color: rgb(247 245 236 / .055);
+  pointer-events: none; user-select: none;
+  max-width: none !important;
+}
+.chapter__label { display: flex; align-items: center; gap: 14px; }
+.chapter__label::before { content: ""; width: 40px; height: 1.5px; background: currentColor; opacity: .55; }
+.chapter h2 { font-size: clamp(2.5rem, 4.5vw, 5.1rem); }
+.chapter .lead { color: rgb(247 245 236 / .86); }
+
+.facts { display: flex; flex-wrap: wrap; gap: 18px 0; margin-top: 6px; }
+.facts > div { display: flex; flex-direction: column-reverse; gap: 8px; padding-right: clamp(16px, 1.8vw, 28px); margin-right: clamp(16px, 1.8vw, 28px); border-right: 1px solid var(--rule-dark); }
+.facts > div:last-child { border-right: 0; margin-right: 0; padding-right: 0; }
+.facts dd { font-stretch: 62%; font-weight: 800; font-size: clamp(2.2rem, 2.9vw, 3.3rem); line-height: .9; letter-spacing: -.005em; white-space: nowrap; }
+.facts dt { font-stretch: 62%; font-weight: 600; font-size: .95rem; letter-spacing: .08em; text-transform: uppercase; opacity: .72; }
+.chapter .fine { color: rgb(247 245 236 / .62); }
+.chapter .textlink { border-color: var(--mint); }
+
+.chapter__stage {
+  position: relative; overflow: hidden;
+  background: var(--stage);
+  display: grid; place-items: center;
+  padding: clamp(72px, 10vh, 120px) 6%;
+}
+.chapter__stage::before { content: ""; position: absolute; inset: 0; background: radial-gradient(58% 52% at 50% 46%, rgb(255 255 255 / .5), transparent 72%); }
+.chapter__stage img { position: relative; width: min(84%, 640px); will-change: transform; }
+.stage__tag { position: absolute; top: calc(var(--head) + 4px); left: clamp(20px, 3vw, 44px); color: var(--muted); }
+.stage__caption { position: absolute; bottom: 26px; left: clamp(20px, 3vw, 44px); right: clamp(20px, 3vw, 44px); font-size: .875rem; color: var(--muted); }
+
+/* Furniture is upstairs: the colour warms to oak. */
+.chapter--oak .chapter__text { background: var(--oak); color: var(--ink); }
+.chapter--oak .ghost { color: rgb(24 49 40 / .07); }
+.chapter--oak .lead { color: rgb(24 49 40 / .84); }
+.chapter--oak .fine { color: var(--muted); }
+.chapter--oak .textlink { border-color: var(--forest); }
+.pull { font-weight: 750; font-size: clamp(1.375rem, 1.6vw, 1.75rem); letter-spacing: -.02em; line-height: 1.2; padding-left: 20px; border-left: 3px solid currentColor; max-width: 22em; }
+
+/* Kelvin slider: the light's colour washes over the whole stage, so there is still no box. */
+.kelvin { display: grid; gap: 14px; max-width: 460px; }
+.kelvin__row { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.kelvin__read { display: grid; justify-items: end; gap: 4px; }
+.kelvin__value { font-stretch: 62%; font-weight: 800; font-size: 2.6rem; line-height: 1; }
+.kelvin input { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; background: transparent; cursor: pointer; }
+.kelvin input::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, #FFB46B, #FFE7C7 45%, #F4F6FF 70%, #CFE0FF); }
+.kelvin input::-moz-range-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, #FFB46B, #FFE7C7 45%, #F4F6FF 70%, #CFE0FF); }
+.kelvin input::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px; border-radius: 50%; background: var(--sand); box-shadow: 0 0 0 5px rgb(247 245 236 / .22), 0 4px 12px rgb(0 0 0 / .3); }
+.kelvin input::-moz-range-thumb { width: 28px; height: 28px; border: 0; border-radius: 50%; background: var(--sand); box-shadow: 0 0 0 5px rgb(247 245 236 / .22); }
+.kelvin__ends { display: flex; justify-content: space-between; opacity: .7; }
+.stage--kelvin::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(60% 56% at 50% 44%, var(--glow, #FFB46B), transparent 78%);
+  mix-blend-mode: multiply; opacity: .6;
+}
+
+/* ---------- Numbers (contour lines, no boxes) ---------- */
+.numbers { position: relative; overflow: hidden; padding: clamp(110px, 18vh, 200px) var(--gutter); text-align: center; }
+.contours { position: absolute; inset: 0; width: 100%; height: 100%; color: var(--ink); opacity: .1; pointer-events: none; }
+.numbers > :not(.contours) { position: relative; }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: clamp(48px, 8vh, 88px) auto 0; max-width: 1280px; }
+.stats li { display: grid; justify-items: center; gap: 14px; padding: 0 clamp(12px, 2vw, 32px); }
+.stats li + li { border-left: 1px solid var(--rule); }
+.stat__n { font-stretch: 62%; font-weight: 800; font-size: clamp(6rem, 13vw, 13rem); line-height: .8; color: var(--forest); letter-spacing: -.01em; }
+.stat__l { max-width: 15em; }
+
+/* ---------- Rewards ---------- */
+.rewards { padding: clamp(96px, 15vh, 170px) var(--gutter); border-top: 1px solid var(--rule); display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .65fr); gap: 4vw; align-items: end; }
+.rewards h2 { font-size: clamp(3rem, 7.6vw, 8.6rem); margin-top: 24px; }
+.rewards h2 em { font-style: normal; color: var(--green-ink); }
+.rewards__side { display: grid; gap: 26px; padding-bottom: 10px; }
+.stamps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; max-width: 320px; }
+.stamps span { aspect-ratio: 1; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--rule); display: grid; place-items: center; }
+.stamps span.on { background: var(--green); box-shadow: none; }
+.stamps svg { width: 52%; height: 52%; color: var(--forest); }
+
+/* ---------- Visit ---------- */
+.visit { position: relative; overflow: hidden; background: var(--forest); color: var(--sand); padding: clamp(110px, 16vh, 180px) var(--gutter) clamp(80px, 12vh, 140px); }
+.visit .contours { color: var(--sand); opacity: .07; }
+.visit > :not(.contours) { position: relative; }
+.visit__street { font-stretch: 62%; font-weight: 800; text-transform: uppercase; line-height: .8; letter-spacing: -.01em; white-space: nowrap; margin-top: 26px; font-size: 26vw; }
+.visit__city { font-size: clamp(1.5rem, 2.4vw, 2.4rem); font-weight: 700; letter-spacing: -.02em; margin-top: 18px; }
+.visit__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 clamp(24px, 4vw, 64px); margin-top: clamp(56px, 9vh, 96px); }
+.visit__grid > div { border-top: 1.5px solid rgb(247 245 236 / .6); padding-top: 18px; display: grid; gap: 14px; align-content: start; }
+.hours div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule-dark); font-size: 1.125rem; }
+.hours dd { font-weight: 700; text-align: right; }
+.visit .status { font-weight: 600; }
+.visit .status.is-open i { box-shadow: 0 0 0 4px rgb(184 216 168 / .25); background: var(--mint); }
+.contact a { display: block; font-size: clamp(1.25rem, 1.7vw, 1.6rem); font-weight: 700; letter-spacing: -.02em; text-decoration: none; padding: 6px 0; }
+.contact a:hover { text-decoration: underline; text-underline-offset: 5px; text-decoration-thickness: 1.5px; }
+.visit .fine { color: rgb(247 245 236 / .78); font-size: 1.0625rem; }
+.visit .actions { margin-top: clamp(48px, 8vh, 80px); }
+
+/* ---------- Footer ---------- */
+.footer { background: var(--deep); color: rgb(247 245 236 / .78); padding: clamp(80px, 12vh, 120px) var(--gutter) 28px; text-align: center; }
+.footer__nav { display: grid; gap: 34px; justify-items: center; }
+.footer__nav ul { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 34px; }
+.footer__nav a { text-decoration: none; font-size: 1.1rem; }
+.footer__nav a:hover { color: var(--sand); }
+.footer__social { display: flex; justify-content: center; gap: 12px; margin-top: 44px; }
+.footer__social a { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 1.5px rgb(247 245 236 / .25); }
+.footer__social a:hover { box-shadow: inset 0 0 0 1.5px var(--sand); }
+.footer__social svg { width: 20px; height: 20px; }
+.footer__mark { margin-top: clamp(64px, 10vh, 110px); color: var(--forest); font-weight: 800; letter-spacing: -.05em; line-height: .78; white-space: nowrap; font-size: 15vw; overflow: hidden; padding-bottom: .02em; }
+.footer__fine { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgb(247 245 236 / .12); font-size: .875rem; text-align: left; }
+
+/* ---------- Reveal: once in, text stays. Nothing fades out as you scroll. ---------- */
+.js [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform 1s var(--ease); transition-delay: var(--d, 0ms); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* ---------- Phones and tablets ---------- */
+@media (max-width: 960px) {
+  :root { --head: 68px; }
+  .nav__links, .nav__quote { display: none; }
+  .nav__end .btn { display: none; }
+  .nav__menu { display: inline-flex; align-items: center; }
+  .hero__grid { grid-template-columns: 1fr; gap: 36px; }
+  .sun { justify-self: center; width: min(100%, 520px); margin-top: 0; }
+  .intro__points, .visit__grid { grid-template-columns: 1fr; gap: 36px; }
+  .chapter { grid-template-columns: 1fr; min-height: 0; }
+  .chapter__stage { order: 0 !important; min-height: 0; aspect-ratio: 1 / .92; padding: 40px 6%; }
+  .chapter__text { order: 1 !important; padding: 64px var(--gutter) 80px; }
+  .stage__tag { top: 20px; }
+  .stage__caption { bottom: 16px; }
+  .ghost { font-size: 64vw; }
+  .facts { flex-direction: column; gap: 0; }
+  .facts > div { flex-direction: row-reverse; justify-content: flex-end; align-items: baseline; gap: 16px; border-right: 0; margin-right: 0; padding: 14px 0; border-top: 1px solid var(--rule-dark); }
+  .facts > div:last-child { border-bottom: 1px solid var(--rule-dark); }
+  .facts dd { font-size: 2.6rem; min-width: 0; }
+  .stats { grid-template-columns: 1fr; gap: 0; }
+  .stats li { padding: 36px 0; }
+  .stats li + li { border-left: 0; border-top: 1px solid var(--rule); }
+  .rewards { grid-template-columns: 1fr; gap: 48px; }
+}
+@media (max-width: 520px) {
+  body { font-size: 17px; }
+  .btn { min-height: 54px; padding: 0 22px; }
+  .hero__meta { gap: 6px 20px; font-size: .9rem; }
+  .actions .btn { flex: 1 1 auto; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js [data-reveal], .js .wordmark .l { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="sunmark" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+</svg>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top"><img src="/icon-192.png" alt="" width="36" height="36">Jontai Energy</a>
+  <nav aria-label="Main">
+    <ul class="nav__links">
+      <li><a href="#solar">Solar</a></li>
+      <li><a href="#backup">Power</a></li>
+      <li><a href="#light">Lighting</a></li>
+      <li><a href="#upstairs">Furniture</a></li>
+      <li><a href="#rewards">Rewards</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+  </nav>
+  <div class="nav__end">
+    <a class="nav__quote" href="#visit">Get a quote</a>
+    <a class="btn btn--solid" href="#visit">WhatsApp us</a>
+    <button class="nav__menu" type="button">Menu</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. Hero: the name is the picture -->
+  <section class="hero" id="hero">
+    <div class="hero__meta label">
+      <span>Cumana 73, Oranjestad</span>
+      <span>Family-owned</span>
+      <span class="status" data-status><i></i><span>Open every day</span></span>
+    </div>
+
+    <p class="wordmark" data-fit aria-hidden="true"><span class="fit"><span class="l" style="--i:0">J</span><span class="l" style="--i:1">O</span><span class="l" style="--i:2">N</span><span class="l" style="--i:3">T</span><span class="l" style="--i:4">A</span><span class="l" style="--i:5">I</span></span></p>
+
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <h1 class="display" data-reveal style="--d:350ms">Aruba sunlight, made useful.</h1>
+        <p class="lead" data-reveal style="--d:450ms">Solar, power, lighting and everyday essentials, plus furniture upstairs at Jontai Energy.</p>
+        <div class="actions" data-reveal style="--d:550ms">
+          <a class="btn btn--solid" href="#solar">Explore solar <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+          <a class="btn btn--line" href="#visit">Visit the store</a>
+        </div>
+      </div>
+      <div class="sun" data-reveal style="--d:250ms">
+        <img class="feather" src="/catalog/solar-panels.webp" alt="A framed solar panel" width="800" height="800" data-parallax="-0.05">
+        <span class="sun__tag">Illustration</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. One clear statement -->
+  <section class="intro">
+    <p class="label" data-reveal>One store, two floors</p>
+    <p class="intro__big" data-reveal style="--d:80ms">Power on the ground floor. Furniture one flight up. <span class="soft">Family-owned, so we choose every product with care and look after every customer ourselves.</span></p>
+    <ul class="intro__points">
+      <li data-reveal><span class="label">Delivery</span><p>Large-item delivery available. Ask us about furniture delivery.</p></li>
+      <li data-reveal style="--d:90ms"><span class="label">Talk to a person</span><p>Buy at the counter, on WhatsApp or with a quote. No cart, no checkout.</p></li>
+      <li data-reveal style="--d:180ms"><span class="label">Rewards</span><p>Spend Afl. 500 and get Afl. 25 back, every time.</p></li>
+    </ul>
+  </section>
+
+  <!-- 3. Numbered chapters, one product family per screen -->
+  <section class="chapter" id="solar" aria-labelledby="c1">
+    <div class="chapter__text">
+      <span class="ghost" aria-hidden="true" data-parallax="0.12">01</span>
+      <p class="chapter__label label" data-reveal>01 · Solar and inverters</p>
+      <h2 class="display" id="c1" data-reveal style="--d:60ms">One wall unit runs the whole house.</h2>
+      <p class="lead" data-reveal style="--d:120ms">Solar, battery and grid in a single hybrid inverter, with pure sine wave power for everything you plug in. Framed panels to match, for rooftop systems.</p>
+      <dl class="facts" data-reveal style="--d:180ms">
+        <div><dt>Rated output</dt><dd>8,000 W</dd></div>
+        <div><dt>To switch to battery</dt><dd>10 ms</dd></div>
+        <div><dt>Solar inputs</dt><dd>2 × 5,500 W</dd></div>
+      </dl>
+      <p class="fine" data-reveal style="--d:220ms">Figures from the Namkoo SPI-8K-UP datasheet. Ask what is on the shelf.</p>
+      <a class="textlink" href="#solar" data-reveal style="--d:260ms">See inverters and panels <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+    <div class="chapter__stage">
+      <span class="stage__tag label">Ground floor</span>
+      <img class="feather" src="/catalog/inverter.webp" alt="A white hybrid solar inverter with a small screen" width="800" height="800" loading="lazy" data-parallax="0.06">
+      <span class="stage__caption">Illustration of a hybrid inverter, not specific stock</span>
+    </div>
+  </section>
+
+  <section class="chapter chapter--flip" id="cooling" aria-labelledby="c2">
+    <div class="chapter__text">
+      <span class="ghost" aria-hidden="true" data-parallax="0.12">02</span>
+      <p class="chapter__label label" data-reveal>02 · Solar air conditioning</p>
+      <h2 class="display" id="c2" data-reveal style="--d:60ms">Cooling that runs on sunlight.</h2>
+      <p class="lead" data-reveal style="--d:120ms">Panels feed it directly during the day. It draws on the grid only when it needs to.</p>
+      <dl class="facts" data-reveal style="--d:180ms">
+        <div><dt>BTU, by model</dt><dd>9k–36k</dd></div>
+        <div><dt>Solar while the sun is out</dt><dd>Up to 100%</dd></div>
+        <div><dt>Or separate inverter</dt><dd>No battery</dd></div>
+      </dl>
+      <p class="fine" data-reveal style="--d:220ms">From the ACDC hybrid solar AC brochure. Fitting needs an HVAC technician; Jontai Energy does not install.</p>
+      <a class="textlink" href="#cooling" data-reveal style="--d:260ms">See solar air conditioners <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+    <div class="chapter__stage">
+      <span class="stage__tag label">Ground floor</span>
+      <img class="feather" src="/catalog/solar-ac.webp" alt="A solar air conditioner indoor unit" width="800" height="800" loading="lazy" data-parallax="0.06">
+      <span class="stage__caption">Illustration, not specific stock</span>
+    </div>
+  </section>
+
+  <section class="chapter" id="backup" aria-labelledby="c3">
+    <div class="chapter__text">
+      <span class="ghost" aria-hidden="true" data-parallax="0.12">03</span>
+      <p class="chapter__label label" data-reveal>03 · Backup power</p>
+      <h2 class="display" id="c3" data-reveal style="--d:60ms">Keep the fridge on when the grid drops.</h2>
+      <p class="lead" data-reveal style="--d:120ms">A quiet battery with outlets for the fridge, fans and phones. Generators for homes, shops and job sites.</p>
+      <dl class="facts" data-reveal style="--d:180ms">
+        <div><dt>Output</dt><dd>3,000 W</dd></div>
+        <div><dt>Battery</dt><dd>2,560 Wh</dd></div>
+        <div><dt>AC outlets</dt><dd>4</dd></div>
+      </dl>
+      <p class="fine" data-reveal style="--d:220ms">3000W portable power station. Figures from its spec sheet; other models differ.</p>
+      <a class="textlink" href="#backup" data-reveal style="--d:260ms">See power stations and generators <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+    <div class="chapter__stage">
+      <span class="stage__tag label">Ground floor</span>
+      <img class="feather" src="/catalog/power-station.webp" alt="A grey portable power station with four outlets and a screen" width="800" height="800" loading="lazy" data-parallax="0.06">
+      <span class="stage__caption">Illustration, not specific stock</span>
+    </div>
+  </section>
+
+  <section class="chapter chapter--flip" id="light" aria-labelledby="c4">
+    <div class="chapter__text">
+      <span class="ghost" aria-hidden="true" data-parallax="0.12">04</span>
+      <p class="chapter__label label" data-reveal>04 · Lighting and cameras</p>
+      <h2 class="display" id="c4" data-reveal style="--d:60ms">Light in the colour you like.</h2>
+      <p class="lead" data-reveal style="--d:120ms">Bulbs, including filament styles, ceiling panels, tubes and floodlights. Plus security cameras that charge themselves from the sun.</p>
+      <div class="kelvin" data-reveal style="--d:180ms">
+        <div class="kelvin__row"><label class="label" for="kelvin">Try a colour</label><span class="kelvin__read"><span class="kelvin__value" id="kelvin-out">3000K</span><span class="label" id="kelvin-name" aria-live="polite">Warm white</span></span></div>
+        <input id="kelvin" type="range" min="3000" max="6500" step="100" value="3000" aria-describedby="kelvin-name">
+        <div class="kelvin__ends label"><span>3000K</span><span>6500K</span></div>
+      </div>
+      <p class="fine" data-reveal style="--d:220ms">Stock changes often, so ask before you make the trip.</p>
+      <a class="textlink" href="#light" data-reveal style="--d:260ms">See lighting and cameras <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+    <div class="chapter__stage stage--kelvin" id="kelvin-stage">
+      <span class="stage__tag label">Ground floor</span>
+      <img class="feather" src="/catalog/bulb.webp" alt="An LED bulb" width="800" height="800" loading="lazy" data-parallax="0.06">
+      <span class="stage__caption">Illustration, not specific stock</span>
+    </div>
+  </section>
+
+  <section class="chapter chapter--oak" id="upstairs" aria-labelledby="c5">
+    <div class="chapter__text">
+      <span class="ghost" aria-hidden="true" data-parallax="0.12">05</span>
+      <p class="chapter__label label" data-reveal>05 · Upstairs</p>
+      <h2 class="display" id="c5" data-reveal style="--d:60ms">Furniture for every room, one flight up.</h2>
+      <p class="lead" data-reveal style="--d:120ms">Come upstairs at Cumana 73 and sit on it before you buy.</p>
+      <p class="pull" data-reveal style="--d:180ms">Large-item delivery available. Ask us about furniture delivery.</p>
+      <a class="textlink" href="#upstairs" data-reveal style="--d:240ms">See the furniture floor <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+    </div>
+    <div class="chapter__stage">
+      <span class="stage__tag label">Second floor</span>
+      <img class="feather" src="/catalog/sofa.webp" alt="A light boucle two-seat sofa on oak legs" width="800" height="800" loading="lazy" data-parallax="0.06">
+      <span class="stage__caption">Illustration, not specific stock</span>
+    </div>
+  </section>
+
+  <!-- 4. Big numbers on contour lines -->
+  <section class="numbers" aria-labelledby="n-title">
+    <svg class="contours" data-contours aria-hidden="true"></svg>
+    <p class="label" id="n-title" data-reveal>Jontai at a glance</p>
+    <ul class="stats">
+      <li data-reveal><span class="stat__n">2</span><span class="stat__l label">Floors, power below and furniture above</span></li>
+      <li data-reveal style="--d:90ms"><span class="stat__n">5</span><span class="stat__l label">Ranges: solar, power, lighting, cameras, furniture</span></li>
+      <li data-reveal style="--d:180ms"><span class="stat__n">7</span><span class="stat__l label">Days a week, Sunday included</span></li>
+    </ul>
+  </section>
+
+  <!-- 5. Rewards -->
+  <section class="rewards" id="rewards">
+    <div>
+      <p class="label" data-reveal>Jontai Rewards</p>
+      <h2 class="display" data-reveal style="--d:80ms">Spend Afl. 500.<br><em>Get Afl. 25 back.</em></h2>
+    </div>
+    <div class="rewards__side">
+      <div class="stamps" aria-hidden="true" data-reveal>
+        <span class="on"><svg><use href="#sunmark"/></svg></span><span class="on"><svg><use href="#sunmark"/></svg></span><span class="on"><svg><use href="#sunmark"/></svg></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <p class="lead" data-reveal style="--d:80ms">Your rewards keep adding up, with an annual reset after one year of use. Full terms are confirmed in store.</p>
+      <div class="actions" data-reveal style="--d:140ms">
+        <a class="btn btn--solid" href="#rewards">Join Rewards <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn btn--line" href="#rewards">How it works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Visit -->
+  <section class="visit" id="visit" aria-labelledby="v-title">
+    <svg class="contours" data-contours aria-hidden="true"></svg>
+    <p class="label" id="v-title" data-reveal>Visit the store</p>
+    <p class="visit__street" data-fit data-reveal><span class="fit">Cumana 73</span></p>
+    <p class="visit__city" data-reveal>Oranjestad, Aruba</p>
+    <div class="visit__grid">
+      <div data-reveal>
+        <span class="label">Opening hours</span>
+        <dl class="hours">
+          <div><dt>Monday to Saturday</dt><dd>9:00 AM to 7:00 PM</dd></div>
+          <div><dt>Sunday</dt><dd>10:00 AM to 2:00 PM</dd></div>
+        </dl>
+        <span class="status" data-status><i></i><span>Open every day</span></span>
+      </div>
+      <div class="contact" data-reveal style="--d:90ms">
+        <span class="label">Talk to us</span>
+        <div>
+          <a href="#visit">+297 586 5323</a>
+          <a href="#visit">WhatsApp</a>
+          <a href="#visit">jontai@qq.com</a>
+        </div>
+      </div>
+      <div data-reveal style="--d:180ms">
+        <span class="label">Good to know</span>
+        <p class="fine">Jontai Energy is a retail store and does not provide installation services. Delivery is available for large items such as furniture.</p>
+      </div>
+    </div>
+    <div class="actions" data-reveal>
+      <a class="btn btn--sand" href="#visit">Get directions <svg aria-hidden="true"><use href="#arrow"/></svg></a>
+      <a class="btn btn--line-dark" href="#visit">WhatsApp us</a>
+      <a class="btn btn--line-dark" href="#visit">Request a quote</a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <nav class="footer__nav label" aria-label="Footer">
+    <ul><li><a href="#solar">Solar</a></li><li><a href="#backup">Inverters and generators</a></li><li><a href="#light">LED lighting</a></li><li><a href="#light">Security cameras</a></li><li><a href="#upstairs">Furniture</a></li></ul>
+    <ul><li><a href="#rewards">Rewards</a></li><li><a href="#visit">Quotes</a></li><li><a href="#top">About</a></li><li><a href="#top">FAQ</a></li><li><a href="#top">Warranty</a></li><li><a href="#top">Returns</a></li></ul>
+  </nav>
+  <div class="footer__social">
+    <a href="#top" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21h3Z"/></svg></a>
+    <a href="#top" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></svg></a>
+  </div>
+  <p class="footer__mark" data-fit aria-hidden="true"><span class="fit">JONTAI ENERGY</span></p>
+  <div class="footer__fine">
+    <span>© 2026 Jontai Energy · Cumana 73, Oranjestad, Aruba</span>
+    <span>Redesign mockup. Product pictures are illustrations.</span>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Fit big words to the width of their row.
+  const fit = () => document.querySelectorAll('[data-fit]').forEach((el) => {
+    const inner = el.querySelector('.fit');
+    el.style.fontSize = '100px';
+    const w = inner.getBoundingClientRect().width;
+    el.style.fontSize = (100 * el.clientWidth / w) + 'px';
+  });
+  fit();
+  document.fonts && document.fonts.ready.then(fit);
+  addEventListener('resize', fit);
+
+  // Open-now line, in Aruba time (UTC-4).
+  const hours = (d) => d === 0 ? [10, 14] : [9, 19];
+  const clock = (h) => `${h % 12 || 12}:00 ${h < 12 ? 'AM' : 'PM'}`;
+  const t = new Date(Date.now() - 4 * 3600e3), day = t.getUTCDay(), h = t.getUTCHours() + t.getUTCMinutes() / 60;
+  const [from, to] = hours(day);
+  const open = h >= from && h < to;
+  const line = open ? `Open now, until ${clock(to)}` : h < from ? `Closed now, opens at ${clock(from)}` : `Closed now, opens tomorrow at ${clock(hours((day + 1) % 7)[0])}`;
+  document.querySelectorAll('[data-status]').forEach((s) => { s.classList.toggle('is-open', open); s.lastElementChild.textContent = line; });
+
+  // Header turns solid once you leave the top.
+  const nav = document.getElementById('nav');
+  const onNav = () => nav.classList.toggle('is-solid', scrollY > 12);
+  onNav(); addEventListener('scroll', onNav, { passive: true });
+
+  // Hero letters rise once; everything else fades up once and then stays put.
+  const start = () => document.getElementById('hero').classList.add('is-in');
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => requestAnimationFrame(start));
+  setTimeout(start, 900);
+  const io = new IntersectionObserver((entries) => entries.forEach((e) => {
+    if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+  }), { rootMargin: '0px 0px -8% 0px', threshold: .12 });
+  document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+
+  // Gentle depth: big numerals and products drift a little against the scroll. Transforms only.
+  const layers = [...document.querySelectorAll('[data-parallax]')];
+  let ticking = false;
+  const drift = () => {
+    ticking = false;
+    const mid = innerHeight / 2;
+    for (const el of layers) {
+      const r = el.parentElement.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > innerHeight + 200) continue;
+      const off = (r.top + r.height / 2 - mid) * parseFloat(el.dataset.parallax);
+      el.style.transform = `translate3d(0, ${off.toFixed(1)}px, 0)`;
+    }
+  };
+  if (!reduce) {
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(drift); } }, { passive: true });
+    drift();
+  }
+
+  // Bulb colour, warm 3000K to daylight 6500K.
+  const k = document.getElementById('kelvin'), out = document.getElementById('kelvin-out'), name = document.getElementById('kelvin-name'), stage = document.getElementById('kelvin-stage');
+  const stops = [[3000, [255, 170, 92]], [4000, [255, 214, 168]], [5000, [255, 240, 226]], [6500, [196, 214, 255]]];
+  const mix = (v) => {
+    for (let i = 1; i < stops.length; i++) if (v <= stops[i][0]) {
+      const [k0, c0] = stops[i - 1], [k1, c1] = stops[i], f = (v - k0) / (k1 - k0);
+      return c0.map((c, j) => Math.round(c + (c1[j] - c) * f));
+    }
+    return stops[stops.length - 1][1];
+  };
+  const paint = () => {
+    const v = +k.value;
+    out.textContent = v + 'K';
+    name.textContent = v < 3600 ? 'Warm white' : v < 5000 ? 'Neutral white' : 'Daylight';
+    stage.style.setProperty('--glow', `rgb(${mix(v).join(' ')})`);
+  };
+  k.addEventListener('input', paint); paint();
+
+  // Contour lines, drawn once.
+  document.querySelectorAll('[data-contours]').forEach((svg, n) => {
+    const W = 1600, H = 1000;
+    svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+    const hills = n === 0 ? [[230, 820, 10], [1380, 180, 12], [880, 1080, 7]] : [[1420, 860, 12], [160, 120, 9]];
+    let d = '';
+    for (const [cx, cy, count] of hills) for (let ring = 1; ring <= count; ring++) {
+      const R = ring * 52;
+      let p = '';
+      for (let i = 0; i <= 140; i++) {
+        const a = i / 140 * Math.PI * 2;
+        const r = R * (1 + .11 * Math.sin(3 * a + ring * .38 + cx) + .06 * Math.sin(5 * a + 1.3 + ring * .21) + .035 * Math.sin(8 * a + cy));
+        p += (i ? 'L' : 'M') + (cx + r * Math.cos(a)).toFixed(1) + ' ' + (cy + r * .74 * Math.sin(a)).toFixed(1);
+      }
+      d += p + 'Z';
+    }
+    svg.innerHTML = `<path d="${d}" fill="none" stroke="currentColor" stroke-width="1.2" vector-effect="non-scaling-stroke"/>`;
+  });
+})();
+</script>
+</body>
+</html>
