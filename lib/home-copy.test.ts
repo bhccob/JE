@@ -25,6 +25,10 @@ test('every chapter asks for a real quote topic and shows a real render', () => 
   }
 });
 
+test('the film copy is gone', () => {
+  assert.equal(data.film, undefined);
+});
+
 test('the copy keeps the store rules', () => {
   const text = JSON.stringify(home);
   assert.doesNotMatch(text, /we install|installation services|our installers/i);

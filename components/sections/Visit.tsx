@@ -1,9 +1,11 @@
-'use client';
-
-import { useEffect, useState } from 'react';
-import { DIRECTIONS_URL } from '@/lib/contact';
+import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
+import { OpenStatus } from '@/components/home/OpenStatus';
+import { Contours } from '@/components/ui/Contours';
+import { FitText } from '@/components/ui/FitText';
+import { DIRECTIONS_URL, whatsappLink } from '@/lib/contact';
+import { VISIT_HILLS } from '@/lib/contours';
 import { QUOTE_ACTION } from '@/lib/quote';
-import { SERVICE_LINE, STORE, arubaNow, hoursOn, openState } from '@/lib/store';
+import { SERVICE_LINE, STORE } from '@/lib/store';
 
 const FAQ = [
   {
@@ -15,116 +17,84 @@ const FAQ = [
   { q: 'Are prices online?', a: 'No. Request a quote and the store replies by email with current prices and what is in stock, or ask in store.' },
 ];
 
-const DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-/** The open span of the day on a small sun arc (06:00 left, 20:00 right). Decorative; the line beside it says it. */
-function TodayArc({ from, to }: { from: number; to: number }) {
-  const START = 6;
-  const END = 20;
-  const point = (h: number) => {
-    const a = Math.PI * (1 - (h - START) / (END - START));
-    return `${(30 + 26 * Math.cos(a)).toFixed(1)} ${(30 - 26 * Math.sin(a)).toFixed(1)}`;
-  };
-  return (
-    <svg className="today__arc" viewBox="0 0 60 32" aria-hidden="true">
-      <path className="today__day" d={`M ${point(START)} A 26 26 0 0 1 ${point(END)}`} />
-      <path className="today__open" d={`M ${point(from)} A 26 26 0 0 1 ${point(to)}`} />
-    </svg>
-  );
-}
-
+/**
+ * The store, said big: CUMANA 73 across the width on forest with contour lines, then hours with the live open line,
+ * how to reach us, the service line, the questions people ask, and the ways to come by or get in touch.
+ */
 export function Visit() {
-  // Marked after load, in Aruba time, so the server and the visitor's clock never disagree.
-  const [now, setNow] = useState<{ day: number; hour: number } | null>(null);
-  useEffect(() => setNow(arubaNow()), []);
-
   return (
-    <section id="visit" className="visit" aria-labelledby="visit-title">
-      <div className="container visit__grid">
-        <div className="visit__place">
-          <h2 id="visit-title" className="h-section" data-reveal>
-            Visit the store.
-          </h2>
-          <address className="visit__address" data-reveal style={{ ['--i' as string]: 1 }}>
-            {STORE.street}, {STORE.city}, {STORE.country}
-          </address>
-          <div className="actions">
-            <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
-              Get directions
-            </a>
-            <a href="/quote" className="btn btn--ghost">
-              {QUOTE_ACTION}
-            </a>
-          </div>
-          {now && (
-            <p className="today">
-              <TodayArc from={hoursOn(now.day).from} to={hoursOn(now.day).to} />
-              <span>
-                <strong>{openState(now.day, now.hour).line}</strong>
-                <span>
-                  {DAYS[now.day]}, {hoursOn(now.day).time}
-                </span>
-              </span>
-            </p>
-          )}
-        </div>
+    <section id="visit" className="visit" data-tone="dark" data-expand aria-labelledby="visit-title">
+      <Contours hills={VISIT_HILLS} />
+      <p id="visit-title" className="label" data-reveal>
+        Visit the store
+      </p>
+      <FitText text={STORE.street} chars label={`${STORE.street}, ${STORE.city}, ${STORE.country}`} className="visit__street" />
+      <p className="visit__city" data-reveal>
+        {STORE.city}, {STORE.country}
+      </p>
 
-        <dl className="info">
-          <div className="info__row">
-            <dt>Opening hours</dt>
-            <dd>
-              {STORE.hours.map((h) => (
-                <span key={h.days} className="info__hours">
-                  <span>{h.days}</span>
-                  <span>{h.time}</span>
-                </span>
-              ))}
-            </dd>
+      <div className="visit__grid">
+        <div>
+          <span className="rule" data-line />
+          <span className="label" data-reveal>
+            Opening hours
+          </span>
+          <dl className="hours" data-reveal>
+            {STORE.hours.map((h) => (
+              <div key={h.days}>
+                <dt>{h.days}</dt>
+                <dd>{h.time}</dd>
+              </div>
+            ))}
+          </dl>
+          <OpenStatus data-reveal />
+        </div>
+        <div className="contact">
+          <span className="rule" data-line />
+          <span className="label" data-reveal>
+            Talk to us
+          </span>
+          <div data-reveal>
+            <a href={`tel:${STORE.phone.replace(/\s/g, '')}`}>{STORE.phone}</a>
+            <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+              WhatsApp
+            </a>
+            <a href={`mailto:${STORE.email}`}>{STORE.email}</a>
           </div>
-          <div className="info__row">
-            <dt>Phone</dt>
-            <dd>
-              <a href={`tel:${STORE.phone.replace(/\s/g, '')}`}>{STORE.phone}</a>
-            </dd>
-          </div>
-          <div className="info__row">
-            <dt>WhatsApp</dt>
-            <dd>
-              <a href={STORE.whatsapp} target="_blank" rel="noopener noreferrer">
-                Message us
-              </a>
-            </dd>
-          </div>
-          <div className="info__row">
-            <dt>Email</dt>
-            <dd>
-              <a href={`mailto:${STORE.email}`}>{STORE.email}</a>
-            </dd>
-          </div>
-          <div className="info__row">
-            <dt>Social</dt>
-            <dd>
-              <a href={STORE.facebook} target="_blank" rel="noopener noreferrer">
-                Facebook
-              </a>
-              <a href={STORE.instagram} target="_blank" rel="noopener noreferrer">
-                Instagram
-              </a>
-            </dd>
-          </div>
-        </dl>
+        </div>
+        <div>
+          <span className="rule" data-line />
+          <span className="label" data-reveal>
+            Good to know
+          </span>
+          <p className="fine" data-reveal>
+            {SERVICE_LINE}
+          </p>
+        </div>
       </div>
 
-      <div className="container visit__more">
-        <p className="service">{SERVICE_LINE}</p>
-        <div className="faq">
-          {FAQ.map((f) => (
-            <details key={f.q}>
-              <summary>{f.q}</summary>
-              <p>{f.a}</p>
-            </details>
-          ))}
-        </div>
+      <section id="faq" className="faq" aria-labelledby="faq-title">
+        <h3 id="faq-title" className="label" data-reveal>
+          Questions
+        </h3>
+        {FAQ.map((f) => (
+          <details key={f.q} data-reveal>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </section>
+
+      <div className="actions" data-reveal>
+        <a href={DIRECTIONS_URL} target="_blank" rel="noopener noreferrer" className="btn btn--primary">
+          Get directions <ArrowRight size={18} weight="bold" aria-hidden="true" />
+        </a>
+        <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn--ghost">
+          WhatsApp us
+        </a>
+        <a href="/quote" className="btn btn--ghost">
+          {QUOTE_ACTION}
+        </a>
       </div>
     </section>
   );

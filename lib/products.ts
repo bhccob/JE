@@ -74,26 +74,6 @@ export interface Fact {
   label: string;
 }
 
-/** Copy for the home page's day film, one entry per chapter. Every figure comes from a supplied datasheet. */
-export interface FilmCopy {
-  dawn: { title: string; line: string; primary: string; secondary: string };
-  noon: {
-    title: string;
-    line: string;
-    panelAction: string;
-    inverterTitle: string;
-    inverterLine: string;
-    facts: Fact[];
-    source: string;
-  };
-  heat: { title: string; line: string; facts: Fact[]; note: string };
-  afternoon: { title: string; line: string; facts: Fact[]; note: string };
-  dusk: { title: string; line: string; kelvin: string };
-  night: { title: string; line: string };
-  outage: { title: string; line: string };
-  morning: { climb: string; title: string; line: string; delivery: string };
-}
-
 /** What the product panel can open: a category's range, or one product told in full. */
 export type PanelId = CategoryId | 'inverter' | 'solar-ac' | 'power-station' | 'generator';
 
@@ -154,7 +134,6 @@ export interface ProductPanel {
 
 export const CATEGORIES = data.categories as Category[];
 export const PANELS = data.panels as Partial<Record<PanelId, ProductPanel>>;
-export const FILM_COPY = data.film as FilmCopy;
 export const HOME_COPY = data.home as HomeCopy;
 
 export const categoryById = (id: CategoryId) => CATEGORIES.find((c) => c.id === id)!;

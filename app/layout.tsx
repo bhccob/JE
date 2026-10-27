@@ -48,9 +48,7 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-const HEAD_SCRIPT = `(function(){var d=document.documentElement;d.classList.add('js');
-try{var c=navigator.connection;if(matchMedia('(prefers-reduced-motion: reduce)').matches||(c&&c.saveData)||!window.createImageBitmap)d.classList.add('still')}catch(e){}
-try{if(location.pathname==='/'&&!sessionStorage.getItem('jontai-daybreak'))d.classList.add('before-dawn')}catch(e){}})()`;
+const HEAD_SCRIPT = `(function(){document.documentElement.classList.add('js')})()`;
 
 // Verified business facts only (lib/store.ts). Hours confirmed by the owner on 2026-10-27.
 const store = {
@@ -78,9 +76,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
-        {/* Before paint: mark scripting on (reveals and the film need it), choose stills over the film for reduced
-            motion, Save-Data or a browser that cannot decode frames off the main thread, cover the home page with the
-            loading screen on the first visit of the session, and apply the remembered day/night colours (day unless the visitor chose evening) so the page never flashes. */}
+        {/* Before paint: mark scripting on, so motion's starting states apply only when motion will run. */}
         <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
       </head>
       <body>

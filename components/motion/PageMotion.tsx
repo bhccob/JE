@@ -112,9 +112,10 @@ export function PageMotion() {
             const strip = el.querySelector('.stat__strip');
             if (!strip || !Number.isFinite(n)) return;
             const order = [...(el.closest('section')?.querySelectorAll('[data-odometer]') ?? [el])].indexOf(el);
+            // The strip rests on its number in CSS (no motion, no scripts); start from 0 and roll back to it.
             gsap.fromTo(
               strip,
-              { yPercent: 0 },
+              { y: 0, yPercent: 0 },
               { yPercent: (-100 * n) / (n + 1), duration: 1.9, delay: Math.max(0, order) * 0.15, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%', once: true } },
             );
           });
