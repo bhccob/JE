@@ -3,58 +3,53 @@
 import { useEffect, useRef } from 'react';
 import { filmStore } from './store';
 
-/** Seconds after the sun starts to swell when the screen starts to lift, as the sun is about to cover it. DayFilm
+/** Seconds after the sun starts to zoom when the screen starts to lift, as the sun is about to cover it. DayFilm
  *  starts the sunrise then. */
 export const DAYBREAK_LIFT = 0.68;
 /** Set for the rest of the visit once the screen has shown. The head script in app/layout.tsx reads the same key. */
 const SEEN = 'jontai-daybreak';
-/** The sunrise never runs faster than this, so the screen reads as an opening, not a flash; it runs slower when
+/** The outline never draws faster than this, so the screen reads as an opening, not a flash; it draws slower when
  *  loading does. */
-const RISE = 3300;
-/** A beat at 05:30 before the sun swells. */
-const HOLD = 500;
-const SWELL = 1100;
+const DRAW = 3300;
+/** The outline fills with light, then a beat before the zoom. */
+const BRIGHTEN = 550;
+const BEAT = 150;
+const ZOOM = 1100;
 const FADE = 850;
-/** A scroll, tap or key skips the sunrise with a quick fade. */
+/** A scroll, tap or key skips it with a quick fade. */
 const SKIP_FADE = 400;
-/** If the opening is still loading by then, the sun rises anyway and the film catches up behind it. */
+/** If the opening is still loading by then, the outline completes anyway and the film catches up behind it. */
 const PATIENCE = { film: 8000, still: 3000 };
-/** The clock runs from 04:00 to 05:30, where the film's own clock starts. */
-const FROM = 4 * 60;
-const TO = 5.5 * 60;
 
 // Once per page life as well, so coming back to the home page without a reload skips it.
 let played = false;
 
-const clockAt = (p: number) => {
-  const m = Math.round(FROM + (TO - FROM) * p);
-  return `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
-};
-
 /**
- * The loading screen on a first visit: the night the film starts from, a horizon, and a sun that comes up over it
- * while a clock runs to 05:30. The sun rises with the opening as it really loads, but never faster than RISE. At
- * 05:30 it swells to fill the screen and the screen lifts onto the dawn frame as the film's sunrise starts. Any
- * scroll, tap or key skips it. With reduced motion or Save-Data it is the night and the horizon alone, fading out
- * once the fonts are in. It shows only while html.before-dawn is set by the head script, so never without scripts,
- * and CSS lifts it on its own if the scripts never arrive. The sun, the glow and the swell run on WAAPI (translate,
- * scale, opacity), so they stay smooth while the page loads; only the clock's digits are written from script.
+ * The loading screen on a first visit: the night the film starts from and the outline of a sun, drawn round as the
+ * opening loads (never faster than DRAW). Once it closes, the sun lights up and zooms into the screen, thinning to a
+ * warm wash over the morning as the screen lifts onto the dawn frame and the film's sunrise starts. Any scroll, tap
+ * or key skips it. With reduced motion or Save-Data it is the still outline, fading out once the fonts are in. It
+ * shows only while html.before-dawn is set by the head script, so never without scripts, and CSS lifts it on its own
+ * if the scripts never arrive. Everything runs on WAAPI (the outline's dash, then scale and opacity), so it stays
+ * smooth while the page loads.
  */
 export function Daybreak() {
   const root = useRef<HTMLDivElement>(null);
   const scene = useRef<HTMLSpanElement>(null);
   const sun = useRef<HTMLSpanElement>(null);
-  const sky = useRef<HTMLSpanElement>(null);
-  const clock = useRef<HTMLSpanElement>(null);
+  const core = useRef<HTMLSpanElement>(null);
+  const ring = useRef<SVGSVGElement>(null);
+  const arc = useRef<SVGPathElement>(null);
 
   useEffect(() => {
     const html = document.documentElement;
     const el = root.current;
     const night = scene.current;
     const disc = sun.current;
-    const glow = sky.current;
-    const digits = clock.current;
-    if (!el || !night || !disc || !glow || !digits) return;
+    const light = core.current;
+    const outline = ring.current;
+    const stroke = arc.current;
+    if (!el || !night || !disc || !light || !outline || !stroke) return;
     if (played || !html.classList.contains('before-dawn')) {
       html.classList.remove('before-dawn');
       return;
@@ -66,11 +61,13 @@ export function Daybreak() {
     }
     const still = html.classList.contains('still');
     const token = (name: string) => getComputedStyle(html).getPropertyValue(name).trim();
+    const inOut = token('--ease-in-out');
+    const out = token('--ease-out');
     const animations: Animation[] = [];
     const early = ['wheel', 'touchstart', 'keydown', 'pointerdown'] as const;
     let unsubscribe = () => {};
     let patience = 0;
-    let hold = 0;
+    let next = 0;
     let raf = 0;
     let opened = false;
     let gone = false;
@@ -78,7 +75,7 @@ export function Daybreak() {
     const stop = () => {
       unsubscribe();
       window.clearTimeout(patience);
-      window.clearTimeout(hold);
+      window.clearTimeout(next);
       cancelAnimationFrame(raf);
       early.forEach((type) => window.removeEventListener(type, skip));
     };
@@ -87,16 +84,13 @@ export function Daybreak() {
       html.classList.remove('before-dawn');
       animations.forEach((a) => a.cancel());
     };
+    const play = (target: Element, keyframes: Keyframe[], timing: KeyframeAnimationOptions) => {
+      const a = target.animate(keyframes, { fill: 'forwards', ...timing });
+      animations.push(a);
+      return a;
+    };
     const fadeOut = (delay: number, duration: number) => {
-      const fade = el.animate([{ opacity: 1 }, { opacity: 0 }], {
-        delay,
-        duration,
-        // A dissolve of the sun's light into the picture, so it holds for a beat before it clears.
-        easing: token('--ease-in-out'),
-        fill: 'forwards',
-      });
-      animations.push(fade);
-      fade.finished.then(lift, () => {});
+      play(el, [{ opacity: 1 }, { opacity: 0 }], { delay, duration, easing: inOut }).finished.then(lift, () => {});
     };
     const begin = () => {
       if (opened || gone) return false;
@@ -105,27 +99,23 @@ export function Daybreak() {
       filmStore.set({ daybreak: true });
       return true;
     };
-    // At 05:30: the sun swells from where it stands until it covers the farthest corner, and the screen lifts.
-    const swell = () => {
+    // The zoom: the lit sun grows from the middle until it covers the corners. It stays solid while the night
+    // dissolves behind it, then thins over the morning, so the screen fills with a warm wash, not a block of colour.
+    const zoom = () => {
       if (!begin()) return;
-      el.dataset.open = 'true';
       const r = disc.getBoundingClientRect();
-      const [cx, cy] = [r.left + r.width / 2, r.top + r.height / 2];
-      const [w, h] = [window.innerWidth, window.innerHeight];
-      const reach = Math.max(Math.hypot(cx, cy), Math.hypot(w - cx, cy), Math.hypot(cx, h - cy), Math.hypot(w - cx, h - cy));
+      const reach = Math.hypot(Math.max(r.left + r.width / 2, window.innerWidth - r.left - r.width / 2), Math.max(r.top + r.height / 2, window.innerHeight - r.top - r.height / 2));
       const cover = ((2 * reach) / r.width) * 1.05;
-      // The sun stays solid while the night dissolves behind it, then thins over the morning, so the screen fills
-      // with a warm wash rather than a solid block of colour (thinning it over the night turns it olive).
-      const easing = token('--ease-in-out');
-      animations.push(
-        disc.animate([{ scale: '1', opacity: 1 }, { opacity: 1, offset: 0.55 }, { scale: cover.toFixed(2), opacity: 0.45 }], {
-          duration: SWELL,
-          easing,
-          fill: 'forwards',
-        }),
-        night.animate([{ opacity: 1 }, { opacity: 0 }], { delay: SWELL * 0.25, duration: SWELL * 0.4, easing, fill: 'forwards' }),
-      );
+      play(disc, [{ scale: '1' }, { scale: cover.toFixed(2) }], { duration: ZOOM, easing: inOut });
+      play(light, [{ opacity: 1 }, { opacity: 1, offset: 0.55 }, { opacity: 0.45 }], { duration: ZOOM, easing: inOut });
+      play(night, [{ opacity: 1 }, { opacity: 0 }], { delay: ZOOM * 0.25, duration: ZOOM * 0.4, easing: inOut });
       fadeOut(DAYBREAK_LIFT * 1000, FADE);
+    };
+    // The outline has closed: the sun fills with light and the outline gives way to it.
+    const brighten = () => {
+      play(light, [{ opacity: 0 }, { opacity: 1 }], { duration: BRIGHTEN, easing: out });
+      play(outline, [{ opacity: 1 }, { opacity: 0 }], { duration: BRIGHTEN, easing: out });
+      next = window.setTimeout(zoom, BRIGHTEN + BEAT);
     };
     function skip() {
       if (begin()) fadeOut(0, SKIP_FADE);
@@ -143,28 +133,16 @@ export function Daybreak() {
       };
     }
 
-    // The sunrise: the sun and its glow rise over RISE, paused whenever they get ahead of what has really loaded.
-    const timing = { duration: RISE, easing: token('--ease-in-out'), fill: 'forwards' as const };
-    // The sun fades in over the first part of its climb instead of standing at the horizon from the first frame.
-    const rise = disc.animate([{ translate: '0 85%', opacity: 0 }, { opacity: 1, offset: 0.3 }, { translate: '0 0', opacity: 1 }], timing);
-    const light = glow.animate([{ opacity: 0 }, { opacity: 1 }], timing);
-    animations.push(rise, light);
+    // The outline fades in and draws round over DRAW, paused whenever it gets ahead of what has really loaded.
+    play(disc, [{ opacity: 0 }, { opacity: 1 }], { duration: 600, easing: out });
+    const draw = play(stroke, [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }], { duration: DRAW, easing: inOut });
     let loaded = 0;
-    let shown = '';
     const tick = () => {
       raf = 0;
-      const ahead = Number(rise.currentTime ?? 0) / RISE >= loaded && loaded < 1;
-      for (const a of [rise, light]) {
-        if (ahead && a.playState === 'running') a.pause();
-        else if (!ahead && a.playState === 'paused') a.play();
-      }
-      const time = clockAt(rise.effect?.getComputedTiming().progress ?? 0);
-      if (time !== shown) digits.textContent = shown = time;
-      if (rise.playState === 'finished') {
-        digits.textContent = clockAt(1);
-        hold = window.setTimeout(swell, HOLD);
-        return;
-      }
+      const ahead = Number(draw.currentTime ?? 0) / DRAW >= loaded && loaded < 1;
+      if (ahead && draw.playState === 'running') draw.pause();
+      else if (!ahead && draw.playState === 'paused') draw.play();
+      if (draw.playState === 'finished') return brighten();
       raf = requestAnimationFrame(tick);
     };
     unsubscribe = filmStore.subscribe((s) => {
@@ -186,19 +164,17 @@ export function Daybreak() {
   return (
     <div ref={root} className="daybreak" aria-hidden="true">
       <span ref={scene} className="daybreak__scene">
-        <span ref={sky} className="daybreak__sky" />
         <span className="daybreak__mark">
           Jontai <span>Energy</span>
         </span>
-        <span className="daybreak__time">
-          <span ref={clock} className="daybreak__clock">
-            {clockAt(0)}
-          </span>
-          <span className="daybreak__caption">Sunrise in Oranjestad</span>
-        </span>
       </span>
-      <span className="daybreak__window">
-        <span ref={sun} className="daybreak__sun" />
+      <span ref={sun} className="daybreak__sun">
+        <span ref={core} className="daybreak__core" />
+        <svg ref={ring} className="daybreak__ring" viewBox="0 0 100 100">
+          <circle className="daybreak__track" cx="50" cy="50" r="49" />
+          {/* From the top, clockwise. A path, not a circle, so pathLength works in Safari too. */}
+          <path ref={arc} className="daybreak__arc" d="M50 1 a49 49 0 1 1 0 98 a49 49 0 1 1 0 -98" pathLength={1} />
+        </svg>
       </span>
     </div>
   );
