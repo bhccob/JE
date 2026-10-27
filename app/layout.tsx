@@ -39,7 +39,14 @@ export const metadata: Metadata = {
         siteName: 'Jontai Energy (concept redesign)',
       }
     : { type: 'website', title: 'Jontai Energy', description, locale: 'en', siteName: 'Jontai Energy' },
-  icons: { icon: '/icon.svg' },
+  // The store's leaf-and-house mark, built from its logo by tools/brand/icons.mjs.
+  icons: {
+    icon: [
+      { url: '/icon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    apple: '/apple-icon.png',
+  },
   // A concept build stays out of search results, so it is never mistaken for the store's own site.
   robots: CONCEPT ? { index: false, follow: false } : undefined,
 };
