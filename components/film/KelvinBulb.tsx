@@ -2,7 +2,7 @@
 
 import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import { kelvinLabel, kelvinStill, kelvinToRgb, kelvinValueText } from '@/lib/kelvin';
-import { drawCover } from './frames';
+import { drawCover, fitCanvas } from './frames';
 import { filmStore, progressOf } from './store';
 
 const STILLS = [3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500];
@@ -32,8 +32,9 @@ export function KelvinPicture() {
     if (!cvs || !ctx) return;
     const size = window.matchMedia('(orientation: portrait)').matches ? 'm' : 'd';
     const still = document.documentElement.classList.contains('still');
-    const images: (HTMLImageElement | null)[] = STILLS.map(() => null);
+    const images: (ImageBitmap | null)[] = STILLS.map(() => null);
     let started = false;
+    let gone = false;
 
     const draw = () => {
       const { a, b, t } = kelvinStill(current, STILLS);
@@ -47,20 +48,21 @@ export function KelvinPicture() {
     const load = () => {
       if (started) return;
       started = true;
+      // Decoded off the main thread up front, so dragging the slider never waits on a decode.
       STILLS.forEach((k, i) => {
-        const img = new Image();
-        img.decoding = 'async';
-        img.onload = () => {
-          images[i] = img;
-          draw();
-        };
-        img.src = `/film/kelvin/${size}/${k}.webp`;
+        fetch(`/film/kelvin/${size}/${k}.webp`)
+          .then((res) => res.blob())
+          .then((file) => createImageBitmap(file))
+          .then((image) => {
+            if (gone) return image.close();
+            images[i] = image;
+            draw();
+          })
+          .catch(() => {});
       });
     };
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      cvs.width = Math.round(cvs.clientWidth * dpr);
-      cvs.height = Math.round(cvs.clientHeight * dpr);
+      fitCanvas(cvs, size);
       draw();
     };
     resize();
@@ -81,9 +83,11 @@ export function KelvinPicture() {
       });
     }
     return () => {
+      gone = true;
       unsub();
       listeners.delete(draw);
       window.removeEventListener('resize', resize);
+      images.forEach((image) => image?.close());
     };
   }, []);
 

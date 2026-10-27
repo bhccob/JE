@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
  * Lenis drives the real window scroll, so Motion's useScroll, IntersectionObserver and ScrollTrigger all keep working.
  * One clock: GSAP's ticker advances Lenis, and every Lenis scroll tells ScrollTrigger to update, so pinned
  * GSAP sequences and Motion-driven sections never drift apart.
- * lerp ~0.09 gives the weighted, buttery wheel feel; touch keeps native momentum.
+ * lerp 0.12 keeps the wheel smooth without trailing far behind the hand; touch keeps native momentum.
  * Reduced-motion visitors get plain native scrolling.
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
@@ -30,7 +30,7 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     <ReactLenis
       root
       ref={lenisRef}
-      options={{ autoRaf: false, lerp: 0.09, wheelMultiplier: 0.95, smoothWheel: !reduced, anchors: { offset: -80 } }}
+      options={{ autoRaf: false, lerp: 0.12, wheelMultiplier: 1.1, smoothWheel: !reduced, anchors: { offset: -80 } }}
     >
       <ScrollTriggerSync />
       {process.env.NODE_ENV === 'development' && <DevHandle />}
