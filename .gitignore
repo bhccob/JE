@@ -5,3 +5,10 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .env*.local
+.next-3100/
+.hallmark/before/
+
+# Blender film: renders and the working .blend are rebuilt by tools/blender/film (build.py, render-all.sh)
+tools/blender/film/out/
+tools/blender/film/day.blend
+tools/blender/film/day.blend1

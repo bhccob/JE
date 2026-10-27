@@ -1,0 +1,113 @@
+/* Jontai Energy tokens. Hues from the owner's brief: sand #F7F5EC, light green #B8D8A8, fresh green #79AE72,
+   forest #173D2C, ink #183128, warm wood #B78455, light oak #D8B98E. Sun amber is light, never a UI colour. */
+:root {
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-md: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5625rem;
+  --text-2xl: 1.953rem;
+  --text-3xl: 2.441rem;
+  --text-display-s: clamp(2.25rem, 3.6vw + 0.75rem, 4rem);
+  --text-display: clamp(2.75rem, 5.4vw + 0.5rem, 6rem);
+  --text-section: clamp(2.25rem, 3vw + 1rem, 4.25rem);
+  --text-title: clamp(1.375rem, 0.75vw + 1rem, 1.75rem);
+  --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --color-error: oklch(48% 0.17 27);
+  --color-success: oklch(45% 0.1 150);
+
+  --color-paper: oklch(96.9% 0.012 96.4);
+  --color-paper-2: oklch(94.2% 0.018 94);
+  --color-paper-3: oklch(90.8% 0.022 92);
+  --color-ink: oklch(29% 0.036 168.6);
+  --color-ink-2: oklch(32.7% 0.053 161.9);
+  --color-muted: oklch(46% 0.035 158);
+  --color-rule: oklch(29% 0.036 168.6 / 0.14);
+  --color-accent: oklch(69.8% 0.102 141.6);
+  --color-accent-ink: oklch(24% 0.045 160);
+  --color-focus: oklch(52% 0.15 148);
+
+  --color-field: oklch(84.6% 0.073 135.3);
+  --color-field-2: oklch(92.4% 0.042 134);
+  --color-oak: oklch(80.2% 0.067 75.6);
+  --color-oak-2: oklch(88% 0.045 78);
+  --color-wood: oklch(65.3% 0.089 62.9);
+  --color-dusk: oklch(36% 0.04 170);
+  --color-dusk-ink: oklch(95% 0.02 95);
+  --color-sun: oklch(86% 0.13 78);
+
+  /* The film carries its own light, so its copy uses fixed day and night inks whatever the theme. */
+  --color-day-ink: oklch(29% 0.036 168.6);
+  --color-day-ink-2: oklch(34% 0.045 165);
+  --color-day-scrim: oklch(96.9% 0.012 96.4 / 0.78);
+  --color-night-ink: oklch(96.5% 0.014 95);
+  --color-night-ink-2: oklch(90% 0.022 100);
+  --color-night-scrim: oklch(18% 0.03 175 / 0.72);
+  --color-forest: oklch(32.7% 0.053 161.9);
+  --color-film-night: oklch(20% 0.03 190);
+
+  --font-display: var(--font-gambetta), "Gambetta", ui-serif, Georgia, serif;
+  --font-body: var(--font-hanken), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-outlier: var(--font-display);
+
+  --radius-card: 28px;
+  --radius-well: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 30px 60px -36px oklch(29% 0.036 168.6 / 0.45);
+  --tracking-display: -0.025em;
+
+  /* Glass: frosted sand by day, frosted forest by night. The film's panes keep their own fixed day and night glass. */
+  --glass-day-fill: oklch(98.6% 0.008 96 / 0.6);
+  --glass-day-strong: oklch(98.6% 0.008 96 / 0.84);
+  --glass-day-edge: oklch(100% 0 0 / 0.7);
+  --glass-day-line: oklch(29% 0.036 168.6 / 0.1);
+  --glass-day-solid: oklch(96.9% 0.012 96.4);
+  --glass-night-fill: oklch(18% 0.03 172 / 0.72);
+  --glass-night-strong: oklch(21% 0.032 170 / 0.86);
+  --glass-night-edge: oklch(100% 0 0 / 0.1);
+  --glass-night-line: oklch(96.5% 0.014 95 / 0.14);
+  --glass-night-solid: oklch(21% 0.032 170);
+  --glass-fill: var(--glass-day-fill);
+  --glass-strong: var(--glass-day-strong);
+  --glass-edge: var(--glass-day-edge);
+  --glass-line: var(--glass-day-line);
+  --glass-solid: var(--glass-day-solid);
+  --glass-shadow: 0 30px 70px -40px oklch(29% 0.036 168.6 / 0.42);
+  --glass-blur: 24px;
+}
+:root {
+  --space-3xs: 2px;
+  --space-2xs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 144px;
+  --dur-micro: 120ms;
+  --dur-short: 220ms;
+  --dur-long: 420ms;
+  --container: 1440px;
+  --gutter: 64px;
+  --gap-columns: 32px;
+  --section-gap-s: 120px;
+  --section-gap: 144px;
+  --section-gap-l: 176px;
+  --nav-h: 72px;
+  --z-base: 1;
+  --z-raised: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-sticky-nav: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
+  --rule-hair: 1px;
+}
+@media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; --nav-h: 64px; } }
+@media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }

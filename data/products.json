@@ -1,0 +1,961 @@
+{
+  "categories": [
+    {
+      "id": "solar",
+      "name": "Solar Systems",
+      "short": "Solar",
+      "blurb": "Panels, and air conditioning that runs on the sun.",
+      "products": [
+        {
+          "id": "acdc-solar-ac",
+          "name": "ACDC Hybrid Solar Air Conditioner",
+          "model": "TKFR-OG series",
+          "image": {
+            "src": "/products/solar-ac-indoor.webp",
+            "alt": "White wall-mounted indoor unit of the solar air conditioner",
+            "w": 588,
+            "h": 267
+          },
+          "summary": "Runs on solar DC power during the day and mixes in grid power only when it needs to. No battery and no separate inverter.",
+          "specs": [
+            {
+              "label": "Wattage",
+              "value": "100 to 3,510 W cooling input"
+            },
+            {
+              "label": "Capacity",
+              "value": "9,000 to 36,000 BTU"
+            },
+            {
+              "label": "Power",
+              "value": "220 V AC 50/60 Hz + 22 to 45 V DC solar"
+            }
+          ],
+          "features": [
+            "Up to 100% solar power while the sun is out",
+            "Built-in MPPT, solar plugs in with MC4 connectors",
+            "Indoor unit as quiet as 26 dB, R410a refrigerant",
+            "Zinc-coated, anticorrosion casing for seaside homes",
+            "Restarts on its own after a power cut"
+          ],
+          "models": {
+            "caption": "Models",
+            "columns": [
+              "Model",
+              "Cooling",
+              "Cooling input"
+            ],
+            "rows": [
+              [
+                "TKFR-26GW/OG",
+                "9,000 BTU",
+                "100 to 1,200 W"
+              ],
+              [
+                "TKFR-35GW/OG",
+                "12,000 BTU",
+                "110 to 1,500 W"
+              ],
+              [
+                "TKFR-52GW/OG",
+                "18,000 BTU",
+                "140 to 1,800 W"
+              ],
+              [
+                "TKFR-72GW/OG",
+                "24,000 BTU",
+                "240 to 3,030 W"
+              ],
+              [
+                "TKFR-90GW/OG",
+                "30,000 BTU",
+                "280 to 3,350 W"
+              ],
+              [
+                "TKFR-100GW/OG",
+                "36,000 BTU",
+                "320 to 3,510 W"
+              ]
+            ]
+          },
+          "note": "The manufacturer requires installation by a skilled HVAC technician."
+        },
+        {
+          "id": "solar-panels",
+          "name": "Solar Panels",
+          "image": {
+            "src": "/products/solar-panels.webp",
+            "alt": "Three blue solar panels standing side by side",
+            "w": 424,
+            "h": 601
+          },
+          "summary": "Panels for rooftop systems, and for running the solar air conditioner directly during the day.",
+          "specs": [],
+          "features": [
+            "Sold on their own or matched to a solar air conditioner",
+            "Ask which wattages are in stock this week"
+          ]
+        }
+      ],
+      "range": [
+        {
+          "name": "Solar panels",
+          "line": "Framed panels for rooftop systems and solar air conditioning.",
+          "image": "/catalog/solar-panels.webp",
+          "alt": "A blue solar panel with a silver frame"
+        },
+        {
+          "name": "Solar air conditioners",
+          "line": "Hybrid units that run on the sun by day and the grid when needed.",
+          "image": "/catalog/solar-ac.webp",
+          "alt": "A white indoor air conditioning unit and its grey outdoor unit"
+        }
+      ],
+      "quote": "solar-panels"
+    },
+    {
+      "id": "power",
+      "name": "Inverters & Generators",
+      "short": "Power",
+      "blurb": "Inverters, power stations and backup generators.",
+      "products": [
+        {
+          "id": "spi-8k-up",
+          "name": "All-in-One Solar Charge Inverter",
+          "model": "SPI-8K-UP",
+          "image": {
+            "src": "/products/spi-inverter.webp",
+            "alt": "White wall-mounted SPI solar inverter with a small colour display",
+            "w": 731,
+            "h": 1047
+          },
+          "summary": "Solar, battery and grid in one wall unit, with pure sine wave output for the whole house.",
+          "specs": [
+            {
+              "label": "Wattage",
+              "value": "8,000 W rated, 16,000 W peak"
+            },
+            {
+              "label": "Output",
+              "value": "120 / 240 V split-phase, pure sine wave, 50/60 Hz"
+            },
+            {
+              "label": "Battery",
+              "value": "48 V, lithium or lead-acid"
+            },
+            {
+              "label": "Solar input",
+              "value": "2 MPPT, 5,500 W + 5,500 W"
+            }
+          ],
+          "features": [
+            "Switches to battery in 10 ms",
+            "Up to 6 units in parallel",
+            "Charges from solar, grid or a generator",
+            "Timed charging for cheaper hours",
+            "24-month warranty, indoor use (IP20)"
+          ],
+          "models": {
+            "caption": "Series",
+            "columns": [
+              "Model",
+              "Rated",
+              "Peak"
+            ],
+            "rows": [
+              [
+                "SPI-8K-UP",
+                "8,000 W",
+                "16,000 W"
+              ],
+              [
+                "SPI-10K-UP",
+                "10,000 W",
+                "20,000 W"
+              ]
+            ]
+          },
+          "note": "Wiring to your panel and batteries should be done by a licensed electrician.",
+          "datasheet": {
+            "source": "Namkoo SPI series datasheet",
+            "columns": [
+              "SPI-8K-UP",
+              "SPI-10K-UP"
+            ],
+            "groups": [
+              {
+                "title": "Inverter output",
+                "rows": [
+                  {
+                    "label": "Rated output power",
+                    "values": [
+                      "8,000 W",
+                      "10,000 W"
+                    ]
+                  },
+                  {
+                    "label": "Max. peak power",
+                    "values": [
+                      "16,000 W",
+                      "20,000 W"
+                    ]
+                  },
+                  {
+                    "label": "Rated output voltage",
+                    "value": "120 V AC single-phase, 240 V AC split-phase, three-phase when paralleled"
+                  },
+                  {
+                    "label": "Motor load capacity",
+                    "values": [
+                      "5 HP",
+                      "6 HP"
+                    ]
+                  },
+                  {
+                    "label": "Rated AC frequency",
+                    "value": "50/60 Hz"
+                  },
+                  {
+                    "label": "Waveform",
+                    "value": "Pure sine wave"
+                  },
+                  {
+                    "label": "Switch time",
+                    "value": "10 ms (typical)"
+                  },
+                  {
+                    "label": "Parallel capacity",
+                    "value": "1 to 6 units"
+                  },
+                  {
+                    "label": "Output mode",
+                    "value": "Off-grid (default) or hybrid"
+                  }
+                ]
+              },
+              {
+                "title": "Battery",
+                "rows": [
+                  {
+                    "label": "Battery type",
+                    "value": "Li-ion, lead-acid or user-defined"
+                  },
+                  {
+                    "label": "Rated battery voltage",
+                    "value": "48 V DC"
+                  },
+                  {
+                    "label": "Battery voltage range",
+                    "value": "40 to 60 V DC"
+                  },
+                  {
+                    "label": "Max. MPPT charging current",
+                    "values": [
+                      "180 A",
+                      "200 A"
+                    ]
+                  },
+                  {
+                    "label": "Max. mains / generator charging current",
+                    "values": [
+                      "100 A",
+                      "120 A"
+                    ]
+                  },
+                  {
+                    "label": "Max. hybrid charging current",
+                    "values": [
+                      "180 A",
+                      "200 A"
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Solar input",
+                "rows": [
+                  {
+                    "label": "MPPT trackers",
+                    "value": "2"
+                  },
+                  {
+                    "label": "Max. PV array power",
+                    "value": "5,500 W + 5,500 W"
+                  },
+                  {
+                    "label": "Max. input current",
+                    "value": "22 A + 22 A"
+                  },
+                  {
+                    "label": "Max. open circuit voltage",
+                    "value": "500 V DC + 500 V DC"
+                  },
+                  {
+                    "label": "MPPT voltage range",
+                    "value": "125 to 425 V DC"
+                  }
+                ]
+              },
+              {
+                "title": "Grid and generator input",
+                "rows": [
+                  {
+                    "label": "Input voltage range",
+                    "value": "90 to 140 V AC"
+                  },
+                  {
+                    "label": "Frequency range",
+                    "value": "50/60 Hz"
+                  },
+                  {
+                    "label": "Bypass overload current",
+                    "value": "63 A"
+                  }
+                ]
+              },
+              {
+                "title": "Efficiency",
+                "rows": [
+                  {
+                    "label": "MPPT tracking efficiency",
+                    "value": "99.9%"
+                  },
+                  {
+                    "label": "Max. battery inverter efficiency",
+                    "value": "92%"
+                  }
+                ]
+              },
+              {
+                "title": "General",
+                "rows": [
+                  {
+                    "label": "Dimensions",
+                    "value": "620 x 445 x 130 mm"
+                  },
+                  {
+                    "label": "Weight",
+                    "value": "27 kg"
+                  },
+                  {
+                    "label": "Protection",
+                    "value": "IP20, indoor only"
+                  },
+                  {
+                    "label": "Operating temperature",
+                    "value": "-10 to 55 °C, derated above 45 °C"
+                  },
+                  {
+                    "label": "Noise",
+                    "value": "Under 60 dB"
+                  },
+                  {
+                    "label": "Cooling",
+                    "value": "Internal fan"
+                  },
+                  {
+                    "label": "Warranty",
+                    "value": "24 months"
+                  }
+                ]
+              },
+              {
+                "title": "Communication",
+                "rows": [
+                  {
+                    "label": "Built in",
+                    "value": "RS485, CAN, USB, dry contact"
+                  },
+                  {
+                    "label": "Optional modules",
+                    "value": "Wi-Fi, GPRS"
+                  }
+                ]
+              },
+              {
+                "title": "Certification",
+                "rows": [
+                  {
+                    "label": "Safety",
+                    "value": "IEC62109-1, IEC62109-2, UL1741"
+                  },
+                  {
+                    "label": "EMC",
+                    "value": "EN61000-6-1, EN61000-6-3, FCC Part 15 Class B"
+                  },
+                  {
+                    "label": "RoHS",
+                    "value": "Yes"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "power-station-3000",
+          "name": "3000W Portable Power Station",
+          "image": {
+            "src": "/products/power-station.webp",
+            "alt": "Grey portable power station with four AC sockets and a display",
+            "w": 303,
+            "h": 236
+          },
+          "summary": "A quiet battery generator with carry handles. Keep the fridge, fans and phones running through an outage.",
+          "specs": [
+            {
+              "label": "Wattage",
+              "value": "3,000 W"
+            },
+            {
+              "label": "Battery",
+              "value": "2,560 Wh LiFePO4 (25.6 V, 100 Ah)"
+            },
+            {
+              "label": "Output",
+              "value": "4 x AC 220 V pure sine wave (110 V optional)"
+            },
+            {
+              "label": "Solar input",
+              "value": "36 V, 400 W"
+            }
+          ],
+          "features": [
+            "4 USB, 2 USB-C, car socket and 2 DC5521 ports",
+            "Rated for 3,000+ charge cycles",
+            "Built-in LED lamp with 3 brightness levels",
+            "480 x 270 x 350 mm, 25.2 kg"
+          ],
+          "datasheet": {
+            "source": "Namkoo 3000W Portable Power Station spec sheet",
+            "groups": [
+              {
+                "title": "Power",
+                "rows": [
+                  {
+                    "label": "Rated power",
+                    "value": "3,000 W"
+                  },
+                  {
+                    "label": "Output waveform",
+                    "value": "Pure sine wave"
+                  },
+                  {
+                    "label": "Output voltage",
+                    "value": "220 V (110 V optional)"
+                  }
+                ]
+              },
+              {
+                "title": "Battery",
+                "rows": [
+                  {
+                    "label": "Chemistry",
+                    "value": "LiFePO4"
+                  },
+                  {
+                    "label": "Battery",
+                    "value": "25.6 V, 100 Ah"
+                  },
+                  {
+                    "label": "Capacity",
+                    "value": "2,560 Wh"
+                  },
+                  {
+                    "label": "Cycle life",
+                    "value": "3,000 cycles or more"
+                  }
+                ]
+              },
+              {
+                "title": "Outputs",
+                "rows": [
+                  {
+                    "label": "AC",
+                    "value": "4 x 220 V"
+                  },
+                  {
+                    "label": "USB",
+                    "value": "4 x 5 V 2 A"
+                  },
+                  {
+                    "label": "USB-C fast charge",
+                    "value": "2 x 5 V 2 A"
+                  },
+                  {
+                    "label": "Car socket",
+                    "value": "12 V 8 A"
+                  },
+                  {
+                    "label": "DC5521",
+                    "value": "2 x 12 V 8 A"
+                  }
+                ]
+              },
+              {
+                "title": "Charging",
+                "rows": [
+                  {
+                    "label": "Charger",
+                    "value": "29.2 V 10 A, 292 W"
+                  },
+                  {
+                    "label": "Solar input",
+                    "value": "36 V, 400 W"
+                  }
+                ]
+              },
+              {
+                "title": "Build",
+                "rows": [
+                  {
+                    "label": "Protection",
+                    "value": "Overcharge, over-discharge, short circuit, overcurrent, high and low temperature"
+                  },
+                  {
+                    "label": "LED lamp",
+                    "value": "3 brightness levels plus alarm light"
+                  },
+                  {
+                    "label": "Display",
+                    "value": "Remaining battery percentage"
+                  },
+                  {
+                    "label": "Size",
+                    "value": "480 x 270 x 350 mm"
+                  },
+                  {
+                    "label": "Net weight",
+                    "value": "25.2 kg"
+                  },
+                  {
+                    "label": "In the box",
+                    "value": "Charger and instruction manual"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "generators",
+          "name": "Generators",
+          "summary": "Backup generators for homes, shops and job sites. Large units are delivered to your door.",
+          "specs": [],
+          "features": [
+            "Ask in store for current sizes and fuel types"
+          ]
+        }
+      ],
+      "range": [
+        {
+          "name": "Hybrid inverters",
+          "line": "Solar, battery and grid in one wall unit.",
+          "image": "/catalog/inverter.webp",
+          "alt": "A white wall-mounted solar inverter with a small screen"
+        },
+        {
+          "name": "Portable power stations",
+          "line": "A quiet battery with outlets, for when the power goes out.",
+          "image": "/catalog/power-station.webp",
+          "alt": "A grey portable power station with a screen and four sockets"
+        },
+        {
+          "name": "Generators",
+          "line": "Backup power for homes, shops and job sites.",
+          "image": "/catalog/generator.webp",
+          "alt": "A portable generator in grey and dark green"
+        }
+      ]
+    },
+    {
+      "id": "led",
+      "name": "LED Lighting",
+      "short": "LED",
+      "blurb": "Bulbs, panels, tubes and floodlights.",
+      "products": [],
+      "carries": [
+        "Bulbs, including filament styles",
+        "Ceiling panels and round downlights",
+        "Tubes and linear fixtures",
+        "Floodlights for yards and storefronts"
+      ],
+      "ask": "Stock changes often, so message us on WhatsApp before you make the trip.",
+      "range": [
+        {
+          "name": "Bulbs",
+          "line": "Everyday and filament styles, warm to daylight white.",
+          "image": "/catalog/bulb.webp",
+          "alt": "A clear glass LED filament bulb"
+        },
+        {
+          "name": "Panels and downlights",
+          "line": "Slim ceiling panels and round downlights.",
+          "image": "/catalog/downlights.webp",
+          "alt": "A round LED downlight and a square LED ceiling panel"
+        },
+        {
+          "name": "Tubes and linear fixtures",
+          "line": "LED tubes and long linear fittings.",
+          "image": "/catalog/tubes.webp",
+          "alt": "Two LED tubes and a linear LED fitting"
+        },
+        {
+          "name": "Floodlights",
+          "line": "For yards and storefronts.",
+          "image": "/catalog/floodlight.webp",
+          "alt": "A dark grey LED floodlight on a mounting bracket"
+        }
+      ],
+      "quote": "led"
+    },
+    {
+      "id": "cameras",
+      "name": "Solar Security Cameras",
+      "short": "Cameras",
+      "blurb": "Security cameras with their own solar panel.",
+      "products": [],
+      "carries": [
+        "Solar-powered cameras for homes and yards",
+        "Cameras for building sites and farms with no power nearby"
+      ],
+      "ask": "Ask in store which models are on the shelf right now.",
+      "range": [
+        {
+          "name": "For homes and yards",
+          "line": "Solar-powered cameras that need no wiring.",
+          "image": "/catalog/camera-home.webp",
+          "alt": "A white solar security camera with a small panel above it"
+        },
+        {
+          "name": "For sites and farms",
+          "line": "For places with no power nearby.",
+          "image": "/catalog/camera-site.webp",
+          "alt": "A solar security camera on a short pole with a larger panel"
+        }
+      ]
+    },
+    {
+      "id": "furniture",
+      "name": "Furniture",
+      "short": "Furniture",
+      "blurb": "Furniture for the home, on our second floor.",
+      "floor": "2nd floor",
+      "products": [],
+      "carries": [
+        "Home furniture on the second floor of the store",
+        "Large pieces delivered to your door"
+      ],
+      "ask": "Head upstairs at Cumana 73 and have a look around.",
+      "range": [
+        {
+          "name": "Home furniture",
+          "line": "Come upstairs at Cumana 73 and sit on it before you buy.",
+          "image": "/catalog/sofa.webp",
+          "alt": "A cream two-seat sofa with oak legs"
+        },
+        {
+          "name": "Large-item delivery",
+          "line": "Large-item delivery available. Ask us about furniture delivery.",
+          "image": "/catalog/lounge-chair.webp",
+          "alt": "An oak lounge chair with sage green cushions"
+        }
+      ]
+    }
+  ],
+  "film": {
+    "dawn": {
+      "title": "Aruba sunlight, made useful.",
+      "line": "Solar, power, lighting and everyday essentials, plus furniture upstairs at Jontai Energy.",
+      "primary": "Explore solar",
+      "secondary": "Visit the store"
+    },
+    "noon": {
+      "title": "Noon. The panel goes to work.",
+      "line": "Tempered glass, silicon cells, a sealed backsheet and an aluminium frame turn the midday sun into power.",
+      "panelAction": "See solar panels",
+      "inverterTitle": "One wall unit runs the house.",
+      "inverterLine": "Solar, battery and grid in a single inverter, with pure sine wave power for everything you plug in.",
+      "facts": [
+        {
+          "value": "8,000 W",
+          "label": "rated output"
+        },
+        {
+          "value": "10 ms",
+          "label": "to switch to battery"
+        },
+        {
+          "value": "2 x 5,500 W",
+          "label": "solar inputs"
+        }
+      ],
+      "source": "Figures from the Namkoo SPI-8K-UP datasheet. Ask what is on the shelf."
+    },
+    "heat": {
+      "title": "Two o'clock. Cooling that runs on sunlight.",
+      "line": "Panels feed it directly during the day. It draws on the grid only when it needs to.",
+      "facts": [
+        {
+          "value": "9,000 to 36,000",
+          "label": "BTU, by model"
+        },
+        {
+          "value": "Up to 100%",
+          "label": "solar while the sun is out"
+        },
+        {
+          "value": "No battery",
+          "label": "and no separate inverter"
+        }
+      ],
+      "note": "From the ACDC hybrid solar AC brochure. Fitting needs an HVAC technician; Jontai Energy does not install."
+    },
+    "afternoon": {
+      "title": "Four o'clock. Power you can carry.",
+      "line": "Keep the fridge, fans and phones running when the grid drops.",
+      "facts": [
+        {
+          "value": "3,000 W",
+          "label": "output"
+        },
+        {
+          "value": "2,560 Wh",
+          "label": "battery"
+        },
+        {
+          "value": "4",
+          "label": "AC outlets"
+        }
+      ],
+      "note": "3000W portable power station. Figures from its spec sheet; other models differ."
+    },
+    "dusk": {
+      "title": "Dusk. Light in the colour you like.",
+      "line": "Bulbs, including filament styles, ceiling panels, tubes and floodlights. Stock changes often, so ask before you make the trip.",
+      "kelvin": "From warm 3000K to daylight 6500K."
+    },
+    "night": {
+      "title": "A camera that charges itself.",
+      "line": "Solar security cameras for yards, gates and sites without wiring."
+    },
+    "outage": {
+      "title": "When the power goes out.",
+      "line": "Generators for homes, shops and job sites. Ask for current sizes and fuel types."
+    },
+    "morning": {
+      "climb": "Up one flight.",
+      "title": "Upstairs at Jontai.",
+      "line": "Furniture for every room, one flight up. Come and sit on it before you buy.",
+      "delivery": "Large-item delivery available. Ask us about furniture delivery."
+    }
+  },
+  "panels": {
+    "inverter": {
+      "name": "Hybrid solar inverter",
+      "model": "Namkoo SPI-8K-UP",
+      "image": "/catalog/inverter.webp",
+      "alt": "A white wall-mounted solar inverter with a small screen",
+      "intro": "One wall unit that brings solar panels, a battery bank and the grid together, and runs the whole house on pure sine wave power.",
+      "figures": [
+        {
+          "value": "8,000 W",
+          "label": "rated output, 16,000 W peak"
+        },
+        {
+          "value": "10 ms",
+          "label": "to switch to battery"
+        },
+        {
+          "value": "2 x 5,500 W",
+          "label": "solar inputs"
+        }
+      ],
+      "points": [
+        {
+          "title": "Solar first",
+          "line": "Two MPPT inputs take up to 5,500 W of panels each and charge a 48 V lithium or lead-acid battery bank."
+        },
+        {
+          "title": "No break in a power cut",
+          "line": "When the grid drops it switches to battery in about 10 ms, so the house keeps running."
+        },
+        {
+          "title": "Grid or generator charging",
+          "line": "It can also charge from mains or a generator, on a timer set to the hours you choose."
+        },
+        {
+          "title": "Grows with the house",
+          "line": "Up to six units run in parallel, for more power or three-phase output."
+        }
+      ],
+      "specs": "spi-8k-up",
+      "note": "Wiring to your panel and batteries should be done by a licensed electrician. Jontai Energy does not install.",
+      "source": "Figures from the Namkoo SPI series datasheet. Ask what is on the shelf.",
+      "quote": "inverter"
+    },
+    "solar-ac": {
+      "name": "Hybrid solar air conditioner",
+      "model": "ACDC TKFR-OG series",
+      "image": "/catalog/solar-ac.webp",
+      "alt": "A white indoor air conditioning unit and its grey outdoor unit",
+      "intro": "A split air conditioner that runs straight off solar panels during the day and mixes in grid power only when it needs to. No battery and no separate inverter.",
+      "figures": [
+        {
+          "value": "9,000 to 36,000",
+          "label": "BTU, by model"
+        },
+        {
+          "value": "Up to 100%",
+          "label": "solar while the sun is out"
+        },
+        {
+          "value": "26 dB",
+          "label": "indoor unit at its quietest"
+        }
+      ],
+      "points": [
+        {
+          "title": "Panels plug straight in",
+          "line": "A built-in MPPT takes 22 to 45 V DC from the panels through MC4 connectors."
+        },
+        {
+          "title": "Grid only when needed",
+          "line": "When the panels cannot keep up, it mixes in 220 V mains on its own."
+        },
+        {
+          "title": "Built for the coast",
+          "line": "A zinc-coated, anticorrosion casing for homes near the sea."
+        },
+        {
+          "title": "Back on after a power cut",
+          "line": "It restarts by itself when the power returns."
+        }
+      ],
+      "specs": "acdc-solar-ac",
+      "note": "The manufacturer requires installation by a skilled HVAC technician. Jontai Energy does not install.",
+      "source": "Figures from the ACDC hybrid solar AC brochure. Ask which sizes are in stock.",
+      "quote": "solar-ac"
+    },
+    "power-station": {
+      "name": "Portable power station",
+      "model": "Namkoo 3000W",
+      "image": "/catalog/power-station.webp",
+      "alt": "A grey portable power station with a screen and four sockets",
+      "intro": "A quiet battery you can carry, with household sockets on the front. Keep the fridge, fans and phones running through an outage, then recharge it from the wall or a solar panel.",
+      "figures": [
+        {
+          "value": "3,000 W",
+          "label": "output, pure sine wave"
+        },
+        {
+          "value": "2,560 Wh",
+          "label": "LiFePO4 battery"
+        },
+        {
+          "value": "400 W",
+          "label": "solar input"
+        }
+      ],
+      "points": [
+        {
+          "title": "A socket for everything",
+          "line": "Four 220 V AC sockets (110 V optional), four USB, two USB-C, a car socket and two DC ports."
+        },
+        {
+          "title": "A battery that lasts",
+          "line": "LiFePO4 cells rated for 3,000 charge cycles or more."
+        },
+        {
+          "title": "Light when it is dark",
+          "line": "A built-in LED lamp with three brightness levels and an alarm light."
+        },
+        {
+          "title": "Protected",
+          "line": "Guards against overcharge, over-discharge, short circuits, overcurrent, and high or low temperature."
+        }
+      ],
+      "specs": "power-station-3000",
+      "source": "Figures from the Namkoo 3000W spec sheet. Other models differ.",
+      "quote": "power-station"
+    },
+    "generator": {
+      "name": "Generators",
+      "model": "For homes, shops and job sites",
+      "image": "/catalog/generator.webp",
+      "alt": "A portable generator in grey and dark green",
+      "intro": "When the grid goes down, a generator keeps the lights, the fridge and the tools running until it comes back.",
+      "points": [
+        {
+          "title": "Sized to what you run",
+          "line": "Tell us what has to stay on during an outage and we will show you the sizes in stock."
+        },
+        {
+          "title": "Fuel types",
+          "line": "Fuel types change with stock, so ask which are on the floor."
+        },
+        {
+          "title": "Works with the inverter",
+          "line": "The SPI hybrid inverter can charge its battery bank from a generator."
+        },
+        {
+          "title": "Delivered to your door",
+          "line": "Large units are delivered, so there is nothing to haul home."
+        }
+      ],
+      "note": "Current sizes and fuel types are confirmed in store. Jontai Energy sells and delivers; it does not install.",
+      "quote": "generator"
+    },
+    "cameras": {
+      "name": "Solar security cameras",
+      "model": "For homes, yards, sites and farms",
+      "image": "/catalog/camera-home.webp",
+      "alt": "A white solar security camera with a small panel above it",
+      "intro": "A security camera with its own solar panel. Daylight charges it, so it keeps watching through the night with no power cable to run.",
+      "points": [
+        {
+          "title": "No power cable",
+          "line": "The panel charges it, so it can go on a gate, a pole or a far wall."
+        },
+        {
+          "title": "Homes and yards",
+          "line": "Watch gates, driveways and yards without running wiring."
+        },
+        {
+          "title": "Sites and farms",
+          "line": "For building sites and farms with no power nearby."
+        },
+        {
+          "title": "Ask what is on the shelf",
+          "line": "Connection, night view and storage differ by model, so ask which ones are in stock."
+        }
+      ],
+      "quote": "cameras"
+    },
+    "furniture": {
+      "name": "Furniture delivery",
+      "model": "Second floor, Cumana 73",
+      "image": "/catalog/sofa.webp",
+      "alt": "A cream two-seat sofa with oak legs",
+      "intro": "Pick your furniture upstairs at Cumana 73 and have it delivered to your door.",
+      "highlight": "Large-item delivery available. Ask us about furniture delivery.",
+      "steps": true,
+      "points": [
+        {
+          "title": "Choose upstairs",
+          "line": "Furniture is one flight up. Come and sit on it before you buy."
+        },
+        {
+          "title": "Ask about delivery",
+          "line": "Ask when you buy, or request a quote first with the pieces you like."
+        },
+        {
+          "title": "Delivered to your door",
+          "line": "Large pieces come to your home, so there is nothing to haul."
+        }
+      ],
+      "note": "Delivery areas, days and any charge are confirmed when you buy. Large generators can be delivered too.",
+      "quote": "furniture"
+    }
+  }
+}

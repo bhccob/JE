@@ -1,0 +1,71 @@
+[
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "one day of sun, scroll is the clock (custom)",
+  "theme": "custom",
+  "axes": "light/roman-serif/chromatic-green",
+  "hero": "the dawn film frame: divi-divi shadow on lime plaster, solar panel on an oak post, head stable on the left",
+  "nav": "edge-aligned bar with a day/night switch and a directions pill",
+  "footer": "forest mast",
+  "imagery": "one Blender Cycles set, products remodelled from the store photos, scroll-scrubbed frame sequences, 8 colour-temperature stills",
+  "photos": [],
+  "entry": "hero",
+  "fingerprint": "custom-one-day-of-sun",
+  "sections": [
+   "dawn hero film",
+   "noon current to inverter",
+   "heat solar AC",
+   "afternoon power station",
+   "dusk bulbs and kelvin slider",
+   "night camera",
+   "outage generator",
+   "morning climb upstairs",
+   "loyalty sun ring",
+   "visit hours arc",
+   "footer"
+  ],
+  "signature": "the sun moving across one wall as you scroll, product by product",
+  "waived": [
+   "8"
+  ],
+  "prompt": "Jontai Energy, premium and interactive like mdebeauty and fitosauna, one Aruban day from sunlight to furniture",
+  "date": "2026-10-27"
+ },
+ {
+  "mode": "redesign",
+  "depth": "full",
+  "scope": "page",
+  "shape": "walk through the store (custom)",
+  "theme": "custom",
+  "axes": "light/roman-serif/chromatic-green",
+  "hero": "3D solar panel on an oak tracker post, head stable on the left",
+  "nav": "edge-aligned bar with a directions pill",
+  "footer": "forest mast",
+  "imagery": "the product in 3D (Tripo GLBs via Blender), one Seedance staircase clip, GPT stills as no-WebGL fallbacks",
+  "photos": [],
+  "entry": "hero",
+  "fingerprint": "custom-sun-to-sofa",
+  "sections": [
+   "hero",
+   "intro statement",
+   "solar exploded",
+   "inverter split",
+   "portable plinths",
+   "cooling stage-left",
+   "living day-to-evening",
+   "ascent pin",
+   "showroom",
+   "loyalty ring",
+   "visit",
+   "footer"
+  ],
+  "signature": "the panel turning to the sun and sending green energy toward the headline",
+  "waived": [
+   "8"
+  ],
+  "prompt": "Jontai Energy retail store in Aruba, from sunlight to home, light green and natural wood",
+  "date": "2026-10-26"
+ }
+]
