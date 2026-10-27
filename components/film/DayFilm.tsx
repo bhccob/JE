@@ -161,34 +161,40 @@ export function DayFilm({ children }: { children: ReactNode }) {
     window.addEventListener('scroll', rest, { passive: true });
     const idle = window.setTimeout(rest, 6000);
     // The opening is the fonts and the sunrise frames. Its progress goes to the loading screen (Daybreak); while that
-    // covers the page, the sunrise waits until it starts to lift, so the sun comes up in view.
+    // covers the page, the sunrise waits for it to open and starts as it lifts, so the sun comes up in view.
     let tween: gsap.core.Tween | undefined;
     let gone = false;
     let fetched = 0;
+    let waitForDaybreak = () => {};
     const report = () => {
       if (!gone) filmStore.set({ opening: (++fetched / INTRO_FRAMES) * 0.95 });
     };
+    const sunrise = (delay: number) => {
+      tween = gsap.to(intro, {
+        v: 1,
+        delay,
+        duration: 2.6,
+        ease: 'power2.inOut',
+        onUpdate: () => {
+          if (active === 'dawn') filmStore.set({ progress: effective(), arrived: arrivedNow() });
+          schedule();
+        },
+      });
+    };
     Promise.all([frames.loadRange('dawn', 0, INTRO_FRAMES, report), document.fonts?.ready]).then(() => {
       if (gone) return;
-      const delay = document.documentElement.classList.contains('before-dawn') ? DAYBREAK_LIFT : 0;
       filmStore.set({ opening: 1 });
-      if (intro.v < 1) {
-        tween = gsap.to(intro, {
-          v: 1,
-          delay,
-          duration: 2.6,
-          ease: 'power2.inOut',
-          onUpdate: () => {
-            if (active === 'dawn') filmStore.set({ progress: effective(), arrived: arrivedNow() });
-            schedule();
-          },
-        });
-      }
+      if (intro.v >= 1) return;
+      if (!document.documentElement.classList.contains('before-dawn')) return sunrise(0);
+      waitForDaybreak = filmStore.subscribe((s) => {
+        if (s.daybreak && !tween) sunrise(DAYBREAK_LIFT);
+      });
     });
     schedule();
 
     return () => {
       gone = true;
+      waitForDaybreak();
       cancelAnimationFrame(raf);
       window.clearTimeout(idle);
       window.clearTimeout(settleTimer);

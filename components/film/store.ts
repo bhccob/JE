@@ -16,9 +16,19 @@ export interface FilmState {
   arrived: boolean;
   /** 0..1 of the opening loaded (the fonts and the sunrise frames); 1 once the film can start. */
   opening: number;
+  /** True once the loading screen has begun to open; under it, the film's sunrise waits for this. */
+  daybreak: boolean;
 }
 
-let state: FilmState = { chapter: 'dawn', progress: 0, hour: FILM[0].hours[0], visible: true, arrived: false, opening: 0 };
+let state: FilmState = {
+  chapter: 'dawn',
+  progress: 0,
+  hour: FILM[0].hours[0],
+  visible: true,
+  arrived: false,
+  opening: 0,
+  daybreak: false,
+};
 const listeners = new Set<(s: FilmState) => void>();
 
 export const filmStore = {
