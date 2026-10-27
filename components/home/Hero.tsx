@@ -2,6 +2,8 @@ import { ArrowRight } from '@phosphor-icons/react/dist/ssr';
 import { FitText } from '@/components/ui/FitText';
 import { Words } from '@/components/ui/Split';
 import { HOME_COPY } from '@/lib/products';
+import { HeroIndex } from './HeroIndex';
+import { HeroMotion } from './HeroMotion';
 import { OpenStatus } from './OpenStatus';
 
 /**
@@ -38,23 +40,9 @@ export function Hero() {
           </div>
         </div>
 
-        <nav className="index" aria-label="In the store">
-          <p className="label index__title" data-hero>
-            In the store
-          </p>
-          <ol>
-            {chapters.map((c) => (
-              <li key={c.id} data-hero>
-                <a href={`#${c.id}`}>
-                  <span className="index__n">{c.number}</span>
-                  <span className="index__name">{c.index}</span>
-                  <ArrowRight size={22} weight="bold" aria-hidden="true" />
-                </a>
-              </li>
-            ))}
-          </ol>
-        </nav>
+        <HeroIndex items={chapters.map((c) => ({ id: c.id, number: c.number, name: c.index, image: c.image }))} />
       </div>
+      <HeroMotion />
     </section>
   );
 }

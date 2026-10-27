@@ -1,6 +1,8 @@
 import { CatalogProvider } from '@/components/catalog/CatalogProvider';
 import { Header } from '@/components/ui/Header';
+import { Loader } from '@/components/home/Loader';
 import { Hero } from '@/components/home/Hero';
+import { HOME_COPY } from '@/lib/products';
 import { Statement } from '@/components/home/Statement';
 import { Showroom } from '@/components/home/Showroom';
 import { Numbers } from '@/components/home/Numbers';
@@ -12,6 +14,7 @@ import { Footer } from '@/components/sections/Footer';
 export default function Home() {
   return (
     <CatalogProvider>
+      <Loader line={HOME_COPY.hero.title} />
       <Header />
       <main id="main">
         <Hero />

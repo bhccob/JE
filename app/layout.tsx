@@ -48,7 +48,8 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-const HEAD_SCRIPT = `(function(){document.documentElement.classList.add('js')})()`;
+const HEAD_SCRIPT = `(function(){var d=document.documentElement;d.classList.add('js');
+try{var c=navigator.connection;if(location.pathname==='/'&&!sessionStorage.getItem('jontai-loader')&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(c&&c.saveData))d.classList.add('is-loading')}catch(e){}})()`;
 
 // Verified business facts only (lib/store.ts). Hours confirmed by the owner on 2026-10-27.
 const store = {
@@ -76,7 +77,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
-        {/* Before paint: mark scripting on, so motion's starting states apply only when motion will run. */}
+        {/* Before paint: mark scripting on, so motion's starting states apply only when motion will run, and on the
+            first home-page visit of the session (not with reduced motion or Save-Data) cover the page with the loader. */}
         <script dangerouslySetInnerHTML={{ __html: HEAD_SCRIPT }} />
       </head>
       <body>

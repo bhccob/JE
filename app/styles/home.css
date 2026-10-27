@@ -1,7 +1,115 @@
 /* The type-led home page: hero, statement, product chapters, numbers, visit. Values start from the approved mockup
    (public/mockups/home-redesign-v2.html). No boxes: colour fields, rules and space. */
 
+/* ---------- Loader (first home-page visit of a session) ---------- */
+
+.loader {
+  display: none;
+}
+html.is-loading {
+  overflow: hidden;
+}
+html.is-loading .loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: block;
+  overflow: hidden;
+  background: var(--color-forest);
+  color: var(--color-sand);
+}
+.loader__layer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 22px var(--gutter) calc(clamp(18px, 3.5vh, 36px) + var(--concept-h, 0px));
+}
+/* The sand copy of the same layout, uncovered from the bottom as the level rises. */
+.loader__charged {
+  background: var(--color-sand);
+  color: var(--color-forest);
+  clip-path: inset(100% 0 0 0);
+}
+.loader__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.loader__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.loader__brand img {
+  width: 36px;
+  height: 36px;
+}
+.loader__bottom {
+  grid-row: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+.loader__count {
+  display: flex;
+  align-items: flex-start;
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: clamp(9rem, 27vw, 25rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 0.78;
+}
+.loader__count small {
+  margin: 0.06em 0 0 0.06em;
+  font-size: 0.28em;
+}
+.loader__line {
+  max-width: 12ch;
+  padding-bottom: 0.5em;
+  font-weight: 750;
+  font-size: clamp(1.125rem, 1.7vw, 1.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-align: right;
+}
+.loader__edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--color-mint);
+  box-shadow: 0 0 18px 2px rgb(184 216 168 / 0.55);
+  transform: translateY(100vh);
+}
+@media (max-width: 32.5rem) {
+  .loader__line,
+  .loader__top .label {
+    display: none;
+  }
+}
+
 /* ---------- Hero ---------- */
+
+/* The entrance's starting states (HeroMotion), only with scripts and motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js #hero [data-hero] {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  .js #hero .wordmark .ci,
+  .js #hero h1 .wi {
+    transform: translateY(110%);
+  }
+}
 
 .hero {
   position: relative;
@@ -107,6 +215,42 @@
   .index a:hover svg {
     transform: rotate(0deg);
   }
+}
+
+/* The disc that follows the pointer over the list and shows the row's product (HeroIndex). Mouse and motion only. */
+.peek {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  display: none;
+  width: clamp(200px, 17vw, 270px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  opacity: 0;
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .js .peek {
+    display: block;
+  }
+}
+.peek__disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #f5efe5, var(--color-stage) 55%, #e6dbc8);
+  box-shadow: 0 30px 60px -28px rgb(24 49 40 / 0.5);
+}
+.peek img {
+  position: absolute;
+  inset: 13%;
+  width: 74%;
+  height: 74%;
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+.peek img[data-on='true'] {
+  opacity: 1;
 }
 
 /* ---------- Statement ---------- */
