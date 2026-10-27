@@ -255,6 +255,18 @@
   color: rgb(247 245 236 / 0.7);
 }
 
+/* ---------- Motion starting states (only once scripts run; the page is complete without them) ---------- */
+
+/* Split words and letters wait below their line until PageMotion raises them. The hero has its own entrance. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-words]:not(#hero [data-words]) .wi {
+    transform: translateY(115%);
+  }
+  .js [data-chars]:not(#hero [data-chars]) .ci {
+    transform: translateY(110%);
+  }
+}
+
 /* ---------- Reveal (only once scripts run; the page is complete without them) ---------- */
 
 .js [data-reveal] {

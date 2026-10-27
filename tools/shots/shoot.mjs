@@ -7,7 +7,9 @@
 //   t=MS          wait until MS after the first navigation, then capture
 //   wait=MS       wait
 //   y=PX | sel    scroll there (through window.__lenis when present), wait 1.7s, capture
-//   js=CODE       evaluate CODE in the page (promises awaited) and print the result
+//   js=CODE       evaluate CODE in the page (promises awaited) and print the result; never navigate from here
+//   reload        reload the page
+//   go=PATH       navigate to PATH (relative to the url)
 //   size=WxH      change the viewport without reloading
 //   media=reduce  emulate prefers-reduced-motion: reduce, then reload
 //   nojs          disable page scripts, then reload
@@ -70,7 +72,10 @@ ws.addEventListener('message', (m) => {
 });
 const send = (method, params = {}) => new Promise((resolve) => { const i = ++id; pending.set(i, resolve); ws.send(JSON.stringify({ id: i, method, params })); });
 const evaluate = async (expression) => {
-  const r = await send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true });
+  const r = await Promise.race([
+    send('Runtime.evaluate', { expression, awaitPromise: true, returnByValue: true }),
+    sleep(30000).then(() => ({ result: { exceptionDetails: { text: 'timed out after 30s' } } })),
+  ]);
   return r.result?.exceptionDetails ? `ERROR ${r.result.exceptionDetails.exception?.description ?? r.result.exceptionDetails.text}` : r.result?.result?.value;
 };
 const shoot = async (file) => {
@@ -83,7 +88,18 @@ await send('Page.enable');
 await send('Runtime.enable');
 await send('Emulation.setDeviceMetricsOverride', { width: +w, height: +h, deviceScaleFactor: 1, mobile: false });
 const t0 = Date.now();
-await send('Page.navigate', { url });
+// A fresh headless Chrome sometimes drops the first navigation and stays on about:blank: retry until the page is there.
+for (let attempt = 1; ; attempt++) {
+  const nav = await send('Page.navigate', { url });
+  if (nav.result?.errorText) console.log(`navigate: ${nav.result.errorText}`);
+  let there = false;
+  for (let i = 0; i < 20 && !there; i++) {
+    await sleep(250);
+    there = (await evaluate('location.href')) !== 'about:blank';
+  }
+  if (there) break;
+  if (attempt === 4) throw new Error(`could not open ${url}`);
+}
 
 let n = 0;
 for (const target of splitTargets(targets)) {
@@ -94,6 +110,11 @@ for (const target of splitTargets(targets)) {
     console.log(file, target);
   } else if (target.startsWith('wait=')) {
     await sleep(+target.slice(5));
+  } else if (target === 'reload') {
+    await reload();
+  } else if (target.startsWith('go=')) {
+    await send('Page.navigate', { url: new URL(target.slice(3), url).href });
+    await sleep(400);
   } else if (target.startsWith('js=')) {
     console.log('js →', JSON.stringify(await evaluate(target.slice(3))));
   } else if (target.startsWith('size=')) {

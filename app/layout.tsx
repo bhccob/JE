@@ -5,6 +5,7 @@ import { SmoothScroll } from '@/components/providers/SmoothScroll';
 import { ConceptBanner } from '@/components/ui/ConceptBanner';
 import { CursorGlow } from '@/components/ui/CursorGlow';
 import { RevealObserver } from '@/components/ui/RevealObserver';
+import { PageMotion } from '@/components/motion/PageMotion';
 import { CONCEPT, SITE_URL, STORE } from '@/lib/store';
 import './globals.css';
 
@@ -89,6 +90,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <SmoothScroll>{children}</SmoothScroll>
         <RevealObserver />
+        <PageMotion />
         <ConceptBanner />
         <CursorGlow />
         {!CONCEPT && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(store) }} />}
