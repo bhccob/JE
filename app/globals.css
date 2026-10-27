@@ -785,6 +785,54 @@ main {
   line-height: 1.2;
 }
 
+/* Daybreak: the loading screen on a first visit, the night the film starts from with a sun that grows as the opening
+   loads. Only while html.before-dawn is set (by the head script, so never without scripts); if the scripts never
+   arrive, the fallback lifts it on its own. */
+.daybreak {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-toast);
+  display: none;
+  place-items: center;
+  overflow: clip;
+  background: var(--color-film-night);
+}
+.before-dawn .daybreak {
+  display: grid;
+  animation: daybreak-fallback 600ms var(--ease-out) 12s forwards;
+}
+@keyframes daybreak-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.daybreak__mark {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(var(--nav-h) / 2 + var(--space-xs));
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--color-night-ink);
+}
+.daybreak__mark span {
+  color: var(--color-night-ink-2);
+}
+.daybreak__sun {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-sun);
+  box-shadow: 0 0 40px 10px color-mix(in oklab, var(--color-sun) 40%, transparent);
+  transform: scale(0.2);
+  transition: transform 450ms var(--ease-out);
+}
+.still .daybreak__sun {
+  display: none;
+}
+
 /* Phones and portrait screens: the picture above, the copy along the bottom. */
 @media (max-width: 47.99rem), (orientation: portrait) {
   .chapter__pin,

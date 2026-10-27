@@ -1,6 +1,6 @@
 // Where the film is: the active chapter and the progress through it. Written by DayFilm on every scroll update and
-// read by the chapters (copy beats), the sun dial and the bulb, which write straight to the DOM instead of
-// re-rendering React on every frame.
+// read by the chapters (copy beats), the sun dial, the bulb and the loading screen, which write straight to the DOM
+// instead of re-rendering React on every frame.
 
 import { FILM, hourAt, type ChapterId } from '@/lib/film';
 
@@ -14,9 +14,11 @@ export interface FilmState {
   visible: boolean;
   /** True while the camera rests on the active chapter's product (its hold, or the hero at rest). */
   arrived: boolean;
+  /** 0..1 of the opening loaded (the fonts and the sunrise frames); 1 once the film can start. */
+  opening: number;
 }
 
-let state: FilmState = { chapter: 'dawn', progress: 0, hour: FILM[0].hours[0], visible: true, arrived: false };
+let state: FilmState = { chapter: 'dawn', progress: 0, hour: FILM[0].hours[0], visible: true, arrived: false, opening: 0 };
 const listeners = new Set<(s: FilmState) => void>();
 
 export const filmStore = {

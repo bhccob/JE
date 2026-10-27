@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLenis } from 'lenis/react';
 import { filmProgress, frameAt, framePath, type ChapterId, type FrameSize } from '@/lib/film';
+import { DAYBREAK_LIFT } from './Daybreak';
 import { FrameStore, drawCover, fitCanvas } from './frames';
 import { filmStore } from './store';
 
@@ -159,11 +160,22 @@ export function DayFilm({ children }: { children: ReactNode }) {
     };
     window.addEventListener('scroll', rest, { passive: true });
     const idle = window.setTimeout(rest, 6000);
+    // The opening is the fonts and the sunrise frames. Its progress goes to the loading screen (Daybreak); while that
+    // covers the page, the sunrise waits until it starts to lift, so the sun comes up in view.
     let tween: gsap.core.Tween | undefined;
-    frames.loadRange('dawn', 0, INTRO_FRAMES).then(() => {
+    let gone = false;
+    let fetched = 0;
+    const report = () => {
+      if (!gone) filmStore.set({ opening: (++fetched / INTRO_FRAMES) * 0.95 });
+    };
+    Promise.all([frames.loadRange('dawn', 0, INTRO_FRAMES, report), document.fonts?.ready]).then(() => {
+      if (gone) return;
+      const delay = document.documentElement.classList.contains('before-dawn') ? DAYBREAK_LIFT : 0;
+      filmStore.set({ opening: 1 });
       if (intro.v < 1) {
         tween = gsap.to(intro, {
           v: 1,
+          delay,
           duration: 2.6,
           ease: 'power2.inOut',
           onUpdate: () => {
@@ -176,6 +188,7 @@ export function DayFilm({ children }: { children: ReactNode }) {
     schedule();
 
     return () => {
+      gone = true;
       cancelAnimationFrame(raf);
       window.clearTimeout(idle);
       window.clearTimeout(settleTimer);
