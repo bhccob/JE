@@ -5,10 +5,11 @@ import { DayChapters } from '@/components/film/DayChapters';
 import { Daybreak } from '@/components/film/Daybreak';
 import { SunDial } from '@/components/film/SunDial';
 import { Loyalty } from '@/components/sections/Loyalty';
+import { Team } from '@/components/sections/Team';
 import { Visit } from '@/components/sections/Visit';
 import { Footer } from '@/components/sections/Footer';
 
-/** One Aruban day: dawn on the panel to the morning after upstairs, then loyalty and the visit. */
+/** One Aruban day: dawn on the panel to the morning after upstairs, then the team, loyalty and the visit. */
 export default function Home() {
   return (
     <CatalogProvider>
@@ -19,6 +20,7 @@ export default function Home() {
           <DayChapters />
         </DayFilm>
         <SunDial />
+        <Team />
         {/* The wall and its tree shadow behind loyalty; the visit section sits apart on its own sand surface. */}
         <div className="backdrop">
           <Loyalty />

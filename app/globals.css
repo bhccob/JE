@@ -28,6 +28,18 @@
 html {
   background: var(--color-paper);
   scroll-padding-top: calc(var(--nav-h) + var(--space-md));
+  /* Touch: no grey flash over a tapped control (each has its own press state) and no font inflation in landscape. */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+/* A tap fires at once (no wait for a double-tap zoom), and holding a finger on a control does not select its label. */
+:where(a, button, summary, label, input, select, textarea) {
+  touch-action: manipulation;
+}
+:where(.btn, .spot, .nav__link, .segment__option, .drawer__close) {
+  -webkit-user-select: none;
+  user-select: none;
 }
 body {
   font-feature-settings: 'kern', 'liga';
@@ -80,6 +92,32 @@ html.lenis body {
   text-decoration: underline;
   text-underline-offset: 0.2em;
   white-space: nowrap;
+}
+/* Phones: a slim strip along the bottom edge instead of a pill over the film's buttons. Whatever sits at the bottom of
+   the screen (the film's copy, the footer, the product panel's foot) keeps --concept-h clear for it. */
+@media (max-width: 40rem) {
+  :root:has(.concept) {
+    --concept-h: 2rem;
+  }
+  .concept {
+    inset: auto 0 0 0;
+    max-width: none;
+    padding: var(--space-xs) var(--gutter) calc(var(--space-xs) + env(safe-area-inset-bottom, 0px));
+    border-radius: 0;
+    font-size: 0.75rem;
+    line-height: 1.33;
+    text-align: center;
+    box-shadow: none;
+  }
+  .concept__long {
+    display: none;
+  }
+}
+/* The smallest phones fit it on two lines. */
+@media (max-width: 22.4rem) {
+  :root:has(.concept) {
+    --concept-h: 3rem;
+  }
 }
 @media print {
   .concept {
@@ -302,16 +340,20 @@ main {
   background: var(--color-ink-2);
   color: var(--color-paper);
 }
-.btn--primary:hover {
-  background: var(--color-ink);
+@media (hover: hover) and (pointer: fine) {
+  .btn--primary:hover {
+    background: var(--color-ink);
+  }
 }
 .btn--ghost {
   background: transparent;
   color: var(--color-ink);
   box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 32%, transparent);
 }
-.btn--ghost:hover {
-  background: color-mix(in oklab, var(--color-field) 35%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .btn--ghost:hover {
+    background: color-mix(in oklab, var(--color-field) 35%, transparent);
+  }
 }
 .btn--sm {
   min-height: 44px;
@@ -400,8 +442,10 @@ main {
   white-space: nowrap;
   transition: background-color var(--dur-short) var(--ease-out);
 }
-.nav__link:hover {
-  background: color-mix(in oklab, var(--color-field) 40%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .nav__link:hover {
+    background: color-mix(in oklab, var(--color-field) 40%, transparent);
+  }
 }
 .nav__menu {
   display: none;
@@ -544,8 +588,10 @@ main {
   background: var(--ink);
   color: var(--on-ink);
 }
-.chapter .btn--primary:hover {
-  background: var(--ink-2);
+@media (hover: hover) and (pointer: fine) {
+  .chapter .btn--primary:hover {
+    background: var(--ink-2);
+  }
 }
 .chapter .btn--ghost {
   color: var(--ink);
@@ -554,8 +600,10 @@ main {
   backdrop-filter: blur(8px);
   box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--ink) 38%, transparent);
 }
-.chapter .btn--ghost:hover {
-  background: color-mix(in oklab, var(--scrim) 80%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .chapter .btn--ghost:hover {
+    background: color-mix(in oklab, var(--scrim) 80%, transparent);
+  }
 }
 
 /* Beats: copy that holds for a stretch of the chapter. All beats share one grid cell and cross over. */
@@ -707,8 +755,10 @@ main {
   opacity: 1;
   transform: none;
 }
-.spot:hover .spot__label {
-  background: var(--color-night-ink);
+@media (hover: hover) and (pointer: fine) {
+  .spot:hover .spot__label {
+    background: var(--color-night-ink);
+  }
 }
 .spot:focus-visible {
   outline: none;
@@ -1048,6 +1098,74 @@ main {
   }
 }
 
+/* Phones: the product keeps the top of the screen and the copy is a compact block along the bottom, under the product
+   rather than over it. Both buttons share a row, and the concept strip's height stays clear below them. */
+@media (max-width: 40rem) {
+  .chapter__copy {
+    padding-block: var(--nav-h) calc(var(--space-lg) + var(--concept-h, 0px) + env(safe-area-inset-bottom, 0px));
+  }
+  .beat,
+  .chapter[data-place='top'] .beat {
+    gap: var(--space-sm);
+  }
+  .beat--hero {
+    gap: var(--space-md);
+  }
+  .chapter .h-section {
+    font-size: var(--text-2xl);
+    max-width: 24ch;
+  }
+  .chapter :is(.lead, .body) {
+    font-size: 0.9375rem;
+    line-height: 1.45;
+  }
+  .chapter .note {
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+  .facts {
+    gap: var(--space-sm);
+  }
+  .facts div {
+    padding-block-start: var(--space-xs);
+  }
+  .facts dt {
+    font-size: 0.75rem;
+    line-height: 1.3;
+  }
+  .facts dd {
+    font-size: var(--text-lg);
+  }
+  .delivery {
+    font-size: var(--text-lg);
+  }
+  .chapter .actions {
+    gap: var(--space-xs);
+    width: 100%;
+  }
+  .chapter .actions .btn {
+    flex: 1 1 auto;
+    min-height: 46px;
+    padding-inline: var(--space-md);
+    font-size: 0.9375rem;
+  }
+  .kelvin {
+    gap: var(--space-xs);
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+  }
+  /* The marker is the pulsing dot alone, so no label sits over the product; the button below says what it opens. The
+     padding makes the dot a full 44px target. */
+  .spot,
+  .spot[data-flip='true'] {
+    padding: var(--space-xs);
+    transform: translate(-22px, -22px);
+  }
+  .spot__label {
+    display: none;
+  }
+}
+
 /* No scripts, reduced motion or Save-Data: the same chapters without the scrubbing. Each is one full screen: its
    still fills the background and the copy sits over it, so the hero still fits the first screen. */
 :root:not(.js) .film__stage,
@@ -1100,6 +1218,161 @@ main {
   inset: 0 0 auto 0;
   height: min(100%, 100svh);
   opacity: 1;
+}
+
+/* ---------- Team ---------- */
+
+/* Meet the team, after the furniture floor: no cards, just portraits, numbers and hairlines. On wide screens the words
+   hold on the left (sticky) while the portraits scroll past on the right; on tablets and phones they are a row. */
+.team {
+  position: relative;
+  z-index: var(--z-raised);
+  padding-block: var(--section-gap);
+  background: var(--color-paper);
+}
+.team__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-2xl) var(--gap-columns);
+  align-items: start;
+}
+.team__text {
+  grid-column: 1 / span 5;
+  position: sticky;
+  top: calc(var(--nav-h) + var(--space-lg));
+  display: grid;
+  gap: var(--space-lg);
+}
+.team__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-muted);
+}
+.team__index {
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+.team__index li {
+  border-bottom: var(--rule-hair) solid var(--color-rule);
+}
+.team__index a {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-sm);
+  padding-block: var(--space-sm);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: color var(--dur-long) var(--ease-out);
+}
+/* Once scripts know which portrait is in view, the other names step back. */
+.team__index li[data-on='false'] a {
+  color: var(--color-muted);
+}
+@media (hover: hover) and (pointer: fine) {
+  .team__index li[data-on='false'] a:hover {
+    color: var(--color-ink-2);
+  }
+}
+.team__num {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.team__who {
+  display: grid;
+  gap: var(--space-3xs);
+  min-width: 0;
+}
+.team__name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+.team__role {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+.team__index li[data-on='false'] .team__role {
+  color: inherit;
+}
+.team__people {
+  grid-column: 7 / span 6;
+  display: grid;
+  gap: var(--space-3xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.team__person figure {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+/* Until a portrait arrives, a crop of the plaster wall with a plain line saying whose it will be. */
+.team__photo {
+  aspect-ratio: 4 / 5;
+  background: var(--color-paper-2) url('/film/backdrop/day-m.webp') var(--wall, center) / 240% auto no-repeat;
+}
+.team__pending {
+  position: absolute;
+  left: var(--space-md);
+  bottom: var(--space-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ink-2);
+}
+.team__caption {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+.team__index .team__name,
+.team__caption .team__name {
+  font-size: var(--text-lg);
+}
+/* Wide screens: the index beside the portraits already gives each role. */
+@media (min-width: 60.01rem) {
+  .team__caption .team__role {
+    display: none;
+  }
+}
+@media (max-width: 60rem) {
+  .team__grid {
+    gap: var(--space-xl) var(--gap-columns);
+  }
+  .team__text {
+    grid-column: 1 / -1;
+    position: static;
+  }
+  .team__text > nav {
+    display: none;
+  }
+  /* The portraits run edge to edge as a row you swipe, the next one peeking in. */
+  .team__people {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: var(--space-md);
+    margin-inline: calc(-1 * var(--gutter));
+    padding-inline: var(--gutter);
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    scrollbar-width: none;
+  }
+  .team__people::-webkit-scrollbar {
+    display: none;
+  }
+  .team__person {
+    flex: 0 0 min(78%, 22rem);
+    scroll-snap-align: start;
+  }
 }
 
 /* ---------- Loyalty ---------- */
@@ -1410,8 +1683,10 @@ main {
   text-underline-offset: 0.22em;
   transition: text-decoration-color var(--dur-short) var(--ease-out);
 }
-.info a:hover {
-  text-decoration-color: var(--color-ink);
+@media (hover: hover) and (pointer: fine) {
+  .info a:hover {
+    text-decoration-color: var(--color-ink);
+  }
 }
 .info__hours {
   display: flex;
@@ -1545,9 +1820,11 @@ main {
   text-decoration: none;
   cursor: pointer;
 }
-.footer__col a:hover,
-.footer__col button:hover {
-  text-decoration: underline;
+@media (hover: hover) and (pointer: fine) {
+  .footer__col a:hover,
+  .footer__col button:hover {
+    text-decoration: underline;
+  }
 }
 .footer :focus-visible {
   outline-color: var(--color-night-ink);
@@ -1626,8 +1903,10 @@ main {
   cursor: pointer;
   transition: background-color var(--dur-short) var(--ease-out);
 }
-.drawer__close:hover {
-  background: var(--color-paper-3);
+@media (hover: hover) and (pointer: fine) {
+  .drawer__close:hover {
+    background: var(--color-paper-3);
+  }
 }
 
 /* What the store carries: a picture, a name, one line. */
@@ -1686,9 +1965,28 @@ main {
   .drawer__foot {
     padding-inline: var(--space-lg);
   }
+  .drawer__head {
+    padding-block-start: var(--space-lg);
+  }
+  .drawer__foot {
+    padding-block-end: calc(var(--space-lg) + var(--concept-h, 0px) + env(safe-area-inset-bottom, 0px));
+  }
+  .drawer__foot .actions {
+    gap: var(--space-xs);
+  }
+  .drawer__foot .btn {
+    flex: 1 1 auto;
+  }
+  .drawer__foot .note {
+    font-size: var(--text-xs);
+  }
   .range {
     gap: var(--space-lg) var(--space-md);
     padding-inline: var(--space-lg);
+  }
+  .footer,
+  .footer[data-concept] {
+    padding-block-end: calc(var(--space-xl) + var(--concept-h, 0px) + env(safe-area-inset-bottom, 0px));
   }
 }
 
@@ -1823,8 +2121,10 @@ main {
   list-style: none;
   transition: color var(--dur-short) var(--ease-out);
 }
-.pv__specs summary:hover {
-  color: var(--color-ink-2);
+@media (hover: hover) and (pointer: fine) {
+  .pv__specs summary:hover {
+    color: var(--color-ink-2);
+  }
 }
 .pv__specs summary::-webkit-details-marker {
   display: none;
@@ -1965,8 +2265,10 @@ main {
     box-shadow var(--dur-short) var(--ease-out),
     background-color var(--dur-short) var(--ease-out);
 }
-.field__input:hover {
-  box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 36%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .field__input:hover {
+    box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 36%, transparent);
+  }
 }
 .field__input:focus-visible {
   outline: 2px solid var(--color-focus);
@@ -2097,8 +2399,10 @@ main {
   backdrop-filter: blur(14px) saturate(1.2);
   box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 16%, transparent);
 }
-.quote__form .field__input:hover {
-  box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 34%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .quote__form .field__input:hover {
+    box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 34%, transparent);
+  }
 }
 .quote__form .field__input:focus-visible {
   background: color-mix(in oklab, var(--color-paper) 86%, transparent);
@@ -2172,8 +2476,10 @@ main {
   cursor: pointer;
   transition: background-color var(--dur-short) var(--ease-out);
 }
-.picker__option:hover {
-  background: color-mix(in oklab, var(--color-field) 32%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .picker__option:hover {
+    background: color-mix(in oklab, var(--color-field) 32%, transparent);
+  }
 }
 .picker__option:active {
   background: color-mix(in oklab, var(--color-field) 48%, transparent);
@@ -2295,8 +2601,10 @@ main {
   text-underline-offset: 0.22em;
   transition: text-decoration-color var(--dur-short) var(--ease-out);
 }
-.store__link:hover {
-  text-decoration-color: var(--color-ink);
+@media (hover: hover) and (pointer: fine) {
+  .store__link:hover {
+    text-decoration-color: var(--color-ink);
+  }
 }
 @media (max-width: 40rem) {
   .store__pair {
@@ -2473,6 +2781,31 @@ main {
     mask-image: linear-gradient(0deg, var(--color-day-ink) 45%, transparent);
   }
 }
+/* Phones: the veil is only as tall as the copy, fading in just above it, so the product above stays sharp. */
+@media (max-width: 40rem) {
+  .chapter:not([data-chapter='dawn']) .chapter__pin::before,
+  .chapter[data-place='top']:not([data-chapter='dawn']) .chapter__pin::before {
+    content: none;
+  }
+  .chapter:not([data-chapter='dawn']) .chapter__copy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(0deg, color-mix(in oklab, var(--scrim) 74%, transparent), color-mix(in oklab, var(--scrim) 46%, transparent));
+    -webkit-backdrop-filter: blur(18px) saturate(1.15);
+    backdrop-filter: blur(18px) saturate(1.15);
+    -webkit-mask-image: linear-gradient(180deg, transparent, var(--color-day-ink) var(--nav-h));
+    mask-image: linear-gradient(180deg, transparent, var(--color-day-ink) var(--nav-h));
+    pointer-events: none;
+  }
+}
+@media (max-width: 40rem) and (prefers-reduced-transparency: reduce) {
+  .chapter .chapter__copy::before {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 
 /* The product panel and the sections after the film, on glass. */
 .drawer__panel.glass {
@@ -2601,8 +2934,10 @@ main {
   background: color-mix(in oklab, var(--color-paper) 70%, transparent);
   box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 16%, transparent);
 }
-.member .field__input:hover {
-  box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 34%, transparent);
+@media (hover: hover) and (pointer: fine) {
+  .member .field__input:hover {
+    box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 34%, transparent);
+  }
 }
 .member .field__input:focus-visible {
   background: var(--color-paper);
@@ -2620,8 +2955,10 @@ main {
 .member__submit svg {
   transition: transform var(--dur-short) var(--ease-out);
 }
-.member__submit:hover svg {
-  transform: translateX(3px);
+@media (hover: hover) and (pointer: fine) {
+  .member__submit:hover svg {
+    transform: translateX(3px);
+  }
 }
 .member__result:empty {
   display: none;
@@ -3008,8 +3345,10 @@ main {
 .segment__option:has(input:checked) {
   color: var(--color-paper);
 }
-.segment__option:hover:not(:has(input:checked)) {
-  color: var(--color-ink-2);
+@media (hover: hover) and (pointer: fine) {
+  .segment__option:hover:not(:has(input:checked)) {
+    color: var(--color-ink-2);
+  }
 }
 .segment__option:has(input:focus-visible) {
   outline: 2px solid var(--color-focus);
