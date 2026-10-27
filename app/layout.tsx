@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import { Hanken_Grotesk } from 'next/font/google';
 import { SmoothScroll } from '@/components/providers/SmoothScroll';
+import { CursorGlow } from '@/components/ui/CursorGlow';
 import { RevealObserver } from '@/components/ui/RevealObserver';
 import { SITE_URL, STORE } from '@/lib/store';
 import './globals.css';
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <SmoothScroll>{children}</SmoothScroll>
         <RevealObserver />
+        <CursorGlow />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(store) }} />
       </body>
     </html>
