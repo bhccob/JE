@@ -59,55 +59,117 @@ html.lenis body {
   transform: none;
 }
 
-/* The pointer's light (CursorGlow): a soft circle of warm sun around the native cursor, over everything, the loading
-   screen included. Its centre sits on the pointer; script moves it by transform. Over a control the light gathers
-   to a tighter, brighter spot. Touch screens and forced colours never show it, nor do reduced motion or Save-Data. */
+/* The pointer's light (CursorGlow): a small sun that glides after the native cursor with a trail of light behind it,
+   over everything, the loading screen included. The sun is a white-hot heart in a warm disc, wrapped in a soft aura;
+   nothing moves while the hand rests. Script draws the trail on the canvas (its colours come from the tokens here)
+   and moves the sun and the click's ripple by transform. The falloff runs to a deeper amber so the light still reads
+   on the film's pale plaster. Over a control the sun gathers to a point inside a ring of light and its aura draws in
+   and brightens; a press squeezes it and sends a ring out from the click. Touch screens and forced colours never show
+   it, nor do reduced motion or Save-Data. */
 .glow {
-  --glow: 480px;
+  --head: 34px;
+  --aura: 110px;
+  --glow-white: color-mix(in oklab, var(--color-sun) 50%, var(--color-paper));
+  --glow-amber: color-mix(in oklab, var(--color-sun) 60%, var(--color-wood));
   position: fixed;
-  left: calc(var(--glow) / -2);
-  top: calc(var(--glow) / -2);
+  left: 0;
+  top: 0;
   z-index: calc(var(--z-toast) + 1);
-  width: var(--glow);
-  height: var(--glow);
   pointer-events: none;
   opacity: 0;
   transition: opacity 500ms var(--ease-out);
-  will-change: transform;
 }
 .glow[data-on='true'] {
   opacity: 1;
 }
-.glow__light,
-.glow::after {
+.glow__trail {
   position: absolute;
+  left: 0;
+  top: 0;
+}
+.glow__head,
+.glow__ripple {
+  position: absolute;
+  left: calc(var(--head) / -2);
+  top: calc(var(--head) / -2);
+  width: var(--head);
+  height: var(--head);
+  border-radius: 50%;
+  will-change: transform;
+}
+.glow__head::before,
+.glow__head::after {
+  content: '';
+  position: absolute;
+  inset: 0;
   border-radius: 50%;
   transition:
-    transform 420ms var(--ease-out),
-    opacity 420ms var(--ease-out);
+    scale var(--dur-short) var(--ease-out),
+    opacity var(--dur-short) var(--ease-out);
 }
-.glow__light {
-  inset: 0;
+.glow__head::before {
   background: radial-gradient(
     circle closest-side,
-    color-mix(in oklab, var(--color-sun) 40%, transparent),
-    color-mix(in oklab, var(--color-sun) 16%, transparent) 42%,
+    var(--glow-white),
+    color-mix(in oklab, var(--color-sun) 70%, transparent) 22%,
+    color-mix(in oklab, var(--color-sun) 25%, transparent) 50%,
     transparent
   );
 }
-.glow::after {
-  content: '';
-  inset: 36%;
-  background: radial-gradient(circle closest-side, color-mix(in oklab, var(--color-sun) 55%, transparent), transparent);
+/* The aura sits under the sun (the head is its own stacking context, being moved by transform). */
+.glow__aura {
+  position: absolute;
+  z-index: -1;
+  left: calc(50% - var(--aura) / 2);
+  top: calc(50% - var(--aura) / 2);
+  width: var(--aura);
+  height: var(--aura);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle closest-side,
+    color-mix(in oklab, var(--color-sun) 26%, transparent),
+    color-mix(in oklab, var(--glow-amber) 10%, transparent) 40%,
+    transparent
+  );
+  opacity: 0.85;
+  transition:
+    scale var(--dur-short) var(--ease-out),
+    opacity var(--dur-short) var(--ease-out);
+}
+.glow__head::after,
+.glow__ripple {
+  border: 1.5px solid var(--glow-amber);
+  box-shadow:
+    0 0 8px color-mix(in oklab, var(--color-sun) 60%, transparent),
+    inset 0 0 6px color-mix(in oklab, var(--color-sun) 40%, transparent);
+}
+.glow__head::after {
   opacity: 0;
-  transform: scale(0.6);
+  scale: 0.5;
 }
-.glow[data-hot='true'] .glow__light {
-  transform: scale(0.7);
+.glow__ripple {
+  opacity: 0;
 }
-.glow[data-hot='true']::after {
+.glow[data-hot='true'] .glow__head::before {
+  scale: 0.6;
+}
+.glow[data-hot='true'] .glow__head::after {
   opacity: 1;
-  transform: none;
+  scale: 1;
+}
+.glow[data-hot='true'] .glow__aura {
+  opacity: 1;
+  scale: 0.8;
+}
+.glow[data-down='true'] .glow__head::before,
+.glow[data-down='true'] .glow__head::after {
+  transition-duration: var(--dur-micro);
+}
+.glow[data-down='true'] .glow__head::before {
+  scale: 0.45;
+}
+.glow[data-down='true'] .glow__head::after {
+  scale: 0.82;
 }
 @media not all and (hover: hover) and (pointer: fine) {
   .glow {

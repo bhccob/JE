@@ -57,4 +57,4 @@ One store carries both sides of a home: solar panels, inverters, generators, LED
 
 ## Accessibility & Inclusion
 
-Reduced motion, Save-Data and no-JS visitors get each chapter as a still with its copy, in order; the bulb slider still works. The film's canvas is decorative (`aria-hidden`); every chapter's copy and controls are real DOM. No custom cursor: the native one stays, and on mouse and trackpad a soft warm glow follows it (owner's request, 2026-10-27), skipped for touch, reduced motion, Save-Data and forced colours. Nothing essential lives only inside a canvas.
+Reduced motion, Save-Data and no-JS visitors get each chapter as a still with its copy, in order; the bulb slider still works. The film's canvas is decorative (`aria-hidden`); every chapter's copy and controls are real DOM. No custom cursor: the native one stays, and on mouse and trackpad a small glowing sun glides after it with a short trail of light (owner's request, 2026-10-27), skipped for touch, reduced motion, Save-Data and forced colours. Nothing essential lives only inside a canvas.
