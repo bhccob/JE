@@ -29,7 +29,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title,
   description,
-  openGraph: { type: 'website', title: 'Jontai Energy', description, locale: 'en', siteName: 'Jontai Energy' },
+  // Link previews in chat apps and social posts never show the concept banner, so a concept build says it there too.
+  openGraph: CONCEPT
+    ? {
+        type: 'website',
+        title: 'Jontai Energy (concept redesign)',
+        description: `A concept redesign, not the official Jontai Energy website. ${description}`,
+        locale: 'en',
+        siteName: 'Jontai Energy (concept redesign)',
+      }
+    : { type: 'website', title: 'Jontai Energy', description, locale: 'en', siteName: 'Jontai Energy' },
   icons: { icon: '/icon.svg' },
   // A concept build stays out of search results, so it is never mistaken for the store's own site.
   robots: CONCEPT ? { index: false, follow: false } : undefined,
