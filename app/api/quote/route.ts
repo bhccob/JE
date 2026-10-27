@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { checkQuote, quoteEmail } from '@/lib/quote';
-import { STORE } from '@/lib/store';
+import { CONCEPT, STORE } from '@/lib/store';
 
 /**
  * Sends a quote request to the store's inbox through Resend (resend.com), with Reply-To set to the visitor.
@@ -8,6 +8,8 @@ import { STORE } from '@/lib/store';
  * email. Without them the route answers 503 and the page offers to send the same message from the visitor's email app.
  */
 export async function POST(request: Request) {
+  // A concept build never sends anything to the store, whatever keys it is given.
+  if (CONCEPT) return NextResponse.json({ ok: false, reason: 'concept' }, { status: 403 });
   if (Number(request.headers.get('content-length') ?? 0) > 20_000) return NextResponse.json({ ok: false }, { status: 413 });
   const body: unknown = await request.json().catch(() => null);
 

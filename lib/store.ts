@@ -45,3 +45,12 @@ export const SERVICE_LINE =
   'Jontai Energy is a retail store and does not provide installation services. Delivery is available for large items such as furniture.';
 
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000').replace(/\/$/, '');
+
+/** The store's own website. */
+export const OFFICIAL_URL = 'https://www.jontaienergy.com/';
+
+/**
+ * This build is a concept redesign, not the store's own site: it says so on every page, keeps out of search engines
+ * and sends nothing to the store. Set NEXT_PUBLIC_OFFICIAL_SITE=1 only once the owner adopts it as the real site.
+ */
+export const CONCEPT = process.env.NEXT_PUBLIC_OFFICIAL_SITE !== '1';

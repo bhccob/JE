@@ -3,9 +3,10 @@ import type { ReactNode } from 'react';
 import localFont from 'next/font/local';
 import { Hanken_Grotesk } from 'next/font/google';
 import { SmoothScroll } from '@/components/providers/SmoothScroll';
+import { ConceptBanner } from '@/components/ui/ConceptBanner';
 import { CursorGlow } from '@/components/ui/CursorGlow';
 import { RevealObserver } from '@/components/ui/RevealObserver';
-import { SITE_URL, STORE } from '@/lib/store';
+import { CONCEPT, SITE_URL, STORE } from '@/lib/store';
 import './globals.css';
 
 const gambetta = localFont({
@@ -30,6 +31,8 @@ export const metadata: Metadata = {
   description,
   openGraph: { type: 'website', title: 'Jontai Energy', description, locale: 'en', siteName: 'Jontai Energy' },
   icons: { icon: '/icon.svg' },
+  // A concept build stays out of search results, so it is never mistaken for the store's own site.
+  robots: CONCEPT ? { index: false, follow: false } : undefined,
 };
 
 export const viewport: Viewport = {
@@ -80,8 +83,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </a>
         <SmoothScroll>{children}</SmoothScroll>
         <RevealObserver />
+        <ConceptBanner />
         <CursorGlow />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(store) }} />
+        {!CONCEPT && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(store) }} />}
       </body>
     </html>
   );

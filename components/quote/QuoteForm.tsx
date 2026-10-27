@@ -3,10 +3,15 @@
 import { useEffect, useId, useRef, useState, type FormEvent } from 'react';
 import { CheckCircle, WarningCircle } from '@phosphor-icons/react/dist/ssr';
 import { DELIVERY_TOPICS, QUOTE_LIMITS, checkQuote, quoteMailto, type QuoteErrors, type QuoteField, type QuoteRequest, type QuoteTopic } from '@/lib/quote';
-import { STORE } from '@/lib/store';
+import { CONCEPT, OFFICIAL_URL, STORE } from '@/lib/store';
 import { ProductPicker } from './ProductPicker';
 
-type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'sent'; name: string; email: string } | { kind: 'failed'; request: QuoteRequest };
+type Status =
+  | { kind: 'idle' }
+  | { kind: 'sending' }
+  | { kind: 'sent'; name: string; email: string }
+  | { kind: 'failed'; request: QuoteRequest }
+  | { kind: 'concept' };
 
 const ORDER: QuoteField[] = ['topics', 'details', 'area', 'name', 'email', 'phone'];
 
@@ -46,6 +51,8 @@ export function QuoteForm({ initial }: { initial: QuoteTopic[] }) {
     if (!checked.ok) return showErrors(checked.errors);
 
     setErrors({});
+    // A concept build checks the form like the real one but sends nothing, not even to the visitor's email app.
+    if (CONCEPT) return setStatus({ kind: 'concept' });
     setStatus({ kind: 'sending' });
     try {
       const res = await fetch('/api/quote', {
@@ -208,11 +215,26 @@ export function QuoteForm({ initial }: { initial: QuoteTopic[] }) {
         </div>
       )}
 
+      {status.kind === 'concept' && (
+        <div className="quote__failed" role="status">
+          <p>
+            <strong>Nothing was sent.</strong> This is a concept redesign, so the form is not connected to the store. To ask Jontai Energy
+            for a quote, call <a href={`tel:${STORE.phone.replace(/\s/g, '')}`}>{STORE.phone}</a> or visit{' '}
+            <a href={OFFICIAL_URL} rel="noopener noreferrer">
+              jontaienergy.com
+            </a>
+            .
+          </p>
+        </div>
+      )}
+
       <div className="quote__send">
         <button type="submit" className="btn btn--primary" disabled={sending}>
           {sending ? 'Sending' : 'Send request'}
         </button>
-        <p className="note">Sent by email to Jontai Energy. Your details are only used to reply.</p>
+        <p className="note">
+          {CONCEPT ? 'A concept redesign: nothing you enter here is sent.' : 'Sent by email to Jontai Energy. Your details are only used to reply.'}
+        </p>
       </div>
     </form>
   );
