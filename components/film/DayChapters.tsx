@@ -29,7 +29,7 @@ function Quote({ topic }: { topic: QuoteTopic }) {
 
 const INFO = 'See product info';
 /** Screens the film rests on each product once the camera arrives. */
-const HOLD = 0.9;
+const HOLD = 0.6;
 
 /**
  * The day, chapter by chapter. Beat ranges are fractions of each chapter's film. A chapter of length L slides in over
@@ -39,7 +39,7 @@ const HOLD = 0.9;
 export function DayChapters() {
   return (
     <>
-      <Chapter id="dawn" length={2.2} product={{ panel: 'solar', name: 'Solar panels' }} still="Rendered illustration: a solar panel on an oak post catching first light, the shadow of a divi-divi tree on a plaster wall.">
+      <Chapter id="dawn" length={1.8} product={{ panel: 'solar', name: 'Solar panels' }} still="Rendered illustration: a solar panel on an oak post catching first light, the shadow of a divi-divi tree on a plaster wall.">
         <div className="beat beat--hero" data-beat="0,0.74">
           <h1 id="dawn-title" className="h-display">
             {C.dawn.title}
@@ -58,13 +58,13 @@ export function DayChapters() {
 
       <Chapter
         id="noon"
-        length={3.2}
+        length={2.5}
         hold={HOLD}
         product={{ panel: 'inverter', name: 'Hybrid solar inverter' }}
-        anchors={[{ id: 'shop', at: 0.36 }]}
+        anchors={[{ id: 'shop', at: 0.43 }]}
         still="Rendered illustration: an inverter on a sunlit wall, the cable from the solar panel glowing as it carries power."
       >
-        <div className="beat" data-beat="0.29,0.63">
+        <div className="beat" data-beat="0.38,0.68">
           <h2 id="noon-title" className="h-section">
             {C.noon.title}
           </h2>
@@ -75,7 +75,7 @@ export function DayChapters() {
             </OpenCategoryButton>
           </div>
         </div>
-        <div className="beat" data-beat="0.69,1.01">
+        <div className="beat" data-beat="0.73,1.01">
           <h3 className="h-title">{C.noon.inverterTitle}</h3>
           <p className="body">{C.noon.inverterLine}</p>
           <Facts facts={C.noon.facts} />
@@ -89,8 +89,8 @@ export function DayChapters() {
         </div>
       </Chapter>
 
-      <Chapter id="heat" length={2.6} hold={HOLD} product={{ panel: 'solar-ac', name: 'Hybrid solar air conditioner' }} still="Rendered illustration: a solar air conditioner on a white wall, cool air flowing from it, the outdoor unit below.">
-        <div className="beat" data-beat="0.36,1.01">
+      <Chapter id="heat" length={2.1} hold={HOLD} product={{ panel: 'solar-ac', name: 'Hybrid solar air conditioner' }} still="Rendered illustration: a solar air conditioner on a white wall, cool air flowing from it, the outdoor unit below.">
+        <div className="beat" data-beat="0.45,1.01">
           <h2 id="heat-title" className="h-section">
             {C.heat.title}
           </h2>
@@ -106,8 +106,8 @@ export function DayChapters() {
         </div>
       </Chapter>
 
-      <Chapter id="afternoon" length={2.4} hold={HOLD} product={{ panel: 'power-station', name: 'Portable power station' }} still="Rendered illustration: a portable power station on an oak bench in late afternoon light.">
-        <div className="beat" data-beat="0.4,1.01">
+      <Chapter id="afternoon" length={2.0} hold={HOLD} product={{ panel: 'power-station', name: 'Portable power station' }} still="Rendered illustration: a portable power station on an oak bench in late afternoon light.">
+        <div className="beat" data-beat="0.48,1.01">
           <h2 id="afternoon-title" className="h-section">
             {C.afternoon.title}
           </h2>
@@ -125,20 +125,20 @@ export function DayChapters() {
 
       <Chapter
         id="dusk"
-        length={3.0}
+        length={2.4}
         hold={HOLD + 0.3}
         product={{ panel: 'led', name: 'LED lighting' }}
         tone="dark"
         overlay={<KelvinPicture />}
         still="Rendered illustration: an LED filament bulb glowing against a plaster wall at dusk."
       >
-        <div className="beat" data-beat="0.31,0.7">
+        <div className="beat" data-beat="0.39,0.74">
           <h2 id="dusk-title" className="h-section">
             {C.dusk.title}
           </h2>
           <p className="lead">{C.dusk.line}</p>
         </div>
-        <div className="beat" data-beat="0.75,1.01">
+        <div className="beat" data-beat="0.78,1.01">
           <p className="h-title">{C.dusk.kelvin}</p>
           <KelvinControl label="Try a colour temperature" />
           <div className="actions">
@@ -150,8 +150,8 @@ export function DayChapters() {
         </div>
       </Chapter>
 
-      <Chapter id="night" length={2.2} hold={HOLD} product={{ panel: 'cameras', name: 'Solar security cameras' }} tone="dark" still="Rendered illustration: a solar security camera on its wall bracket at night.">
-        <div className="beat" data-beat="0.43,1.01">
+      <Chapter id="night" length={1.8} hold={HOLD} product={{ panel: 'cameras', name: 'Solar security cameras' }} tone="dark" still="Rendered illustration: a solar security camera on its wall bracket at night.">
+        <div className="beat" data-beat="0.53,1.01">
           <h2 id="night-title" className="h-section">
             {C.night.title}
           </h2>
@@ -165,8 +165,8 @@ export function DayChapters() {
         </div>
       </Chapter>
 
-      <Chapter id="outage" length={2.4} hold={HOLD} product={{ panel: 'generator', name: 'Generators' }} tone="dark" still="Rendered illustration: a portable generator with its panel light on, keeping the lights on through a power cut.">
-        <div className="beat" data-beat="0.4,1.01">
+      <Chapter id="outage" length={2.0} hold={HOLD} product={{ panel: 'generator', name: 'Generators' }} tone="dark" still="Rendered illustration: a portable generator with its panel light on, keeping the lights on through a power cut.">
+        <div className="beat" data-beat="0.48,1.01">
           <h2 id="outage-title" className="h-section">
             {C.outage.title}
           </h2>
@@ -182,20 +182,20 @@ export function DayChapters() {
 
       <Chapter
         id="morning"
-        length={3.0}
+        length={2.4}
         hold={HOLD}
         product={{ panel: 'furniture', name: 'Furniture delivery' }}
         place="top"
         anchors={[
-          { id: 'upstairs', at: 0.88 },
-          { id: 'delivery', at: 0.92 },
+          { id: 'upstairs', at: 0.9 },
+          { id: 'delivery', at: 0.93 },
         ]}
         still="Rendered illustration: a sofa, a lounge chair and a floor lamp on an oak floor upstairs, in morning light."
       >
-        <p className="beat h-display beat--climb" data-beat="0.3,0.56">
+        <p className="beat h-display beat--climb" data-beat="0.38,0.62">
           {C.morning.climb}
         </p>
-        <div className="beat" data-beat="0.63,1.01">
+        <div className="beat" data-beat="0.68,1.01">
           <h2 id="morning-title" className="h-section">
             {C.morning.title}
           </h2>

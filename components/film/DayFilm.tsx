@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLenis } from 'lenis/react';
 import { filmProgress, frameAt, framePath, type ChapterId, type FrameSize } from '@/lib/film';
-import { FrameStore, drawCover } from './frames';
+import { FrameStore, drawCover, fitCanvas } from './frames';
 import { filmStore } from './store';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -76,14 +76,15 @@ export function DayFilm({ children }: { children: ReactNode }) {
       const at = frameAt(effective(), frames.count(active));
       const i = settled && at.t >= 0.5 ? at.i + 1 : at.i;
       const t = settled ? 0 : at.t;
+      frames.seek(active, i);
       const a = frames.get(active, i) ?? frames.nearest(active, i);
       if (!a || !ctx) return;
       const b = t > 0.03 ? frames.get(active, i + 1) : null;
-      const key = `${a.src}|${b ? `${b.src}|${t.toFixed(2)}` : ''}|${cvs!.width}`;
+      const key = `${a.key}|${b ? `${b.key}|${t.toFixed(2)}` : ''}|${cvs!.width}`;
       if (key === drawn) return;
       drawn = key;
-      drawCover(ctx, a);
-      if (b) drawCover(ctx, b, t);
+      drawCover(ctx, a.image);
+      if (b) drawCover(ctx, b.image, t);
       cvs!.dataset.ready = 'true';
     }
     function schedule() {
@@ -91,9 +92,7 @@ export function DayFilm({ children }: { children: ReactNode }) {
     }
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      cvs.width = Math.round(cvs.clientWidth * dpr);
-      cvs.height = Math.round(cvs.clientHeight * dpr);
+      fitCanvas(cvs, size);
       drawn = '';
       schedule();
     };
@@ -125,21 +124,24 @@ export function DayFilm({ children }: { children: ReactNode }) {
         onToggle: (self) => self.isActive && setActive(ids[k], self.progress),
       }),
     );
-    const measureHolds = () => {
+    // Measured on each ScrollTrigger refresh (load, resize), never during a scroll, so scrolling forces no layout.
+    let stageEnd = 0;
+    const measure = () => {
       holds.current = triggers.flatMap((t, i) => {
         if (!(holdOf[i] > 0)) return [];
         const total = lengths[i] + holdOf[i];
         const at = (p: number) => t.start + p * (t.end - t.start);
         return [{ start: at(lengths[i] / total), centre: at((lengths[i] + holdOf[i] / 2) / total), end: at(1) }];
       });
+      stageEnd = el.offsetTop + el.offsetHeight - window.innerHeight + 2;
     };
-    measureHolds();
-    ScrollTrigger.addEventListener('refresh', measureHolds);
+    measure();
+    ScrollTrigger.addEventListener('refresh', measure);
     // The film is on stage until its last screen has passed. A plain check on every scroll, so a jump straight past
     // the film (an anchor link) still hides the sun dial.
     let onStage = true;
     const checkStage = () => {
-      const now = window.scrollY < el.offsetTop + el.offsetHeight - window.innerHeight + 2;
+      const now = window.scrollY < stageEnd;
       if (now !== onStage) {
         onStage = now;
         filmStore.set({ visible: now });
@@ -181,8 +183,9 @@ export function DayFilm({ children }: { children: ReactNode }) {
       tween?.kill();
       triggers.forEach((t) => t.kill());
       window.removeEventListener('scroll', checkStage);
-      ScrollTrigger.removeEventListener('refresh', measureHolds);
+      ScrollTrigger.removeEventListener('refresh', measure);
       window.removeEventListener('resize', resize);
+      frames.dispose();
     };
   }, []);
 
@@ -204,7 +207,7 @@ export function DayFilm({ children }: { children: ReactNode }) {
         if (!hold || Math.abs(hold.centre - y) < 4) return;
         gliding = true;
         lenis.scrollTo(hold.centre, {
-          duration: 0.9,
+          duration: 0.7,
           easing: (t: number) => 1 - Math.pow(1 - t, 3),
           onComplete: () => {
             gliding = false;
