@@ -1,0 +1,15 @@
+{
+  "scanned": "2026-10-26",
+  "findings": {
+    "fonts": "Gloock (display) + Geist Sans + Geist Mono via next/font and the geist package (app/layout.tsx L3-12)",
+    "palette": "Tailwind v4 @theme hex tokens: cream, sage 50-700, forest 700-900, wood 50-700, glow (app/globals.css L15-47)",
+    "motion": "motion 14, gsap 3.13 + ScrollTrigger, lenis 1.3 (package.json L21-23); React Three Fiber 8 hero canvas",
+    "spacing": "Tailwind default 4pt scale, .page-x container 1240px (app/globals.css)",
+    "framework": "Next.js 14 app router, Tailwind v4, TypeScript (package.json L24, L40)",
+    "design_md": "none; PRODUCT.md and .impeccable/surfaces/app-page-tsx.md hold product truth and the previous direction",
+    "product": "running dev server at http://localhost:3000/ (another session's next dev, hot-reloading this folder)",
+    "together_api_key": "not set (no signal 9); imagery comes from Higgsfield at the user's request"
+  },
+  "preserve": ["every link, handler, id and route on /", "product facts in data/products.json", "store facts in lib/store.ts", "loyalty rules in lib/loyalty.ts", "the Jontai Energy name and wordmark"],
+  "introduce": ["dark atmospheric theme", "shape", "hero discipline", "gates", "image slots"]
+}
