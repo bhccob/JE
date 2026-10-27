@@ -5,16 +5,16 @@ import { filmStore } from './store';
 
 /** Seconds after the sun starts to swell when the screen starts to lift, as the sun is about to cover it. DayFilm
  *  starts the sunrise then. */
-export const DAYBREAK_LIFT = 0.55;
+export const DAYBREAK_LIFT = 0.68;
 /** Set for the rest of the visit once the screen has shown. The head script in app/layout.tsx reads the same key. */
 const SEEN = 'jontai-daybreak';
 /** The sunrise never runs faster than this, so the screen reads as an opening, not a flash; it runs slower when
  *  loading does. */
-const RISE = 2600;
+const RISE = 3300;
 /** A beat at 05:30 before the sun swells. */
-const HOLD = 400;
-const SWELL = 900;
-const FADE = 700;
+const HOLD = 500;
+const SWELL = 1100;
+const FADE = 850;
 /** A scroll, tap or key skips the sunrise with a quick fade. */
 const SKIP_FADE = 400;
 /** If the opening is still loading by then, the sun rises anyway and the film catches up behind it. */
