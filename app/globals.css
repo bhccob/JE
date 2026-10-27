@@ -785,6 +785,87 @@ main {
   line-height: 1.2;
 }
 
+/* Daybreak: the loading screen on a first visit. The night the film starts from and the outline of a sun in the
+   middle, drawn round as the opening loads; then the sun lights up and zooms into the screen. Two layers: the scene
+   (the night and the name), which dissolves behind the sun as it zooms, and the sun itself. Only while
+   html.before-dawn is set (by the head script, so never without scripts); if the scripts never arrive, the fallback
+   lifts it. */
+.daybreak {
+  --sun: clamp(120px, 8vw + 72px, 184px);
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-toast);
+  display: none;
+  overflow: clip;
+  color: var(--color-night-ink);
+}
+.before-dawn .daybreak {
+  display: block;
+  animation: daybreak-fallback 600ms var(--ease-out) 12s forwards;
+}
+@keyframes daybreak-fallback {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.daybreak__scene {
+  position: absolute;
+  inset: 0;
+  background: var(--color-film-night);
+}
+.daybreak__mark {
+  position: absolute;
+  inset-inline: 0;
+  top: calc(50% + var(--sun) / 2 + var(--space-xl));
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+.daybreak__mark span {
+  color: var(--color-night-ink-2);
+}
+.daybreak__sun {
+  position: absolute;
+  left: calc(50% - var(--sun) / 2);
+  top: calc(50% - var(--sun) / 2);
+  width: var(--sun);
+  height: var(--sun);
+}
+.js:not(.still) .daybreak__sun {
+  opacity: 0;
+}
+.daybreak__core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--color-sun);
+  box-shadow: 0 0 72px 20px color-mix(in oklab, var(--color-sun) 38%, transparent);
+  opacity: 0;
+}
+.daybreak__ring {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+.daybreak__ring :is(circle, path) {
+  fill: none;
+  stroke-width: 1.25;
+}
+.daybreak__track {
+  stroke: color-mix(in oklab, var(--color-night-ink) 16%, transparent);
+}
+.daybreak__arc {
+  stroke: var(--color-sun);
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.still :is(.daybreak__core, .daybreak__arc) {
+  display: none;
+}
+
 /* Phones and portrait screens: the picture above, the copy along the bottom. */
 @media (max-width: 47.99rem), (orientation: portrait) {
   .chapter__pin,

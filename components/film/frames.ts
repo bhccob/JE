@@ -62,10 +62,13 @@ export class FrameStore {
     }
   }
 
-  /** Loads frames [from, to) in full, for stretches that must play smoothly at once (the sunrise intro). */
-  async loadRange(id: ChapterId, from: number, to: number) {
+  /** Loads frames [from, to) in full, for stretches that must play smoothly at once (the sunrise intro). `onEach`
+   *  hears each fetch settle, so a loading screen can show real progress. */
+  async loadRange(id: ChapterId, from: number, to: number, onEach?: () => void) {
     const batch: Promise<void>[] = [];
-    for (let i = from; i < Math.min(to, this.count(id)); i++) if (!this.files[this.at(id, i)]) batch.push(this.fetchOne(id, i));
+    for (let i = from; i < Math.min(to, this.count(id)); i++) {
+      if (!this.files[this.at(id, i)]) batch.push(this.fetchOne(id, i).then(onEach));
+    }
     await Promise.all(batch);
   }
 
