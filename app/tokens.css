@@ -111,3 +111,19 @@
 }
 @media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; --nav-h: 64px; } }
 @media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
+/* Phones: a smaller type scale, so headings hold a line or two and the film's products stay in view. Body stays 16px,
+   which also keeps iOS from zooming into form fields. */
+@media (max-width: 40rem) {
+  :root {
+    --text-md: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.3125rem;
+    --text-2xl: 1.5625rem;
+    --text-3xl: 1.875rem;
+    --text-display-s: clamp(1.875rem, 4vw + 1rem, 2.25rem);
+    --text-display: clamp(2rem, 5vw + 0.9rem, 2.5rem);
+    --text-section: clamp(1.625rem, 3vw + 1rem, 2rem);
+    --text-title: 1.1875rem;
+    --text-lead: 1rem;
+  }
+}
