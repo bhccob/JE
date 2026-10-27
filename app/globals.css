@@ -786,9 +786,10 @@ main {
 }
 
 /* Daybreak: the loading screen on a first visit. The night the film starts from, a horizon, a sun that comes up over
-   it with a glow, and a clock running to 05:30 below. Layers, back to front: the glow, the sun, the ground (which
-   hides the sun until it rises), the type; the sun comes to the front when it swells. Only while html.before-dawn is
-   set (by the head script, so never without scripts); if the scripts never arrive, the fallback lifts it. */
+   it with a glow, and a clock running to 05:30 below. Two layers: the scene (the night, the glow, the horizon and the
+   type), which dissolves behind the sun as it swells, and the window above the horizon that the sun rises in, which
+   clips it until it is up and lets it grow past its edges once it swells. Only while html.before-dawn is set (by the
+   head script, so never without scripts); if the scripts never arrive, the fallback lifts it. */
 .daybreak {
   --horizon: 58%;
   --sun: clamp(88px, 6vw + 48px, 136px);
@@ -797,8 +798,28 @@ main {
   z-index: var(--z-toast);
   display: none;
   overflow: clip;
-  background: var(--color-film-night);
   color: var(--color-night-ink);
+}
+.daybreak__scene {
+  position: absolute;
+  inset: 0;
+  background: var(--color-film-night);
+}
+.daybreak__scene::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: var(--horizon);
+  border-top: var(--rule-hair) solid color-mix(in oklab, var(--color-night-ink) 24%, transparent);
+}
+.daybreak__window {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--horizon);
+  overflow: clip;
+}
+.daybreak[data-open='true'] .daybreak__window {
+  overflow: visible;
 }
 .before-dawn .daybreak {
   display: block;
@@ -810,11 +831,13 @@ main {
     visibility: hidden;
   }
 }
+/* The glow lights the sky only, above the horizon. */
 .daybreak__sky {
   position: absolute;
-  inset: 0;
+  inset: 0 0 auto;
+  height: var(--horizon);
   background: radial-gradient(
-    ellipse 62% 48% at 50% var(--horizon),
+    ellipse 62% 83% at 50% 100%,
     color-mix(in oklab, var(--color-sun) 32%, transparent),
     color-mix(in oklab, var(--color-wood) 12%, transparent) 45%,
     transparent 72%
@@ -824,30 +847,19 @@ main {
 .daybreak__sun {
   position: absolute;
   left: calc(50% - var(--sun) / 2);
-  top: calc(var(--horizon) - var(--sun));
-  z-index: 1;
+  bottom: 0;
   width: var(--sun);
   height: var(--sun);
   border-radius: 50%;
   background: var(--color-sun);
   box-shadow: 0 0 64px 18px color-mix(in oklab, var(--color-sun) 38%, transparent);
   translate: 0 85%;
-}
-.daybreak[data-open='true'] .daybreak__sun {
-  z-index: 4;
-}
-.daybreak__ground {
-  position: absolute;
-  inset: var(--horizon) 0 0;
-  z-index: 2;
-  background: var(--color-film-night);
-  border-top: var(--rule-hair) solid color-mix(in oklab, var(--color-night-ink) 24%, transparent);
+  opacity: 0;
 }
 .daybreak__mark {
   position: absolute;
   inset-inline: 0;
   top: calc(var(--nav-h) / 2 + var(--space-sm));
-  z-index: 3;
   font-family: var(--font-display);
   font-size: 1.75rem;
   letter-spacing: -0.02em;
@@ -860,7 +872,6 @@ main {
   position: absolute;
   inset-inline: 0;
   top: calc(var(--horizon) + var(--space-xl));
-  z-index: 3;
   display: grid;
   justify-items: center;
   gap: var(--space-sm);
@@ -876,7 +887,7 @@ main {
   font-size: var(--text-sm);
   color: var(--color-night-ink-2);
 }
-.still :is(.daybreak__sky, .daybreak__sun, .daybreak__clock) {
+.still :is(.daybreak__sky, .daybreak__window, .daybreak__clock) {
   display: none;
 }
 

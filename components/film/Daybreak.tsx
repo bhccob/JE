@@ -42,6 +42,7 @@ const clockAt = (p: number) => {
  */
 export function Daybreak() {
   const root = useRef<HTMLDivElement>(null);
+  const scene = useRef<HTMLSpanElement>(null);
   const sun = useRef<HTMLSpanElement>(null);
   const sky = useRef<HTMLSpanElement>(null);
   const clock = useRef<HTMLSpanElement>(null);
@@ -49,10 +50,11 @@ export function Daybreak() {
   useEffect(() => {
     const html = document.documentElement;
     const el = root.current;
+    const night = scene.current;
     const disc = sun.current;
     const glow = sky.current;
     const digits = clock.current;
-    if (!el || !disc || !glow || !digits) return;
+    if (!el || !night || !disc || !glow || !digits) return;
     if (played || !html.classList.contains('before-dawn')) {
       html.classList.remove('before-dawn');
       return;
@@ -112,7 +114,17 @@ export function Daybreak() {
       const [w, h] = [window.innerWidth, window.innerHeight];
       const reach = Math.max(Math.hypot(cx, cy), Math.hypot(w - cx, cy), Math.hypot(cx, h - cy), Math.hypot(w - cx, h - cy));
       const cover = ((2 * reach) / r.width) * 1.05;
-      animations.push(disc.animate([{ scale: '1' }, { scale: cover.toFixed(2) }], { duration: SWELL, easing: token('--ease-in-out'), fill: 'forwards' }));
+      // The sun stays solid while the night dissolves behind it, then thins over the morning, so the screen fills
+      // with a warm wash rather than a solid block of colour (thinning it over the night turns it olive).
+      const easing = token('--ease-in-out');
+      animations.push(
+        disc.animate([{ scale: '1', opacity: 1 }, { opacity: 1, offset: 0.55 }, { scale: cover.toFixed(2), opacity: 0.45 }], {
+          duration: SWELL,
+          easing,
+          fill: 'forwards',
+        }),
+        night.animate([{ opacity: 1 }, { opacity: 0 }], { delay: SWELL * 0.25, duration: SWELL * 0.4, easing, fill: 'forwards' }),
+      );
       fadeOut(DAYBREAK_LIFT * 1000, FADE);
     };
     function skip() {
@@ -133,7 +145,8 @@ export function Daybreak() {
 
     // The sunrise: the sun and its glow rise over RISE, paused whenever they get ahead of what has really loaded.
     const timing = { duration: RISE, easing: token('--ease-in-out'), fill: 'forwards' as const };
-    const rise = disc.animate([{ translate: '0 85%' }, { translate: '0 0' }], timing);
+    // The sun fades in over the first part of its climb instead of standing at the horizon from the first frame.
+    const rise = disc.animate([{ translate: '0 85%', opacity: 0 }, { opacity: 1, offset: 0.3 }, { translate: '0 0', opacity: 1 }], timing);
     const light = glow.animate([{ opacity: 0 }, { opacity: 1 }], timing);
     animations.push(rise, light);
     let loaded = 0;
@@ -172,17 +185,20 @@ export function Daybreak() {
 
   return (
     <div ref={root} className="daybreak" aria-hidden="true">
-      <span ref={sky} className="daybreak__sky" />
-      <span ref={sun} className="daybreak__sun" />
-      <span className="daybreak__ground" />
-      <span className="daybreak__mark">
-        Jontai <span>Energy</span>
-      </span>
-      <span className="daybreak__time">
-        <span ref={clock} className="daybreak__clock">
-          {clockAt(0)}
+      <span ref={scene} className="daybreak__scene">
+        <span ref={sky} className="daybreak__sky" />
+        <span className="daybreak__mark">
+          Jontai <span>Energy</span>
         </span>
-        <span className="daybreak__caption">Sunrise in Oranjestad</span>
+        <span className="daybreak__time">
+          <span ref={clock} className="daybreak__clock">
+            {clockAt(0)}
+          </span>
+          <span className="daybreak__caption">Sunrise in Oranjestad</span>
+        </span>
+      </span>
+      <span className="daybreak__window">
+        <span ref={sun} className="daybreak__sun" />
       </span>
     </div>
   );
