@@ -1,12 +1,12 @@
 import { OpenCategoryButton } from '@/components/catalog/OpenCategoryButton';
 import { CATEGORIES } from '@/lib/products';
 import { QUOTE_ACTION } from '@/lib/quote';
-import { STORE } from '@/lib/store';
+import { CONCEPT, OFFICIAL_URL, STORE } from '@/lib/store';
 
 /** `base` is '/' on pages other than home, so the section links lead back to it. */
 export function Footer({ base = '' }: { base?: string }) {
   return (
-    <footer className="footer">
+    <footer className="footer" data-concept={CONCEPT || undefined}>
       <div className="container footer__grid">
         <a href={base || '#top'} className="wordmark" aria-label={base ? 'Jontai Energy, home' : 'Jontai Energy, back to the top'}>
           Jontai <span>Energy</span>
@@ -31,6 +31,15 @@ export function Footer({ base = '' }: { base?: string }) {
         </div>
         <div className="footer__legal">
           <p>Jontai Energy is a retail store and does not provide installation services.</p>
+          {CONCEPT && (
+            <p>
+              A concept redesign, not the official Jontai Energy website. The store&rsquo;s own site is{' '}
+              <a href={OFFICIAL_URL} rel="noopener noreferrer">
+                jontaienergy.com
+              </a>
+              .
+            </p>
+          )}
           <p>
             © {new Date().getFullYear()} {STORE.name}, {STORE.street}, {STORE.city}, {STORE.country}
           </p>

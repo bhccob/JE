@@ -59,6 +59,35 @@ html.lenis body {
   transform: none;
 }
 
+/* The concept notice (ConceptBanner): a solid ink pill bottom right, over the loading screen and the film alike, so it
+   reads the same by day and by night. The pointer's light still passes over it. */
+.concept {
+  position: fixed;
+  right: var(--space-md);
+  bottom: max(var(--space-md), env(safe-area-inset-bottom));
+  z-index: calc(var(--z-toast) + 1);
+  max-width: min(34rem, calc(100vw - 2 * var(--space-md)));
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  box-shadow: var(--glass-shadow);
+}
+.concept a {
+  color: var(--color-sun);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+}
+@media print {
+  .concept {
+    position: static;
+    box-shadow: none;
+  }
+}
+
 /* The pointer's light (CursorGlow): a small sun that glides after the native cursor with a trail of light behind it,
    over everything, the loading screen included. The sun is a white-hot heart in a warm disc, wrapped in a soft aura;
    nothing moves while the hand rests. Script draws the trail on the canvas (its colours come from the tokens here)
@@ -1467,6 +1496,10 @@ main {
   padding-block: var(--space-3xl) var(--space-xl);
   background: var(--color-forest);
   color: var(--color-night-ink);
+}
+/* Room under the legal lines for the concept notice, which wraps to two lines on phones. */
+.footer[data-concept] {
+  padding-block-end: calc(var(--space-xl) + 4.5rem);
 }
 .footer__grid {
   display: grid;
