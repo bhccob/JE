@@ -70,24 +70,6 @@
   --shadow-card: 0 30px 60px -36px oklch(29% 0.036 168.6 / 0.45);
   --tracking-display: -0.038em;
 
-  /* Glass: frosted sand by day, frosted forest by night. The film's panes keep their own fixed day and night glass. */
-  --glass-day-fill: oklch(98.6% 0.008 96 / 0.6);
-  --glass-day-strong: oklch(98.6% 0.008 96 / 0.84);
-  --glass-day-edge: oklch(100% 0 0 / 0.7);
-  --glass-day-line: oklch(29% 0.036 168.6 / 0.1);
-  --glass-day-solid: oklch(96.9% 0.012 96.4);
-  --glass-night-fill: oklch(18% 0.03 172 / 0.72);
-  --glass-night-strong: oklch(21% 0.032 170 / 0.86);
-  --glass-night-edge: oklch(100% 0 0 / 0.1);
-  --glass-night-line: oklch(96.5% 0.014 95 / 0.14);
-  --glass-night-solid: oklch(21% 0.032 170);
-  --glass-fill: var(--glass-day-fill);
-  --glass-strong: var(--glass-day-strong);
-  --glass-edge: var(--glass-day-edge);
-  --glass-line: var(--glass-day-line);
-  --glass-solid: var(--glass-day-solid);
-  --glass-shadow: 0 30px 70px -40px oklch(29% 0.036 168.6 / 0.42);
-  --glass-blur: 24px;
 }
 :root {
   --space-3xs: 2px;

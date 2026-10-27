@@ -73,7 +73,7 @@ export function CategoryDrawer({ id, onClose, returnTo }: { id: PanelId | null; 
           <motion.div
             ref={panel}
             data-lenis-prevent
-            className="drawer__panel glass"
+            className="drawer__panel"
             initial={reduced ? { opacity: 0 } : { x: '100%' }}
             animate={reduced ? { opacity: 1 } : { x: 0 }}
             exit={reduced ? { opacity: 0 } : { x: '100%' }}
@@ -104,7 +104,7 @@ export function CategoryDrawer({ id, onClose, returnTo }: { id: PanelId | null; 
                     transition={{ duration: 0.6, ease: EASE, delay: reduced ? 0 : 0.18 + i * 0.07 }}
                   >
                     <div className="range__media">
-                      <Image src={item.image} alt={item.alt} width={800} height={800} sizes="(max-width: 40rem) 100vw, 320px" />
+                      <Image className="feather" src={item.image} alt={item.alt} width={800} height={800} sizes="(max-width: 40rem) 100vw, 320px" />
                     </div>
                     <h3 className="range__name">{item.name}</h3>
                     <p className="range__line">{item.line}</p>

@@ -272,7 +272,7 @@
   display: none;
 }
 
-/* The login dialog: the card on the stage colour on one side, the form on sand on the other. Solid, no glass. */
+/* The login dialog: the card on the stage colour on one side, the form on sand on the other. Solid throughout. */
 .member {
   width: min(58rem, calc(100% - 2 * var(--gutter)));
   max-height: calc(100svh - 2 * var(--space-lg));

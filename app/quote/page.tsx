@@ -18,7 +18,7 @@ export default function QuotePage({ searchParams }: { searchParams: { for?: stri
   return (
     <CatalogProvider>
       <Header base="/" />
-      <main id="main" className="quote backdrop">
+      <main id="main" className="quote">
         <div className="container quote__grid">
           {/* On phones the form comes straight after the heading, and the store's details follow it. */}
           <div className="quote__intro">

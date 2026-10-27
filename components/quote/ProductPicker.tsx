@@ -101,7 +101,7 @@ export function ProductPicker({
         </span>
         <CaretDown size={16} weight="bold" className="picker__caret" aria-hidden="true" />
       </button>
-      <div id={`${id}-menu`} className="picker__menu glass" role="group" aria-labelledby={labelId} hidden={!open} onKeyDown={onMenuKey}>
+      <div id={`${id}-menu`} className="picker__menu" role="group" aria-labelledby={labelId} hidden={!open} onKeyDown={onMenuKey}>
         {QUOTE_TOPICS.map((t) => (
           <label key={t.id} className="picker__option">
             <input
