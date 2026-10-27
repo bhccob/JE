@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import localFont from 'next/font/local';
-import { Hanken_Grotesk } from 'next/font/google';
+import { Archivo } from 'next/font/google';
 import { SmoothScroll } from '@/components/providers/SmoothScroll';
 import { ConceptBanner } from '@/components/ui/ConceptBanner';
 import { CursorGlow } from '@/components/ui/CursorGlow';
@@ -9,17 +8,8 @@ import { RevealObserver } from '@/components/ui/RevealObserver';
 import { CONCEPT, SITE_URL, STORE } from '@/lib/store';
 import './globals.css';
 
-const gambetta = localFont({
-  src: [
-    { path: './fonts/Gambetta-Regular.woff2', weight: '400', style: 'normal' },
-    { path: './fonts/Gambetta-Medium.woff2', weight: '500', style: 'normal' },
-  ],
-  variable: '--font-gambetta',
-  display: 'swap',
-  fallback: ['Georgia', 'serif'],
-});
-
-const hanken = Hanken_Grotesk({ subsets: ['latin'], variable: '--font-hanken', display: 'swap' });
+// One family for everything: wide and heavy for headings, narrow (font-stretch 62%) for labels and big figures.
+const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
 
 const title = 'Jontai Energy | Solar, power, lighting and furniture in Oranjestad, Aruba';
 const description =
@@ -86,7 +76,7 @@ const store = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={`${gambetta.variable} ${hanken.variable}`} suppressHydrationWarning>
+    <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
         {/* Before paint: mark scripting on (reveals and the film need it), choose stills over the film for reduced
             motion, Save-Data or a browser that cannot decode frames off the main thread, cover the home page with the

@@ -22,6 +22,7 @@
 /* Hallmark · owner direction 2026-10-27 · glass as a treatment, not boxes: a frosted header bar, panel, menu and loyalty card, an edge-less frosted veil behind the film copy, a rendered wall backdrop; solid without backdrop blur or with reduced transparency */
 @import './tokens.css';
 @import './base.css' layer(base);
+@import './styles/ui.css';
 
 /* ---------- Page ---------- */
 
@@ -253,138 +254,6 @@ html.lenis body {
 }
 main {
   position: relative;
-}
-
-/* ---------- Type ---------- */
-
-.h-display,
-.h-section,
-.h-title,
-.wordmark,
-.figure {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-synthesis: none;
-  color: var(--color-ink);
-}
-.h-display {
-  font-size: var(--text-display);
-  line-height: 0.98;
-  letter-spacing: var(--tracking-display);
-  max-width: 12ch;
-}
-.h-section {
-  font-size: var(--text-section);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  max-width: 16ch;
-}
-.h-title {
-  font-size: var(--text-title);
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-}
-.lead {
-  font-size: var(--text-lead);
-  line-height: 1.5;
-  color: var(--color-ink-2);
-  max-width: 40ch;
-}
-.body {
-  color: var(--color-ink-2);
-  max-width: 52ch;
-}
-.note {
-  font-size: var(--text-sm);
-  color: var(--color-muted);
-  max-width: 56ch;
-}
-.figure {
-  font-variant-numeric: lining-nums tabular-nums;
-  letter-spacing: -0.02em;
-  line-height: 1;
-}
-
-/* ---------- Controls ---------- */
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-xs);
-  min-height: 50px;
-  padding-inline: var(--space-lg);
-  border: 0;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-body);
-  font-size: var(--text-md);
-  font-weight: 600;
-  line-height: 1;
-  white-space: nowrap;
-  text-decoration: none;
-  cursor: pointer;
-  transition:
-    background-color var(--dur-short) var(--ease-out),
-    color var(--dur-short) var(--ease-out),
-    box-shadow var(--dur-short) var(--ease-out),
-    transform var(--dur-micro) var(--ease-out);
-}
-.btn:active {
-  transform: translateY(1px);
-}
-.btn:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
-}
-.btn--primary {
-  background: var(--color-ink-2);
-  color: var(--color-paper);
-}
-@media (hover: hover) and (pointer: fine) {
-  .btn--primary:hover {
-    background: var(--color-ink);
-  }
-}
-.btn--ghost {
-  background: transparent;
-  color: var(--color-ink);
-  box-shadow: inset 0 0 0 var(--rule-hair) color-mix(in oklab, var(--color-ink) 32%, transparent);
-}
-@media (hover: hover) and (pointer: fine) {
-  .btn--ghost:hover {
-    background: color-mix(in oklab, var(--color-field) 35%, transparent);
-  }
-}
-.btn--sm {
-  min-height: 44px;
-  padding-inline: var(--space-md);
-  font-size: var(--text-sm);
-}
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-sm);
-}
-
-/* ---------- Reveal (only once scripts run; the page is complete without them) ---------- */
-
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 700ms var(--ease-out),
-    transform 700ms var(--ease-out);
-  transition-delay: calc(var(--i, 0) * 70ms);
-}
-.js [data-reveal].is-in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .js [data-reveal] {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 /* ---------- Nav ---------- */
