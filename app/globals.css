@@ -58,6 +58,70 @@ html.lenis body {
 .skip:focus-visible {
   transform: none;
 }
+
+/* The pointer's light (CursorGlow): a soft circle of warm sun around the native cursor, over everything, the loading
+   screen included. Its centre sits on the pointer; script moves it by transform. Over a control the light gathers
+   to a tighter, brighter spot. Touch screens and forced colours never show it, nor do reduced motion or Save-Data. */
+.glow {
+  --glow: 480px;
+  position: fixed;
+  left: calc(var(--glow) / -2);
+  top: calc(var(--glow) / -2);
+  z-index: calc(var(--z-toast) + 1);
+  width: var(--glow);
+  height: var(--glow);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms var(--ease-out);
+  will-change: transform;
+}
+.glow[data-on='true'] {
+  opacity: 1;
+}
+.glow__light,
+.glow::after {
+  position: absolute;
+  border-radius: 50%;
+  transition:
+    transform 420ms var(--ease-out),
+    opacity 420ms var(--ease-out);
+}
+.glow__light {
+  inset: 0;
+  background: radial-gradient(
+    circle closest-side,
+    color-mix(in oklab, var(--color-sun) 40%, transparent),
+    color-mix(in oklab, var(--color-sun) 16%, transparent) 42%,
+    transparent
+  );
+}
+.glow::after {
+  content: '';
+  inset: 36%;
+  background: radial-gradient(circle closest-side, color-mix(in oklab, var(--color-sun) 55%, transparent), transparent);
+  opacity: 0;
+  transform: scale(0.6);
+}
+.glow[data-hot='true'] .glow__light {
+  transform: scale(0.7);
+}
+.glow[data-hot='true']::after {
+  opacity: 1;
+  transform: none;
+}
+@media not all and (hover: hover) and (pointer: fine) {
+  .glow {
+    display: none;
+  }
+}
+@media (forced-colors: active) {
+  .glow {
+    display: none;
+  }
+}
+.still .glow {
+  display: none;
+}
 main {
   position: relative;
 }
