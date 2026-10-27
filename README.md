@@ -5,7 +5,7 @@
 # Jontai Energy
 
 ### Smart Lights Smart Savings
-### This is only a personal projects, check out the real sites here:
+### This is only a personal project, check out the real sites here:
 
 <br>
 
