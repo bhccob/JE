@@ -9,16 +9,14 @@ import { ProductRail } from './ProductRail';
 
 /**
  * The five product families, one screen each: a forest text field (oak upstairs) and the product on the stage colour.
- * On wide screens they share one screen that locks in place while you scroll: the words change where they stand and
- * the pictures slide across the stage (ProductRail). On phones they stack. The dark field grows from a rounded inset
- * to full width as it arrives.
+ * On wide screens they run sideways along a rail that locks in place while you scroll (ProductRail); on phones they
+ * stack. The dark field grows from a rounded inset to full width as it arrives.
  */
 export function Showroom() {
   const { chapters } = HOME_COPY;
   return (
     <section id="products" className="showroom" data-tone="dark" data-expand aria-label="Products">
       <div className="rail">
-        <i className="rail__floor" aria-hidden="true" />
         <div className="chapters">
           {chapters.map((c) => (
             <Chapter key={c.id} chapter={c} />

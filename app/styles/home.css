@@ -473,10 +473,9 @@ html.is-loading .loader {
 
 /* ---------- The product rail (wide screens with motion, ProductRail) ---------- */
 
-/* The numbers along the top, the line along the bottom and the oak floor show only while the rail runs. */
+/* The numbers along the top and the line along the bottom show only while the rail runs. */
 .rail__hud,
-.rail__bar,
-.rail__floor {
+.rail__bar {
   display: none;
 }
 /* Above the sections it slides over at the end (Rewards is raised), and clear, so the staircase uncovers them. */
@@ -490,53 +489,21 @@ html.is-loading .loader {
   overflow: hidden;
   background: var(--color-forest);
 }
-/* One stage for every product, on the right, with its pool of light; the pictures slide across it. */
-.showroom[data-rail='true'] .rail::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 0 50%;
-  background:
-    radial-gradient(58% 52% at 50% 48%, rgb(255 255 255 / 0.5), transparent 72%),
-    var(--color-stage);
-}
-/* Upstairs, the oak rises under the words (ProductRail scales it up from the floor). */
-.showroom[data-rail='true'] .rail__floor {
-  position: absolute;
-  inset: 0 50% 0 0;
-  display: block;
-  background: var(--color-oak);
-  transform-origin: 50% 100%;
-  transform: scaleY(0);
-}
 .showroom[data-rail='true'] .chapters {
-  position: relative;
+  display: flex;
   height: 100%;
+  will-change: transform;
 }
-/* The products lie on top of one another, see-through, and only the one on show takes the pointer. */
 .showroom[data-rail='true'] .chapter {
-  position: absolute;
-  inset: 0;
+  flex: 0 0 100%;
+  height: 100%;
   min-height: 0;
-  background: none;
-  pointer-events: none;
 }
-.showroom[data-rail='true'] .chapter[data-shown] .chapter__text > :not(.ghost),
-.showroom[data-rail='true'] .chapter[data-shown] .chapter__media > :not(.chapter__glow) {
-  pointer-events: auto;
-}
-/* Every product on the right and its words on the left, so the eye keeps its place as they change. */
+/* Every product on the right and its words on the left, so the eye keeps its place as they slide. */
 .showroom[data-rail='true'] .chapter__media,
 .showroom[data-rail='true'] .chapter:nth-child(even) .chapter__media {
   order: 2;
   padding: calc(var(--nav-h) + 3vh) 5% 9vh;
-  background: none;
-}
-.showroom[data-rail='true'] .chapter__media::before {
-  content: none;
-}
-/* The floor label and the caption stay put; only the product on show has them. */
-.showroom[data-rail='true'] .chapter:not([data-shown]) .chapter__media > :is(.label, .chapter__caption) {
-  visibility: hidden;
 }
 .showroom[data-rail='true'] .chapter__media img,
 .showroom[data-rail='true'] .chapter__media .bulb3d {
@@ -549,17 +516,11 @@ html.is-loading .loader {
 .showroom[data-rail='true'] .h-section {
   font-size: min(var(--text-section), 7.6vh);
 }
-/* The rail brings these in itself; their own rise would fight it. */
+/* The rail brings these in itself, sideways; their own rise would fight it. */
 .showroom[data-rail='true'] .chapter:not(:first-child) [data-reveal] {
   opacity: 1;
   transform: none;
   transition: none;
-}
-/* A title's words wait below their line until the rail raises them (--rise, 1 to 0). An offset, not a translate:
-   GSAP sets translate to none on words it moves. */
-.showroom[data-rail='true'] .chapter h2 .wi {
-  position: relative;
-  top: calc(var(--rise, 0) * 1.3em);
 }
 /* The next section waits under the rail's last screen, so the staircase uncovers it. */
 .showroom[data-rail='true'] + * {
@@ -574,13 +535,22 @@ html.is-loading .loader {
   right: clamp(8px, 2vw, 32px);
   display: flex;
 }
+.rail__hud {
+  --hud-on: var(--color-ink);
+  --hud-dim: var(--color-muted);
+}
+/* Midway between two products, the next one's dark words pass under the numbers. */
+.rail__hud[data-over='dark'] {
+  --hud-on: var(--color-sand);
+  --hud-dim: rgb(247 245 236 / 0.7);
+}
 .rail__hud button {
   min-width: 44px;
   min-height: 44px;
   padding: 0 6px;
   border: 0;
   background: none;
-  color: var(--color-muted);
+  color: var(--hud-dim);
   font: inherit;
   letter-spacing: inherit;
   text-decoration-thickness: 2px;
@@ -589,7 +559,7 @@ html.is-loading .loader {
   transition: color 300ms ease;
 }
 .rail__hud button[aria-current='true'] {
-  color: var(--color-ink);
+  color: var(--hud-on);
   text-decoration-line: underline;
 }
 .showroom[data-rail='true'] .rail__bar {
@@ -611,7 +581,7 @@ html.is-loading .loader {
 }
 @media (hover: hover) and (pointer: fine) {
   .rail__hud button:hover {
-    color: var(--color-ink);
+    color: var(--hud-on);
   }
 }
 
