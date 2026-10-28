@@ -12,6 +12,7 @@
 //   go=PATH       navigate to PATH (relative to the url)
 //   size=WxH      change the viewport without reloading
 //   media=reduce  emulate prefers-reduced-motion: reduce, then reload
+//   media=opaque  emulate prefers-reduced-transparency: reduce, then reload
 //   nojs          disable page scripts, then reload
 //   block=PATTERN block requests matching PATTERN (e.g. *\/_next/static/chunks/*), then reload
 //   key=KEY       press a real key (e.g. key=Tab), so later focus counts as keyboard focus (:focus-visible)
@@ -126,6 +127,9 @@ for (const target of splitTargets(targets)) {
     await send('Emulation.setDeviceMetricsOverride', { width: sw, height: sh, deviceScaleFactor: 1, mobile: false });
   } else if (target === 'media=reduce') {
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+    await reload();
+  } else if (target === 'media=opaque') {
+    await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-transparency', value: 'reduce' }] });
     await reload();
   } else if (target.startsWith('key=')) {
     const key = target.slice(4);

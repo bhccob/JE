@@ -272,7 +272,8 @@
   display: none;
 }
 
-/* The login dialog: the card on the stage colour on one side, the form on sand on the other. Solid throughout. */
+/* The login dialog, a frosted sheet (round 2): the card on a veil of the stage colour on one side, the form on the
+   other. */
 .member {
   width: min(58rem, calc(100% - 2 * var(--gutter)));
   max-height: calc(100svh - 2 * var(--space-lg));
@@ -288,11 +289,15 @@
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
 }
 .member {
-  background: var(--color-sand);
-  box-shadow: 0 40px 80px -40px rgb(24 49 40 / 0.55);
+  background: var(--glass-paper-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow:
+    var(--glass-edge),
+    0 40px 80px -40px rgb(24 49 40 / 0.55);
 }
 .member::backdrop {
-  background: rgb(15 40 29 / 0.55);
+  background: rgb(15 40 29 / 0.32);
 }
 @media (prefers-reduced-motion: no-preference) {
   .member[open] {
@@ -319,7 +324,7 @@
   display: grid;
   place-items: center;
   padding: var(--space-2xl) var(--space-xl);
-  background: var(--color-stage);
+  background: color-mix(in oklab, var(--color-stage) 62%, transparent);
 }
 .member__side {
   display: grid;
@@ -421,6 +426,26 @@
   background: radial-gradient(closest-side, color-mix(in oklab, var(--color-day-ink) 30%, transparent), transparent);
   filter: blur(10px);
 }
+/* Behind it, a soft glow its frosted face takes colour from: green for the regular card, oak once it turns to business. */
+@property --lglow {
+  syntax: '<color>';
+  inherits: false;
+  initial-value: rgb(121 174 114 / 0.8);
+}
+.lcard::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: -16% -8%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, var(--lglow), transparent);
+  filter: blur(26px);
+  pointer-events: none;
+  transition: --lglow 900ms var(--ease-in-out);
+}
+.lcard[data-flipped='true']::after {
+  --lglow: rgb(216 185 142 / 0.85);
+}
 .lcard__tilt,
 .lcard__flip {
   position: absolute;
@@ -461,13 +486,24 @@
   grid-template-rows: auto minmax(0, 1fr) auto;
   padding: 6cqi 6.5cqi;
 }
-/* The regular card: forest with sand type, a light sheen and a fresh-green edge, so it stands off the sand page. */
+/* The regular card: frosted forest glass with sand type over its green glow, a light sheen and a fresh-green edge. */
 .lcard__body[data-tone='sand'] {
   color: var(--color-sand);
   background:
-    linear-gradient(118deg, rgb(255 255 255 / 0.1), transparent 42%),
-    linear-gradient(150deg, #1f4c37, var(--color-forest) 55%, var(--color-deep));
-  box-shadow: inset 0 -1.4cqi 0 var(--color-green);
+    linear-gradient(118deg, rgb(255 255 255 / 0.16), transparent 42%),
+    linear-gradient(150deg, rgb(31 76 55 / 0.76), rgb(23 61 44 / 0.82) 55%, rgb(15 40 29 / 0.9));
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  backdrop-filter: blur(18px) saturate(1.5);
+  box-shadow:
+    inset 0 -1.4cqi 0 var(--color-green),
+    inset 0 1px 0 rgb(255 255 255 / 0.22);
+}
+@media (prefers-reduced-transparency: reduce) {
+  .lcard__body[data-tone='sand'] {
+    background:
+      linear-gradient(118deg, rgb(255 255 255 / 0.1), transparent 42%),
+      linear-gradient(150deg, #1f4c37, var(--color-forest) 55%, var(--color-deep));
+  }
 }
 .lcard__body[data-tone='sand'] .lcard__stamp[data-state='empty'] {
   border-color: rgb(247 245 236 / 0.32);

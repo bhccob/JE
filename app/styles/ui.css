@@ -250,6 +250,21 @@
   }
 }
 
+/* ---------- Glass ---------- */
+
+/* A frosted surface over colour (tokens in app/tokens.css, solid with reduced transparency). .glass--dark is forest
+   glass for sand type on a dark field. */
+.glass {
+  background: var(--glass-paper);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--glass-edge), var(--glass-shadow);
+}
+.glass--dark {
+  background: var(--glass-forest);
+  box-shadow: var(--glass-edge-dark), var(--glass-shadow);
+}
+
 /* ---------- Dark fields ---------- */
 
 [data-tone='dark'] {

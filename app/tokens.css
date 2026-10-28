@@ -70,6 +70,35 @@
   --shadow-card: 0 30px 60px -36px oklch(29% 0.036 168.6 / 0.45);
   --tracking-display: -0.038em;
 
+  /* Glass (round 2, 2026-10-28): the premium accent, kept to surfaces that float over colour (the header bar, sheets,
+     the stage's capsules, the visit panels), never the page itself. Light glass carries ink; forest glass carries sand. */
+  --glass-paper: rgb(250 248 240 / 0.66);
+  /* The header bar passes over forest and the footer, so it keeps a little more paper for its links. */
+  --glass-bar: rgb(250 248 240 / 0.74);
+  --glass-paper-strong: rgb(250 248 240 / 0.8);
+  --glass-forest: rgb(23 61 44 / 0.52);
+  --glass-blur: blur(22px) saturate(1.6);
+  --glass-edge: inset 0 1px 0 rgb(255 255 255 / 0.7), inset 0 0 0 1px rgb(255 255 255 / 0.32);
+  --glass-edge-dark: inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 0 0 1px rgb(247 245 236 / 0.12);
+  --glass-shadow: 0 24px 48px -28px rgb(15 40 29 / 0.45);
+}
+/* Glass turns solid when the visitor asks for less transparency, or where blur behind an element is not supported. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-paper: var(--color-paper);
+    --glass-bar: var(--color-paper);
+    --glass-paper-strong: var(--color-paper);
+    --glass-forest: var(--color-forest);
+    --glass-blur: none;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-paper: var(--color-paper);
+    --glass-bar: var(--color-paper);
+    --glass-paper-strong: var(--color-paper);
+    --glass-forest: var(--color-forest);
+  }
 }
 :root {
   --space-3xs: 2px;

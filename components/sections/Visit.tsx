@@ -19,7 +19,8 @@ const FAQ = [
 
 /**
  * The store, said big: CUMANA 73 across the width on forest with contour lines, then hours with the live open line,
- * how to reach us, the service line, the questions people ask, and the ways to come by or get in touch.
+ * how to reach us and the service line on glass panels, the questions people ask, and the ways to come by or get in
+ * touch.
  */
 export function Visit() {
   return (
@@ -34,8 +35,7 @@ export function Visit() {
       </p>
 
       <div className="visit__grid">
-        <div>
-          <span className="rule" data-line />
+        <div className="visit__panel glass glass--dark">
           <span className="label" data-reveal>
             Opening hours
           </span>
@@ -49,8 +49,7 @@ export function Visit() {
           </dl>
           <OpenStatus data-reveal />
         </div>
-        <div className="contact">
-          <span className="rule" data-line />
+        <div className="contact visit__panel glass glass--dark">
           <span className="label" data-reveal>
             Talk to us
           </span>
@@ -62,8 +61,7 @@ export function Visit() {
             <a href={`mailto:${STORE.email}`}>{STORE.email}</a>
           </div>
         </div>
-        <div>
-          <span className="rule" data-line />
+        <div className="visit__panel glass glass--dark">
           <span className="label" data-reveal>
             Good to know
           </span>

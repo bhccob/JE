@@ -108,17 +108,19 @@ export function StageSwitcher({ chapters }: { chapters: HomeChapter[] }) {
         </div>
         <i className="stage__glow" data-glow aria-hidden="true" />
         <div className="stage__top label" aria-hidden="true">
-          <span className="swap">
-            <span data-stage-floor>{chapters[0].floor}</span>
+          <span className="stage__pill glass">
+            <span className="swap">
+              <span data-stage-floor>{chapters[0].floor}</span>
+            </span>
           </span>
-          <span className="stage__count">
+          <span className="stage__pill stage__count glass">
             <span className="swap">
               <span data-stage-num>{chapters[0].number}</span>
-            </span>{' '}
-            / {String(chapters.length).padStart(2, '0')}
+            </span>
+            &nbsp;/ {String(chapters.length).padStart(2, '0')}
           </span>
         </div>
-        <div className="stage__foot">
+        <div className="stage__foot glass">
           <div className="stage__ticks" role="group" aria-label="Jump to a product">
             {chapters.map((c) => (
               <button key={c.id} type="button" aria-label={`${c.number} ${c.index}`} onClick={() => jump(c.id)}>

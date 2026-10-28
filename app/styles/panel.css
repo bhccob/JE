@@ -1,4 +1,5 @@
-/* The product panel (CategoryDrawer, ProductView): a solid sand sheet from the right, ruled sections, no boxes, nothing frosted. */
+/* The product panel (CategoryDrawer, ProductView): a frosted sheet from the right (round 2), ruled sections, the
+   pictures on rounded stage-colour tiles. */
 
 /* ---------- Product panel ---------- */
 
@@ -10,7 +11,7 @@
 .drawer__scrim {
   position: absolute;
   inset: 0;
-  background: rgb(15 40 29 / 0.5);
+  background: rgb(15 40 29 / 0.3);
 }
 .drawer__panel {
   position: absolute;
@@ -20,9 +21,11 @@
   flex-direction: column;
   width: min(720px, 100%);
   overflow: hidden;
-  background: var(--color-paper);
+  background: var(--glass-paper-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   color: var(--color-ink);
-  box-shadow: var(--shadow-card);
+  box-shadow: var(--glass-edge), var(--shadow-card);
 }
 /* The head and foot stay put and only the pictures scroll, so nothing in the panel needs to be sticky. */
 .drawer__head {
@@ -48,14 +51,15 @@
   flex-shrink: 0;
   border: 0;
   border-radius: var(--radius-pill);
-  background: var(--color-paper-2);
+  background: rgb(255 255 255 / 0.5);
+  box-shadow: var(--glass-edge);
   color: var(--color-ink);
   cursor: pointer;
   transition: background-color var(--dur-short) var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
   .drawer__close:hover {
-    background: var(--color-paper-3);
+    background: rgb(255 255 255 / 0.9);
   }
 }
 
@@ -79,10 +83,11 @@
   align-content: start;
   min-width: 0;
 }
-/* Pictures sit on the stage colour and melt into it (.feather on the image): no card, no frame. */
+/* Pictures sit on the stage colour and melt into it (.feather on the image), a rounded tile on the glass. */
 .range__media {
   margin-block-end: var(--space-sm);
   overflow: hidden;
+  border-radius: var(--radius-well);
   background: var(--color-stage);
   aspect-ratio: 1;
 }
@@ -110,7 +115,12 @@
   gap: var(--space-sm);
   padding: var(--space-lg) var(--space-xl);
   border-top: 1px solid var(--color-rule);
-  background: var(--color-sand);
+}
+/* Wider screens: the concept notice sits bottom right, over the panel's foot, so the foot's buttons clear it. */
+@media (min-width: 40.01rem) {
+  :root:has(.concept) .drawer__foot {
+    padding-block-end: 76px;
+  }
 }
 @media (max-width: 40rem) {
   .drawer__head,
@@ -163,6 +173,7 @@
 }
 .pv__media {
   overflow: hidden;
+  border-radius: var(--radius-well);
   background: var(--color-stage);
   aspect-ratio: 1;
 }
