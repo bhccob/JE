@@ -216,3 +216,29 @@ The owner chose on 2026-10-27 to keep the 3D loyalty card, the member login and 
 
 1. Rewards keeps the 3D loyalty card, the member login and the business program, restyled to this look, instead of the mockup's calculator.
 2. The sun that follows the mouse is dropped.
+
+## Round 2: owner changes, 2026-10-28
+
+The owner reviewed the built branch: "for the rest it is super good". These changes override the sections above where they conflict.
+
+1. **Glass, as an accent.** Glass returns for a premium feel, on the parts that float, not on the reading text. That overrides "no glass" above. Glass here means a translucent fill, a backdrop blur, a light top edge and a hairline. Where the backdrop is flat, soft green and oak glows sit behind the glass so it reads. With reduced transparency, or without backdrop blur, glass turns solid.
+   - The header is a floating glass bar.
+   - The phone menu, the product panel and the member login are frosted sheets.
+   - On the product stage, the floor label, the count, and the progress bars with the caption sit in glass capsules. The 3D bulb's hint is a glass chip.
+   - The visit section's hours, contact and good-to-know blocks are glass panels over the contour lines.
+   - The loyalty card's regular face is frosted glass over a green glow.
+2. **A calmer hero.** The hero is the meta line (family-owned and the live open line), JONTAI, the headline, the lead and the two buttons. The "In the store" list, with its cursor disc, moves to its own band right after the hero.
+3. **Family-owned, visibly.** The statement's three points become Family-owned (the family line, then "Meet the team" marked "Coming soon", not clickable), Delivery, and Talk to a person. The Rewards point goes; Rewards has its own section. The team itself is a later feature.
+4. **Header:** "Get a quote" becomes **Support**, to a new `/support` page. Quotes stay reachable from the phone menu, the chapters, the panels, Visit and the footer.
+5. **`/support`** is a new page in the same look: Questions, Warranty, Returns, Service, and a contact block.
+   - Content comes from the store's current site (`pages/faq`, `pages/warranty`, `pages/returns`, `pages/service`, policy dated March 2026). Anything that contradicts the owner's facts is left out: installation services and the installation-labour warranty, on-site technicians, prices, financing and efficiency figures.
+   - Everything kept is listed in `docs/content-placeholders.md` for the owner to confirm before launch.
+   - The footer's FAQ link and Visit's questions lead here.
+6. **LED strips** are carried. They are added to the lighting copy, the LED category and its picture list.
+7. **Snap between products.** On all screens, when scrolling stops near the start of a product chapter, the page settles onto it (Lenis Snap, proximity, after a short pause). It never fights a fast scroll, acts only on the chapters, and is off with reduced motion. That overrides "nothing snaps" above.
+8. **A live 3D bulb.** Chapter 04's product is a real-time 3D filament bulb (three.js, built in code, no model file).
+   - Drag it to turn it; it turns slowly on its own when left alone, but not with reduced motion.
+   - The filament glows in the colour chosen on the slider, and its light washes the stage.
+   - It loads only near view, renders only while visible, and falls back to the picture without WebGL.
+9. **Rewards keeps its name.** It is short and says what you get.
+10. **Tab title:** the home page is "Jontai Energy | Smart Lights Smart Savings".

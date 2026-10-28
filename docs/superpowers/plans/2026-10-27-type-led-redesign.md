@@ -559,3 +559,39 @@ PRODUCT.md updates:
   - Reduced motion: `media=reduce` then the same section targets. Expected: no loader, everything in place, the card at 1,250 points.
   - JavaScript off: `nojs,t=3000` then the section targets. Disabling page scripts leaves the tool's own scrolling working; if it does not, check in the browser pane with JavaScript off. Expected: every section's text visible and no loader.
 - [ ] **Step 3: Commit:** `Finish the type-led redesign: docs and cleanup`.
+
+---
+
+## Round 2 (owner changes, 2026-10-28; spec section "Round 2")
+
+Checks run through `tools/shots/shoot.mjs` against the worktree's dev server on `http://127.0.0.1:3300`, as in Round 1. Each task ends with `pnpm test && pnpm typecheck && pnpm lint` and a commit.
+
+### Task 12: Copy and content
+**Files:** `data/products.json`, `lib/products.ts` (statement points gain an optional `team` flag), `lib/home-copy.test.ts`, `app/layout.tsx` (title), `docs/content-placeholders.md`
+- Statement points: Family-owned (`FAMILY_LINE` text, `team: true`), Delivery, Talk to a person.
+- LED: blurb "Bulbs, LED strips, panels, tubes and floodlights."; `carries` and the range gain LED strips (picture: `public/catalog/led-strip.webp`, rendered for this, square, on the catalogue backdrop); chapter 04's lead names LED strips.
+- Title: `Jontai Energy | Smart Lights Smart Savings`.
+- Test first: `the lighting copy names LED strips` (chapter 04 lead and the led category's range) and `the family-owned point leads the statement`.
+
+### Task 13: Glass
+**Files:** `app/tokens.css` (glass tokens), `app/styles/ui.css` (`.glass` treatment and the glow helper), `shell.css`, `home.css`, `panel.css`, `rewards.css`, components that take the class.
+- Check: computed `backdrop-filter` on the header, menu, panel, member dialog, stage capsules and visit panels; solid under `prefers-reduced-transparency`.
+
+### Task 14: Calmer hero, the "In the store" band, family-owned note, Support link
+**Files:** `components/home/Hero.tsx`, new `components/home/InStore.tsx` (the list and disc band), `components/home/Statement.tsx`, `components/ui/Header.tsx`, `app/page.tsx`, `home.css`, `shell.css`.
+- Check: the hero holds no list; the band follows it; the statement's first point reads Family-owned with "Meet the team · Coming soon" not focusable; the header's right link reads Support and goes to `/support`.
+
+### Task 15: `/support`
+**Files:** new `app/support/page.tsx`, `components/support/*` as needed, `app/styles/support.css`, `components/sections/Footer.tsx` (FAQ → `/support#questions`), `components/sections/Visit.tsx` (a "More in Support" link).
+- Check: the page renders its four sections and contact block at 1440 and 390; the copy test extends to support copy (no installation promise, no prices).
+
+### Task 16: Snap
+**Files:** `components/home/ChapterSnap.tsx` (Lenis Snap, proximity, chapters only, off with reduced motion), `components/home/Showroom.tsx`.
+- Check: stopping a few hundred pixels past a chapter's start settles onto it; stopping mid-chapter (far from a start) does not move.
+
+### Task 17: The 3D bulb
+**Files:** `package.json` (`three`, `@types/three`), new `components/home/Bulb3D.tsx` (lazy three.js scene), `components/home/kelvinBus.ts` (slider → scene), `components/home/KelvinSlider.tsx`, `components/home/StageSwitcher.tsx` and `Showroom.tsx` (the bulb item), `home.css`.
+- Check: the canvas renders a bulb at desktop and phone; dragging turns it; the slider changes the filament colour; without WebGL the picture shows; it renders nothing while off screen.
+
+### Task 18: Docs and full check
+`PRODUCT.md` (glass accent, snap, 3D bulb, Support page), then the full check at 1440/768/390, reduced motion and no-JS, and a fresh whole-branch review of the round.
