@@ -5,6 +5,7 @@ import { ReactLenis, useLenis, type LenisRef } from 'lenis/react';
 import { useReducedMotion } from 'motion/react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { scrollTargets } from './scrollTargets';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,8 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
  * One clock: GSAP's ticker advances Lenis, and every Lenis scroll tells ScrollTrigger to update, so pinned
  * GSAP sequences and Motion-driven sections never drift apart.
  * lerp 0.12 keeps the wheel smooth without trailing far behind the hand; touch keeps native momentum.
- * Reduced-motion visitors get plain native scrolling. Anchor links land under the header through the page's
- * scroll-padding-top alone (Lenis reads it), as they do without scripts.
+ * Reduced-motion visitors get plain native scrolling. In-page links glide to their target (InPageLinks).
  */
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
@@ -28,12 +28,9 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <ReactLenis
-      root
-      ref={lenisRef}
-      options={{ autoRaf: false, lerp: 0.12, wheelMultiplier: 1.1, smoothWheel: !reduced, anchors: true }}
-    >
+    <ReactLenis root ref={lenisRef} options={{ autoRaf: false, lerp: 0.12, wheelMultiplier: 1.1, smoothWheel: !reduced }}>
       <ScrollTriggerSync />
+      <InPageLinks />
       {process.env.NODE_ENV === 'development' && <DevHandle />}
       {children}
     </ReactLenis>
@@ -42,6 +39,55 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
 
 function ScrollTriggerSync() {
   useLenis(ScrollTrigger.update);
+  return null;
+}
+
+/**
+ * In-page links, as Lenis' own anchors option follows them, plus targets that land elsewhere than their top (the
+ * products on the pinned rail, scrollTargets). Ordinary targets keep the browser's own jump too, so they land under
+ * the header through scroll-padding-top alone and focus moves on as it does without scripts; behind the menu, where
+ * Lenis is stopped, that jump is all there is. A rail product's link goes to its own position instead, once the menu
+ * that held the page has let go, and its product takes the focus.
+ */
+function InPageLinks() {
+  const lenis = useLenis();
+
+  useEffect(() => {
+    if (!lenis) return;
+    let wait = 0;
+    const onClick = (e: MouseEvent) => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const link = (e.target as Element | null)?.closest?.('a[href]');
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const url = new URL(link.href);
+      if (url.host !== location.host || url.pathname !== location.pathname || !url.hash) return;
+      const id = decodeURIComponent(url.hash.slice(1));
+      const at = scrollTargets.get(id);
+      if (!at) {
+        lenis.scrollTo(url.hash);
+        return;
+      }
+      e.preventDefault();
+      history.pushState(null, '', url.hash);
+      cancelAnimationFrame(wait);
+      let frames = 0;
+      const go = () => {
+        if (lenis.isStopped) {
+          if (frames++ < 90) wait = requestAnimationFrame(go);
+          return;
+        }
+        lenis.scrollTo(at(), { duration: 1.2 });
+        document.getElementById(id)?.focus({ preventScroll: true });
+      };
+      go();
+    };
+    window.addEventListener('click', onClick);
+    return () => {
+      cancelAnimationFrame(wait);
+      window.removeEventListener('click', onClick);
+    };
+  }, [lenis]);
+
   return null;
 }
 

@@ -5,12 +5,11 @@ import { ArrowsHorizontal } from '@phosphor-icons/react';
 
 /**
  * Chapter 04's bulb, live in 3D (bulbScene): drag it to turn it, and the slider colours its filaments. The picture
- * shows first and stays for assistive tech; three.js loads only as the bulb comes near the screen, and the scene takes
- * over once its first frame is drawn. Without WebGL, if the context is lost, or in the 1px visually hidden copy wide
- * screens keep for assistive tech, the picture simply stays. A copy that grows to a real size later (a tablet turned
- * to portrait) starts then.
+ * shows first and stays for assistive tech; three.js loads only as the bulb comes near the screen (from below, or from
+ * the side on the product rail), and the scene takes over once its first frame is drawn. Without WebGL, or if the
+ * context is lost, the picture simply stays. A bulb with no real size yet starts once it grows to one.
  */
-export function Bulb3D({ src, alt, parallax }: { src: string; alt: string; parallax?: string }) {
+export function Bulb3D({ src, alt }: { src: string; alt: string }) {
   const host = useRef<HTMLDivElement>(null);
   const [live, setLive] = useState(false);
   const [touched, setTouched] = useState(false);
@@ -41,7 +40,7 @@ export function Bulb3D({ src, alt, parallax }: { src: string; alt: string; paral
         close = entries[entries.length - 1].isIntersecting;
         start();
       },
-      { rootMargin: '600px 0px' },
+      { rootMargin: '600px 100%' },
     );
     const grown = new ResizeObserver(start);
     near.observe(el);
@@ -55,7 +54,7 @@ export function Bulb3D({ src, alt, parallax }: { src: string; alt: string; paral
   }, []);
 
   return (
-    <div ref={host} className="bulb3d" data-live={live} data-parallax={parallax}>
+    <div ref={host} className="bulb3d" data-live={live}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img className="bulb3d__pic feather" src={src} alt={alt} width={800} height={800} loading="lazy" decoding="async" />
       {live && (

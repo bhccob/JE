@@ -4,47 +4,47 @@ import { Words } from '@/components/ui/Split';
 import { HOME_COPY, type HomeChapter } from '@/lib/products';
 import { QUOTE_ACTION } from '@/lib/quote';
 import { Bulb3D } from './Bulb3D';
-import { ChapterSnap } from './ChapterSnap';
 import { KelvinSlider } from './KelvinSlider';
-import { StageSwitcher } from './StageSwitcher';
+import { ProductRail } from './ProductRail';
 
 /**
  * The five product families, one screen each: a forest text field (oak upstairs) and the product on the stage colour.
- * On wide screens the chapters scroll past one product stage that holds still; on phones each chapter carries its
- * own picture. The dark field grows from a rounded inset to full width as it arrives, and a scroll that comes to rest
- * near a chapter's start settles onto it (ChapterSnap).
+ * On wide screens they run sideways along a rail that locks in place while you scroll (ProductRail); on phones they
+ * stack. The dark field grows from a rounded inset to full width as it arrives.
  */
 export function Showroom() {
+  const { chapters } = HOME_COPY;
   return (
     <section id="products" className="showroom" data-tone="dark" data-expand aria-label="Products">
-      <div className="chapters">
-        {HOME_COPY.chapters.map((c) => (
-          <Chapter key={c.id} chapter={c} />
-        ))}
+      <div className="rail">
+        <div className="chapters">
+          {chapters.map((c) => (
+            <Chapter key={c.id} chapter={c} />
+          ))}
+        </div>
+        <ProductRail items={chapters.map((c) => ({ id: c.id, number: c.number, name: c.index }))} />
       </div>
-      <StageSwitcher chapters={HOME_COPY.chapters} />
-      <ChapterSnap ids={HOME_COPY.chapters.map((c) => c.id)} />
     </section>
   );
 }
 
 function Chapter({ chapter: c }: { chapter: HomeChapter }) {
   return (
-    <article id={c.id} className="chapter" data-tone={c.tone ?? 'dark'} data-floor={c.floor} aria-labelledby={`${c.id}-title`}>
+    <article id={c.id} className="chapter" data-tone={c.tone ?? 'dark'} data-floor={c.floor} aria-labelledby={`${c.id}-title`} tabIndex={-1}>
       <div className="chapter__media">
         <span className="label">{c.floor}</span>
         {c.id === 'light' ? (
-          <Bulb3D src={c.image} alt={c.alt} parallax="10,-4" />
+          <Bulb3D src={c.image} alt={c.alt} />
         ) : (
           // eslint-disable-next-line @next/next/no-img-element
-          <img className="feather" src={c.image} alt={c.alt} width={800} height={800} loading="lazy" decoding="async" data-parallax="10,-4" />
+          <img className="feather" src={c.image} alt={c.alt} width={800} height={800} loading="lazy" decoding="async" />
         )}
-        {c.id === 'light' && <i className="stage__glow" data-glow aria-hidden="true" />}
+        {c.id === 'light' && <i className="chapter__glow" data-glow aria-hidden="true" />}
         <span className="chapter__caption">Illustration, not specific stock</span>
       </div>
 
       <div className="chapter__text">
-        <span className="ghost" aria-hidden="true" data-parallax="28,-18">
+        <span className="ghost" aria-hidden="true">
           {c.number}
         </span>
         <p className="chapter__label label" data-reveal>

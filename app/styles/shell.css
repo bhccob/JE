@@ -1,5 +1,5 @@
-/* The site shell of the type-led redesign: header, phone menu, footer and the concept notice. The header bar and the
-   phone menu are glass (round 2); the footer and the notice stay solid. */
+/* The site shell of the type-led redesign: header, menu, footer and the concept notice. The header bar and the menu
+   are frosted; the footer and the notice stay solid. */
 
 main {
   position: relative;
@@ -17,178 +17,200 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
   padding: 0 var(--gutter);
-  isolation: isolate;
   color: var(--color-ink);
-  transition: transform 500ms var(--ease-out);
+  transition:
+    background-color 300ms ease,
+    box-shadow 300ms ease,
+    transform 500ms var(--ease-out);
 }
-/* Once you leave the top, a floating glass bar gathers the header; the page passes under it, softened. */
-.nav::before {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  inset: 8px max(8px, calc(var(--gutter) - 26px)) 6px;
-  border-radius: var(--radius-pill);
+/* Once you leave the top, a slim frosted bar edge to edge with a hairline under it: no floating box. Without scripts
+   nothing turns it on, and the page would pass under bare links, so it is always there. */
+.nav[data-solid='true'],
+:root:not(.js) .nav {
   background: var(--glass-bar);
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
-  box-shadow: var(--glass-edge), 0 14px 34px -22px rgb(15 40 29 / 0.5);
-  opacity: 0;
-  scale: 0.985 0.9;
-  transition:
-    opacity 300ms ease,
-    scale 500ms var(--ease-out);
+  box-shadow: 0 1px 0 var(--color-rule);
 }
-/* Without scripts nothing turns the bar on, and the page would pass under bare links, so it is always there. */
-.nav[data-solid='true']::before,
-:root:not(.js) .nav::before {
-  opacity: 1;
-  scale: 1;
-}
-/* Out of the way while reading down, with the bar's shadow too; back the moment keyboard focus comes in. */
+/* Out of the way while reading down, hairline and all; back the moment keyboard focus comes in. */
 .nav[data-hidden='true']:not(:focus-within) {
-  transform: translateY(calc(-100% - 28px));
+  transform: translateY(calc(-100% - 2px));
 }
 .brand {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   letter-spacing: -0.03em;
   text-decoration: none;
   white-space: nowrap;
 }
 .brand img {
-  width: 36px;
-  height: 36px;
-}
-.nav__main {
-  position: relative;
-}
-.nav__links {
-  display: flex;
-  gap: clamp(18px, 2.2vw, 34px);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.nav__link {
-  display: block;
-  padding: 6px 0;
-  font-weight: 600;
-  font-size: 1rem;
-  text-decoration: none;
-  /* 0.82 keeps the links above 4.5:1 on the glass bar where it passes over forest and the footer. */
-  opacity: 0.82;
-  transition: opacity 250ms ease;
-}
-.nav__link[data-current='true'] {
-  opacity: 1;
-}
-/* One bar, 1px wide, moved and stretched under the current link. */
-.nav__bar {
-  position: absolute;
-  left: 0;
-  bottom: -2px;
-  width: 1px;
-  height: 2px;
-  background: var(--color-forest);
-  transform-origin: 0 50%;
-  transform: scaleX(0);
-  transition: transform 550ms var(--ease-out);
+  width: 30px;
+  height: 30px;
 }
 .nav__end {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: clamp(18px, 2.4vw, 36px);
 }
-.nav__support {
+.nav__support,
+.nav__menu {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font-weight: 600;
+  font-size: 1rem;
   text-decoration: none;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
   white-space: nowrap;
 }
 .nav__support[aria-current='page'] {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+  text-decoration-line: underline;
 }
 .nav__menu {
-  display: none;
+  gap: 10px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+/* Two lines that cross into an X while the menu is open. */
+.nav__lines {
+  position: relative;
+  width: 22px;
+  height: 10px;
+}
+.nav__lines i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 400ms var(--ease-out);
+}
+.nav__lines i:first-child {
+  top: 0;
+}
+.nav__lines i:last-child {
+  bottom: 0;
+}
+.nav__menu[aria-expanded='true'] .nav__lines i:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+.nav__menu[aria-expanded='true'] .nav__lines i:last-child {
+  transform: translateY(-4px) rotate(-45deg);
 }
 @media (hover: hover) and (pointer: fine) {
-  .nav__link:hover {
-    opacity: 1;
-  }
-  .nav__support:hover {
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
-    text-underline-offset: 6px;
+  .nav__support:hover,
+  .nav__menu:hover {
+    text-decoration-line: underline;
   }
 }
-@media (max-width: 60rem) {
-  .nav__main,
-  .nav__support,
-  .nav__end .btn--primary {
+/* The narrowest phones keep Support in the menu, so the mark and Menu never crowd. */
+@media (max-width: 23.4rem) {
+  .nav__support {
     display: none;
   }
-  .nav__menu {
-    display: inline-flex;
-  }
 }
 
-/* ---------- Phone menu ---------- */
+/* ---------- Menu (every screen size) ---------- */
 
 .menu {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-sticky-nav) - 1);
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--nav-h) + 24px) var(--gutter) calc(32px + var(--concept-h, 0px));
+  overflow-y: auto;
+  background: var(--glass-paper-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--color-ink);
+  clip-path: inset(0 0 100% 0);
+  visibility: hidden;
+  transition:
+    clip-path 500ms var(--ease-out),
+    visibility 0s linear 500ms;
+}
+.menu[data-open='true'],
+:root:not(.js) .menu:target {
+  clip-path: inset(0 0 0 0);
+  visibility: visible;
+  transition: clip-path 500ms var(--ease-out);
+}
+/* Without scripts, Menu is a plain link to the menu, which opens as its target; any link in it closes it again. */
+.nav__menu--plain,
+:root:not(.js) button.nav__menu {
   display: none;
 }
-@media (max-width: 60rem) {
+:root:not(.js) .nav__menu--plain {
+  display: inline-flex;
+}
+.menu__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-rule);
+}
+.menu__links a {
+  display: block;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-rule);
+  font-weight: 800;
+  font-size: clamp(2rem, 9vw, 2.6rem);
+  letter-spacing: var(--tracking-display);
+  line-height: 1;
+  text-decoration: none;
+  transition:
+    color 250ms ease,
+    translate 400ms var(--ease-out);
+}
+.menu__links a[aria-current='page'] {
+  color: var(--color-forest);
+}
+.menu .actions {
+  margin-top: auto;
+  padding-top: 32px;
+}
+.menu .actions .btn {
+  flex: 1 1 auto;
+}
+/* Wide screens: the sections in two columns of big words, the ways to reach the store under them. */
+@media (min-width: 60.01rem) {
   .menu {
-    position: fixed;
-    inset: 0;
-    z-index: calc(var(--z-sticky-nav) - 1);
-    display: flex;
-    flex-direction: column;
-    padding: calc(var(--nav-h) + 24px) var(--gutter) calc(32px + var(--concept-h, 0px));
-    overflow-y: auto;
-    background: var(--glass-paper-strong);
-    -webkit-backdrop-filter: var(--glass-blur);
-    backdrop-filter: var(--glass-blur);
-    color: var(--color-ink);
-    clip-path: inset(0 0 100% 0);
-    visibility: hidden;
-    transition:
-      clip-path 500ms var(--ease-out),
-      visibility 0s linear 500ms;
-  }
-  .menu[data-open='true'] {
-    clip-path: inset(0 0 0 0);
-    visibility: visible;
-    transition: clip-path 500ms var(--ease-out);
+    padding-top: calc(var(--nav-h) + clamp(32px, 7vh, 72px));
   }
   .menu__links {
-    margin: 0;
-    padding: 0;
-    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: var(--gutter);
+    border-top: 0;
+  }
+  .menu__links li:nth-child(-n + 2) {
     border-top: 1px solid var(--color-rule);
   }
   .menu__links a {
-    display: block;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--color-rule);
-    font-weight: 800;
-    font-size: clamp(2rem, 9vw, 2.6rem);
-    letter-spacing: var(--tracking-display);
-    line-height: 1;
-    text-decoration: none;
-  }
-  .menu .actions {
-    margin-top: auto;
-    padding-top: 32px;
+    padding: clamp(14px, 2.2vh, 22px) 0;
+    font-size: clamp(2.6rem, 4.4vw, 4.6rem);
   }
   .menu .actions .btn {
-    flex: 1 1 auto;
+    flex: 0 0 auto;
+  }
+}
+@media (hover: hover) and (pointer: fine) {
+  .menu__links a:hover {
+    color: var(--color-forest);
+    translate: 12px 0;
   }
 }
 

@@ -6,7 +6,7 @@ import { kelvin } from './kelvinBus';
 
 /**
  * The bulb's colour, from warm 3000K to daylight 6500K. It lights the live 3D bulb's filaments (through kelvinBus),
- * and its light washes over every [data-glow] layer (the product stage and the phone picture) through a multiply
+ * and its light washes over every [data-glow] layer (the stage behind the bulb) through a multiply
  * blend, so it reaches the edges and never shows a box.
  */
 export function KelvinSlider() {

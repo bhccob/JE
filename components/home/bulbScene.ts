@@ -205,9 +205,8 @@ export function createBulb(host: HTMLElement, { onReady, onTouch, onLost }: Hook
   };
   tint(kelvin.get());
 
-  // Draw only when it is worth it: on screen, at a real size (not the 1px copy wide screens keep for assistive tech),
-  // while it is the product the stage shows, and not under a menu, panel or dialog (they stop Lenis, which marks the
-  // page). Within that, frames run only while something moves; a still bulb is drawn once and left.
+  // Draw only when it is worth it: on screen, at a real size, and not under a menu, panel or dialog (they stop Lenis,
+  // which marks the page). Within that, frames run only while something moves; a still bulb is drawn once and left.
   let frame = 0;
   let last = 0;
   let ready = false;
@@ -216,10 +215,6 @@ export function createBulb(host: HTMLElement, { onReady, onTouch, onLost }: Hook
   let tiny = true;
   let onScreen = false;
   let held = false;
-  const stage = host.closest<HTMLElement>('.stage');
-  const item = host.closest('.stage__item');
-  const items = stage ? [...stage.querySelectorAll('.stage__item')] : [];
-  let showing = !stage;
   // Drag to turn, with a little inertia; left alone, it turns slowly by itself (not with reduced motion). A mouse can
   // also tip it a little, and it rights itself when let go; on touch, a vertical drag stays the page's scroll.
   let dragging = false;
@@ -228,11 +223,11 @@ export function createBulb(host: HTMLElement, { onReady, onTouch, onLost }: Hook
   let spin = 0;
   let touched = false;
 
-  const visible = () => onScreen && showing && !tiny && !held && !lost;
+  const visible = () => onScreen && !tiny && !held && !lost;
   const moving = () => dragging || !reduce.matches || Math.abs(spin) > 0.0002 || Math.abs(bulb.rotation.x) > 0.0005;
-  // The canvas takes the pointer only once it has drawn, and only while it is the bulb on show.
+  // The canvas takes the pointer only once it has drawn.
   const pointer = () => {
-    canvas.style.pointerEvents = ready && showing && !tiny && !lost ? 'auto' : 'none';
+    canvas.style.pointerEvents = ready && !tiny && !lost ? 'auto' : 'none';
   };
 
   const offKelvin = kelvin.on((k) => {
@@ -260,17 +255,6 @@ export function createBulb(host: HTMLElement, { onReady, onTouch, onLost }: Hook
     wake();
   });
   seen.observe(host);
-
-  const onStage = () => {
-    showing = items.indexOf(item as Element) === Number(stage?.dataset.active);
-    pointer();
-    wake();
-  };
-  const shown = new MutationObserver(onStage);
-  if (stage) {
-    shown.observe(stage, { attributes: true, attributeFilter: ['data-active'] });
-    showing = items.indexOf(item as Element) === Number(stage.dataset.active);
-  }
 
   const root = document.documentElement;
   const holds = new MutationObserver(() => {
@@ -362,7 +346,6 @@ export function createBulb(host: HTMLElement, { onReady, onTouch, onLost }: Hook
     offKelvin();
     resized.disconnect();
     seen.disconnect();
-    shown.disconnect();
     holds.disconnect();
     canvas.removeEventListener('webglcontextlost', contextLost);
     canvas.removeEventListener('pointerdown', down);

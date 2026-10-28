@@ -123,8 +123,7 @@ html.is-loading .loader {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 10px 32px;
-  padding-top: 14px;
-  border-top: 1px solid var(--color-rule);
+  padding-top: 12px;
   color: var(--color-muted);
 }
 .status {
@@ -351,6 +350,10 @@ html.is-loading .loader {
   background: var(--color-oak);
   color: var(--color-ink);
 }
+/* A product link lands here and moves focus in; the product itself needs no ring. */
+.chapter:focus {
+  outline: none;
+}
 .chapter__text {
   position: relative;
   overflow: hidden;
@@ -378,8 +381,7 @@ html.is-loading .loader {
   order: 0;
 }
 /* A pool of light on the stage, so the product sits in it. */
-.chapter__media::before,
-.stage__sticky::before {
+.chapter__media::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -494,16 +496,13 @@ html.is-loading .loader {
   white-space: nowrap;
 }
 
-/* The bulb's light: a multiply wash over the whole stage, coloured by the slider. */
-.stage__glow {
+/* The bulb's light: a multiply wash over its stage, coloured by the slider. */
+.chapter__glow {
   position: absolute;
   inset: 0;
   pointer-events: none;
   background: radial-gradient(60% 56% at 50% 46%, var(--glow, rgb(255 180 107)), transparent 78%);
   mix-blend-mode: multiply;
-  opacity: 0;
-}
-.chapter__media .stage__glow {
   opacity: 0.6;
 }
 .kelvin {
@@ -578,147 +577,118 @@ html.is-loading .loader {
   --halo: rgb(247 245 236 / 0.22);
 }
 
-/* ---------- The shared product stage (wide screens, StageSwitcher) ---------- */
+/* ---------- The product rail (wide screens with motion, ProductRail) ---------- */
 
-.stage {
+/* The numbers along the top and the line along the bottom show only while the rail runs. */
+.rail__hud,
+.rail__bar {
   display: none;
 }
-@media (min-width: 60.01rem) {
-  .showroom {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .chapter {
-    display: block;
-  }
-  .chapter__text {
-    min-height: 100svh;
-  }
-  /* The stage shows the products here; each chapter keeps its own picture for assistive tech only. */
-  .chapter__media {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-  .stage {
-    display: block;
-    position: relative;
-  }
+/* Above the sections it slides over at the end (Rewards is raised), and clear, so the staircase uncovers them. */
+.showroom[data-rail='true'] {
+  z-index: calc(var(--z-raised) + 1);
+  background: none;
 }
-.stage__sticky {
-  position: sticky;
-  top: 0;
+.showroom[data-rail='true'] .rail {
+  position: relative;
   height: 100svh;
   overflow: hidden;
-  background: var(--color-stage);
-  color: var(--color-muted);
+  background: var(--color-forest);
 }
-.stage__items {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-}
-.stage__item {
-  grid-area: 1 / 1;
-  width: min(76%, 66vh);
-}
-.stage__item:not(:first-child) {
-  opacity: 0;
-}
-.stage__item img {
-  width: 100%;
-}
-.stage .stage__glow {
-  transition: opacity 700ms ease;
-}
-.stage[data-active='3'] .stage__glow {
-  opacity: 0.6;
-}
-.stage__top {
-  position: absolute;
-  top: calc(var(--nav-h) + 6px);
-  left: clamp(20px, 3vw, 44px);
-  right: clamp(20px, 3vw, 44px);
+.showroom[data-rail='true'] .chapters {
   display: flex;
-  justify-content: space-between;
+  height: 100%;
+  will-change: transform;
 }
-/* The floor, the count and the foot float over the product in glass capsules. */
-.stage__pill {
-  display: inline-flex;
-  align-items: center;
-  min-height: 38px;
-  padding: 0 16px;
-  border-radius: var(--radius-pill);
-  white-space: nowrap;
+.showroom[data-rail='true'] .chapter {
+  flex: 0 0 100%;
+  height: 100%;
+  min-height: 0;
 }
-.swap {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
+/* Every product on the right and its words on the left, so the eye keeps its place as they slide. */
+.showroom[data-rail='true'] .chapter__media,
+.showroom[data-rail='true'] .chapter:nth-child(even) .chapter__media {
+  order: 2;
+  padding: calc(var(--nav-h) + 3vh) 5% 9vh;
 }
-.swap > span {
-  display: inline-block;
+.showroom[data-rail='true'] .chapter__media img,
+.showroom[data-rail='true'] .chapter__media .bulb3d {
+  width: min(78%, 64vh);
 }
-.stage__count {
-  font-variant-numeric: tabular-nums;
+.showroom[data-rail='true'] .chapter__text {
+  gap: clamp(14px, 2.6vh, 26px);
+  padding: calc(var(--nav-h) + 3vh) clamp(32px, 4.4vw, var(--gutter)) 7vh;
 }
-.stage__foot {
-  position: absolute;
-  left: clamp(20px, 3vw, 44px);
-  bottom: 26px;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 10px 20px;
-  padding: 6px 20px 6px 12px;
-  border-radius: var(--radius-pill);
+.showroom[data-rail='true'] .h-section {
+  font-size: min(var(--text-section), 7.6vh);
 }
-/* While the concept notice is showing, the stage's foot sits above it rather than under it. */
-:root:has(.concept) .stage__foot {
-  bottom: 76px;
+/* The rail brings these in itself, sideways; their own rise would fight it. */
+.showroom[data-rail='true'] .chapter:not(:first-child) [data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: none;
 }
-.stage__ticks {
-  display: flex;
-  gap: 6px;
-}
-.stage__ticks button {
+/* The next section waits under the rail's last screen, so the staircase uncovers it. */
+.showroom[data-rail='true'] + * {
   position: relative;
-  width: 36px;
-  height: 24px;
-  padding: 0;
+  z-index: 1;
+  margin-top: -100svh;
+}
+.showroom[data-rail='true'] .rail__hud {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--nav-h) - 6px);
+  right: clamp(8px, 2vw, 32px);
+  display: flex;
+}
+.rail__hud {
+  --hud-on: var(--color-ink);
+  --hud-dim: var(--color-muted);
+}
+/* Midway between two products, the next one's dark words pass under the numbers. */
+.rail__hud[data-over='dark'] {
+  --hud-on: var(--color-sand);
+  --hud-dim: rgb(247 245 236 / 0.7);
+}
+.rail__hud button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 6px;
   border: 0;
   background: none;
+  color: var(--hud-dim);
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
   cursor: pointer;
+  transition: color 300ms ease;
 }
-.stage__ticks button::before,
-.stage__ticks i {
-  content: '';
+.rail__hud button[aria-current='true'] {
+  color: var(--hud-on);
+  text-decoration-line: underline;
+}
+.showroom[data-rail='true'] .rail__bar {
   position: absolute;
+  z-index: 2;
   left: 0;
   right: 0;
-  top: 11px;
-  height: 2px;
-  border-radius: 2px;
+  bottom: 0;
+  display: block;
+  height: 3px;
+  background: rgb(24 49 40 / 0.14);
 }
-.stage__ticks button::before {
-  background: rgb(24 49 40 / 0.16);
-}
-.stage__ticks i {
-  background: var(--color-forest);
+.rail__bar i {
+  display: block;
+  height: 100%;
+  background: var(--color-green);
   transform-origin: 0 50%;
   transform: scaleX(0);
 }
-.stage__caption {
-  font-size: 0.875rem;
-}
-/* Only the product showing takes the pointer (the live bulb turns it on for itself). */
-.stage__item {
-  pointer-events: none;
+@media (hover: hover) and (pointer: fine) {
+  .rail__hud button:hover {
+    color: var(--hud-on);
+  }
 }
 
 /* ---------- The live 3D bulb (Bulb3D) ---------- */

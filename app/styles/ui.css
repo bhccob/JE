@@ -281,7 +281,8 @@
   outline-color: var(--color-mint);
 }
 .chapter[data-tone='oak'] :focus-visible,
-.stage :focus-visible {
+.chapter__media :focus-visible,
+.rail__hud :focus-visible {
   outline-color: var(--color-forest);
 }
 

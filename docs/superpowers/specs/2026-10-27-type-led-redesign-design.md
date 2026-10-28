@@ -235,10 +235,28 @@ The owner reviewed the built branch: "for the rest it is super good". These chan
    - Everything kept is listed in `docs/content-placeholders.md` for the owner to confirm before launch.
    - The footer's FAQ link and Visit's questions lead here.
 6. **LED strips** are carried. They are added to the lighting copy, the LED category and its picture list.
-7. **Snap between products.** On all screens, when scrolling stops near the start of a product chapter, the page settles onto it, once the scroll has come to rest (built: a small settle on Lenis, `ChapterSnap`, not Lenis Snap, whose timer can fire during touch momentum; within 22% of the screen height of a start, after a wheel or touch only). It never fights a fast scroll, acts only on the chapters, and is off with reduced motion. That overrides "nothing snaps" above.
+7. **Snap between products.** On all screens, when scrolling stops near the start of a product chapter, the page settles onto it, once the scroll has come to rest (built: a small settle on Lenis, now `useSettle`, not Lenis Snap, whose timer can fire during touch momentum; within 22% of the screen height of a start, after a wheel or touch only). It never fights a fast scroll, acts only on the chapters, and is off with reduced motion. That overrides "nothing snaps" above.
 8. **A live 3D bulb.** Chapter 04's product is a real-time 3D filament bulb (three.js, built in code, no model file).
    - Drag it to turn it; it turns slowly on its own when left alone, but not with reduced motion.
    - The filament glows in the colour chosen on the slider, and its light washes the stage.
    - It loads only near view, renders only while visible, and falls back to the picture without WebGL.
 9. **Rewards keeps its name.** It is short and says what you get.
 10. **Tab title:** the home page is "Jontai Energy | Smart Lights Smart Savings".
+
+## Round 3: owner changes, 2026-10-28
+
+The owner reviewed round 2: the header was too big, with too many things to look at and a box behind it, and the products should lock on and run sideways, then hand over to the next section with a creative transition. These override the sections above where they conflict.
+
+1. **A slim header.** The store's mark, Support and Menu, nothing else, on every screen.
+   - The section links and WhatsApp move into the menu, which opens full screen on every screen size: two columns of big words on wide screens, with WhatsApp, a quote and directions under them.
+   - Once you leave the top, the header is a slim frosted bar edge to edge with a hairline, not a floating box. It is 64px tall (56px on phones).
+   - The rule under it on the hero is gone, so the hero's top line no longer reads as a second header.
+   - Without scripts, Menu is a link that opens the menu as its target.
+2. **The product rail.** On wide screens with motion, the products section locks in place and the scroll slides the five products sideways, one screen of scroll each (`ProductRail`).
+   - It runs from 961px wide and 560px tall, and only where every product's words fit one screen, which is measured; otherwise the products stay stacked.
+   - Each picture drifts in slower than its panel, the big number runs ahead, and the words catch up one after another. Products sit on the right, words on the left.
+   - Numbers 01 to 05 at the top right show where you are and jump there, with a line along the bottom.
+   - A scroll that comes to rest on the rail settles on the nearest product, and arriving, onto the first. Links to a product (the menu, "In the store", `/#backup` from other pages) land on it.
+   - This overrides "nothing is pinned" above and item 7's chapter starts on wide screens. The shared product stage and its glass capsules are gone.
+3. **The way out.** After the last product, the rail climbs away in six steps from the right, a flight up, uncovering "Jontai at a glance" already rising underneath.
+4. **Phones, short screens, reduced motion and no scripts** keep the stacked chapters, one screen each, with item 7's settle (`useSettle`).
