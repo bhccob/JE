@@ -27,6 +27,10 @@ const NEAR = 0.22;
 const STEPS = 6;
 /** How far behind the first step the last one starts, as a share of the way out. */
 const STAGGER = 0.45;
+/** How far the words lift as they leave and rise as they arrive, as a share of the screen height. */
+const LIFT = 0.035;
+/** How small a picture is as it slides past the edge of the stage. */
+const FAR = 0.9;
 
 interface RailItem {
   id: string;
@@ -44,12 +48,13 @@ const closest = (ys: number[], y: number) => ys.reduce((a, b) => (Math.abs(b - y
 
 /**
  * The products as a rail. On wide screens with motion, the section locks in place and the scroll walks through the
- * five products sideways. Each product holds still for a stretch of scroll, to be read, then the next slides in: its
- * picture drifts in slower than its panel and the words catch up one after another, so the store seems to have depth.
- * A scroll that comes to rest mid-slide snaps on in the direction it was going (a little way in is enough), and one
- * resting just short of the rail locks onto the first product. The numbers along the top (with a line along the
- * bottom) show where you are and jump there. After the last product the rail climbs away in a staircase, one flight
- * up, and the next section is already underneath it. Links to a product land on it (scrollTargets).
+ * five products. The words keep their place on the left: each product holds still for a stretch of scroll, to be read,
+ * then its words lift away and the next product's rise in, the title word by word, while the pictures slide across the
+ * stage on the right, the next one following the last in. Upstairs, the oak floor rises under the words. A scroll that
+ * comes to rest mid-change carries on in the direction it was going (a little way in is enough), and one resting just
+ * short of the rail locks onto the first product. The numbers along the top (with a line along the bottom) show where
+ * you are and jump there. After the last product the rail climbs away in a staircase, one flight up, and the next
+ * section is already underneath it. Links to a product land on it (scrollTargets), and tabbing into one brings it on.
  *
  * Phones, short screens and reduced motion keep the products stacked, one screen each, and a scroll resting near the
  * start of one settles onto it; with motion, the picture and the big number drift against the scroll there. Without
@@ -72,13 +77,18 @@ export function ProductRail({ items }: { items: RailItem[] }) {
     const section = host?.closest<HTMLElement>('.showroom');
     const track = host?.querySelector<HTMLElement>('.chapters');
     if (!host || !section || !track) return;
+    const floor = host.querySelector<HTMLElement>('.rail__floor');
     const panels = gsap.utils.toArray<HTMLElement>(track.children);
+    // What slides on the stage: the picture (and the bulb's light). Its floor label and caption keep their place.
+    const media = panels.map((p) => gsap.utils.toArray<HTMLElement>(p.querySelectorAll('.chapter__media > :not(.label, .chapter__caption)')));
     const pics = panels.map((p) => p.querySelector<HTMLElement>('.chapter__media > :is(img, .bulb3d)'));
+    const texts = panels.map((p) => p.querySelector<HTMLElement>('.chapter__text'));
     const ghosts = panels.map((p) => p.querySelector<HTMLElement>('.ghost'));
     const words = panels.map((p) => gsap.utils.toArray<HTMLElement>(p.querySelectorAll('.chapter__text > :not(.ghost)')));
+    const titles = panels.map((p) => gsap.utils.toArray<HTMLElement>(p.querySelectorAll('.chapter__text h2 .wi')));
+    const lines = words.map((w) => w.filter((el) => el.tagName !== 'H2'));
     const n = panels.length;
     const roomy = window.matchMedia(ROOMY);
-    const width = () => host.clientWidth;
     // The rail's timeline, in screens of scroll: product i holds from held(i) to held(i) + HOLD, then slides on.
     const held = (i: number) => i * (HOLD + MOVE);
     const total = held(n - 1) + HOLD + OUT;
@@ -117,8 +127,21 @@ export function ProductRail({ items }: { items: RailItem[] }) {
     // The rail; returns what undoes the parts GSAP does not track.
     const rail = () => {
       section.dataset.rail = 'true';
-      // Where the numbers sit across the screen (0 to 1), to tell what passes under them.
-      let centre = 0.9;
+      const lift = () => LIFT * window.innerHeight;
+      // A picture comes in from beyond the stage's right edge and leaves past its left one, under the words.
+      const stage = () => panels[0].querySelector<HTMLElement>('.chapter__media')?.clientWidth ?? host.clientWidth / 2;
+      const oak = (k: number) => panels[k].dataset.tone === 'oak';
+      if (floor) gsap.set(floor, { scaleY: oak(0) ? 1 : 0 });
+
+      // The products lie on top of one another; only the one on show takes the pointer (rail CSS).
+      let shown = -1;
+      const show = (k: number) => {
+        if (k === shown) return;
+        shown = k;
+        panels.forEach((p, j) => p.toggleAttribute('data-shown', j === k));
+        setActive(k);
+      };
+      show(0);
 
       const tl = gsap.timeline({
         defaults: { ease: 'none' },
@@ -131,36 +154,32 @@ export function ProductRail({ items }: { items: RailItem[] }) {
           invalidateOnRefresh: true,
           // Pinned before anything further down measures itself, so their triggers count the pinned stretch.
           refreshPriority: 1,
-          onRefresh: () => {
-            const box = hud.current?.getBoundingClientRect();
-            if (box?.width) centre = (box.left + box.width / 2) / width();
-          },
-          onUpdate: (self) => {
-            const at = self.progress * total;
-            const i = Math.min(n - 1, Math.floor(at / (HOLD + MOVE)));
-            setActive(Math.min(n - 1, Math.max(0, Math.round((at - HOLD / 2) / (HOLD + MOVE)))));
-            // A fraction f of the way through a slide, the next product's words cover the numbers from 1 - centre
-            // to 1.5 - centre; the oak upstairs is light like the stage.
-            const f = (at - held(i) - HOLD) / MOVE;
-            const next = panels[i + 1];
-            const over = f > 1 - centre && f < 1.5 - centre && next?.dataset.tone === 'dark';
-            if (hud.current) hud.current.dataset.over = over ? 'dark' : 'light';
-          },
+          // A product is on show from halfway through the change that brings it to halfway through the one after.
+          onUpdate: (self) => show(gsap.utils.clamp(0, n - 1, Math.round((self.progress * total - HOLD / 2) / (HOLD + MOVE)))),
         },
       });
 
       for (let i = 1; i < n; i++) {
         const from = i - 1;
         const at = held(from) + HOLD;
-        tl.fromTo(track, { x: () => -from * width() }, { x: () => -i * width(), duration: MOVE, immediateRender: i === 1 }, at);
-        // Depth: the product arriving drifts in slower than its panel and the one leaving lingers; the big number
-        // runs ahead, and the words catch up one after another.
-        if (pics[i]) tl.fromTo(pics[i], { xPercent: -28 }, { xPercent: 0, duration: MOVE }, at);
-        if (pics[from]) tl.fromTo(pics[from], { xPercent: 0 }, { xPercent: 28, duration: MOVE, immediateRender: false }, at);
-        if (ghosts[i]) tl.fromTo(ghosts[i], { xPercent: 40 }, { xPercent: 0, duration: MOVE }, at);
-        words[i].forEach((el, k) => {
-          tl.fromTo(el, { x: () => (k + 1) * 0.05 * width() }, { x: 0, duration: MOVE, ease: 'power2.out' }, at);
-        });
+        // The pictures slide across the stage together, the next one following the last in, a little smaller at
+        // the edges.
+        tl.fromTo(media[from], { x: 0 }, { x: () => -stage(), duration: MOVE, ease: 'power2.inOut', immediateRender: false }, at);
+        tl.fromTo(media[i], { x: () => stage() }, { x: 0, duration: MOVE, ease: 'power2.inOut' }, at);
+        if (pics[from]) tl.fromTo(pics[from], { scale: 1 }, { scale: FAR, duration: MOVE, ease: 'power2.inOut', immediateRender: false }, at);
+        if (pics[i]) tl.fromTo(pics[i], { scale: FAR }, { scale: 1, duration: MOVE, ease: 'power2.inOut' }, at);
+        // The words stay put: the last product's lift away, then the next one's rise in, the title word by word out
+        // of its own line (--rise, rail CSS; PageMotion holds the words' transforms).
+        const text = texts[from];
+        if (text) tl.fromTo(text, { y: 0, opacity: 1 }, { y: () => -lift(), opacity: 0, duration: 0.38, ease: 'power2.in', immediateRender: false }, at);
+        if (floor && oak(i) !== oak(from)) {
+          tl.fromTo(floor, { scaleY: oak(from) ? 1 : 0 }, { scaleY: oak(i) ? 1 : 0, duration: 0.6, ease: 'power2.inOut', immediateRender: false }, at + 0.15);
+        }
+        if (ghosts[i]) tl.fromTo(ghosts[i], { yPercent: 45, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.5, ease: 'power2.out' }, at + 0.45);
+        if (titles[i].length) tl.fromTo(titles[i], { '--rise': 1 }, { '--rise': 0, duration: 0.4, ease: 'power3.out', stagger: { amount: 0.1 } }, at + 0.45);
+        if (lines[i].length) {
+          tl.fromTo(lines[i], { y: () => lift(), opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'power2.out', stagger: { amount: 0.12 } }, at + 0.5);
+        }
       }
       if (fill.current) tl.fromTo(fill.current, { scaleX: 0 }, { scaleX: 1, duration: held(n - 1) }, 0);
 
@@ -192,7 +211,20 @@ export function ProductRail({ items }: { items: RailItem[] }) {
       // A link to a product lands in the middle of its still stretch.
       items.forEach((it, i) => scrollTargets.set(it.id, () => y(held(i) + HOLD / 2)));
 
+      // Tabbing into a product that is not on show (its words see-through) brings it on. A link to a product focuses
+      // the product itself once it is on its way, so that is left alone.
+      const onFocus = (e: FocusEvent) => {
+        const k = panels.findIndex((p) => p !== e.target && p.contains(e.target as Node));
+        const to = k < 0 || k === shown ? undefined : scrollTargets.get(items[k].id)?.();
+        if (to === undefined) return;
+        if (lenisNow.current) lenisNow.current.scrollTo(to, { duration: 0.8, force: true });
+        else window.scrollTo(0, to);
+      };
+      track.addEventListener('focusin', onFocus);
+
       return () => {
+        track.removeEventListener('focusin', onFocus);
+        panels.forEach((p) => p.removeAttribute('data-shown'));
         items.forEach((it) => scrollTargets.delete(it.id));
         rests.current = null;
         host.style.clipPath = '';
@@ -277,6 +309,8 @@ export function ProductRail({ items }: { items: RailItem[] }) {
   const go = (i: number) => {
     const at = scrollTargets.get(items[i].id);
     if (at && lenis) lenis.scrollTo(at(), { duration: 1.2 });
+    // As with a link to it, the product takes the focus, so Tab goes on through its own links.
+    document.getElementById(items[i].id)?.focus({ preventScroll: true });
   };
 
   return (

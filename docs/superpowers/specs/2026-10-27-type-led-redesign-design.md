@@ -266,3 +266,11 @@ Then, the same day, after seeing it: each product needs time to be read and a fi
 5. **Read, then snap.** On the rail each product holds still for 0.8 screens of scroll before the next slides in (one screen). A scroll resting within a product's still stretch stays. One resting mid-slide carries on in the direction it was going once 12% of the way in, otherwise it goes back. Links and the numbers land in the middle of a product's still stretch.
 6. **"In the store" is removed.** The hero leads straight into the statement; the products are reached from the menu, the hero's "Explore solar", the rail's numbers and the footer.
 7. **No boxes in Visit.** Hours, contact and the service line are three columns under a rule on forest, like the statement's points; the glass panels and the glows behind them are gone (on `/support` too, which shares them).
+
+Then, after seeing the rail: only the product pictures should move; the words' side should stay where it is while its text changes.
+
+8. **Only the pictures slide.** This replaces item 2's sliding panels.
+   - The words keep their place on the left. Between products, the last product's words lift away, then the next one's rise in: the title word by word out of its line, the big number from the bottom edge.
+   - The pictures slide across one shared stage on the right, the next following the last in, a little smaller at the edges. The floor label and the caption stay put.
+   - Going upstairs, the oak rises under the words from the bottom.
+   - Only the product on show takes clicks. Tabbing into another product brings it on, and the numbers move the focus to the product they show.
