@@ -13,6 +13,8 @@
 //   size=WxH      change the viewport without reloading
 //   media=reduce  emulate prefers-reduced-motion: reduce, then reload
 //   nojs          disable page scripts, then reload
+//   block=PATTERN block requests matching PATTERN (e.g. *\/_next/static/chunks/*), then reload
+//   key=KEY       press a real key (e.g. key=Tab), so later focus counts as keyboard focus (:focus-visible)
 // Chrome comes from CHROME_PATH, or Playwright's Chromium under %LOCALAPPDATA%. Page exceptions print at the end.
 import { spawn } from 'node:child_process';
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
@@ -86,6 +88,8 @@ const reload = async () => { await send('Page.reload', {}); await sleep(400); };
 
 await send('Page.enable');
 await send('Runtime.enable');
+// Behave as the focused window, so focus/focusin events fire (headless pages are otherwise never focused).
+await send('Emulation.setFocusEmulationEnabled', { enabled: true });
 await send('Emulation.setDeviceMetricsOverride', { width: +w, height: +h, deviceScaleFactor: 1, mobile: false });
 const t0 = Date.now();
 // A fresh headless Chrome sometimes drops the first navigation and stays on about:blank: retry until the page is there.
@@ -122,6 +126,13 @@ for (const target of splitTargets(targets)) {
     await send('Emulation.setDeviceMetricsOverride', { width: sw, height: sh, deviceScaleFactor: 1, mobile: false });
   } else if (target === 'media=reduce') {
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
+    await reload();
+  } else if (target.startsWith('key=')) {
+    const key = target.slice(4);
+    for (const type of ['keyDown', 'keyUp']) await send('Input.dispatchKeyEvent', { type, key, code: key, windowsVirtualKeyCode: key === 'Tab' ? 9 : 0 });
+  } else if (target.startsWith('block=')) {
+    await send('Network.enable');
+    await send('Network.setBlockedURLs', { urls: [target.slice(6)] });
     await reload();
   } else if (target === 'nojs') {
     await send('Emulation.setScriptExecutionDisabled', { value: true });

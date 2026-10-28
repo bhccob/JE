@@ -267,8 +267,9 @@ html.is-loading .loader {
   line-height: 1.04;
   text-wrap: balance;
 }
+/* Lighter than the first line, still above 3:1 for large text on sand. */
 .statement__big .soft {
-  color: rgb(24 49 40 / 0.42);
+  color: rgb(24 49 40 / 0.6);
 }
 .statement__points {
   display: grid;

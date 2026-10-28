@@ -88,6 +88,11 @@
   contain: inline-size;
   overflow: hidden;
 }
+/* Negative tracking after the last letter would shrink the measured box below the letter's ink, and the row would
+   clip it (the Y of JONTAI ENERGY). The last letter keeps its full advance, so the fit measures all of it. */
+.fit > .c:last-child .ci {
+  letter-spacing: 0;
+}
 
 /* A catalogue render's backdrop melts into the stage colour: the outer edge of the square fades out, so no box shows. */
 .feather {
@@ -253,6 +258,16 @@
 }
 [data-tone='dark'] :is(.note, .fine) {
   color: rgb(247 245 236 / 0.7);
+}
+/* The focus ring keeps at least 3:1 against whatever it sits on: mint on forest and deep, forest on oak and on the
+   light product stage (which sits inside a dark section). */
+[data-tone='dark'] :focus-visible,
+.footer :focus-visible {
+  outline-color: var(--color-mint);
+}
+.chapter[data-tone='oak'] :focus-visible,
+.stage :focus-visible {
+  outline-color: var(--color-forest);
 }
 
 /* ---------- Motion starting states (only once scripts run; the page is complete without them) ---------- */

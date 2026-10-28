@@ -49,6 +49,17 @@ export function Header({ base = '' }: { base?: string }) {
   // A reload part-way down the page starts solid.
   useEffect(() => setSolid(window.scrollY > 12), []);
 
+  // The phone menu exists only up to 960px. Widening past it (a tablet turned to landscape) closes it, or the page
+  // would stay inert and still under a menu that is no longer shown.
+  useEffect(() => {
+    const wide = window.matchMedia('(min-width: 961px)');
+    const onChange = () => {
+      if (wide.matches) setOpen(false);
+    };
+    wide.addEventListener('change', onChange);
+    return () => wide.removeEventListener('change', onChange);
+  }, []);
+
   // Home only: which section is in the middle of the screen.
   useEffect(() => {
     if (base) return;

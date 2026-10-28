@@ -1,5 +1,6 @@
 import { OpenCategoryButton } from '@/components/catalog/OpenCategoryButton';
 import { FitText } from '@/components/ui/FitText';
+import { FooterFocus } from '@/components/ui/FooterFocus';
 import { CATEGORIES } from '@/lib/products';
 import { QUOTE_ACTION } from '@/lib/quote';
 import { CONCEPT, OFFICIAL_URL, STORE } from '@/lib/store';
@@ -53,6 +54,7 @@ export function Footer({ base = '' }: { base?: string }) {
         </a>
       </div>
       <FitText text="JONTAI ENERGY" chars="end" className="footer__mark" />
+      <FooterFocus />
       <div className="footer__fine">
         <p>
           © {new Date().getFullYear()} {STORE.name} · {STORE.street}, {STORE.city}, {STORE.country}

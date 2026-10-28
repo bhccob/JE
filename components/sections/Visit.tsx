@@ -25,9 +25,9 @@ export function Visit() {
   return (
     <section id="visit" className="visit" data-tone="dark" data-expand aria-labelledby="visit-title">
       <Contours hills={VISIT_HILLS} />
-      <p id="visit-title" className="label" data-reveal>
+      <h2 id="visit-title" className="label" data-reveal>
         Visit the store
-      </p>
+      </h2>
       <FitText text={STORE.street} chars label={`${STORE.street}, ${STORE.city}, ${STORE.country}`} className="visit__street" />
       <p className="visit__city" data-reveal>
         {STORE.city}, {STORE.country}
