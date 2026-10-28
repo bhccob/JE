@@ -21,7 +21,7 @@ const LINKS = [
 ] as const;
 
 /**
- * The header: the store's mark, the sections, a quote and WhatsApp. It turns solid once you leave the top, steps out
+ * The header: the store's mark, the sections, Support and WhatsApp. It turns to glass once you leave the top, steps out
  * of the way while you read down and comes back as soon as you scroll up or tab into it. On the home page a line
  * glides under the section you are in. Phones get a full-screen menu. `base` is '/' on other pages, so the section
  * links lead back home.
@@ -147,8 +147,8 @@ export function Header({ base = '' }: { base?: string }) {
           <span ref={bar} className="nav__bar" aria-hidden="true" />
         </nav>
         <div className="nav__end">
-          <a href="/quote" className="nav__quote" aria-current={pathname === '/quote' ? 'page' : undefined}>
-            Get a quote
+          <a href="/support" className="nav__support" aria-current={pathname === '/support' ? 'page' : undefined}>
+            Support
           </a>
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="btn btn--primary btn--sm">
             WhatsApp us
@@ -174,6 +174,11 @@ export function Header({ base = '' }: { base?: string }) {
               </a>
             </li>
           ))}
+          <li>
+            <a href="/support" aria-current={pathname === '/support' ? 'page' : undefined} onClick={close}>
+              Support
+            </a>
+          </li>
         </ul>
         <div className="actions">
           <a href="/quote" className="btn btn--primary">

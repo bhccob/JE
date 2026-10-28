@@ -121,6 +121,7 @@ html.is-loading .loader {
 .hero__meta {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 10px 32px;
   padding-top: 14px;
   border-top: 1px solid var(--color-rule);
@@ -150,24 +151,41 @@ html.is-loading .loader {
   letter-spacing: -0.055em;
   line-height: 0.8;
 }
+/* Under the name, two things only: the owner's line on the left, the lead and the ways in on the right. */
 .hero__grid {
   flex: 1;
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: end;
-  gap: 40px 6vw;
+  gap: 32px 6vw;
   margin-top: clamp(24px, 4vh, 48px);
 }
-.hero__copy {
+.hero__title {
+  font-size: clamp(2.6rem, 5.6vw, 6.2rem);
+}
+.hero__side {
   display: flex;
   flex-direction: column;
   gap: 26px;
+  padding-bottom: 0.4em;
 }
 
-/* What is in the store: ruled rows, each a way down to its chapter. */
-.index__title {
-  margin-bottom: 12px;
+/* ---------- In the store ---------- */
+
+/* What is in the store, right after the hero: big ruled rows, each a way down to its chapter. */
+.instore {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 24px var(--gap-columns);
+  padding: clamp(72px, 12vh, 140px) var(--gutter) clamp(24px, 4vh, 48px);
+}
+.instore__title {
+  grid-column: 1 / span 3;
+  padding-top: 22px;
   color: var(--color-muted);
+}
+.instore .index {
+  grid-column: 4 / -1;
 }
 .index ol {
   margin: 0;
@@ -177,10 +195,10 @@ html.is-loading .loader {
 }
 .index a {
   display: grid;
-  grid-template-columns: 3em 1fr auto;
+  grid-template-columns: 3.4em 1fr auto auto;
   align-items: center;
-  gap: 12px;
-  padding: 15px 0;
+  gap: 12px 24px;
+  padding: clamp(16px, 2.4vh, 24px) 0;
   border-top: 1px solid var(--color-rule);
   text-decoration: none;
   transition: opacity 300ms ease;
@@ -193,10 +211,15 @@ html.is-loading .loader {
   letter-spacing: 0.06em;
 }
 .index__name {
-  font-weight: 700;
-  font-size: clamp(1.25rem, 1.55vw, 1.65rem);
-  letter-spacing: -0.025em;
+  font-weight: 750;
+  font-size: clamp(1.5rem, 2.7vw, 2.9rem);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
   transition: transform 500ms var(--ease-out);
+}
+.index__floor {
+  color: var(--color-muted);
+  font-size: 0.9rem;
 }
 .index svg {
   transform: rotate(45deg);
@@ -217,7 +240,7 @@ html.is-loading .loader {
   }
 }
 
-/* The disc that follows the pointer over the list and shows the row's product (HeroIndex). Mouse and motion only. */
+/* The disc that follows the pointer over the list and shows the row's product (StoreIndex). Mouse and motion only. */
 .peek {
   position: fixed;
   left: 0;
@@ -288,6 +311,29 @@ html.is-loading .loader {
 .statement__points p {
   max-width: 22em;
   font-size: 1.125rem;
+}
+/* "Meet the team", named but not yet a link: muted, with a small glass chip saying it is coming. */
+.statement__points .team {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+.team__soon {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.55);
+  box-shadow:
+    var(--glass-edge),
+    inset 0 0 0 1px var(--color-rule);
+  color: var(--color-green-ink);
+  font-stretch: var(--stretch-narrow);
+  font-size: 0.8rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
 }
 
 /* ---------- Showroom: the product chapters ---------- */
@@ -891,6 +937,13 @@ html.is-loading .loader {
   .visit__grid {
     gap: 14px;
   }
+  .instore__title,
+  .instore .index {
+    grid-column: 1 / -1;
+  }
+  .instore__title {
+    padding-top: 0;
+  }
   .chapter {
     grid-template-columns: 1fr;
     min-height: 0;
@@ -956,6 +1009,13 @@ html.is-loading .loader {
   .hero .actions .btn,
   .visit .actions .btn {
     flex: 1 1 auto;
+  }
+  .index a {
+    grid-template-columns: 2.6em 1fr auto;
+    gap: 12px;
+  }
+  .index__floor {
+    display: none;
   }
   .visit__panel {
     padding: 22px 18px 24px;

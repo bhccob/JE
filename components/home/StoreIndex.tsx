@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, type CSSProperties } from 'react';
 import { ArrowRight } from '@phosphor-icons/react';
 import { gsap } from 'gsap';
 import { useGSAP } from '@gsap/react';
@@ -12,15 +12,16 @@ interface IndexItem {
   id: ChapterId;
   number: string;
   name: string;
+  floor: string;
   image: string;
 }
 
 /**
- * What is in the store, as ruled rows that lead down to each chapter. With a mouse, a small sun-coloured disc follows
- * the pointer just left of it and shows the product of the row you are on, tilting a little as it moves. Touch screens
- * and reduced motion get the rows alone.
+ * What is in the store, as ruled rows that lead down to each chapter, each with its floor. With a mouse, a small
+ * disc follows the pointer just left of it and shows the product of the row you are on, tilting a little as it moves.
+ * Touch screens and reduced motion get the rows alone.
  */
-export function HeroIndex({ items }: { items: IndexItem[] }) {
+export function StoreIndex({ items }: { items: IndexItem[] }) {
   const root = useRef<HTMLElement>(null);
   const peek = useRef<HTMLDivElement>(null);
   const [on, setOn] = useState(0);
@@ -67,16 +68,14 @@ export function HeroIndex({ items }: { items: IndexItem[] }) {
   );
 
   return (
-    <nav ref={root} className="index" aria-label="In the store">
-      <p className="label index__title" data-hero>
-        In the store
-      </p>
+    <nav ref={root} className="index" aria-labelledby="instore-title">
       <ol>
         {items.map((it, i) => (
-          <li key={it.id} data-hero>
+          <li key={it.id} data-reveal style={{ '--i': i } as CSSProperties}>
             <a href={`#${it.id}`} onPointerEnter={() => setOn(i)}>
               <span className="index__n">{it.number}</span>
               <span className="index__name">{it.name}</span>
+              <span className="index__floor label">{it.floor}</span>
               <ArrowRight size={22} weight="bold" aria-hidden="true" />
             </a>
           </li>

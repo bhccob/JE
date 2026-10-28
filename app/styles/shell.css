@@ -101,12 +101,12 @@ main {
   align-items: center;
   gap: 18px;
 }
-.nav__quote {
+.nav__support {
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
 }
-.nav__quote[aria-current='page'] {
+.nav__support[aria-current='page'] {
   text-decoration: underline;
   text-decoration-thickness: 2px;
   text-underline-offset: 6px;
@@ -118,7 +118,7 @@ main {
   .nav__link:hover {
     opacity: 1;
   }
-  .nav__quote:hover {
+  .nav__support:hover {
     text-decoration: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 6px;
@@ -126,7 +126,7 @@ main {
 }
 @media (max-width: 60rem) {
   .nav__main,
-  .nav__quote,
+  .nav__support,
   .nav__end .btn--primary {
     display: none;
   }

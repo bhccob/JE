@@ -2,7 +2,10 @@ import type { CSSProperties } from 'react';
 import { Words } from '@/components/ui/Split';
 import { HOME_COPY } from '@/lib/products';
 
-/** One clear sentence about the store, filled in word by word as it scrolls up, and three ruled points under it. */
+/**
+ * One clear sentence about the store, filled in word by word as it scrolls up, and three ruled points under it. The
+ * first, Family-owned, names the team page to come.
+ */
 export function Statement() {
   const { statement } = HOME_COPY;
   return (
@@ -24,6 +27,12 @@ export function Statement() {
               {p.label}
             </span>
             <p data-reveal>{p.text}</p>
+            {p.team && (
+              // The team page is a later feature: named here, not a link until it exists.
+              <p className="team" data-reveal>
+                Meet the team<span className="visually-hidden">,</span> <span className="team__soon">Coming soon</span>
+              </p>
+            )}
           </li>
         ))}
       </ul>

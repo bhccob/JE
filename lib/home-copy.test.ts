@@ -37,6 +37,10 @@ test('every picture in a product range exists', () => {
   for (const c of data.categories) for (const r of c.range) assert.ok(existsSync(join(import.meta.dirname, '..', 'public', r.image)), r.image);
 });
 
+test('the statement never says the same sentence twice', () => {
+  const { soft, points } = home.statement;
+  for (const p of points) assert.ok(!soft.toLowerCase().includes(p.text.toLowerCase().replace(/\.$/, '')), p.label);
+});
 test('the family-owned point leads the statement, with the team still to come', () => {
   assert.equal(home.statement.points[0].label, 'Family-owned');
   assert.equal(home.statement.points[0].team, true);
