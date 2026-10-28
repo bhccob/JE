@@ -10,7 +10,7 @@ import { StoreDetails } from './StoreDetails';
 
 /**
  * The store, said big: CUMANA 73 across the width on forest with contour lines, then hours with the live open line,
- * how to reach us and the service line on glass panels, the questions people ask most (the rest, with warranty and
+ * how to reach us and the service line in ruled columns, the questions people ask most (the rest, with warranty and
  * returns, on the Support page), and the ways to come by or get in touch.
  */
 export function Visit() {

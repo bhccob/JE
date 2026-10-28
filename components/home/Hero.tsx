@@ -7,8 +7,7 @@ import { OpenStatus } from './OpenStatus';
 
 /**
  * The name is the picture: a quiet line on top (family-owned, open now), JONTAI across the full width, then the owner's
- * line with the lead and two ways in beside it. What is in the store follows in its own band (InStore). The entrance
- * is HeroMotion's; without it everything is simply here.
+ * line with the lead and two ways in beside it. The entrance is HeroMotion's; without it everything is simply here.
  */
 export function Hero() {
   const { hero } = HOME_COPY;

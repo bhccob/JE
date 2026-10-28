@@ -2,11 +2,11 @@ import { OpenStatus } from '@/components/home/OpenStatus';
 import { whatsappLink } from '@/lib/contact';
 import { SERVICE_LINE, STORE } from '@/lib/store';
 
-/** The store's hours with the live open line, how to reach it and the service line, as three glass panels on forest. */
+/** The store's hours with the live open line, how to reach it and the service line, in three ruled columns on forest. */
 export function StoreDetails() {
   return (
     <div className="visit__grid">
-      <div className="visit__panel glass glass--dark">
+      <div className="visit__panel">
         <span className="label" data-reveal>
           Opening hours
         </span>
@@ -20,7 +20,7 @@ export function StoreDetails() {
         </dl>
         <OpenStatus data-reveal />
       </div>
-      <div className="contact visit__panel glass glass--dark">
+      <div className="contact visit__panel">
         <span className="label" data-reveal>
           Talk to us
         </span>
@@ -32,7 +32,7 @@ export function StoreDetails() {
           <a href={`mailto:${STORE.email}`}>{STORE.email}</a>
         </div>
       </div>
-      <div className="visit__panel glass glass--dark">
+      <div className="visit__panel">
         <span className="label" data-reveal>
           Good to know
         </span>

@@ -13,8 +13,14 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 /** Wide enough for a product's words and picture side by side; whether they fit one screen is measured (fits). */
 const ROOMY = '(min-width: 961px) and (min-height: 560px)';
 const MOTION = '(prefers-reduced-motion: no-preference)';
+/** Screens of scroll each product holds still for, to be read. */
+const HOLD = 0.8;
+/** Screens of scroll the slide from one product to the next takes. */
+const MOVE = 1;
 /** The way out after the last product, in screens of scroll. */
 const OUT = 1;
+/** Between two products, how far into the slide (either way) a resting scroll must be to carry on to the next. */
+const PUSH = 0.12;
 /** Outside the rail, how near a resting place (a share of the screen height) a scroll must stop to settle onto it. */
 const NEAR = 0.22;
 /** Steps in the staircase that carries the rail away, up to the next section. */
@@ -28,15 +34,22 @@ interface RailItem {
   name: string;
 }
 
+/** Where the rail rests, in scroll positions: each product's still stretch, and the end of the way out. */
+interface Rests {
+  holds: [number, number][];
+  end: number;
+}
+
 const closest = (ys: number[], y: number) => ys.reduce((a, b) => (Math.abs(b - y) < Math.abs(a - y) ? b : a));
 
 /**
- * The products as a rail. On wide screens with motion, the section locks in place and the scroll slides the five
- * products past sideways: each picture drifts in slower than its panel and the words catch up one after another,
- * so the store seems to have depth. A scroll that comes to rest settles onto the nearest product, and the numbers
- * along the top (with a line along the bottom) show where you are and jump there. After the last product the rail
- * climbs away in a staircase, one flight up, and the next section is already underneath it. Links to a product land on
- * it on the rail (scrollTargets).
+ * The products as a rail. On wide screens with motion, the section locks in place and the scroll walks through the
+ * five products sideways. Each product holds still for a stretch of scroll, to be read, then the next slides in: its
+ * picture drifts in slower than its panel and the words catch up one after another, so the store seems to have depth.
+ * A scroll that comes to rest mid-slide snaps on in the direction it was going (a little way in is enough), and one
+ * resting just short of the rail locks onto the first product. The numbers along the top (with a line along the
+ * bottom) show where you are and jump there. After the last product the rail climbs away in a staircase, one flight
+ * up, and the next section is already underneath it. Links to a product land on it (scrollTargets).
  *
  * Phones, short screens and reduced motion keep the products stacked, one screen each, and a scroll resting near the
  * start of one settles onto it; with motion, the picture and the big number drift against the scroll there. Without
@@ -45,7 +58,7 @@ const closest = (ys: number[], y: number) => ys.reduce((a, b) => (Math.abs(b - y
 export function ProductRail({ items }: { items: RailItem[] }) {
   const hud = useRef<HTMLDivElement>(null);
   const fill = useRef<HTMLElement>(null);
-  const stops = useRef<(() => number[]) | null>(null);
+  const rests = useRef<(() => Rests) | null>(null);
   const [active, setActive] = useState(0);
   const lenis = useLenis();
   const lenisNow = useRef(lenis);
@@ -66,6 +79,9 @@ export function ProductRail({ items }: { items: RailItem[] }) {
     const n = panels.length;
     const roomy = window.matchMedia(ROOMY);
     const width = () => host.clientWidth;
+    // The rail's timeline, in screens of scroll: product i holds from held(i) to held(i) + HOLD, then slides on.
+    const held = (i: number) => i * (HOLD + MOVE);
+    const total = held(n - 1) + HOLD + OUT;
 
     // Whether every product's words fit one screen in the rail's layout, measured in it before anything is painted.
     const fits = () => {
@@ -110,7 +126,7 @@ export function ProductRail({ items }: { items: RailItem[] }) {
           trigger: host,
           pin: true,
           start: 'top top',
-          end: () => `+=${(n - 1 + OUT) * window.innerHeight}`,
+          end: () => `+=${total * window.innerHeight}`,
           scrub: true,
           invalidateOnRefresh: true,
           // Pinned before anything further down measures itself, so their triggers count the pinned stretch.
@@ -120,12 +136,13 @@ export function ProductRail({ items }: { items: RailItem[] }) {
             if (box?.width) centre = (box.left + box.width / 2) / width();
           },
           onUpdate: (self) => {
-            const at = self.progress * (n - 1 + OUT);
-            setActive(Math.min(n - 1, Math.round(at)));
-            // A fraction f of the way to the next product, its words cover the numbers from 1 - centre to
-            // 1.5 - centre; the oak upstairs is light like the stage.
-            const f = at - Math.floor(at);
-            const next = panels[Math.floor(at) + 1];
+            const at = self.progress * total;
+            const i = Math.min(n - 1, Math.floor(at / (HOLD + MOVE)));
+            setActive(Math.min(n - 1, Math.max(0, Math.round((at - HOLD / 2) / (HOLD + MOVE)))));
+            // A fraction f of the way through a slide, the next product's words cover the numbers from 1 - centre
+            // to 1.5 - centre; the oak upstairs is light like the stage.
+            const f = (at - held(i) - HOLD) / MOVE;
+            const next = panels[i + 1];
             const over = f > 1 - centre && f < 1.5 - centre && next?.dataset.tone === 'dark';
             if (hud.current) hud.current.dataset.over = over ? 'dark' : 'light';
           },
@@ -133,21 +150,23 @@ export function ProductRail({ items }: { items: RailItem[] }) {
       });
 
       for (let i = 1; i < n; i++) {
-        const at = i - 1;
-        tl.fromTo(track, { x: () => -at * width() }, { x: () => -i * width(), duration: 1, immediateRender: i === 1 }, at);
+        const from = i - 1;
+        const at = held(from) + HOLD;
+        tl.fromTo(track, { x: () => -from * width() }, { x: () => -i * width(), duration: MOVE, immediateRender: i === 1 }, at);
         // Depth: the product arriving drifts in slower than its panel and the one leaving lingers; the big number
         // runs ahead, and the words catch up one after another.
-        if (pics[i]) tl.fromTo(pics[i], { xPercent: -28 }, { xPercent: 0, duration: 1 }, at);
-        if (pics[at]) tl.fromTo(pics[at], { xPercent: 0 }, { xPercent: 28, duration: 1, immediateRender: false }, at);
-        if (ghosts[i]) tl.fromTo(ghosts[i], { xPercent: 40 }, { xPercent: 0, duration: 1 }, at);
+        if (pics[i]) tl.fromTo(pics[i], { xPercent: -28 }, { xPercent: 0, duration: MOVE }, at);
+        if (pics[from]) tl.fromTo(pics[from], { xPercent: 0 }, { xPercent: 28, duration: MOVE, immediateRender: false }, at);
+        if (ghosts[i]) tl.fromTo(ghosts[i], { xPercent: 40 }, { xPercent: 0, duration: MOVE }, at);
         words[i].forEach((el, k) => {
-          tl.fromTo(el, { x: () => (k + 1) * 0.05 * width() }, { x: 0, duration: 1, ease: 'power2.out' }, at);
+          tl.fromTo(el, { x: () => (k + 1) * 0.05 * width() }, { x: 0, duration: MOVE, ease: 'power2.out' }, at);
         });
       }
-      if (fill.current) tl.fromTo(fill.current, { scaleX: 0 }, { scaleX: 1, duration: n - 1 }, 0);
+      if (fill.current) tl.fromTo(fill.current, { scaleX: 0 }, { scaleX: 1, duration: held(n - 1) }, 0);
 
       // The way out: the rail climbs away in steps from the right, a flight up, uncovering the next section, which is
       // already rising underneath it (rail CSS tucks it under the rail's last screen).
+      const out = held(n - 1) + HOLD;
       const step = gsap.parseEase('power2.inOut');
       const stair = { p: 0 };
       const climb = () => {
@@ -163,18 +182,19 @@ export function ProductRail({ items }: { items: RailItem[] }) {
         }
         host.style.clipPath = `polygon(${points.join(', ')})`;
       };
-      tl.to(stair, { p: 1, duration: OUT, onUpdate: climb }, n - 1);
-      tl.fromTo(panels[n - 1], { yPercent: 0 }, { yPercent: -8, duration: OUT, ease: 'power2.in', immediateRender: false }, n - 1);
-      tl.to([hud.current, fill.current?.parentElement], { autoAlpha: 0, duration: 0.2 }, n - 1);
+      tl.to(stair, { p: 1, duration: OUT, onUpdate: climb }, out);
+      tl.fromTo(panels[n - 1], { yPercent: 0 }, { yPercent: -8, duration: OUT, ease: 'power2.in', immediateRender: false }, out);
+      tl.to([hud.current, fill.current?.parentElement], { autoAlpha: 0, duration: 0.2 }, out);
 
       const st = tl.scrollTrigger as ScrollTrigger;
-      const unit = () => (st.end - st.start) / (n - 1 + OUT);
-      stops.current = () => [...items.map((_, i) => st.start + i * unit()), st.end];
-      items.forEach((it, i) => scrollTargets.set(it.id, () => st.start + i * unit()));
+      const y = (at: number) => st.start + ((st.end - st.start) * at) / total;
+      rests.current = () => ({ holds: items.map((_, i) => [y(held(i)), y(held(i) + HOLD)]), end: st.end });
+      // A link to a product lands in the middle of its still stretch.
+      items.forEach((it, i) => scrollTargets.set(it.id, () => y(held(i) + HOLD / 2)));
 
       return () => {
         items.forEach((it) => scrollTargets.delete(it.id));
-        stops.current = null;
+        rests.current = null;
         host.style.clipPath = '';
         delete section.dataset.rail;
       };
@@ -207,9 +227,9 @@ export function ProductRail({ items }: { items: RailItem[] }) {
         const arrived = first ? scrollTargets.get(decodeURIComponent(location.hash.slice(1))) : undefined;
         first = false;
         if (arrived) {
-          const y = arrived();
-          if (lenisNow.current) lenisNow.current.scrollTo(y, { immediate: true, force: true });
-          else window.scrollTo(0, y);
+          const to = arrived();
+          if (lenisNow.current) lenisNow.current.scrollTo(to, { immediate: true, force: true });
+          else window.scrollTo(0, to);
         }
       };
       apply();
@@ -229,14 +249,21 @@ export function ProductRail({ items }: { items: RailItem[] }) {
     });
   });
 
-  // Settle: on the rail, onto the nearest product (or all the way out); arriving at it, onto the first; stacked,
-  // onto a product whose start the scroll rests near.
-  useSettle((y) => {
+  // Settle. On the rail: a scroll resting within a product's still stretch stays; mid-slide it goes on to the next
+  // product (or back) in the direction it was moving, once a little way in; just short of the rail it locks onto the
+  // first product. Stacked: onto a product whose start the scroll rests near.
+  useSettle((y, dir) => {
     const near = window.innerHeight * NEAR;
-    const rail = stops.current?.();
+    const rail = rests.current?.();
     if (rail) {
-      if (y < rail[0] - near || y > rail[rail.length - 1]) return null;
-      return closest(rail, y);
+      const { holds, end } = rail;
+      if (y < holds[0][0]) return y >= holds[0][0] - near ? holds[0][0] : null;
+      if (y > end) return null;
+      for (let i = 0; i < holds.length; i++) {
+        const [a, b] = holds[i];
+        if (y <= b) return y >= a ? null : between(holds[i - 1][1], a, y, dir);
+      }
+      return between(holds[holds.length - 1][1], end, y, dir);
     }
     const starts = items.flatMap((it) => {
       const el = document.getElementById(it.id);
@@ -266,4 +293,12 @@ export function ProductRail({ items }: { items: RailItem[] }) {
       </span>
     </>
   );
+}
+
+/** Mid-slide from `from` to `to`: on in the direction the scroll was going once PUSH of the way in, else back. */
+function between(from: number, to: number, y: number, dir: number) {
+  const q = (y - from) / (to - from);
+  if (dir > 0) return q > PUSH ? to : from;
+  if (dir < 0) return q < 1 - PUSH ? from : to;
+  return q < 0.5 ? from : to;
 }

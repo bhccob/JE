@@ -170,112 +170,6 @@ html.is-loading .loader {
   padding-bottom: 0.4em;
 }
 
-/* ---------- In the store ---------- */
-
-/* What is in the store, right after the hero: big ruled rows, each a way down to its chapter. */
-.instore {
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 24px var(--gap-columns);
-  padding: clamp(72px, 12vh, 140px) var(--gutter) clamp(24px, 4vh, 48px);
-}
-.instore__title {
-  grid-column: 1 / span 3;
-  padding-top: 22px;
-  color: var(--color-muted);
-}
-.instore .index {
-  grid-column: 4 / -1;
-}
-.index ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  border-bottom: 1px solid var(--color-rule);
-}
-.index a {
-  display: grid;
-  grid-template-columns: 3.4em 1fr auto auto;
-  align-items: center;
-  gap: 12px 24px;
-  padding: clamp(16px, 2.4vh, 24px) 0;
-  border-top: 1px solid var(--color-rule);
-  text-decoration: none;
-  transition: opacity 300ms ease;
-}
-.index__n {
-  color: var(--color-muted);
-  font-stretch: var(--stretch-narrow);
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.06em;
-}
-.index__name {
-  font-weight: 750;
-  font-size: clamp(1.5rem, 2.7vw, 2.9rem);
-  letter-spacing: -0.035em;
-  line-height: 1.05;
-  transition: transform 500ms var(--ease-out);
-}
-.index__floor {
-  color: var(--color-muted);
-  font-size: 0.9rem;
-}
-.index svg {
-  transform: rotate(45deg);
-  transition: transform 500ms var(--ease-out);
-}
-@media (hover: hover) and (pointer: fine) {
-  .index ol:hover a {
-    opacity: 0.32;
-  }
-  .index ol:hover a:hover {
-    opacity: 1;
-  }
-  .index a:hover .index__name {
-    transform: translateX(12px);
-  }
-  .index a:hover svg {
-    transform: rotate(0deg);
-  }
-}
-
-/* The disc that follows the pointer over the list and shows the row's product (StoreIndex). Mouse and motion only. */
-.peek {
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 40;
-  display: none;
-  width: clamp(200px, 17vw, 270px);
-  aspect-ratio: 1;
-  pointer-events: none;
-  opacity: 0;
-}
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .js .peek {
-    display: block;
-  }
-}
-.peek__disc {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at 50% 40%, #f5efe5, var(--color-stage) 55%, #e6dbc8);
-  box-shadow: 0 30px 60px -28px rgb(24 49 40 / 0.5);
-}
-.peek img {
-  position: absolute;
-  inset: 13%;
-  width: 74%;
-  height: 74%;
-  opacity: 0;
-  transition: opacity 250ms ease;
-}
-.peek img[data-on='true'] {
-  opacity: 1;
-}
-
 /* ---------- Statement ---------- */
 
 .statement {
@@ -831,40 +725,16 @@ html.is-loading .loader {
 .visit__grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px clamp(16px, 1.6vw, 24px);
+  gap: 40px var(--gap-columns);
   margin-top: clamp(56px, 9vh, 96px);
-  isolation: isolate;
 }
-/* Soft green and oak light behind the panels (a layer under them, never over their text), for their glass to frost. */
-.visit__grid::before,
-.visit__grid::after {
-  content: '';
-  position: absolute;
-  z-index: -1;
-  pointer-events: none;
-  border-radius: 50%;
-}
-.visit__grid::before {
-  left: -6%;
-  top: -45%;
-  width: 52%;
-  height: 170%;
-  background: radial-gradient(closest-side, rgb(121 174 114 / 0.5), transparent);
-}
-.visit__grid::after {
-  right: -8%;
-  top: -20%;
-  width: 50%;
-  height: 170%;
-  background: radial-gradient(closest-side, rgb(216 185 142 / 0.36), transparent);
-}
+/* Three columns under a rule, like the statement's points: no panels. */
 .visit__panel {
-  position: relative;
   display: grid;
   align-content: start;
   gap: 14px;
-  padding: 26px clamp(22px, 2.2vw, 32px) 30px;
-  border-radius: var(--radius-card);
+  padding-top: 18px;
+  border-top: 1px solid rgb(247 245 236 / 0.4);
 }
 .hours {
   margin: 0;
@@ -970,14 +840,7 @@ html.is-loading .loader {
     gap: 40px;
   }
   .visit__grid {
-    gap: 14px;
-  }
-  .instore__title,
-  .instore .index {
-    grid-column: 1 / -1;
-  }
-  .instore__title {
-    padding-top: 0;
+    gap: 40px;
   }
   .chapter {
     grid-template-columns: 1fr;
@@ -1045,16 +908,5 @@ html.is-loading .loader {
   .hero .actions .btn,
   .visit .actions .btn {
     flex: 1 1 auto;
-  }
-  .index a {
-    grid-template-columns: 2.6em 1fr auto;
-    gap: 12px;
-  }
-  .index__floor {
-    display: none;
-  }
-  .visit__panel {
-    padding: 22px 18px 24px;
-    border-radius: 22px;
   }
 }

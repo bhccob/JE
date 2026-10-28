@@ -260,3 +260,9 @@ The owner reviewed round 2: the header was too big, with too many things to look
    - This overrides "nothing is pinned" above and item 7's chapter starts on wide screens. The shared product stage and its glass capsules are gone.
 3. **The way out.** After the last product, the rail climbs away in six steps from the right, a flight up, uncovering "Jontai at a glance" already rising underneath.
 4. **Phones, short screens, reduced motion and no scripts** keep the stacked chapters, one screen each, with item 7's settle (`useSettle`).
+
+Then, the same day, after seeing it: each product needs time to be read and a firm snap, the band under the hero should go, and the visit section still had boxes.
+
+5. **Read, then snap.** On the rail each product holds still for 0.8 screens of scroll before the next slides in (one screen). A scroll resting within a product's still stretch stays. One resting mid-slide carries on in the direction it was going once 12% of the way in, otherwise it goes back. Links and the numbers land in the middle of a product's still stretch.
+6. **"In the store" is removed.** The hero leads straight into the statement; the products are reached from the menu, the hero's "Explore solar", the rail's numbers and the footer.
+7. **No boxes in Visit.** Hours, contact and the service line are three columns under a rule on forest, like the statement's points; the glass panels and the glows behind them are gone (on `/support` too, which shares them).
