@@ -157,6 +157,7 @@ html.is-loading .loader {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: end;
+  align-content: end;
   gap: 32px 6vw;
   margin-top: clamp(24px, 4vh, 48px);
 }

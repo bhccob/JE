@@ -25,6 +25,9 @@ export function FitText({ text, className = '', chars = false, label }: FitTextP
     const el = ref.current;
     const inner = el?.querySelector<HTMLElement>('.fit');
     if (!el || !inner) return;
+    // Measuring needs the font size to change at once. The reduced-motion reset gives every property a 0.01ms
+    // transition, which would leave the old size in place while measuring, so the word and its letters opt out.
+    [el, ...el.querySelectorAll<HTMLElement>('*')].forEach((n) => n.style.setProperty('transition', 'none', 'important'));
     let width = 0;
     const fit = () => {
       width = el.clientWidth;
@@ -38,11 +41,17 @@ export function FitText({ text, className = '', chars = false, label }: FitTextP
       if (el.clientWidth !== width) fit();
     });
     ro.observe(el);
+    // fonts.ready can resolve before the display font has even started loading (with no loader in front, as with
+    // reduced motion), so every finished font load refits too.
     let live = true;
-    document.fonts?.ready.then(() => live && fit());
+    const fonts = document.fonts;
+    const onFonts = () => live && fit();
+    fonts?.ready.then(onFonts);
+    fonts?.addEventListener?.('loadingdone', onFonts);
     return () => {
       live = false;
       ro.disconnect();
+      fonts?.removeEventListener?.('loadingdone', onFonts);
     };
   }, [text]);
 

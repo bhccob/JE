@@ -586,7 +586,7 @@ Checks run through `tools/shots/shoot.mjs` against the worktree's dev server on 
 - Check: the page renders its four sections and contact block at 1440 and 390; the copy test extends to support copy (no installation promise, no prices).
 
 ### Task 16: Snap
-**Files:** `components/home/ChapterSnap.tsx` (Lenis Snap, proximity, chapters only, off with reduced motion), `components/home/Showroom.tsx`.
+**Files:** `components/home/ChapterSnap.tsx` (a settle on Lenis once the scroll rests, chapters only, off with reduced motion; built instead of Lenis Snap, see the spec), `components/home/Showroom.tsx`.
 - Check: stopping a few hundred pixels past a chapter's start settles onto it; stopping mid-chapter (far from a start) does not move.
 
 ### Task 17: The 3D bulb

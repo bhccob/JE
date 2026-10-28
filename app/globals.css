@@ -1,6 +1,7 @@
 /* Jontai Energy, type-led redesign (owner, 2026-10-27; docs/superpowers/specs/2026-10-27-type-led-redesign-design.md).
- * The type is the hero: Archivo, wide and heavy for headings, narrow capitals for labels and figures. No boxes and
- * nothing frosted: full-bleed colour fields (sand, forest, oak), thin rules and space. Products are the catalogue
+ * The type is the hero: Archivo, wide and heavy for headings, narrow capitals for labels and figures. No boxes:
+ * full-bleed colour fields (sand, forest, oak), thin rules and space; glass only as the accent on what floats over
+ * colour (round 2, 2026-10-28; tokens in tokens.css, solid with reduced transparency). Products are the catalogue
  * renders on the stage colour, feathered so no edge shows. Motion is once-only entrances and scroll-scrubbed depth on
  * Lenis + ScrollTrigger, never pinning, never slowing the scroll; reduced motion gets none of it.
  * Kept from before: "you unlock 1 voucher" is the owner's own wording for the regular program. */

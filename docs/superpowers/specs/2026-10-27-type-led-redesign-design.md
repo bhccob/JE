@@ -235,7 +235,7 @@ The owner reviewed the built branch: "for the rest it is super good". These chan
    - Everything kept is listed in `docs/content-placeholders.md` for the owner to confirm before launch.
    - The footer's FAQ link and Visit's questions lead here.
 6. **LED strips** are carried. They are added to the lighting copy, the LED category and its picture list.
-7. **Snap between products.** On all screens, when scrolling stops near the start of a product chapter, the page settles onto it (Lenis Snap, proximity, after a short pause). It never fights a fast scroll, acts only on the chapters, and is off with reduced motion. That overrides "nothing snaps" above.
+7. **Snap between products.** On all screens, when scrolling stops near the start of a product chapter, the page settles onto it, once the scroll has come to rest (built: a small settle on Lenis, `ChapterSnap`, not Lenis Snap, whose timer can fire during touch momentum; within 22% of the screen height of a start, after a wheel or touch only). It never fights a fast scroll, acts only on the chapters, and is off with reduced motion. That overrides "nothing snaps" above.
 8. **A live 3D bulb.** Chapter 04's product is a real-time 3D filament bulb (three.js, built in code, no model file).
    - Drag it to turn it; it turns slowly on its own when left alone, but not with reduced motion.
    - The filament glows in the colour chosen on the slider, and its light washes the stage.

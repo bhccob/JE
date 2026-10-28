@@ -40,7 +40,9 @@ main {
     opacity 300ms ease,
     scale 500ms var(--ease-out);
 }
-.nav[data-solid='true']::before {
+/* Without scripts nothing turns the bar on, and the page would pass under bare links, so it is always there. */
+.nav[data-solid='true']::before,
+:root:not(.js) .nav::before {
   opacity: 1;
   scale: 1;
 }
