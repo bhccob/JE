@@ -1,28 +1,29 @@
 import { CatalogProvider } from '@/components/catalog/CatalogProvider';
 import { Header } from '@/components/ui/Header';
-import { DayFilm } from '@/components/film/DayFilm';
-import { DayChapters } from '@/components/film/DayChapters';
-import { Daybreak } from '@/components/film/Daybreak';
-import { SunDial } from '@/components/film/SunDial';
+import { Loader } from '@/components/home/Loader';
+import { Hero } from '@/components/home/Hero';
+import { HOME_COPY } from '@/lib/products';
+import { Statement } from '@/components/home/Statement';
+import { Showroom } from '@/components/home/Showroom';
+import { Numbers } from '@/components/home/Numbers';
 import { Loyalty } from '@/components/sections/Loyalty';
 import { Visit } from '@/components/sections/Visit';
 import { Footer } from '@/components/sections/Footer';
 
-/** One Aruban day: dawn on the panel to the morning after upstairs, then loyalty and the visit. */
+/**
+ * The type-led home page: the name, one statement, five product chapters, the store in numbers, rewards, the visit.
+ */
 export default function Home() {
   return (
     <CatalogProvider>
-      <Daybreak />
+      <Loader line={HOME_COPY.hero.title} />
       <Header />
       <main id="main">
-        <DayFilm>
-          <DayChapters />
-        </DayFilm>
-        <SunDial />
-        {/* The wall and its tree shadow behind loyalty; the visit section sits apart on its own sand surface. */}
-        <div className="backdrop">
-          <Loyalty />
-        </div>
+        <Hero />
+        <Statement />
+        <Showroom />
+        <Numbers />
+        <Loyalty />
         <Visit />
       </main>
       <Footer />

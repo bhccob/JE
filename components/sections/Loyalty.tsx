@@ -1,7 +1,10 @@
 'use client';
 
-import { useId, useState, type CSSProperties } from 'react';
+import { useEffect, useId, useRef, useState, type CSSProperties } from 'react';
 import { IdentificationCard, WarningCircle } from '@phosphor-icons/react/dist/ssr';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Words } from '@/components/ui/Split';
 import {
   BUSINESS_DISCOUNT,
   POINTS_MAX,
@@ -16,7 +19,12 @@ import {
 import { BusinessFace, LoyaltyCard, RegularFace } from './LoyaltyCard';
 import { MemberLogin } from './MemberLogin';
 
+gsap.registerPlugin(ScrollTrigger);
+
 type Tier = 'regular' | 'business';
+
+/** Where the card rests: two vouchers earned and half way to the third. */
+const START_POINTS = 1250;
 
 /**
  * An explanation you can play with, not an account: the loyalty card itself, in 3D, with points up to 5,000. The
@@ -26,12 +34,44 @@ type Tier = 'regular' | 'business';
  */
 export function Loyalty() {
   const id = useId();
-  const [points, setPoints] = useState(1250);
+  const section = useRef<HTMLElement>(null);
+  const run = useRef<gsap.core.Tween | null>(null);
+  const [points, setPoints] = useState(START_POINTS);
   const [tier, setTier] = useState<Tier>('regular');
   const r = regularCard(points);
   const b = businessCard(points);
 
-  const set = (v: number) => setPoints(Math.min(POINTS_MAX, Math.max(0, Number.isFinite(v) ? Math.round(v) : 0)));
+  // The first time the section comes up, the card's points run from 0 to its resting value, so the stamps fill one
+  // by one. Not with reduced motion, and not when the page opens already past it; touching the controls stops it.
+  useEffect(() => {
+    const el = section.current;
+    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.65) return;
+    setPoints(0);
+    const level = { v: 0 };
+    const trigger = ScrollTrigger.create({
+      trigger: el,
+      start: 'top 65%',
+      once: true,
+      onEnter: () => {
+        run.current = gsap.to(level, {
+          v: START_POINTS,
+          duration: 1.8,
+          ease: 'power2.out',
+          onUpdate: () => setPoints(Math.round(level.v / 50) * 50),
+        });
+      },
+    });
+    return () => {
+      trigger.kill();
+      run.current?.kill();
+    };
+  }, []);
+
+  const set = (v: number) => {
+    run.current?.kill();
+    setPoints(Math.min(POINTS_MAX, Math.max(0, Number.isFinite(v) ? Math.round(v) : 0)));
+  };
   const readout =
     tier === 'regular'
       ? `${formatAfl(r.credit)} in vouchers. ${points >= POINTS_MAX ? 'Every stamp on this card is earned.' : `${formatPoints(r.toNext)} to the next ${formatAfl(VOUCHER_AFL)}.`}`
@@ -40,14 +80,32 @@ export function Loyalty() {
         : `${formatPoints(b.toGoal)} to ${BUSINESS_DISCOUNT}% off for the rest of the year.`;
 
   return (
-    <section id="rewards" className="loyalty" aria-labelledby="rewards-title">
+    <section ref={section} id="rewards" className="loyalty" aria-labelledby="rewards-title">
       <div className="container loyalty__grid">
-        <div className="loyalty__text">
-          <h2 id="rewards-title" className="h-section" data-reveal>
-            Your purchases give something back.
+        <div className="loyalty__head">
+          <p className="label" data-reveal>
+            Jontai Rewards
+          </p>
+          <h2 id="rewards-title" className="display rewards__title" data-words>
+            <Words text="Spend" />{' '}
+            <span className="keep">
+              <Words text={`${formatAfl(REWARD_STEP_AFL)}.`} />
+            </span>{' '}
+            <em>
+              <Words text="Get" />{' '}
+              <span className="mark">
+                <Words text={formatAfl(REWARD_PER_STEP_AFL)} />
+                <svg className="underline" viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+                  <path pathLength={1} d="M3 14 C 50 6, 120 4, 197 9" data-draw="once" />
+                </svg>
+              </span>{' '}
+              <Words text="back." />
+            </em>
           </h2>
+        </div>
+        <div className="loyalty__text">
           <p className="lead" data-reveal style={{ ['--i' as string]: 1 }}>
-            Spend {formatAfl(REWARD_STEP_AFL)} and get {formatAfl(REWARD_PER_STEP_AFL)} back. Your rewards keep accumulating, with an annual reset after one year of use.
+            Your rewards keep accumulating, with an annual reset after one year of use.
           </p>
           <p className="note" data-reveal style={{ ['--i' as string]: 2 }}>
             Full terms and the exact reset date are confirmed with Jontai Energy in store.
@@ -70,7 +128,7 @@ export function Loyalty() {
           <LoyaltyCard flipped={tier === 'business'} front={<RegularFace points={points} />} back={<BusinessFace points={points} />} />
 
           <div className="lcontrols">
-            <fieldset className="segment glass" data-tier={tier}>
+            <fieldset className="segment" data-tier={tier}>
               <legend className="visually-hidden">Customer type</legend>
               {(['regular', 'business'] as Tier[]).map((t) => (
                 <label key={t} className="segment__option">

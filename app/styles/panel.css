@@ -1,0 +1,348 @@
+/* The product panel (CategoryDrawer, ProductView): a frosted sheet from the right (round 2), ruled sections, the
+   pictures on rounded stage-colour tiles. */
+
+/* ---------- Product panel ---------- */
+
+.drawer {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+}
+.drawer__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgb(15 40 29 / 0.3);
+}
+.drawer__panel {
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(720px, 100%);
+  overflow: hidden;
+  background: var(--glass-paper-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--color-ink);
+  box-shadow: var(--glass-edge), var(--shadow-card);
+}
+/* The head and foot stay put and only the pictures scroll, so nothing in the panel needs to be sticky. */
+.drawer__head {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-lg);
+  padding: var(--space-xl) var(--space-xl) var(--space-lg);
+}
+.drawer__title {
+  display: grid;
+  gap: var(--space-sm);
+}
+.drawer__title .h-section {
+  font-size: var(--text-3xl);
+}
+.drawer__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 0.5);
+  box-shadow: var(--glass-edge);
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .drawer__close:hover {
+    background: rgb(255 255 255 / 0.9);
+  }
+}
+
+/* What the store carries: a picture, a name, one line. */
+.range {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: start;
+  gap: var(--space-xl) var(--space-lg);
+  margin: 0;
+  padding: var(--space-sm) var(--space-xl) var(--space-2xl);
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.range__item {
+  display: grid;
+  gap: var(--space-2xs);
+  align-content: start;
+  min-width: 0;
+}
+/* Pictures sit on the stage colour and melt into it (.feather on the image), a rounded tile on the glass. */
+.range__media {
+  margin-block-end: var(--space-sm);
+  overflow: hidden;
+  border-radius: var(--radius-well);
+  background: var(--color-stage);
+  aspect-ratio: 1;
+}
+.range__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.range__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.range__line {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--color-ink-2);
+}
+.drawer__foot {
+  flex-shrink: 0;
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-lg) var(--space-xl);
+  border-top: 1px solid var(--color-rule);
+}
+/* Wider screens: the concept notice sits bottom right, over the panel's foot, so the foot's buttons clear it. */
+@media (min-width: 40.01rem) {
+  :root:has(.concept) .drawer__foot {
+    padding-block-end: 76px;
+  }
+}
+@media (max-width: 40rem) {
+  .drawer__head,
+  .drawer__foot {
+    padding-inline: var(--space-lg);
+  }
+  .drawer__head {
+    padding-block-start: var(--space-lg);
+  }
+  .drawer__foot {
+    padding-block-end: calc(var(--space-lg) + var(--concept-h, 0px) + env(safe-area-inset-bottom, 0px));
+  }
+  .drawer__foot .actions {
+    gap: var(--space-xs);
+  }
+  .drawer__foot .btn {
+    flex: 1 1 auto;
+  }
+  .drawer__foot .note {
+    font-size: var(--text-xs);
+  }
+  .range {
+    gap: var(--space-lg) var(--space-md);
+    padding-inline: var(--space-lg);
+  }
+}
+
+/* One product told in full: picture beside what it does and its figures, then the points, then the datasheet. */
+.drawer__model {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+.drawer__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.pv {
+  display: grid;
+  align-content: start;
+  gap: var(--space-xl);
+  padding: var(--space-sm) var(--space-xl) var(--space-2xl);
+}
+.pv__top {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+.pv__media {
+  overflow: hidden;
+  border-radius: var(--radius-well);
+  background: var(--color-stage);
+  aspect-ratio: 1;
+}
+.pv__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.pv__intro {
+  display: grid;
+  gap: var(--space-lg);
+  align-content: start;
+}
+.pv__lead {
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  color: var(--color-ink-2);
+}
+.pv__highlight {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.pv__figures {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+.pv__figures div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-3xs);
+  padding-block-start: var(--space-sm);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+.pv__figures dt {
+  font-size: var(--text-sm);
+  color: var(--color-ink-2);
+}
+.pv__figures dd {
+  margin: 0;
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: var(--text-3xl);
+  line-height: 1;
+}
+.pv__points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg) var(--space-xl);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pv__points li {
+  display: grid;
+  gap: var(--space-2xs);
+  align-content: start;
+  padding-block-start: var(--space-md);
+  border-top: var(--rule-hair) solid var(--color-rule);
+}
+.pv__point {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+.pv__points p {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+/* Delivery happens in order, so its points are numbered steps in one column. */
+.pv__points[data-steps] {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  counter-reset: step;
+}
+.pv__points[data-steps] li {
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: var(--space-md);
+  padding-block: var(--space-md);
+  counter-increment: step;
+}
+.pv__points[data-steps] li::before {
+  content: counter(step);
+  grid-row: span 2;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  line-height: 1;
+  color: var(--color-wood);
+}
+.pv__specs {
+  border-block: var(--rule-hair) solid var(--color-rule);
+}
+.pv__specs summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 52px;
+  font-weight: 600;
+  color: var(--color-ink);
+  cursor: pointer;
+  list-style: none;
+  transition: color var(--dur-short) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  .pv__specs summary:hover {
+    color: var(--color-ink-2);
+  }
+}
+.pv__specs summary::-webkit-details-marker {
+  display: none;
+}
+.pv__specs summary::after {
+  content: '+';
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  line-height: 1;
+}
+.pv__specs[open] summary::after {
+  content: '\2212';
+}
+.specs {
+  display: grid;
+  gap: var(--space-lg);
+  padding-block: var(--space-xs) var(--space-lg);
+}
+.specs__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  font-variant-numeric: tabular-nums;
+}
+.specs__table caption {
+  padding-block-end: var(--space-xs);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.specs__table :is(th, td) {
+  padding: var(--space-xs) var(--space-sm) var(--space-xs) 0;
+  border-top: var(--rule-hair) solid var(--color-rule);
+  text-align: left;
+  vertical-align: top;
+}
+.specs__table th[scope='row'] {
+  width: 45%;
+  font-weight: 400;
+  color: var(--color-muted);
+}
+.specs__table thead th {
+  font-weight: 600;
+}
+.specs__table :is(td, thead th) {
+  color: var(--color-ink);
+}
+.pv__note {
+  max-width: none;
+}
+@media (max-width: 40rem) {
+  .pv {
+    padding-inline: var(--space-lg);
+  }
+  .pv__top,
+  .pv__points {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

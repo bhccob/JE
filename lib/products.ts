@@ -74,28 +74,43 @@ export interface Fact {
   label: string;
 }
 
-/** Copy for the home page's day film, one entry per chapter. Every figure comes from a supplied datasheet. */
-export interface FilmCopy {
-  dawn: { title: string; line: string; primary: string; secondary: string };
-  noon: {
-    title: string;
-    line: string;
-    panelAction: string;
-    inverterTitle: string;
-    inverterLine: string;
-    facts: Fact[];
-    source: string;
-  };
-  heat: { title: string; line: string; facts: Fact[]; note: string };
-  afternoon: { title: string; line: string; facts: Fact[]; note: string };
-  dusk: { title: string; line: string; kelvin: string };
-  night: { title: string; line: string };
-  outage: { title: string; line: string };
-  morning: { climb: string; title: string; line: string; delivery: string };
-}
-
 /** What the product panel can open: a category's range, or one product told in full. */
 export type PanelId = CategoryId | 'inverter' | 'solar-ac' | 'power-station' | 'generator';
+
+export type ChapterId = 'solar' | 'cooling' | 'backup' | 'light' | 'upstairs';
+
+/** One product chapter of the home page. Every figure comes from a supplied document; `note` says which. */
+export interface HomeChapter {
+  id: ChapterId;
+  number: string;
+  /** After the number in the chapter label ("01 · Solar and inverters"). */
+  label: string;
+  /** The name in the hero's "In the store" list. */
+  index: string;
+  floor: 'Ground floor' | 'Second floor';
+  title: string;
+  lead: string;
+  facts?: Fact[];
+  /** Chapter 05: the delivery line, set apart. */
+  pull?: string;
+  note?: string;
+  /** Text links that open product panels; the first is the main one. */
+  actions: { label: string; panel: PanelId }[];
+  quote: QuoteTopic;
+  /** A catalogue illustration in public/catalog. */
+  image: string;
+  alt: string;
+  tone?: 'oak';
+}
+
+/** Copy for the type-led home page. */
+export interface HomeCopy {
+  hero: { title: string; lead: string; primary: string; secondary: string };
+  /** `team`: the point carries "Meet the team", marked coming soon until the team feature exists. */
+  statement: { label: string; strong: string; soft: string; points: { id?: string; label: string; text: string; team?: boolean }[] };
+  chapters: HomeChapter[];
+  numbers: { label: string; stats: { value: number; label: string }[] };
+}
 
 /** One product told in full: a picture, what it does, a few figures and the points that matter. */
 export interface ProductPanel {
@@ -120,7 +135,7 @@ export interface ProductPanel {
 
 export const CATEGORIES = data.categories as Category[];
 export const PANELS = data.panels as Partial<Record<PanelId, ProductPanel>>;
-export const FILM_COPY = data.film as FilmCopy;
+export const HOME_COPY = data.home as HomeCopy;
 
 export const categoryById = (id: CategoryId) => CATEGORIES.find((c) => c.id === id)!;
 export const panelById = (id: PanelId) => PANELS[id] ?? null;

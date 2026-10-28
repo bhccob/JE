@@ -11,7 +11,7 @@
     "typecheck": "tsc --noEmit",
     "legacy:build:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
     "legacy:watch:css": "tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
-    "test": "node --test lib/loyalty.test.ts lib/contact.test.ts lib/film.test.ts lib/kelvin.test.ts lib/quote.test.ts lib/store.test.ts"
+    "test": "node --test lib/loyalty.test.ts lib/contact.test.ts lib/kelvin.test.ts lib/quote.test.ts lib/store.test.ts lib/countup.test.ts lib/contours.test.ts lib/home-copy.test.ts lib/support.test.ts"
   },
   "dependencies": {
     "@gsap/react": "2.1.2",
@@ -23,7 +23,8 @@
     "next": "^14.2.25",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "sonner": "^1.7.1"
+    "sonner": "^1.7.1",
+    "three": "0.170.0"
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.2.2",
@@ -31,6 +32,7 @@
     "@types/node": "^20.17.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
+    "@types/three": "0.170.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.25",
     "postcss": "^8.4.49",

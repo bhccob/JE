@@ -153,7 +153,7 @@
             "Up to 6 units in parallel",
             "Charges from solar, grid or a generator",
             "Timed charging for cheaper hours",
-            "24-month warranty, indoor use (IP20)"
+            "24-month manufacturer warranty, indoor use (IP20)"
           ],
           "models": {
             "caption": "Series",
@@ -354,7 +354,7 @@
                     "value": "Internal fan"
                   },
                   {
-                    "label": "Warranty",
+                    "label": "Manufacturer warranty",
                     "value": "24 months"
                   }
                 ]
@@ -572,10 +572,11 @@
       "id": "led",
       "name": "LED Lighting",
       "short": "LED",
-      "blurb": "Bulbs, panels, tubes and floodlights.",
+      "blurb": "Bulbs, LED strips, panels, tubes and floodlights.",
       "products": [],
       "carries": [
         "Bulbs, including filament styles",
+        "LED strips",
         "Ceiling panels and round downlights",
         "Tubes and linear fixtures",
         "Floodlights for yards and storefronts"
@@ -587,6 +588,12 @@
           "line": "Everyday and filament styles, warm to daylight white.",
           "image": "/catalog/bulb.webp",
           "alt": "A clear glass LED filament bulb"
+        },
+        {
+          "name": "LED strips",
+          "line": "Flexible strip lights, warm to daylight white.",
+          "image": "/catalog/led-strip.webp",
+          "alt": "A coil of LED strip light with its LEDs lit"
         },
         {
           "name": "Panels and downlights",
@@ -663,91 +670,202 @@
       ]
     }
   ],
-  "film": {
-    "dawn": {
+  "home": {
+    "hero": {
       "title": "Aruba sunlight, made useful.",
-      "line": "Solar, power, lighting and everyday essentials, plus furniture upstairs at Jontai Energy.",
+      "lead": "Solar, power, lighting and everyday essentials, plus furniture upstairs at Jontai Energy.",
       "primary": "Explore solar",
       "secondary": "Visit the store"
     },
-    "noon": {
-      "title": "Noon. The panel goes to work.",
-      "line": "Tempered glass, silicon cells, a sealed backsheet and an aluminium frame turn the midday sun into power.",
-      "panelAction": "See solar panels",
-      "inverterTitle": "One wall unit runs the house.",
-      "inverterLine": "Solar, battery and grid in a single inverter, with pure sine wave power for everything you plug in.",
-      "facts": [
+    "statement": {
+      "label": "One store, two floors",
+      "strong": "Power on the ground floor. Furniture one flight up.",
+      "soft": "Come and see all of it at Cumana 73, Oranjestad.",
+      "points": [
         {
-          "value": "8,000 W",
-          "label": "rated output"
+          "label": "Family-owned",
+          "text": "We choose every product with care and look after every customer ourselves.",
+          "team": true
         },
         {
-          "value": "10 ms",
-          "label": "to switch to battery"
+          "id": "delivery",
+          "label": "Delivery",
+          "text": "Large-item delivery available. Ask us about furniture delivery."
         },
         {
-          "value": "2 x 5,500 W",
-          "label": "solar inputs"
+          "label": "Talk to a person",
+          "text": "Buy at the counter, on WhatsApp or with a quote. No cart, no checkout."
         }
-      ],
-      "source": "Figures from the Namkoo SPI-8K-UP datasheet. Ask what is on the shelf."
+      ]
     },
-    "heat": {
-      "title": "Two o'clock. Cooling that runs on sunlight.",
-      "line": "Panels feed it directly during the day. It draws on the grid only when it needs to.",
-      "facts": [
+    "chapters": [
+      {
+        "id": "solar",
+        "number": "01",
+        "label": "Solar and inverters",
+        "index": "Solar and inverters",
+        "floor": "Ground floor",
+        "title": "One wall unit runs the whole house.",
+        "lead": "Solar, battery and grid in a single hybrid inverter, with pure sine wave power for everything you plug in. Framed panels to match, for rooftop systems.",
+        "facts": [
+          {
+            "value": "8,000 W",
+            "label": "Rated output"
+          },
+          {
+            "value": "10 ms",
+            "label": "To switch to battery"
+          },
+          {
+            "value": "2 × 5,500 W",
+            "label": "Solar inputs"
+          }
+        ],
+        "note": "Figures from the Namkoo SPI-8K-UP datasheet. Ask what is on the shelf.",
+        "actions": [
+          {
+            "label": "See the inverter",
+            "panel": "inverter"
+          },
+          {
+            "label": "See solar panels",
+            "panel": "solar"
+          }
+        ],
+        "quote": "inverter",
+        "image": "/catalog/inverter.webp",
+        "alt": "A white hybrid solar inverter with a small screen"
+      },
+      {
+        "id": "cooling",
+        "number": "02",
+        "label": "Solar air conditioning",
+        "index": "Solar air conditioning",
+        "floor": "Ground floor",
+        "title": "Cooling that runs on sunlight.",
+        "lead": "Panels feed it directly during the day. It draws on the grid only when it needs to.",
+        "facts": [
+          {
+            "value": "9k–36k",
+            "label": "BTU, by model"
+          },
+          {
+            "value": "Up to 100%",
+            "label": "Solar while the sun is out"
+          },
+          {
+            "value": "No battery",
+            "label": "Or separate inverter"
+          }
+        ],
+        "note": "From the ACDC hybrid solar AC brochure. Fitting needs an HVAC technician; Jontai Energy does not install.",
+        "actions": [
+          {
+            "label": "See solar air conditioners",
+            "panel": "solar-ac"
+          }
+        ],
+        "quote": "solar-ac",
+        "image": "/catalog/solar-ac.webp",
+        "alt": "A solar air conditioner, indoor and outdoor unit"
+      },
+      {
+        "id": "backup",
+        "number": "03",
+        "label": "Backup power",
+        "index": "Backup power",
+        "floor": "Ground floor",
+        "title": "Keep the fridge on when the grid drops.",
+        "lead": "A quiet battery with outlets for the fridge, fans and phones. Generators for homes, shops and job sites.",
+        "facts": [
+          {
+            "value": "3,000 W",
+            "label": "Output"
+          },
+          {
+            "value": "2,560 Wh",
+            "label": "Battery"
+          },
+          {
+            "value": "4",
+            "label": "AC outlets"
+          }
+        ],
+        "note": "3000W portable power station. Figures from its spec sheet; other models differ.",
+        "actions": [
+          {
+            "label": "See the power station",
+            "panel": "power-station"
+          },
+          {
+            "label": "See generators",
+            "panel": "generator"
+          }
+        ],
+        "quote": "power-station",
+        "image": "/catalog/power-station.webp",
+        "alt": "A grey portable power station with four outlets and a screen"
+      },
+      {
+        "id": "light",
+        "number": "04",
+        "label": "Lighting and cameras",
+        "index": "Lighting and cameras",
+        "floor": "Ground floor",
+        "title": "Light in the colour you like.",
+        "lead": "Bulbs, including filament styles, LED strips, ceiling panels, tubes and floodlights. Plus security cameras that charge themselves from the sun.",
+        "note": "Stock changes often, so ask before you make the trip.",
+        "actions": [
+          {
+            "label": "See lighting",
+            "panel": "led"
+          },
+          {
+            "label": "See security cameras",
+            "panel": "cameras"
+          }
+        ],
+        "quote": "led",
+        "image": "/catalog/bulb.webp",
+        "alt": "An LED filament bulb"
+      },
+      {
+        "id": "upstairs",
+        "number": "05",
+        "label": "Upstairs",
+        "index": "Furniture, upstairs",
+        "floor": "Second floor",
+        "title": "Furniture for every room, one flight up.",
+        "lead": "Come upstairs at Cumana 73 and sit on it before you buy.",
+        "pull": "Large-item delivery available. Ask us about furniture delivery.",
+        "actions": [
+          {
+            "label": "How delivery works",
+            "panel": "furniture"
+          }
+        ],
+        "quote": "furniture",
+        "image": "/catalog/sofa.webp",
+        "alt": "A light boucle two-seat sofa on oak legs",
+        "tone": "oak"
+      }
+    ],
+    "numbers": {
+      "label": "Jontai at a glance",
+      "stats": [
         {
-          "value": "9,000 to 36,000",
-          "label": "BTU, by model"
+          "value": 2,
+          "label": "Floors, power below and furniture above"
         },
         {
-          "value": "Up to 100%",
-          "label": "solar while the sun is out"
+          "value": 5,
+          "label": "Ranges: solar, power, lighting, cameras, furniture"
         },
         {
-          "value": "No battery",
-          "label": "and no separate inverter"
+          "value": 7,
+          "label": "Days a week, Sunday included"
         }
-      ],
-      "note": "From the ACDC hybrid solar AC brochure. Fitting needs an HVAC technician; Jontai Energy does not install."
-    },
-    "afternoon": {
-      "title": "Four o'clock. Power you can carry.",
-      "line": "Keep the fridge, fans and phones running when the grid drops.",
-      "facts": [
-        {
-          "value": "3,000 W",
-          "label": "output"
-        },
-        {
-          "value": "2,560 Wh",
-          "label": "battery"
-        },
-        {
-          "value": "4",
-          "label": "AC outlets"
-        }
-      ],
-      "note": "3000W portable power station. Figures from its spec sheet; other models differ."
-    },
-    "dusk": {
-      "title": "Dusk. Light in the colour you like.",
-      "line": "Bulbs, including filament styles, ceiling panels, tubes and floodlights. Stock changes often, so ask before you make the trip.",
-      "kelvin": "From warm 3000K to daylight 6500K."
-    },
-    "night": {
-      "title": "A camera that charges itself.",
-      "line": "Solar security cameras for yards, gates and sites without wiring."
-    },
-    "outage": {
-      "title": "When the power goes out.",
-      "line": "Generators for homes, shops and job sites. Ask for current sizes and fuel types."
-    },
-    "morning": {
-      "climb": "Up one flight.",
-      "title": "Upstairs at Jontai.",
-      "line": "Furniture for every room, one flight up. Come and sit on it before you buy.",
-      "delivery": "Large-item delivery available. Ask us about furniture delivery."
+      ]
     }
   },
   "panels": {

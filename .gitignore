@@ -12,3 +12,7 @@ next-env.d.ts
 tools/blender/film/out/
 tools/blender/film/day.blend
 tools/blender/film/day.blend1
+
+# Verification screenshots (tools/shots/shoot.mjs)
+tools/shots/out/
+.next-build/

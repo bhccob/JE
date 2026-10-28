@@ -1,0 +1,912 @@
+/* The type-led home page: loader, hero, statement, product chapters and stage, numbers, visit. Values come from the
+   owner-approved mockup (v2, 2026-10-27; in git history under public/mockups/). No boxes: colour fields, rules, space. */
+
+/* ---------- Loader (first home-page visit of a session) ---------- */
+
+.loader {
+  display: none;
+}
+html.is-loading {
+  overflow: hidden;
+}
+html.is-loading .loader {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: block;
+  overflow: hidden;
+  background: var(--color-forest);
+  color: var(--color-sand);
+}
+.loader__layer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 22px var(--gutter) calc(clamp(18px, 3.5vh, 36px) + var(--concept-h, 0px));
+}
+/* The sand copy of the same layout, uncovered from the bottom as the level rises. */
+.loader__charged {
+  background: var(--color-sand);
+  color: var(--color-forest);
+  clip-path: inset(100% 0 0 0);
+}
+.loader__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.loader__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+}
+.loader__brand img {
+  width: 36px;
+  height: 36px;
+}
+.loader__bottom {
+  grid-row: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+.loader__count {
+  display: flex;
+  align-items: flex-start;
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: clamp(9rem, 27vw, 25rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 0.78;
+}
+.loader__count small {
+  margin: 0.06em 0 0 0.06em;
+  font-size: 0.28em;
+}
+.loader__line {
+  max-width: 12ch;
+  padding-bottom: 0.5em;
+  font-weight: 750;
+  font-size: clamp(1.125rem, 1.7vw, 1.6rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  text-align: right;
+}
+.loader__edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--color-mint);
+  box-shadow: 0 0 18px 2px rgb(184 216 168 / 0.55);
+  transform: translateY(100vh);
+}
+@media (max-width: 32.5rem) {
+  .loader__line,
+  .loader__top .label {
+    display: none;
+  }
+}
+
+/* ---------- Hero ---------- */
+
+/* The entrance's starting states (HeroMotion), only with scripts and motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .js #hero [data-hero] {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  .js #hero .wordmark .ci,
+  .js #hero h1 .wi {
+    transform: translateY(110%);
+  }
+}
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--nav-h) + 12px) var(--gutter) clamp(36px, 6vh, 64px);
+}
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px 32px;
+  padding-top: 12px;
+  color: var(--color-muted);
+}
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+.status i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-wood);
+}
+.status[data-open='true'] i {
+  background: var(--color-green);
+  box-shadow: 0 0 0 4px rgb(121 174 114 / 0.25);
+}
+.wordmark {
+  margin: clamp(16px, 3.5vh, 40px) 0 0;
+  padding: 0.04em 0 0.03em;
+  color: var(--color-forest);
+  font-weight: 800;
+  font-size: 23.5vw;
+  letter-spacing: -0.055em;
+  line-height: 0.8;
+}
+/* Under the name, two things only: the owner's line on the left, the lead and the ways in on the right. */
+.hero__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: end;
+  align-content: end;
+  gap: 32px 6vw;
+  margin-top: clamp(24px, 4vh, 48px);
+}
+.hero__title {
+  font-size: clamp(2.6rem, 5.6vw, 6.2rem);
+}
+.hero__side {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  padding-bottom: 0.4em;
+}
+
+/* ---------- Statement ---------- */
+
+.statement {
+  padding: clamp(110px, 18vh, 200px) var(--gutter) clamp(96px, 15vh, 170px);
+}
+.statement__big {
+  margin-top: 28px;
+  max-width: 25ch;
+  font-weight: 750;
+  font-size: clamp(2rem, 3.8vw, 4.1rem);
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  text-wrap: balance;
+}
+/* Lighter than the first line, still above 3:1 for large text on sand. */
+.statement__big .soft {
+  color: rgb(24 49 40 / 0.6);
+}
+.statement__points {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 clamp(24px, 4vw, 64px);
+  margin: clamp(64px, 10vh, 120px) 0 0;
+  padding: 0;
+  list-style: none;
+}
+.statement__points li {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+.statement__points p {
+  max-width: 22em;
+  font-size: 1.125rem;
+}
+/* "Meet the team", named but not yet a link: muted, with a small glass chip saying it is coming. */
+.statement__points .team {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-weight: 700;
+}
+.team__soon {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--glass-paper);
+  box-shadow:
+    var(--glass-edge),
+    inset 0 0 0 1px var(--color-rule);
+  color: var(--color-green-ink);
+  font-stretch: var(--stretch-narrow);
+  font-size: 0.8rem;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* ---------- Showroom: the product chapters ---------- */
+
+.showroom {
+  position: relative;
+}
+.chapter {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100svh;
+}
+.chapter[data-tone='oak'] {
+  background: var(--color-oak);
+  color: var(--color-ink);
+}
+/* A product link lands here and moves focus in; the product itself needs no ring. */
+.chapter:focus {
+  outline: none;
+}
+.chapter__text {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 28px;
+  padding: clamp(110px, 16vh, 180px) var(--gutter) clamp(80px, 12vh, 140px);
+}
+.chapter__text > :not(.ghost) {
+  position: relative;
+  max-width: 640px;
+}
+.chapter__media {
+  position: relative;
+  order: 2;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  padding: clamp(72px, 10vh, 120px) 6%;
+  background: var(--color-stage);
+  color: var(--color-muted);
+}
+.chapter:nth-child(even) .chapter__media {
+  order: 0;
+}
+/* A pool of light on the stage, so the product sits in it. */
+.chapter__media::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(58% 52% at 50% 48%, rgb(255 255 255 / 0.5), transparent 72%);
+}
+.chapter__media img {
+  position: relative;
+  width: min(84%, 640px);
+}
+.chapter__media > .label {
+  position: absolute;
+  top: calc(var(--nav-h) + 6px);
+  left: clamp(20px, 3vw, 44px);
+}
+.chapter__caption {
+  position: absolute;
+  left: clamp(20px, 3vw, 44px);
+  bottom: 26px;
+  font-size: 0.875rem;
+}
+.ghost {
+  position: absolute;
+  right: -0.03em;
+  bottom: -0.16em;
+  color: rgb(247 245 236 / 0.055);
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: clamp(15rem, 36vw, 40rem);
+  letter-spacing: -0.02em;
+  line-height: 0.8;
+  pointer-events: none;
+  user-select: none;
+}
+.chapter[data-tone='oak'] .ghost {
+  color: rgb(24 49 40 / 0.07);
+}
+.chapter__label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.chapter__label::before {
+  content: '';
+  width: 40px;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0.55;
+}
+.chapter .lead {
+  color: rgb(247 245 236 / 0.86);
+}
+.chapter[data-tone='oak'] .lead {
+  color: rgb(24 49 40 / 0.84);
+}
+.chapter[data-tone='oak'] .fine {
+  color: var(--color-muted);
+}
+.chapter[data-tone='oak'] .textlink {
+  --link-line: var(--color-forest);
+}
+.chapter__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+}
+.pull {
+  max-width: 22em;
+  padding-left: 20px;
+  border-left: 3px solid currentColor;
+  font-weight: 750;
+  font-size: clamp(1.375rem, 1.6vw, 1.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+/* Datasheet figures: big narrow number, small label, a hairline between them. */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 0;
+  margin: 6px 0 0;
+}
+.facts > div {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 8px;
+  padding-right: clamp(16px, 1.8vw, 28px);
+  margin-right: clamp(16px, 1.8vw, 28px);
+  border-right: 1px solid rgb(247 245 236 / 0.2);
+}
+.facts > div:last-child {
+  padding-right: 0;
+  margin-right: 0;
+  border-right: 0;
+}
+.facts dt {
+  font-stretch: var(--stretch-narrow);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+.facts dd {
+  margin: 0;
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: clamp(2.2rem, 2.9vw, 3.3rem);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.005em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+
+/* The bulb's light: a multiply wash over its stage, coloured by the slider. */
+.chapter__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(60% 56% at 50% 46%, var(--glow, rgb(255 180 107)), transparent 78%);
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+.kelvin {
+  display: grid;
+  gap: 14px;
+  max-width: 460px;
+}
+.kelvin__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+}
+.kelvin__read {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+.kelvin__value {
+  font-size: 2.6rem;
+}
+.kelvin__ends {
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.7;
+}
+.slider {
+  width: 100%;
+  height: 44px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.slider::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--track);
+}
+.slider::-moz-range-track {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--track);
+}
+.slider::-webkit-slider-thumb {
+  width: 28px;
+  height: 28px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: var(--thumb);
+  box-shadow:
+    0 0 0 5px var(--halo),
+    0 4px 12px rgb(0 0 0 / 0.25);
+  transition: scale 150ms ease-out;
+  -webkit-appearance: none;
+}
+.slider::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--thumb);
+  box-shadow: 0 0 0 5px var(--halo);
+}
+.slider:active::-webkit-slider-thumb {
+  scale: 1.12;
+}
+.kelvin .slider {
+  --track: linear-gradient(90deg, #ffb46b, #ffe7c7 45%, #f4f6ff 70%, #cfe0ff);
+  --thumb: var(--color-sand);
+  --halo: rgb(247 245 236 / 0.22);
+}
+
+/* ---------- The product rail (wide screens with motion, ProductRail) ---------- */
+
+/* The numbers along the top and the line along the bottom show only while the rail runs. */
+.rail__hud,
+.rail__bar {
+  display: none;
+}
+/* Above the sections it slides over at the end (Rewards is raised), and clear, so the staircase uncovers them. */
+.showroom[data-rail='true'] {
+  z-index: calc(var(--z-raised) + 1);
+  background: none;
+}
+.showroom[data-rail='true'] .rail {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--color-forest);
+}
+.showroom[data-rail='true'] .chapters {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+.showroom[data-rail='true'] .chapter {
+  flex: 0 0 100%;
+  height: 100%;
+  min-height: 0;
+}
+/* Every product on the right and its words on the left, so the eye keeps its place as they slide. */
+.showroom[data-rail='true'] .chapter__media,
+.showroom[data-rail='true'] .chapter:nth-child(even) .chapter__media {
+  order: 2;
+  padding: calc(var(--nav-h) + 3vh) 5% 9vh;
+}
+.showroom[data-rail='true'] .chapter__media img,
+.showroom[data-rail='true'] .chapter__media .bulb3d {
+  width: min(78%, 64vh);
+}
+.showroom[data-rail='true'] .chapter__text {
+  gap: clamp(14px, 2.6vh, 26px);
+  padding: calc(var(--nav-h) + 3vh) clamp(32px, 4.4vw, var(--gutter)) 7vh;
+}
+.showroom[data-rail='true'] .h-section {
+  font-size: min(var(--text-section), 7.6vh);
+}
+/* The rail brings these in itself, sideways; their own rise would fight it. */
+.showroom[data-rail='true'] .chapter:not(:first-child) [data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+/* The next section waits under the rail's last screen, so the staircase uncovers it. */
+.showroom[data-rail='true'] + * {
+  position: relative;
+  z-index: 1;
+  margin-top: -100svh;
+}
+.showroom[data-rail='true'] .rail__hud {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--nav-h) - 6px);
+  right: clamp(8px, 2vw, 32px);
+  display: flex;
+}
+.rail__hud {
+  --hud-on: var(--color-ink);
+  --hud-dim: var(--color-muted);
+}
+/* Midway between two products, the next one's dark words pass under the numbers. */
+.rail__hud[data-over='dark'] {
+  --hud-on: var(--color-sand);
+  --hud-dim: rgb(247 245 236 / 0.7);
+}
+.rail__hud button {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 6px;
+  border: 0;
+  background: none;
+  color: var(--hud-dim);
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  cursor: pointer;
+  transition: color 300ms ease;
+}
+.rail__hud button[aria-current='true'] {
+  color: var(--hud-on);
+  text-decoration-line: underline;
+}
+.showroom[data-rail='true'] .rail__bar {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  height: 3px;
+  background: rgb(24 49 40 / 0.14);
+}
+.rail__bar i {
+  display: block;
+  height: 100%;
+  background: var(--color-green);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@media (hover: hover) and (pointer: fine) {
+  .rail__hud button:hover {
+    color: var(--hud-on);
+  }
+}
+
+/* ---------- The live 3D bulb (Bulb3D) ---------- */
+
+/* The picture first; the canvas fades in over it once the scene has drawn. The picture stays for assistive tech. */
+.bulb3d {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+}
+.bulb3d .bulb3d__pic {
+  width: 100%;
+  height: 100%;
+  transition: opacity 700ms ease;
+}
+.bulb3d__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  touch-action: pan-y;
+  cursor: grab;
+  transition: opacity 700ms ease;
+}
+.bulb3d__canvas:active {
+  cursor: grabbing;
+}
+.bulb3d[data-live='true'] .bulb3d__pic {
+  opacity: 0;
+}
+.bulb3d[data-live='true'] .bulb3d__canvas {
+  opacity: 1;
+}
+/* "Drag to turn", a glass chip under the bulb until the first turn. */
+.bulb3d__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 3%;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  color: var(--color-ink);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  translate: -50% 0;
+  pointer-events: none;
+  transition:
+    opacity 500ms ease,
+    translate 500ms var(--ease-out);
+}
+.bulb3d__hint[data-gone='true'] {
+  opacity: 0;
+  translate: -50% 8px;
+}
+
+/* ---------- Numbers ---------- */
+
+.numbers {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(110px, 18vh, 200px) var(--gutter);
+  text-align: center;
+}
+.numbers > :not(.contours) {
+  position: relative;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  max-width: 1280px;
+  margin: clamp(48px, 8vh, 88px) auto 0;
+  padding: 0;
+  list-style: none;
+}
+.stats li {
+  display: grid;
+  justify-items: center;
+  gap: 16px;
+  padding: 0 clamp(12px, 2vw, 32px);
+}
+.stats li + li {
+  border-left: 1px solid var(--color-rule);
+}
+.stat__n {
+  display: block;
+  height: 0.86em;
+  overflow: hidden;
+  color: var(--color-forest);
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: clamp(6rem, 13vw, 13rem);
+  line-height: 0.86;
+}
+.stat__strip {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(var(--to, 0%));
+}
+.stat__strip span {
+  height: 0.86em;
+}
+.stat__l {
+  max-width: 15em;
+}
+
+/* ---------- Visit ---------- */
+
+.visit {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(110px, 16vh, 180px) var(--gutter) clamp(80px, 12vh, 140px);
+}
+.visit .contours {
+  color: var(--color-sand);
+  opacity: 0.08;
+}
+.visit > :not(.contours) {
+  position: relative;
+}
+.visit__street {
+  margin: 26px 0 0;
+  padding: 0.03em 0 0.02em;
+  font-stretch: var(--stretch-narrow);
+  font-weight: 800;
+  font-size: 26vw;
+  letter-spacing: -0.01em;
+  line-height: 0.8;
+  text-transform: uppercase;
+}
+.visit__city {
+  margin-top: 18px;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  letter-spacing: -0.02em;
+}
+.visit__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px var(--gap-columns);
+  margin-top: clamp(56px, 9vh, 96px);
+}
+/* Three columns under a rule, like the statement's points: no panels. */
+.visit__panel {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid rgb(247 245 236 / 0.4);
+}
+.hours {
+  margin: 0;
+}
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgb(247 245 236 / 0.2);
+  font-size: 1.125rem;
+}
+.hours dd {
+  margin: 0;
+  font-weight: 700;
+  text-align: right;
+  white-space: nowrap;
+}
+.visit .status {
+  font-weight: 600;
+}
+.visit .status[data-open='true'] i {
+  background: var(--color-mint);
+  box-shadow: 0 0 0 4px rgb(184 216 168 / 0.25);
+}
+.contact a {
+  display: block;
+  padding: 6px 0;
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.7vw, 1.6rem);
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.visit .fine {
+  max-width: 30em;
+  color: rgb(247 245 236 / 0.78);
+  font-size: 1.0625rem;
+}
+.faq {
+  max-width: 60rem;
+  margin-top: clamp(56px, 9vh, 96px);
+}
+.faq h3 {
+  margin-bottom: 8px;
+  font-family: var(--font-body);
+}
+.faq details {
+  border-top: 1px solid rgb(247 245 236 / 0.2);
+}
+.faq details:last-of-type {
+  border-bottom: 1px solid rgb(247 245 236 / 0.2);
+}
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  font-weight: 700;
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  letter-spacing: -0.015em;
+  list-style: none;
+  cursor: pointer;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  font-weight: 400;
+  transition: transform 300ms var(--ease-out);
+}
+.faq details[open] summary::after {
+  transform: rotate(45deg);
+}
+.faq details p {
+  max-width: 46em;
+  padding: 0 0 20px;
+  color: rgb(247 245 236 / 0.8);
+}
+.faq__more {
+  margin-top: 28px;
+}
+.visit > .actions {
+  margin-top: clamp(48px, 8vh, 80px);
+}
+@media (hover: hover) and (pointer: fine) {
+  .contact a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 5px;
+  }
+}
+
+/* ---------- Phones and tablets ---------- */
+
+@media (max-width: 60rem) {
+  .hero__grid,
+  .statement__points,
+  .visit__grid {
+    grid-template-columns: 1fr;
+  }
+  .statement__points {
+    gap: 40px;
+  }
+  .visit__grid {
+    gap: 40px;
+  }
+  .chapter {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+  .chapter__media,
+  .chapter:nth-child(even) .chapter__media {
+    order: 0;
+    aspect-ratio: 1 / 0.92;
+    padding: 40px 6%;
+  }
+  .chapter__media img,
+  .chapter__media .bulb3d {
+    width: 82%;
+  }
+  .chapter__media > .label {
+    top: 18px;
+  }
+  .chapter__caption {
+    bottom: 14px;
+  }
+  .chapter__text {
+    padding: 56px var(--gutter) 84px;
+  }
+  .ghost {
+    font-size: 64vw;
+  }
+  .facts {
+    flex-direction: column;
+    gap: 0;
+  }
+  .facts > div,
+  .facts > div:last-child {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    margin-right: 0;
+    border-right: 0;
+    border-top: 1px solid rgb(247 245 236 / 0.2);
+  }
+  .facts > div:last-child {
+    border-bottom: 1px solid rgb(247 245 236 / 0.2);
+  }
+  .facts dd {
+    font-size: 2.6rem;
+  }
+  .stats {
+    grid-template-columns: 1fr;
+  }
+  .stats li {
+    padding: 36px 0;
+  }
+  .stats li + li {
+    border-left: 0;
+    border-top: 1px solid var(--color-rule);
+  }
+}
+@media (max-width: 40rem) {
+  .hero__meta {
+    gap: 6px 20px;
+    font-size: 0.9rem;
+  }
+  .hero .actions .btn,
+  .visit .actions .btn {
+    flex: 1 1 auto;
+  }
+}

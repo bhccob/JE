@@ -20,7 +20,7 @@ export function ProductView({ panel, reduced }: { panel: ProductPanel; reduced: 
     <div className="drawer__body pv">
       <motion.div className="pv__top" {...rise(0)}>
         <div className="pv__media">
-          <Image src={panel.image} alt={panel.alt} width={800} height={800} sizes="(max-width: 40rem) 100vw, 300px" />
+          <Image className="feather" src={panel.image} alt={panel.alt} width={800} height={800} sizes="(max-width: 40rem) 100vw, 300px" />
         </div>
         <div className="pv__intro">
           <p className="pv__lead">{panel.intro}</p>

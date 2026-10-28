@@ -1,18 +1,21 @@
 /* Jontai Energy tokens. Hues from the owner's brief: sand #F7F5EC, light green #B8D8A8, fresh green #79AE72,
-   forest #173D2C, ink #183128, warm wood #B78455, light oak #D8B98E. Sun amber is light, never a UI colour. */
+   forest #173D2C, ink #183128, warm wood #B78455, light oak #D8B98E. Sun amber is light, never a UI colour.
+   Type-led redesign (2026-10-27): one family, Archivo; the type is the hero, so the display sizes are large. */
 :root {
   --text-xs: 0.8125rem;
   --text-sm: 0.875rem;
-  --text-md: 1.0625rem;
+  --text-md: 1.125rem;
   --text-lg: 1.25rem;
   --text-xl: 1.5625rem;
   --text-2xl: 1.953rem;
   --text-3xl: 2.441rem;
   --text-display-s: clamp(2.25rem, 3.6vw + 0.75rem, 4rem);
-  --text-display: clamp(2.75rem, 5.4vw + 0.5rem, 6rem);
-  --text-section: clamp(2.25rem, 3vw + 1rem, 4.25rem);
+  --text-display: clamp(2.6rem, 4.6vw, 5.2rem);
+  --text-section: clamp(2.5rem, 4.4vw, 5rem);
   --text-title: clamp(1.375rem, 0.75vw + 1rem, 1.75rem);
-  --text-lead: clamp(1.125rem, 0.35vw + 1rem, 1.375rem);
+  --text-lead: clamp(1.125rem, 0.45vw + 1rem, 1.375rem);
+  --tracking-label: 0.09em;
+  --stretch-narrow: 62%;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
@@ -46,37 +49,56 @@
   --color-night-ink: oklch(96.5% 0.014 95);
   --color-night-ink-2: oklch(90% 0.022 100);
   --color-night-scrim: oklch(18% 0.03 175 / 0.72);
-  --color-forest: oklch(32.7% 0.053 161.9);
+  --color-forest: #173d2c;
   --color-film-night: oklch(20% 0.03 190);
 
-  --font-display: var(--font-gambetta), "Gambetta", ui-serif, Georgia, serif;
-  --font-body: var(--font-hanken), "Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-outlier: var(--font-display);
+  /* The redesign's roles: the stage matches the catalogue renders' own backdrop, so a product has no box around it;
+     green ink is fresh green dark enough for text on sand; mint is for lines on forest. */
+  --color-sand: #f7f5ec;
+  --color-stage: #eee6d8;
+  --color-deep: #0f281d;
+  --color-green: #79ae72;
+  --color-green-ink: #3d7443;
+  --color-mint: #b8d8a8;
+
+  --font-display: var(--font-archivo), "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-archivo), "Archivo", ui-sans-serif, system-ui, sans-serif;
 
   --radius-card: 28px;
   --radius-well: 16px;
   --radius-pill: 999px;
   --shadow-card: 0 30px 60px -36px oklch(29% 0.036 168.6 / 0.45);
-  --tracking-display: -0.025em;
+  --tracking-display: -0.038em;
 
-  /* Glass: frosted sand by day, frosted forest by night. The film's panes keep their own fixed day and night glass. */
-  --glass-day-fill: oklch(98.6% 0.008 96 / 0.6);
-  --glass-day-strong: oklch(98.6% 0.008 96 / 0.84);
-  --glass-day-edge: oklch(100% 0 0 / 0.7);
-  --glass-day-line: oklch(29% 0.036 168.6 / 0.1);
-  --glass-day-solid: oklch(96.9% 0.012 96.4);
-  --glass-night-fill: oklch(18% 0.03 172 / 0.72);
-  --glass-night-strong: oklch(21% 0.032 170 / 0.86);
-  --glass-night-edge: oklch(100% 0 0 / 0.1);
-  --glass-night-line: oklch(96.5% 0.014 95 / 0.14);
-  --glass-night-solid: oklch(21% 0.032 170);
-  --glass-fill: var(--glass-day-fill);
-  --glass-strong: var(--glass-day-strong);
-  --glass-edge: var(--glass-day-edge);
-  --glass-line: var(--glass-day-line);
-  --glass-solid: var(--glass-day-solid);
-  --glass-shadow: 0 30px 70px -40px oklch(29% 0.036 168.6 / 0.42);
-  --glass-blur: 24px;
+  /* Glass (round 2, 2026-10-28): the premium accent, kept to surfaces that float over colour (the header bar, sheets,
+     the stage's capsules, the visit panels), never the page itself. Light glass carries ink; forest glass carries sand. */
+  --glass-paper: rgb(250 248 240 / 0.66);
+  /* The header bar passes over forest and the footer, so it keeps a little more paper for its links. */
+  --glass-bar: rgb(250 248 240 / 0.74);
+  --glass-paper-strong: rgb(250 248 240 / 0.8);
+  --glass-forest: rgb(23 61 44 / 0.52);
+  --glass-blur: blur(22px) saturate(1.6);
+  --glass-edge: inset 0 1px 0 rgb(255 255 255 / 0.7), inset 0 0 0 1px rgb(255 255 255 / 0.32);
+  --glass-edge-dark: inset 0 1px 0 rgb(255 255 255 / 0.16), inset 0 0 0 1px rgb(247 245 236 / 0.12);
+  --glass-shadow: 0 24px 48px -28px rgb(15 40 29 / 0.45);
+}
+/* Glass turns solid when the visitor asks for less transparency, or where blur behind an element is not supported. */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-paper: var(--color-paper);
+    --glass-bar: var(--color-paper);
+    --glass-paper-strong: var(--color-paper);
+    --glass-forest: var(--color-forest);
+    --glass-blur: none;
+  }
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-paper: var(--color-paper);
+    --glass-bar: var(--color-paper);
+    --glass-paper-strong: var(--color-paper);
+    --glass-forest: var(--color-forest);
+  }
 }
 :root {
   --space-3xs: 2px;
@@ -98,7 +120,7 @@
   --section-gap-s: 120px;
   --section-gap: 144px;
   --section-gap-l: 176px;
-  --nav-h: 72px;
+  --nav-h: 64px;
   --z-base: 1;
   --z-raised: 10;
   --z-dropdown: 100;
@@ -109,21 +131,21 @@
   --z-tooltip: 600;
   --rule-hair: 1px;
 }
-@media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; --nav-h: 64px; } }
-@media (max-width: 40rem) { :root { --gutter: 16px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
-/* Phones: a smaller type scale, so headings hold a line or two and the film's products stay in view. Body stays 16px,
-   which also keeps iOS from zooming into form fields. */
+@media (max-width: 60rem) { :root { --gutter: 24px; --section-gap-s: 80px; --section-gap: 96px; --section-gap-l: 120px; --nav-h: 56px; } }
+@media (max-width: 40rem) { :root { --gutter: 20px; --section-gap-s: 56px; --section-gap: 72px; --section-gap-l: 96px; --gap-columns: 16px; } }
+/* Phones: the type stays big, a little smaller than on wide screens. Body is 17px, which also keeps iOS from zooming
+   into form fields. */
 @media (max-width: 40rem) {
   :root {
-    --text-md: 1rem;
+    --text-md: 1.0625rem;
     --text-lg: 1.125rem;
     --text-xl: 1.3125rem;
     --text-2xl: 1.5625rem;
     --text-3xl: 1.875rem;
     --text-display-s: clamp(1.875rem, 4vw + 1rem, 2.25rem);
-    --text-display: clamp(2rem, 5vw + 0.9rem, 2.5rem);
-    --text-section: clamp(1.625rem, 3vw + 1rem, 2rem);
+    --text-display: clamp(2.4rem, 10vw, 3rem);
+    --text-section: clamp(2.2rem, 9vw, 2.8rem);
     --text-title: 1.1875rem;
-    --text-lead: 1rem;
+    --text-lead: 1.0625rem;
   }
 }

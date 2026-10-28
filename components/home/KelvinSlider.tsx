@@ -1,0 +1,50 @@
+'use client';
+
+import { useEffect, useId, useState } from 'react';
+import { kelvinLabel, kelvinToRgb, kelvinValueText } from '@/lib/kelvin';
+import { kelvin } from './kelvinBus';
+
+/**
+ * The bulb's colour, from warm 3000K to daylight 6500K. It lights the live 3D bulb's filaments (through kelvinBus),
+ * and its light washes over every [data-glow] layer (the stage behind the bulb) through a multiply
+ * blend, so it reaches the edges and never shows a box.
+ */
+export function KelvinSlider() {
+  const id = useId();
+  const [k, setK] = useState(3000);
+
+  useEffect(() => {
+    kelvin.set(k);
+    const [r, g, b] = kelvinToRgb(k);
+    document.querySelectorAll<HTMLElement>('[data-glow]').forEach((el) => el.style.setProperty('--glow', `rgb(${r} ${g} ${b})`));
+  }, [k]);
+
+  return (
+    <div className="kelvin" data-reveal>
+      <div className="kelvin__row">
+        <label className="label" htmlFor={id}>
+          Try a colour
+        </label>
+        <span className="kelvin__read" aria-hidden="true">
+          <span className="kelvin__value figure">{k}K</span>
+          <span className="label">{kelvinLabel(k)}</span>
+        </span>
+      </div>
+      <input
+        id={id}
+        className="slider"
+        type="range"
+        min={3000}
+        max={6500}
+        step={100}
+        value={k}
+        aria-valuetext={kelvinValueText(k)}
+        onChange={(e) => setK(e.currentTarget.valueAsNumber)}
+      />
+      <div className="kelvin__ends label" aria-hidden="true">
+        <span>3000K</span>
+        <span>6500K</span>
+      </div>
+    </div>
+  );
+}

@@ -89,7 +89,7 @@ export function MemberLogin() {
       <button type="button" className="btn btn--primary member__open" onClick={() => setOpen(true)} aria-haspopup="dialog">
         Member login
       </button>
-      <dialog ref={dialog} className="member glass" aria-labelledby={`${id}-title`} onClose={onClose} data-lenis-prevent>
+      <dialog ref={dialog} className="member" aria-labelledby={`${id}-title`} onClose={onClose} data-lenis-prevent>
         <button type="button" className="drawer__close member__close" onClick={() => setOpen(false)} aria-label="Close">
           <X size={18} aria-hidden="true" />
         </button>
