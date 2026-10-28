@@ -2,16 +2,19 @@
 
 import { useEffect, useId, useState } from 'react';
 import { kelvinLabel, kelvinToRgb, kelvinValueText } from '@/lib/kelvin';
+import { kelvin } from './kelvinBus';
 
 /**
- * The bulb's colour, from warm 3000K to daylight 6500K. Its light washes over every [data-glow] layer (the product
- * stage and the phone picture) through a multiply blend, so it reaches the edges and never shows a box.
+ * The bulb's colour, from warm 3000K to daylight 6500K. It lights the live 3D bulb's filaments (through kelvinBus),
+ * and its light washes over every [data-glow] layer (the product stage and the phone picture) through a multiply
+ * blend, so it reaches the edges and never shows a box.
  */
 export function KelvinSlider() {
   const id = useId();
   const [k, setK] = useState(3000);
 
   useEffect(() => {
+    kelvin.set(k);
     const [r, g, b] = kelvinToRgb(k);
     document.querySelectorAll<HTMLElement>('[data-glow]').forEach((el) => el.style.setProperty('--glow', `rgb(${r} ${g} ${b})`));
   }, [k]);

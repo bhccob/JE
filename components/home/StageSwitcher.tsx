@@ -6,14 +6,16 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import type { HomeChapter } from '@/lib/products';
+import { Bulb3D } from './Bulb3D';
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
  * Wide screens: one product stage holds still beside the chapters. As each chapter takes the middle of the screen its
  * product rises in and the last one drops away, in the direction you are scrolling; the number and the floor roll to
- * match, and the bars along the bottom fill with each chapter and jump to it. Phones never show it: each chapter has
- * its own picture there. The pictures here are decorative; each chapter's own picture carries its description.
+ * match, and the bars along the bottom fill with each chapter and jump to it. The bulb is live 3D (Bulb3D). Phones
+ * never show the stage: each chapter has its own picture there. The pictures here are decorative; each chapter's own
+ * picture carries its description.
  */
 export function StageSwitcher({ chapters }: { chapters: HomeChapter[] }) {
   const root = useRef<HTMLDivElement>(null);
@@ -77,7 +79,7 @@ export function StageSwitcher({ chapters }: { chapters: HomeChapter[] }) {
           gsap.fromTo(fills[i], { scaleX: 0 }, { scaleX: 1, ease: 'none', scrollTrigger: { trigger: chapter, start: 'top 55%', end: 'bottom 55%', scrub: true } });
           if (motion) {
             gsap.fromTo(
-              items[i].querySelector('img'),
+              items[i].firstElementChild,
               { yPercent: 5, rotation: -1.2 },
               { yPercent: -5, rotation: 1.2, ease: 'none', scrollTrigger: { trigger: chapter, start: 'top bottom', end: 'bottom top', scrub: true } },
             );
@@ -101,8 +103,12 @@ export function StageSwitcher({ chapters }: { chapters: HomeChapter[] }) {
         <div className="stage__items" aria-hidden="true">
           {chapters.map((c) => (
             <div key={c.id} className="stage__item">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img className="feather" src={c.image} alt="" width={800} height={800} decoding="async" />
+              {c.id === 'light' ? (
+                <Bulb3D src={c.image} alt="" />
+              ) : (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img className="feather" src={c.image} alt="" width={800} height={800} decoding="async" />
+              )}
             </div>
           ))}
         </div>

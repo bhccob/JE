@@ -3,6 +3,7 @@ import { OpenCategoryButton } from '@/components/catalog/OpenCategoryButton';
 import { Words } from '@/components/ui/Split';
 import { HOME_COPY, type HomeChapter } from '@/lib/products';
 import { QUOTE_ACTION } from '@/lib/quote';
+import { Bulb3D } from './Bulb3D';
 import { ChapterSnap } from './ChapterSnap';
 import { KelvinSlider } from './KelvinSlider';
 import { StageSwitcher } from './StageSwitcher';
@@ -32,8 +33,12 @@ function Chapter({ chapter: c }: { chapter: HomeChapter }) {
     <article id={c.id} className="chapter" data-tone={c.tone ?? 'dark'} data-floor={c.floor} aria-labelledby={`${c.id}-title`}>
       <div className="chapter__media">
         <span className="label">{c.floor}</span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="feather" src={c.image} alt={c.alt} width={800} height={800} loading="lazy" decoding="async" data-parallax="10,-4" />
+        {c.id === 'light' ? (
+          <Bulb3D src={c.image} alt={c.alt} parallax="10,-4" />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="feather" src={c.image} alt={c.alt} width={800} height={800} loading="lazy" decoding="async" data-parallax="10,-4" />
+        )}
         {c.id === 'light' && <i className="stage__glow" data-glow aria-hidden="true" />}
         <span className="chapter__caption">Illustration, not specific stock</span>
       </div>
