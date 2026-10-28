@@ -72,7 +72,6 @@
 .support__section {
   display: grid;
   gap: var(--space-xl);
-  scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 .support__h {
   font-family: var(--font-display);
@@ -254,7 +253,6 @@
 /* The contact block: the visit section's forest, contours and glass panels, a little shorter. */
 .support__contact {
   padding-top: clamp(80px, 12vh, 140px);
-  scroll-margin-top: 0;
 }
 .support__contact .label {
   color: rgb(247 245 236 / 0.78);

@@ -1,11 +1,14 @@
 import { HOME_COPY } from '@/lib/products';
 import { StoreIndex } from './StoreIndex';
 
-/** Right after the hero: what is in the store, five big ruled rows that each lead down to their chapter. */
+/**
+ * Right after the hero: what is in the store, five big ruled rows that each lead down to their chapter. The list's
+ * navigation landmark carries the name, so the section itself is not a second "In the store" landmark.
+ */
 export function InStore() {
   const { chapters } = HOME_COPY;
   return (
-    <section className="instore" aria-labelledby="instore-title">
+    <section className="instore">
       <h2 id="instore-title" className="label instore__title" data-reveal>
         In the store
       </h2>

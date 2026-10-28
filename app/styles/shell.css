@@ -46,9 +46,9 @@ main {
   opacity: 1;
   scale: 1;
 }
-/* Out of the way while reading down; back the moment keyboard focus comes in. */
+/* Out of the way while reading down, with the bar's shadow too; back the moment keyboard focus comes in. */
 .nav[data-hidden='true']:not(:focus-within) {
-  transform: translateY(-100%);
+  transform: translateY(calc(-100% - 28px));
 }
 .brand {
   display: flex;
@@ -80,7 +80,8 @@ main {
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-  opacity: 0.72;
+  /* 0.82 keeps the links above 4.5:1 on the glass bar where it passes over forest and the footer. */
+  opacity: 0.82;
   transition: opacity 250ms ease;
 }
 .nav__link[data-current='true'] {

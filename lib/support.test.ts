@@ -9,6 +9,11 @@ test('support never promises installation or work on site', () => {
   assert.doesNotMatch(all, /we install|installation (service|labour|warranty)|our (technician|installer)s?|on-site|certified/i);
 });
 
+test('the policies never mention labour or technicians', () => {
+  // Both read as installation or work on site; Questions may still say who installs (an electrician, a technician).
+  assert.doesNotMatch(JSON.stringify({ WARRANTY, RETURNS, SERVICE }), /labour|technician/i);
+});
+
 test('support shows no prices, financing or efficiency figures', () => {
   assert.doesNotMatch(all, /\$|AWG|Afl\.?\s?\d|financ|efficien/i);
 });

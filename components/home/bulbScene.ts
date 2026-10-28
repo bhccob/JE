@@ -12,6 +12,8 @@ interface Hooks {
   onReady: () => void;
   /** The visitor turned the bulb for the first time. */
   onTouch: () => void;
+  /** The WebGL context is gone; the picture should show again. */
+  onLost: () => void;
 }
 
 /**
@@ -71,7 +73,7 @@ function softDot(inner: string, outer: string) {
 }
 
 /** Builds the bulb inside `host` and runs it; returns the teardown. Throws when WebGL is unavailable. */
-export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () => void {
+export function createBulb(host: HTMLElement, { onReady, onTouch, onLost }: Hooks): () => void {
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'low-power' });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
@@ -85,7 +87,9 @@ export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () =
 
   const scene = new THREE.Scene();
   const pmrem = new THREE.PMREMGenerator(renderer);
-  const env = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  const room = new RoomEnvironment();
+  const env = pmrem.fromScene(room, 0.04).texture;
+  room.dispose();
   scene.environment = env;
 
   const camera = new THREE.PerspectiveCamera(24, 1, 0.1, 60);
@@ -200,45 +204,22 @@ export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () =
     glow.color.copy(lit);
   };
   tint(kelvin.get());
-  const offKelvin = kelvin.on(tint);
 
-  // Size to the host; render only while it is on screen and, on the stage, while the bulb is the product showing.
+  // Draw only when it is worth it: on screen, at a real size (not the 1px copy wide screens keep for assistive tech),
+  // while it is the product the stage shows, and not under a menu, panel or dialog (they stop Lenis, which marks the
+  // page). Within that, frames run only while something moves; a still bulb is drawn once and left.
+  let frame = 0;
+  let last = 0;
+  let ready = false;
+  let lost = false;
   let width = 0;
-  const size = () => {
-    const w = host.clientWidth;
-    const h = host.clientHeight;
-    if (!w || !h) return;
-    width = w;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.updateProjectionMatrix();
-  };
-  size();
-  const resized = new ResizeObserver(size);
-  resized.observe(host);
-
+  let tiny = true;
   let onScreen = false;
-  const seen = new IntersectionObserver(([e]) => {
-    onScreen = e.isIntersecting;
-    wake();
-  });
-  seen.observe(host);
-
+  let held = false;
   const stage = host.closest<HTMLElement>('.stage');
   const item = host.closest('.stage__item');
   const items = stage ? [...stage.querySelectorAll('.stage__item')] : [];
   let showing = !stage;
-  const shown = new MutationObserver(() => {
-    showing = items.indexOf(item as Element) === Number(stage?.dataset.active);
-    canvas.style.pointerEvents = showing ? 'auto' : 'none';
-    wake();
-  });
-  if (stage) {
-    shown.observe(stage, { attributes: true, attributeFilter: ['data-active'] });
-    showing = items.indexOf(item as Element) === Number(stage.dataset.active);
-    canvas.style.pointerEvents = showing ? 'auto' : 'none';
-  }
-
   // Drag to turn, with a little inertia; left alone, it turns slowly by itself (not with reduced motion). A mouse can
   // also tip it a little, and it rights itself when let go; on touch, a vertical drag stays the page's scroll.
   let dragging = false;
@@ -246,6 +227,70 @@ export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () =
   let lastY = 0;
   let spin = 0;
   let touched = false;
+
+  const visible = () => onScreen && showing && !tiny && !held && !lost;
+  const moving = () => dragging || !reduce.matches || Math.abs(spin) > 0.0002 || Math.abs(bulb.rotation.x) > 0.0005;
+  // The canvas takes the pointer only once it has drawn, and only while it is the bulb on show.
+  const pointer = () => {
+    canvas.style.pointerEvents = ready && showing && !tiny && !lost ? 'auto' : 'none';
+  };
+
+  const offKelvin = kelvin.on((k) => {
+    tint(k);
+    wake();
+  });
+
+  const size = () => {
+    const w = host.clientWidth;
+    const h = host.clientHeight;
+    tiny = w < 40 || h < 40;
+    pointer();
+    if (tiny) return;
+    width = w;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    wake();
+  };
+  const resized = new ResizeObserver(size);
+  resized.observe(host);
+
+  const seen = new IntersectionObserver((entries) => {
+    onScreen = entries[entries.length - 1].isIntersecting;
+    wake();
+  });
+  seen.observe(host);
+
+  const onStage = () => {
+    showing = items.indexOf(item as Element) === Number(stage?.dataset.active);
+    pointer();
+    wake();
+  };
+  const shown = new MutationObserver(onStage);
+  if (stage) {
+    shown.observe(stage, { attributes: true, attributeFilter: ['data-active'] });
+    showing = items.indexOf(item as Element) === Number(stage.dataset.active);
+  }
+
+  const root = document.documentElement;
+  const holds = new MutationObserver(() => {
+    held = root.classList.contains('lenis-stopped');
+    wake();
+  });
+  holds.observe(root, { attributes: true, attributeFilter: ['class'] });
+  held = root.classList.contains('lenis-stopped');
+
+  // A phone can drop the WebGL context under memory pressure: stop, and let the picture come back.
+  const contextLost = (e: Event) => {
+    e.preventDefault();
+    lost = true;
+    cancelAnimationFrame(frame);
+    frame = 0;
+    pointer();
+    onLost();
+  };
+  canvas.addEventListener('webglcontextlost', contextLost);
+
   const down = (e: PointerEvent) => {
     dragging = true;
     lastX = e.clientX;
@@ -283,12 +328,9 @@ export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () =
   canvas.addEventListener('pointerup', up);
   canvas.addEventListener('pointercancel', up);
 
-  let frame = 0;
-  let last = 0;
-  let ready = false;
   const tick = (now: number) => {
     frame = 0;
-    if (!onScreen || !showing) return;
+    if (!visible()) return;
     const dt = last ? Math.min(0.05, (now - last) / 1000) : 1 / 60;
     last = now;
     if (!dragging) {
@@ -303,12 +345,14 @@ export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () =
     renderer.render(scene, camera);
     if (!ready) {
       ready = true;
+      pointer();
       onReady();
     }
-    frame = requestAnimationFrame(tick);
+    if (moving()) frame = requestAnimationFrame(tick);
   };
+  // Draws the next frame, and keeps drawing while anything moves.
   function wake() {
-    if (frame || !onScreen || !showing) return;
+    if (frame || !visible()) return;
     last = 0;
     frame = requestAnimationFrame(tick);
   }
@@ -319,6 +363,8 @@ export function createBulb(host: HTMLElement, { onReady, onTouch }: Hooks): () =
     resized.disconnect();
     seen.disconnect();
     shown.disconnect();
+    holds.disconnect();
+    canvas.removeEventListener('webglcontextlost', contextLost);
     canvas.removeEventListener('pointerdown', down);
     canvas.removeEventListener('pointermove', move);
     canvas.removeEventListener('pointerup', up);

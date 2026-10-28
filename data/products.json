@@ -153,7 +153,7 @@
             "Up to 6 units in parallel",
             "Charges from solar, grid or a generator",
             "Timed charging for cheaper hours",
-            "24-month warranty, indoor use (IP20)"
+            "24-month manufacturer warranty, indoor use (IP20)"
           ],
           "models": {
             "caption": "Series",
@@ -354,7 +354,7 @@
                     "value": "Internal fan"
                   },
                   {
-                    "label": "Warranty",
+                    "label": "Manufacturer warranty",
                     "value": "24 months"
                   }
                 ]

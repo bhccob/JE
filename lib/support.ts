@@ -42,15 +42,19 @@ export const QUESTIONS: Question[] = [
 ];
 
 export const WARRANTY = {
-  lead: 'Everything we sell is covered against defects in materials and workmanship in normal use. Manufacturer warranties pass on to you, and where a manufacturer offers better terms than ours, theirs apply and we help you claim.',
+  lead: 'Our store warranty covers the products below against defects in materials and workmanship in normal use. Manufacturer warranties pass on to you, and where a manufacturer offers better terms than ours, theirs apply and we help you claim.',
   periods: [
     { what: 'Solar panels', period: '10 years', note: "The product. The manufacturer's performance warranty, typically 25 years, comes on top." },
-    { what: 'Inverters and batteries', period: '5 years', note: 'Manufacturing defects in normal use.' },
+    {
+      what: 'Inverters and batteries',
+      period: '5 years',
+      note: "Manufacturing defects in normal use. The manufacturer's own warranty is separate, as each product's datasheet gives it.",
+    },
     { what: 'LED fixtures and drivers', period: '3 years', note: 'Including light output that falls below 70% of new within the period.' },
     { what: 'Electrical hardware', period: '1 year', note: 'Cables, breakers and switchgear.' },
     { what: 'Other hardware', period: '6 months', note: 'Mounting accessories and small parts.' },
   ],
-  from: 'Periods run from the date of purchase. For furniture, ask about the warranty when you buy.',
+  from: 'Periods run from the date of purchase. For furniture, and anything not listed here, ask about the warranty when you buy.',
   excluded: [
     'Accidents, misuse or neglect',
     'Changes, repairs or tampering by anyone else',
@@ -68,7 +72,7 @@ export const WARRANTY = {
   ] satisfies Point[],
   caution: 'Please do not repair it yourself or have someone else try first: that can void the warranty.',
   remedy:
-    'When a claim is accepted we repair the product, replace it with the same or an equivalent model, or refund it if neither is possible. A replacement keeps the rest of the original warranty, or 90 days, whichever is longer. Reasonable labour and transport costs within Aruba are ours.',
+    'When a claim is accepted we decide on the remedy: a repair, a replacement with the same or an equivalent model, or a refund if neither is possible. A replacement keeps the rest of the original warranty, or 90 days, whichever is longer. The repair and its transport within Aruba cost you nothing.',
   law: 'All of this comes on top of your rights under Aruban law (the Burgerlijk Wetboek van Aruba): what you buy must match the sale, and if it does not, you can ask for repair, replacement, a lower price or to undo the sale.',
 };
 
@@ -76,7 +80,7 @@ export const RETURNS = {
   lead: 'Bring back a standard-stock product within 14 days with the receipt, unused and in its original packaging, for an exchange or a refund to the original payment method.',
   can: [
     { title: 'Unopened', line: 'In its sealed packaging, within 14 days: a refund or an exchange, with no restocking fee.' },
-    { title: 'Opened but unused', line: 'With no sign of use or fitting, within 14 days: an exchange. We may check it first.' },
+    { title: 'Opened but unused', line: 'With no sign of use or fitting, within 14 days, it may be exchanged. We may check it first.' },
     { title: 'Faulty', line: 'Assessed, then repaired, replaced or refunded under the warranty and your legal rights.' },
     { title: 'The wrong item', line: 'If we gave you the wrong product, we replace it and cover the transport.' },
   ] satisfies Point[],
