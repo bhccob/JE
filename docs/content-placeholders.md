@@ -27,6 +27,23 @@ Everything on the home page that Jontai Energy should check before launch. Nothi
 
 All datasheet figures (SPI-8K-UP, 3000W power station, ACDC solar AC) come from the supplied Namkoo documents and are labelled as examples, not live stock.
 
+## Support page (`/support`, `lib/support.ts`)
+
+Drafted 2026-10-28 from the store's current site: `pages/warranty` (policy dated 19 March 2026), `pages/returns`, `pages/service` and `pages/faq`. Each line below is the store's own policy, shortened, unless it says otherwise. Confirm before launch.
+
+| What | On the page | Source, and what was left out |
+| --- | --- | --- |
+| Warranty periods | Solar panels 10 years (manufacturer performance warranty typically 25 years on top); inverters and batteries 5 years; LED fixtures and drivers 3 years (output below 70% covered); electrical hardware 1 year; other hardware 6 months | Warranty policy. **Inverters: the store policy says 5 years, the Namkoo SPI datasheet (inverter panel) says 24 months.** The site shows both: the store's 5 years here, the manufacturer's 24 months on the inverter panel. Confirm both. The policy's "Installation labour 1 year" is left out |
+| When periods start | "From the date of purchase" | The policy says "purchase or professional installation, whichever is later"; installation is left out |
+| Not covered | Accidents, misuse; changes or repairs by others; wear; lightning, surges, flooding; missing serial number; consumables such as fuses; software unless a hardware fault causes it | Warranty policy. Left out: "installation not performed or supervised by a Jontai Energy technician", and the claim that products are "rated for tropical coastal environments" |
+| Making a claim | Get in touch or come by; bring the receipt and serial number; photos help; an answer within 5 business days; do not repair it first | Warranty policy. Left out: on-site inspection by a technician |
+| Remedies | Repair, replace or refund; a replacement keeps the rest of the warranty or 90 days; reasonable labour and transport within Aruba covered; Aruban statutory rights (Burgerlijk Wetboek van Aruba) | Warranty policy |
+| Returns | 14 days with the receipt, unused and in its packaging; refund to the original payment method or exchange; no restocking fee when unopened; opened but unused: exchange; wrong item replaced, transport covered; installed or special-order items not returnable | Returns page. The page says "we may check it" where the source says a technician inspects |
+| Refund times | "Cash refunds are paid in store once approved; card refunds take 3 to 7 business days" | Returns page, which says both "within 3 business days for cash" and "issued on the spot"; confirm which |
+| Service | In store only: bring the product and receipt, free diagnosis when it may be under warranty, a quote first outside warranty, every repair tested, a 90-day workmanship guarantee, updates by phone or WhatsApp | Service page. Left out: certified technicians, on-site visits, preventive maintenance, and the list of repair kinds |
+| Furniture | "Ask about the warranty / returns when you buy" | Not in any policy; add the furniture terms once known |
+| Questions | Visit's four questions, then warranty claims, returns, repairs and joining Rewards, each answered from the lines above | The old FAQ's answers were not used: dollar prices, US tax credits, installation crews, financing and efficiency figures |
+
 ## Quote requests by email
 
 The quote page (`/quote`) sends each request to the store by email through Resend (resend.com), with Reply-To set to the visitor so a reply goes straight to them. To switch it on, set `RESEND_API_KEY` and `QUOTE_FROM` (an address on a domain verified in Resend) where the site is hosted; `QUOTE_TO` overrides the inbox, which defaults to jontai@qq.com. See `.env.example`. Until then the page does not pretend to send: it says it could not, and opens the same message in the visitor's own email app instead.
@@ -41,4 +58,4 @@ Removed on purpose: the Blender day film of the home page (retired 2026-10-27 fo
 
 ## Not shown anywhere on purpose
 
-Prices, stock levels, warranties beyond the inverter datasheet's 24 months, reviews, customer counts, founding dates, awards, energy savings, installation services. The panel copy names silicon cells without claiming a cell type, because no supplied document states one.
+Prices, stock levels, reviews, customer counts, founding dates, awards, energy savings, installation services. Warranty periods appear only on the Support page, from the store's policy (above), besides the inverter datasheet's 24 months. The panel copy names silicon cells without claiming a cell type, because no supplied document states one.

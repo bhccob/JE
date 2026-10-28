@@ -35,7 +35,7 @@ export function Footer({ base = '' }: { base?: string }) {
             <a href={`${base}#visit`}>Visit</a>
           </li>
           <li>
-            <a href={`${base}#faq`}>FAQ</a>
+            <a href="/support#questions">FAQ</a>
           </li>
         </ul>
       </nav>

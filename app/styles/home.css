@@ -912,6 +912,9 @@ html.is-loading .loader {
   padding: 0 0 20px;
   color: rgb(247 245 236 / 0.8);
 }
+.faq__more {
+  margin-top: 28px;
+}
 .visit > .actions {
   margin-top: clamp(48px, 8vh, 80px);
 }

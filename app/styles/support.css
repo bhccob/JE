@@ -1,0 +1,286 @@
+/* The Support page (round 2): questions, warranty, returns and service on sand, ruled like the rest of the site, a list
+   of its sections that stays in view on wide screens, and the store's contact block on forest at the end. */
+
+.support {
+  padding-top: calc(var(--nav-h) + var(--space-2xl));
+}
+.support__head {
+  display: grid;
+  gap: var(--space-lg);
+  max-width: 66rem;
+  padding: 0 var(--gutter);
+}
+.support__head .label {
+  color: var(--color-muted);
+}
+.support__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8.2vw, 8.6rem);
+  letter-spacing: var(--tracking-display);
+  line-height: 0.92;
+}
+
+.support__body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-2xl) var(--gap-columns);
+  padding: var(--section-gap-s) var(--gutter) var(--section-gap);
+}
+/* The sections, numbered like the store list on the home page; it stays beside the reading on wide screens. */
+.support__nav {
+  grid-column: 1 / span 3;
+  align-self: start;
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+}
+.support__nav ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--color-rule);
+}
+.support__nav a {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--color-rule);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: -0.015em;
+  text-decoration: none;
+  transition: transform 500ms var(--ease-out);
+}
+.support__n {
+  color: var(--color-muted);
+  font-stretch: var(--stretch-narrow);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+}
+@media (hover: hover) and (pointer: fine) {
+  .support__nav a:hover {
+    transform: translateX(8px);
+  }
+}
+.support__main {
+  grid-column: 5 / -1;
+  display: grid;
+  gap: var(--section-gap);
+  min-width: 0;
+}
+.support__section {
+  display: grid;
+  gap: var(--space-xl);
+  scroll-margin-top: calc(var(--nav-h) + 24px);
+}
+.support__h {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: var(--text-section);
+  letter-spacing: var(--tracking-display);
+  line-height: 0.96;
+}
+.support__section .lead {
+  max-width: 38em;
+}
+.support__section .body {
+  max-width: 44em;
+}
+.support__split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2xl) var(--gap-columns);
+  align-items: start;
+}
+.support__split h3 {
+  margin-bottom: 14px;
+}
+.support__split .note {
+  margin-top: var(--space-md);
+}
+
+/* Questions: ruled rows that open. */
+.qa details {
+  border-top: 1px solid var(--color-rule);
+}
+.qa details:last-of-type {
+  border-bottom: 1px solid var(--color-rule);
+}
+.qa summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 0;
+  font-weight: 700;
+  font-size: clamp(1.125rem, 1.4vw, 1.375rem);
+  letter-spacing: -0.015em;
+  list-style: none;
+  cursor: pointer;
+}
+.qa summary::-webkit-details-marker {
+  display: none;
+}
+.qa summary::after {
+  content: '+';
+  font-weight: 400;
+  transition: transform 300ms var(--ease-out);
+}
+.qa details[open] summary::after {
+  transform: rotate(45deg);
+}
+.qa details p {
+  max-width: 46em;
+  padding: 0 0 22px;
+  color: var(--color-ink-2);
+}
+
+/* Warranty periods: what, then the period said big in narrow figures. */
+.periods {
+  margin: 0;
+  border-top: 1px solid var(--color-rule);
+}
+.periods > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 8px 32px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-rule);
+}
+.periods dt {
+  display: grid;
+  gap: 4px;
+}
+.periods__what {
+  font-weight: 750;
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+}
+.periods__note {
+  max-width: 34em;
+  color: var(--color-ink-2);
+  font-size: 0.975rem;
+}
+.periods dd {
+  margin: 0;
+  color: var(--color-green-ink);
+  font-size: clamp(2rem, 3.2vw, 3.4rem);
+  white-space: nowrap;
+}
+
+/* Numbered steps. */
+.steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 2.6em minmax(0, 1fr);
+  gap: 4px 12px;
+  padding: 14px 0;
+  border-top: 1px solid var(--color-rule);
+  counter-increment: step;
+}
+.steps li:last-child {
+  border-bottom: 1px solid var(--color-rule);
+}
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  grid-row: span 2;
+  color: var(--color-muted);
+  font-stretch: var(--stretch-narrow);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.steps strong {
+  font-weight: 700;
+}
+.steps p {
+  color: var(--color-ink-2);
+}
+
+/* Plain lists, each line led by a short wood dash. */
+.dashes {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dashes li {
+  position: relative;
+  padding: 12px 0 12px 26px;
+  border-top: 1px solid var(--color-rule);
+}
+.dashes li:last-child {
+  border-bottom: 1px solid var(--color-rule);
+}
+.dashes li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 1.35em;
+  width: 12px;
+  height: 1.5px;
+  background: var(--color-wood);
+}
+
+/* What can come back: four ruled points. */
+.points {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg) var(--gap-columns);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.points li {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding-top: 16px;
+  border-top: 1.5px solid var(--color-ink);
+}
+.points strong {
+  font-weight: 750;
+  font-size: var(--text-lg);
+  letter-spacing: -0.015em;
+}
+.points p {
+  color: var(--color-ink-2);
+}
+
+/* The contact block: the visit section's forest, contours and glass panels, a little shorter. */
+.support__contact {
+  padding-top: clamp(80px, 12vh, 140px);
+  scroll-margin-top: 0;
+}
+.support__contact .label {
+  color: rgb(247 245 236 / 0.78);
+}
+.support__contact .h-section {
+  margin-top: 14px;
+}
+
+@media (max-width: 60rem) {
+  .support__nav,
+  .support__main {
+    grid-column: 1 / -1;
+  }
+  .support__nav {
+    position: static;
+  }
+  .support__split,
+  .points {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 40rem) {
+  .periods > div {
+    gap: 6px 16px;
+  }
+  .support__contact .actions .btn {
+    flex: 1 1 auto;
+  }
+}
