@@ -3,13 +3,15 @@ import { OpenCategoryButton } from '@/components/catalog/OpenCategoryButton';
 import { Words } from '@/components/ui/Split';
 import { HOME_COPY, type HomeChapter } from '@/lib/products';
 import { QUOTE_ACTION } from '@/lib/quote';
+import { ChapterSnap } from './ChapterSnap';
 import { KelvinSlider } from './KelvinSlider';
 import { StageSwitcher } from './StageSwitcher';
 
 /**
  * The five product families, one screen each: a forest text field (oak upstairs) and the product on the stage colour.
  * On wide screens the chapters scroll past one product stage that holds still; on phones each chapter carries its
- * own picture. The dark field grows from a rounded inset to full width as it arrives.
+ * own picture. The dark field grows from a rounded inset to full width as it arrives, and a scroll that comes to rest
+ * near a chapter's start settles onto it (ChapterSnap).
  */
 export function Showroom() {
   return (
@@ -20,6 +22,7 @@ export function Showroom() {
         ))}
       </div>
       <StageSwitcher chapters={HOME_COPY.chapters} />
+      <ChapterSnap ids={HOME_COPY.chapters.map((c) => c.id)} />
     </section>
   );
 }
