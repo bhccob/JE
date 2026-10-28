@@ -572,10 +572,11 @@
       "id": "led",
       "name": "LED Lighting",
       "short": "LED",
-      "blurb": "Bulbs, panels, tubes and floodlights.",
+      "blurb": "Bulbs, LED strips, panels, tubes and floodlights.",
       "products": [],
       "carries": [
         "Bulbs, including filament styles",
+        "LED strips",
         "Ceiling panels and round downlights",
         "Tubes and linear fixtures",
         "Floodlights for yards and storefronts"
@@ -587,6 +588,12 @@
           "line": "Everyday and filament styles, warm to daylight white.",
           "image": "/catalog/bulb.webp",
           "alt": "A clear glass LED filament bulb"
+        },
+        {
+          "name": "LED strips",
+          "line": "Flexible strip lights, warm to daylight white.",
+          "image": "/catalog/led-strip.webp",
+          "alt": "A coil of LED strip light with its LEDs lit"
         },
         {
           "name": "Panels and downlights",
@@ -676,6 +683,11 @@
       "soft": "Family-owned, so we choose every product with care and look after every customer ourselves.",
       "points": [
         {
+          "label": "Family-owned",
+          "text": "We choose every product with care and look after every customer ourselves.",
+          "team": true
+        },
+        {
           "id": "delivery",
           "label": "Delivery",
           "text": "Large-item delivery available. Ask us about furniture delivery."
@@ -683,10 +695,6 @@
         {
           "label": "Talk to a person",
           "text": "Buy at the counter, on WhatsApp or with a quote. No cart, no checkout."
-        },
-        {
-          "label": "Rewards",
-          "text": "Spend Afl. 500 and get Afl. 25 back, every time."
         }
       ]
     },
@@ -805,7 +813,7 @@
         "index": "Lighting and cameras",
         "floor": "Ground floor",
         "title": "Light in the colour you like.",
-        "lead": "Bulbs, including filament styles, ceiling panels, tubes and floodlights. Plus security cameras that charge themselves from the sun.",
+        "lead": "Bulbs, including filament styles, LED strips, ceiling panels, tubes and floodlights. Plus security cameras that charge themselves from the sun.",
         "note": "Stock changes often, so ask before you make the trip.",
         "actions": [
           {

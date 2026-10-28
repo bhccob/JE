@@ -25,6 +25,24 @@ test('every chapter asks for a real quote topic and shows a real render', () => 
   }
 });
 
+test('the lighting copy names LED strips', () => {
+  const led = data.categories.find((c: { id: string }) => c.id === 'led');
+  assert.match(home.chapters[3].lead, /LED strips/);
+  assert.match(led.blurb, /LED strips/);
+  assert.ok(led.range.some((r: { name: string }) => r.name === 'LED strips'));
+  assert.ok(led.carries.some((c: string) => /LED strips/.test(c)));
+});
+
+test('every picture in a product range exists', () => {
+  for (const c of data.categories) for (const r of c.range) assert.ok(existsSync(join(import.meta.dirname, '..', 'public', r.image)), r.image);
+});
+
+test('the family-owned point leads the statement, with the team still to come', () => {
+  assert.equal(home.statement.points[0].label, 'Family-owned');
+  assert.equal(home.statement.points[0].team, true);
+  assert.ok(!home.statement.points.some((p: { label: string }) => p.label === 'Rewards'));
+});
+
 test('the film copy is gone', () => {
   assert.equal(data.film, undefined);
 });

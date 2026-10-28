@@ -11,7 +11,8 @@ import './globals.css';
 // One family for everything: wide and heavy for headings, narrow (font-stretch 62%) for labels and big figures.
 const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
 
-const title = 'Jontai Energy | Solar, power, lighting and furniture in Oranjestad, Aruba';
+// The owner's tab title (2026-10-28).
+const title = 'Jontai Energy | Smart Lights Smart Savings';
 const description =
   'A retail store at Cumana 73, Oranjestad: solar panels, inverters, generators, power stations, LED lighting, solar cameras and solar air conditioning, with furniture on the second floor. Large-item delivery available.';
 

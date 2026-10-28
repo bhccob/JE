@@ -106,7 +106,8 @@ export interface HomeChapter {
 /** Copy for the type-led home page. */
 export interface HomeCopy {
   hero: { title: string; lead: string; primary: string; secondary: string };
-  statement: { label: string; strong: string; soft: string; points: { id?: string; label: string; text: string }[] };
+  /** `team`: the point carries "Meet the team", marked coming soon until the team feature exists. */
+  statement: { label: string; strong: string; soft: string; points: { id?: string; label: string; text: string; team?: boolean }[] };
   chapters: HomeChapter[];
   numbers: { label: string; stats: { value: number; label: string }[] };
 }
